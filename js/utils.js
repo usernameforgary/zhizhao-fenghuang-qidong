@@ -900,7 +900,7 @@ function bodyScroll (event) {
 
 //调用微信登录
 //TODO remove befor deploy
-let isDevelplment = true;
+let isDevelplment = false;
 wxLogin();
 function wxLogin(_url){
 	if(localStorage.getItem("zhizhao_uid1")){
