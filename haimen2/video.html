@@ -1,0 +1,115 @@
+<!DOCTYPE html>  
+<html lang="zh-CN">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+<title>摄像监控页</title>  
+<link rel="stylesheet" type="text/css" href="css/commonUI.css"/>
+<script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+</head>  
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+		border: 0;
+		box-sizing: border-box;
+	}
+</style>
+<body>  
+	
+<!--<video id="video" autoplay><ideo>-->  
+	<!--<video id="video" autoplay="autoplay" class="player" width="100%" height="233" poster="" controls="controls" object-fit="inherit" src="" style="visibility: visible;"></video>-->
+	<video id="myPlayer" src="" controls="controls" webkit-playsinline="" id="videoPlay"  width="100%" height="233" style=" background: url(&quot;img/bodyBg/post.jpg&quot;) 0px 0px / cover no-repeat transparent;background-size:100%"></video>
+</body>  
+  
+<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://open.ys7.com/sdk/js/1.3/ezuikit.js"></script>
+<script type="text/javascript">
+	var videoArr=[],roomArr=[],index;
+	if(!localStorage.getItem("video_time")){
+		requestVideo();
+	}else{
+		if(JSON.parse(localStorage.getItem("video_time")).outTime<new Date().getTime()){
+			requestVideo();
+			
+		}else{
+			twoTap();//此时的token是可以使用的
+		}
+		 
+	}
+//	postAjax("http://223.113.8.244:55661/artemis/api/video/v1/cameras/previewURLs",{
+//			accessToken:JSON.parse(localStorage.getItem("video_time")).token,
+//			source:"789064833:1,789064833:2,789064833:3,789064833:4,789064833:5"
+//		},function(data){
+//				console.log(data.code);//储存hls链接
+//				
+//		})
+	var _source="789064833:1,789064833:2,789064833:3,789064833:4,789064833:5";
+	function twoTap(){
+		postAjax1("https://open.ys7.com/api/lapp/live/address/get",{
+			accessToken:JSON.parse(localStorage.getItem("video_time")).token,
+			source:"789064833:1,789064833:2,789064833:3,789064833:4,789064833:5"
+		},function(data){
+//				console.log(data.code);//储存hls链接
+				for (var i=0;i<data.data.length;i++) {
+					videoArr.push(data.data[i].hls);
+				}
+				roomArr=[7,8,9,10,11];
+	index=roomArr.indexOf(parseInt(location.href.split('?classRoomId=')[1].split('&')[0]));
+	$("video").attr("src",videoArr[index]);
+		})
+	}
+	function requestVideo(){
+		postAjax1("https://open.ys7.com/api/lapp/token/get",{
+			appKey:"adcc7736e1544e33a8079267d31d5550",
+			appSecret:"a2ffd21358037f9f286bc1213c266d70"
+		},function(_data){
+				localStorage.setItem("video_time",JSON.stringify({
+		   		time:new Date().getFullYear()+"/"+(new Date().getMonth()+1)+"/"+new Date().getDate()+" "+new Date().getHours()+":"+new Date().getMinutes()+":"+new Date().getSeconds(),
+		   		token:_data.data.accessToken,
+		   		outTime:(parseFloat(_data.data.expireTime))//到期的时间戳
+		   	}))
+				twoTap();
+		})
+	}
+		
+		var player = new EZUIPlayer('myPlayer');
+    player.on('error', function(){
+        alert('error');
+    });
+//	videoArr=["https://vshare.ys7.com:4443/hcnp/789064833_1_2_2_0_cas.ys7.com_6500.m3u8?usruuid=f4b5d5fcc63a4f1eaf98331fa73e3fab&shuuid=7180e87bddfd4d5eab2a9822bd473a16",
+//	"https://vshare.ys7.com:4443/hcnp/789064833_2_2_2_0_cas.ys7.com_6500.m3u8?usruuid=0f8f35e696f04b2798e968a5d381f0e6&shuuid=a5184958788948e0bb63b0f967714615",
+//	"https://vshare.ys7.com:4443/hcnp/789064833_3_2_2_0_cas.ys7.com_6500.m3u8?usruuid=383775df71594048a117bf1e21909cce&shuuid=34c691df3f1b4d7194557dc767fefa3c",
+//	"https://vshare.ys7.com:4443/hcnp/789064833_4_2_2_0_cas.ys7.com_6500.m3u8?usruuid=987c846d299344d1a368d6ddfa7e2b40&shuuid=1be1bbac663844b6b73e0c2f9fa0417e",
+//	"https://vshare.ys7.com:4443/hcnp/789064833_5_2_2_0_cas.ys7.com_6500.m3u8?usruuid=d02a1032be8643e194522295893296a4&shuuid=6a5653798d584af487b8332efc3eac44"
+//	];//10是4号教室
+	
+</script>
+<script type="text/javascript">
+	var body_height=document.documentElement?document.documentElement.clientHeight:document.body.clientHeight;
+//	$("iframe").css("height",body_height);
+	if(localStorage.getItem("zhizhao_uid")){
+		
+	}else{
+//		$("video").hide();
+//		ui.showToast( '抱歉，不支持分享',10000);
+	}
+	clear();
+	setInterval(function(){
+		clear();
+	},60000);
+	function clear(){
+		if(new Date().getTime()>sessionStorage.getItem("endTime")&&sessionStorage.getItem("endTime")){
+			ui.showToast( '抱歉，观看时间结束',2000);
+			setTimeout(function(){
+				sessionStorage.setItem("ifReload",1);
+				history.back();
+			},2000)
+		}
+	}
+//	alert(location.href.split('?classRoomId=')[1].split('&')[0])
+</script>
+<html>  

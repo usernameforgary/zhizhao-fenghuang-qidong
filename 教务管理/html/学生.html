@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Document</title>
+            <link rel="stylesheet" href="../css/reset.css">
+            <link rel="stylesheet" href="../css/student.css">
+            <link rel="stylesheet" href="../css/iconfont.css">
+           
+        </head>
+        <body>
+            <div class="warp">
+                <div class="warp1"></div>
+                 <div class="">
+                    <div class="header">
+                        <div class="search">
+                            <img src="../img/search@3x.png">
+                            <input type="text" name="search" id="search" value="" placeholder="输入学员姓名">
+                        </div>
+                        
+                    </div>
+                    <div class="opening">
+                            <p class="opclass" style="color:#efb511; border-bottom: 2px solid #efb511;">已开班</p>
+                        <p class="opclass wei">未开班</p>
+                        
+                    </div>
+                    <div class="cont">
+                    <!-- 已开班 -->
+                     <div class="tab-text">
+                     <ul>
+                        <li class="list-li">
+                            <div class="name1">王艺</div>
+                            <span class="residue">剩余
+                                <b>12</b>
+                                课时
+                                <!-- <img src="../img/箭头-向下.png" alt="" class="face"> -->
+                                <i class="iconfont icon-you"></i>
+                            </span>
+                            <div class="content" ><p>登录账号：18662811672A148</p><p>生日：未填写</p><p>性别：男</p><p>电话：<a href="tel:18662811672">18662811672</a></p><p>学校：鹤城幼儿园</p><div style="line-height: 0.45rem;display:flex;margin-bottom: 0.2rem;"><p>班级：</p>星期六慧鱼常规课09:30-11:00班</div><p>第1次续费课时：5课时</p><p>第1次续费时间：2019-09-14</p><p class="consume">已消耗课时：34课时</p><p>剩余  （3.5课时活动课）（124课时常规课）（35课时专项课）</p><button class="paiban">排班</button><button class="zhuanrang">学员转让</button><button class="history">课堂记录</button><button class="nextClass">下节课</button><button class="bianji">编辑学员</button><p class="hidden" style="position: relative;bottom: 0rem;height: 0.5rem;"><span class="up">收起<i class="iconfont icon-you shang"></i></span></p><div class="clearfix"></div><p></p></div>
+                        </li>
+                     
+
+                     </ul>
+                  
+                        
+                        
+                     </div>
+                  <!-- 未开班 -->
+                  <div class="tab-text non">
+                    <ul>
+                        <li>
+                            <div class="list1">
+                                <div class="list">
+                              <div>
+                                 <p>高华谦</p>
+                                 <p class="apply">自主报名</p>
+                              </div>
+                                <p class="line">2019/5/30</p>
+                                <p class="col">15996568060</p>
+                                <img src="../img/箭头-向下.png" alt="" class="down"> 
+                            </div>
+                        
+                             <div class="son-box">
+                                     <div class="mar-tap">
+                                             <span>登陆账号:</span>
+                                             <span>139123456789abcd</span>
+                                      </div>
+                                     <div class="mar-tap">
+                                             <span>生日:</span>
+                                             <span>2000年1月1日</span>
+                                      </div>
+                                     <div class="mar-tap">
+                                             <span>性别:</span>
+                                             <span>男</span>
+                                      </div>
+                                     <div class="mar-tap">
+                                             <span>电话:</span>
+                                             <span>15561243156</span>
+                                      </div>
+                                     <div class="mar-tap">
+                                             <span>学校:</span>
+                                             <span>桂林小学</span>
+                                      </div>
+                                     <div class="mar-tap">
+                                             <span>班级:</span>
+                                             <span>未排班</span>
+                                      </div>
+                                     <div class="mar-tap">
+                                             <span>剩余:</span>
+                                             <span>0课时试听课</span>
+                                      </div>
+                                     <div class="mar-tap">
+                                             <span>录入时间:</span>
+                                             <span>2018年10月20日</span>
+                                      </div>
+                                     <div class="mar-tap">
+                                             <span>上次邀约时间:</span>
+                                             <span>2018年10月20日</span>
+                                      </div>
+                                     <div class="mar-tap">
+                                             <span>预约次数:</span>
+                                             <span>3次</span>
+                                             <span>添加</span>
+                                      </div>
+                                     <div class="mar-tap">
+                                             <span>备注:</span>
+                                             <span>无</span>
+                                             <span class="pack">收起</span>
+                                      </div>
+                             </div>
+                       
+                       
+                         </div>
+                        </li>
+                    </ul>
+                
+                 </div>
+                </div>
+             
+                 </div>
+            </div>
+        </body>
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="../js/rem.js"></script>
+         <script>
+           $('.opclass').click(function() {
+                    $('.tab-text').eq($(this).index()).css({
+                        display: 'block'
+                    }).siblings().css({
+                        display: 'none'
+                    });
+                    $(this).css({
+                        borderBottom: "2px solid #efb511",
+                        color:'#efb511'
+                    }).siblings().css({
+                        borderBottom: "2px solid #fff",
+                        color:'#000',
+                    });
+                })
+
+                !(function() {
+                    var n=0;
+            $('.down').each(function(index){
+    $(this).click(function(){ 
+        n++;
+                   if(n % 2 !=0){
+                    $(".list1").eq(index).animate({ height: "6rem" }, 500);
+                   }else{
+                    $(".list1").eq(index).animate({ height: "1rem" }, 500);
+                   }
+    })
+})
+
+$('.pack').click(function(){
+    $('.list1').animate({height:'1rem'})
+})
+        })();
+        +(function() {
+                    var n=0;
+            $('.residue').each(function(index){
+    $(this).click(function(){ 
+        n++;
+                   if(n % 2 !=0){
+                    $(".content").eq(index).css('display','block')
+                   }else{
+                    $(".content").css('display','none')
+                   }
+    })
+})
+ 
+$('.up').click(function(){
+        $(".content").css('display','none')
+
+    })
+})()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         </script>
+        
+        
+        </html>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/animate.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    
+    <title>排课</title>
+    <style>
+    	.aaaa{
+    		background-color: #fff;
+    		background-image: url(../../img/bodyBg/add1@3x.png);
+    		background-size: 0.5rem;
+    		background-repeat: no-repeat;
+    		background-position:center 80%;
+    	}
+    	.bbbb{
+    		background-color: #fff;
+    		background-image: url(../../img/bodyBg/add2@3x.png);
+    		background-size: 0.5rem;
+    		background-repeat: no-repeat;
+    		background-position:center 80%;
+    	}
+    	.grid-active span{
+    		background-color: #F8DC8F!important;
+    	}
+        #coursesTable {
+            padding: 15px 10px;
+        }
+
+        .Courses-head {
+            background-color: #edffff;
+        }
+
+        .Courses-head > div {
+            text-align: center;
+            font-size: 14px;
+            line-height: 28px;
+        }
+
+        .left-hand-TextDom, .Courses-head {
+            background-color: #f2f6f7;
+        }
+
+        .Courses-leftHand {
+            background-color: #f2f6f7;
+            font-size: 12px;
+        }
+
+        .Courses-leftHand .left-hand-index {
+            color: #9c9c9c;
+            margin-bottom: 4px !important;
+        }
+
+        .Courses-leftHand .left-hand-name {
+            color: #666;
+        }
+
+        .Courses-leftHand p {
+            text-align: center;
+            font-weight: 900;
+        }
+
+        .Courses-head > div {
+            border-left: none !important;
+        }
+
+        .Courses-leftHand > div {
+            padding-top: 5px;
+            border-bottom: 1px dashed rgb(219, 219, 219);
+        }
+
+        .Courses-leftHand > div:last-child {
+            border-bottom: none !important;
+        }
+
+        .left-hand-TextDom, .Courses-head {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .Courses-content > ul {
+            border-bottom: 1px dashed rgb(219, 219, 219);
+            box-sizing: border-box;
+        }
+
+        .Courses-content > ul:last-child {
+            border-bottom: none !important;
+        }
+
+        .highlight-week {
+            color: #02a9f5 !important;
+        }
+
+        .Courses-content li {
+            text-align: center;
+            color: #666666;
+            font-size: 14px;
+            line-height: 50px;
+        }
+
+        .Courses-content li span {
+            padding: 6px 2px;
+            box-sizing: border-box;
+            line-height: 18px;
+            border-radius: 4px;
+            white-space: normal;
+            word-break: break-all;
+            cursor: pointer;
+        }
+
+        .grid-active {
+            z-index: 9999;
+        }
+
+        .grid-active span {
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .text{
+        	font-size: 0.26rem;
+        	padding: 0.5rem;
+        }
+         .text p{
+         	width: 50%;
+         	float: left;
+         }
+       .main button,.button{
+    		width: 6.5rem;
+    		height: 0.85rem;
+    		margin-top: 0.5rem;
+    		border-radius: 0.25rem;
+    		font-size: 0.3rem;
+    		border: 0;
+    		background-image: url(../../img/bodyBg/paikeButton1@3x.png);
+    		background-size: 100%;
+    		color: white;
+    	}
+    	.float{
+    		padding-top: 0.5rem;
+    		font-size: 0.26rem;
+    		line-height: 0.5rem;
+    		padding-left: 0.5rem;
+    		position: fixed;
+    		top: 0;
+    		bottom: 0;
+    		left: 0;
+    		right: 0;
+    	}
+    	.bbbb,.aaaa{
+    		border-bottom: 1px solid black;
+    	}
+    </style>
+</head>
+<body>
+	<div class="text"><p>课程：<span></span></p><p>时间：<span></span></p>
+	<button class="button" onclick="history.back();">返回重选</button></div>
+<div id="coursesTable">
+	
+</div>
+<div class="float animated zoomInDown" style="display: none;background-color: white;z-index: 11111;">
+		<div class="header">
+			<p>学生姓名：<span></span></p>
+			<p>班级：<span></span></p>
+			<p>所报课程：<span></span></p>
+			<p>所报时间：<span></span></p>
+			<p>教室：<span></span></p>
+			<p>课程时间：<span></span></p>
+		</div>
+		<div class="teacher">
+		</div>
+		<div class="main">
+			<button >我知道了</button>
+		</div>
+	</div>
+<!--<button onclick="onChange()"
+        style="background-color: #00a2ae; color: #fff; padding: 5px 10px; border-radius: 4px;border: none">
+    切换课表
+</button>-->
+<script src="../../js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+<script src="Timetables.min.js"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+//	var ui = window.CUMS.UI;
+	 var courseList=[],courseType=[],timeLength=0,courseTypeNew=[];
+	 var arr1=[],arr2=[],arr3=[],arr4=[],arr5=[],arr6=[],arr7=[];
+	 $('.text').find('span').eq(0).text(decodeURI(location.href.split('course=')[1].split('&')[0]));
+	 $('.text').find('span').eq(1).text(decodeURI(location.href.split('time=')[1].split('&')[0]));
+//courseList = [
+//  ['大学英语(Ⅳ)@10203', '大学英语(Ⅳ)@10203', '', '', '', '', '毛概@14208', '毛概@14208', '', '', '', '选修'],
+//  ['', '', '信号与系统@11302', '信号与系统@11302', '模拟电子技术基础@16204', '模拟电子技术基础@16204', '', '', '', '', '', ''],
+//  ['大学体育(Ⅳ)', '大学体育(Ⅳ)', '形势与政策(Ⅳ)@15208', '形势与政策(Ⅳ)@15208', '', '', '电路、信号与系统实验', '电路、信号与系统实验', '', '', '', ''],
+//  ['', '', '', '', '电装实习@11301', '电装实习@11301', '', '', '', '大学体育', '大学体育', ''],
+//  ['', '', '数据结构与算法分析', '数据结构与算法分析', '', '', '', '', '信号与系统', '信号与系统', '', ''],
+//];
+//var week = window.innerWidth > 360 ? ['周一', '周二', '周三', '周四', '周五', '周六', '周日'] :
+//  ['一', '二', '三', '四', '五','六','七'];
+ 	getAjax(hostAjax+"/api/course/v1/getcoursearrangement",{
+		courseagetypeid:location.href.split("courseId=")[1].split("&")[0],
+		week:location.href.split("weekId=")[1].split("&")[0]
+	},function(data){
+		if(data.Code==1000){
+			ui.showAlert('是否申请加课', function () {
+	                location.href="addCourse.html?goback2";
+	            },null,"这就去","取消","提示");
+			return false;
+		}
+		var week =[];
+		arr1=[],arr2=[],arr3=[],arr4=[],arr5=[],arr6=[],arr7=[];
+		courseList=[],courseType=[];
+		//循环遍历
+		var classId="",str="";
+		for (var c=0;c<data.Data.columnname.length;c++) {
+			classId="room_";
+			week.push(data.Data.columnname[c].classroomname);
+			 //获取每个教室对应的时间数组
+			 classId+=data.Data.columnname[c].classroomid;
+	//		 alert(data.Data.list[0].room_7)
+			for(var time=0;time<data.Data.list.length;time++){
+				if(data.Data.list[time].classId!=""){
+					str+=data.Data.list[time].classtime+"%"+data.Data.list[time].classId+"&";
+				}else{
+					
+					break;
+				}
+			}
+		}
+		
+		for (var a=0;a<data.Data.list.length;a++) {
+			
+			arr1.push([{index: (a+1), name: data.Data.list[a].classtime.split("-")[0]}, 1]);
+			arr1.push([{index: (a+1), name: data.Data.list[a].classtime.split("-")[1]}, 1]);
+			//把每一个对象进行遍历
+			var aaa=[];
+			for (var key in data.Data.list[a]) {
+				if(key!='classtime'){
+					aaa.push(data.Data.list[a][key]);
+				}
+				if(a==0){
+					timeLength++;
+				}
+			}
+			courseType.push(aaa);
+		}
+//		console.log(arr1)
+		//比较arr2中所有的字段前两个字符大小从小到大排序
+	　　　　　　　//遍历数组，默认arr中的某一个元素为最大值，进行逐一比较
+	        for(var i=0; i<week.length; i++){
+	        	var bbb=[];
+    	 		for(var j=0; j<courseType.length; j++){
+    	 			if(courseType[j][i]!=""){
+//  	 				courseType[j][i]+="人";
+    	 			}
+    	 				bbb.push(courseType[j][i]);
+	        	 		bbb.push(courseType[j][i]);
+        	 	}
+    	 		courseTypeNew.push(bbb);
+	        }
+	        console.log(courseTypeNew)//得到了最新的时间段标准
+	       
+	        
+	//	console.log(arr1);
+		
+	  	var day = new Date().getDay();
+	  
+	  // 实例化(初始化课表)
+	var Timetable = new Timetables({
+	  el: '#coursesTable',
+	  timetables: courseTypeNew,
+	  week: week,
+	  timetableType: arr1,
+	  gridOnClick: function (e) {
+//	  	console.log(e)
+//	    if(e.name>=6){
+//	    	ui.showToast( '班级人数已达上限',3000);
+//	    	return false;
+//	    }
+	    if(e.id!=""){
+	    	
+	    	if(sessionStorage.getItem("zhuanban")){
+	    		ui.showAlert('是否确认转班：'+decodeURI(location.href.split('course=')[1].split('&')[0])+"、"+decodeURI(location.href.split('time=')[1].split('&')[0]), function () {
+					//调取转班接口
+	    		postAjax(hostAjax+"/api/tch/v1/addshiftrecord",JSON.stringify({
+	    			userid:uid,
+					shiftstudentid:location.href.split('stuId=')[1].split('&')[0],
+					classid:sessionStorage.getItem("zhuanban"),
+					newewclassid:e.classid,
+					reason:"未填"
+				}),function(data){
+					if(data.Code==200){
+						ui.showToast( '申请成功',3000);
+						setTimeout(function(){
+							sessionStorage.setItem("ifReload",1);
+							history.go(-3);
+						},1800)
+					}else{
+						ui.showToast( data.Msg,3000);
+					}
+				})
+	            },null,"确认","取消","提示");
+	    		
+	    	}else{
+	    		ui.showAlert('是否确认', function () {
+					//调取排课的接口
+		    	getAjax(hostAjax+"/api/course/v1/addarrangeclass",{
+					studentid:location.href.split('stuId=')[1].split('&')[0],
+					fixedcourseid:e.id
+				},function(data){
+					if(data.Data!=""){
+						
+						$(".float p").eq(0).find("span").text(data.Data[0].name);
+						$(".float p").eq(1).find("span").text(data.Data[0].classname);
+						$(".float p").eq(2).find("span").text(data.Data[0].subjectname);
+						$(".float p").eq(3).find("span").text(data.Data[0].weekname);
+						$(".float p").eq(4).find("span").text(data.Data[0].classroomname);
+						$(".float p").eq(5).find("span").text(data.Data[0].classtime);
+						
+						$(".float").show();
+						$(".float button").click(function(){
+							sessionStorage.setItem("ifReload",1);
+							history.go(-3);
+							
+						})
+					}else{
+						ui.showToast( data.Msg,3000);
+					}
+				})
+	            },null,"确认","取消","提示");
+	    		
+	    	}
+		    	
+	    }
+	   
+	  },
+	  styles: {
+	    Gheight: 50
+	  }
+	});
+	})
+
+ function unique(arr){
+
+　　var res =[];
+
+　　var json = {};
+
+　　for(var i=0;i<arr.length;i++){
+
+　　　　if(!json[arr[i]]){
+
+　　　　　　res.push(arr[i]);
+
+　　　　　　json[arr[i]] = 1;
+
+　　　　}
+
+　　}
+
+　　return res;
+
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+
+    body, dl, dt, dd, ul, ol, li, pre, form, fieldset, input, p, blockquote, th, td {
+    font-weight:400;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    h1, h2, h3, h4, h4, h5 {
+    margin:0;
+    padding:0;
+    }
+    a{
+        text-decoration: none;
+        color: #333333;
+    }
+    body {
+    font-family:Helvetica,Arial,sans-serif; 
+    font-size: 16px;
+    }
+    html{
+    font-size: 100px;
+    }
+    ol, ul {
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+    }
+    /* caption, th {
+    text-align:left;
+    } */
+   .clearfix::after{
+content: ".";
+visibility: hidden;
+display: block;
+clear: both;
+height: 0;
+   }
+    

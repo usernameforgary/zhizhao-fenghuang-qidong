@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>新增备课笔记</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	body{
+    		background-color: #fff;
+    		background-image: url(../../img/bodyBg/beikeBg.png);
+    		background-size: 100% 100%;
+    		background-repeat: no-repeat;
+    	}
+    	.header,.main{
+    		width: 6.5rem;
+    		border: 4px solid #000;
+    		margin: auto;
+    		background-color: #fff;
+    		border-radius: 0.3rem;
+    		padding: 0.5rem 0.3rem;
+    		margin-top: 1.1rem;
+    		line-height: 0.7rem;
+    	}
+    	.main{
+    		padding: 0.2rem 0.3rem!important;
+    	}
+    	 li{
+    		border: 1px solid #fff;
+    	}
+    	 li i{
+    		color: #50BAF5;
+    		font-size: 0.28rem;
+    	}
+    	 .r{
+    		float: right;
+    	}
+    	 .r span{
+    		display: inline-block;
+    		line-height: 0.3rem;
+    		padding:4px 0.2rem;
+    		border-radius: 0.2rem;
+    		color: white;
+    		background-color: #50BAF5;
+    		margin-right: 0.2rem;
+    	}
+    	.r span.on{
+    		background-color: #FA5A5A;
+    	}
+    	.header input{
+    		border: 0;
+    		border-bottom: 1px solid #000;
+    		width: 4.2rem;
+    		outline: none;
+    		padding-left: 0.26rem;
+    		box-sizing: border-box;
+    	}
+    	.main input{
+    		font-size: 0.3rem;
+    		width: 0.26rem!important;
+    		height: 0.26rem!important;
+    		margin-right: 0.25rem;
+    	}
+    	.up-page-wrapper button{
+    		width: 2.15rem;
+    		height: 0.85rem;
+    		border-radius: 0.85rem;
+    		background-color: #23A8F2;
+    		border: 3px solid #000;
+    		color: white;
+    		margin:0.5rem auto;
+    		margin-left: 1.3rem;
+    	}
+    	.up-page-wrapper button:nth-child(2){
+    		margin-left: 0.5rem;
+    		background-color: #FA5A5A;
+    	}
+    	.zhuanbanWrap{
+    		padding: 0.25rem;
+    		width: 6.5rem;
+    		background-color: #fff;
+    		border-radius: 0.3rem;
+    		position: fixed;
+    		top: 1.8rem;
+    		left: 0.5rem;
+    		z-index: 222;
+    		line-height: 0.5rem;
+    		border: 1px solid #eee;
+    	}
+    	textarea{
+    		width: 100%;
+    		resize: none;
+    		height: 2.5rem;
+    		margin-top: 0.2rem;
+    		text-indent: 2em;
+    		line-height: 0.35rem;
+    		border: 1px solid #aaa;
+    	}
+    	.zhuanbanFloat button{
+    		width: 5.6rem;
+    		height: 0.6rem;
+    		border-radius: 0.6rem;
+    		color: white;
+    		background: linear-gradient(to bottom,#FFCC3C,#F0B715);
+    		margin-top: 0.4rem;
+    		border: 0;
+    		font-size: 0.26rem;
+    	}
+    	.submit{
+    		background-color: #FA5A5A!important;
+    	}
+    </style>
+</head>
+<body class="up-page">
+	<div class="zhuanbanFloat" style="display: none;">
+		<div class="float" style="display: block;"></div>
+		<div class="zhuanbanWrap">
+			<b>参考教案或材料：</b>
+			<p>
+				<textarea></textarea>
+			</p>
+			<p style="text-align: center;"><button class="go">确定</button></p>
+		</div>
+	</div>
+	<div class="up-page-wrapper" >
+		<div class="header">
+			<ul>
+				<li class="referencematerial"><b>参考材料：</b><div class="r"><span>去填写</span><i class="iconfont icon-you"></i></div></li>
+				<li class="teachingmaterials"><b>教材分析与教学建议：</b><div class="r"><span class="">去修改</span><i class="iconfont icon-you"></i></div></li>
+				<li class="teachinggoal"><b>教学目标：</b><div class="r"><span>去填写</span><i class="iconfont icon-you"></i></div></li>
+				<li class="akey"><b>重点：</b><div class="r"><span>去填写</span><i class="iconfont icon-you"></i></div></li>
+				<li class="difficulty"><b>难点：</b><div class="r"><span>去填写</span><i class="iconfont icon-you"></i></div></li>
+			</ul>
+		</div>
+		<div class="main" style="padding:0.5rem;">
+			<ul>
+				<li class="teachingactivities"><b>教学活动：</b><div class="r"><span>去填写</span><i class="iconfont icon-you"></i></div></li>
+			</ul>
+		</div>
+		<button onclick="history.back();">上一步</button><button class="submit">提交</button>
+	</div>
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI;
+	var referencematerial=" ",teachingmaterials=" ",teachinggoal=" ",akey=" ",difficulty=" ",teachingactivities=" ";
+//	ui.showToast( '板块正在开发！');
+	//性别选择
+	$('.search img').click(function(){
+		if($('.tab li.active').attr('index')==1){
+			yiqiandan($("input").val());
+		}else if($('.tab li.active').attr('index')==2){
+			weiqiandan($("input").val());
+		}
+	})
+	function init(){
+		if(referencematerial!=" "){
+			$(".referencematerial .r span").attr("class","on");
+		}
+		if(teachingmaterials!=" "){
+			$(".teachingmaterials .r span").attr("class","on");
+		}
+		if(teachinggoal!=" "){
+			$(".teachinggoal .r span").attr("class","on");
+		}
+		if(akey!=" "){
+			$(".akey .r span").attr("class","on");
+		}
+		if(difficulty!=" "){
+			$(".difficulty .r span").attr("class","on");
+		}
+		 if(teachingactivities!=" "){
+			$(".teachingactivities .r span").attr("class","on");
+		}
+		 $(".on").text("去修改")
+	}
+	$('.r').click(function(){
+		
+		$(".zhuanbanFloat").show();
+		console.log($(this).parents('li').attr("class"));
+		$(".zhuanbanFloat b").text($(this).prev().text());
+		$(".zhuanbanFloat textarea").val(" ");
+		if($(this).parents('li').attr("class")=="referencematerial"){
+			$(".zhuanbanFloat textarea").val(referencematerial);
+		}else if($(this).parents('li').attr("class")=="teachingmaterials"){
+			$(".zhuanbanFloat textarea").val(teachingmaterials);
+		}else if($(this).parents('li').attr("class")=="teachinggoal"){
+			$(".zhuanbanFloat textarea").val(teachinggoal);
+		}else if($(this).parents('li').attr("class")=="akey"){
+			$(".zhuanbanFloat textarea").val(akey);
+		}else if($(this).parents('li').attr("class")=="difficulty"){
+			$(".zhuanbanFloat textarea").val(difficulty);
+		}else if($(this).parents('li').attr("class")=="teachingactivities"){
+			$(".zhuanbanFloat textarea").val(teachingactivities);
+		}
+	})
+	$(".zhuanbanFloat button").click(function(){
+		$(".zhuanbanFloat").hide();
+		if($(".zhuanbanFloat b").text()=="参考材料："){
+			referencematerial=$(".zhuanbanFloat textarea").val();
+		}else if($(".zhuanbanFloat b").text()=="教材分析与教学建议："){
+			teachingmaterials=$(".zhuanbanFloat textarea").val();
+		}else if($(".zhuanbanFloat b").text()=="教学目标："){
+			teachinggoal=$(".zhuanbanFloat textarea").val();
+		}else if($(".zhuanbanFloat b").text()=="重点："){
+			akey=$(".zhuanbanFloat textarea").val();
+		}else if($(".zhuanbanFloat b").text()=="难点："){
+			difficulty=$(".zhuanbanFloat textarea").val();
+		}else if($(".zhuanbanFloat b").text()=="教学活动："){
+			
+			teachingactivities=$(".zhuanbanFloat textarea").val().replace(new RegExp("\n", "gm"), "<br />");
+		}
+		init();
+	})
+	$('.float').click(function(){
+		$(".zhuanbanFloat").hide();
+	})
+	var stanby=false;
+	$('.submit').click(function(){
+		if(stanby){
+			return false;
+		}
+		ui.showAlert('是否确认提交：'+decodeURI(location.href.split("curriculumtheme=")[1].split("&")[0]), function () {
+					postAjax(hostAjax+"/api/tch/v1/addpreparelessons",JSON.stringify({//
+			  userid: uid,
+			  curriculumtheme: decodeURI(location.href.split("curriculumtheme=")[1].split("&")[0]),
+			 	classtime: location.href.split("classtime=")[1].split("&")[0],
+			  preparations: decodeURI(location.href.split("preparations=")[1].split("&")[0]),
+			  coursetime: parseInt(location.href.split("coursetime=")[1].split("&")[0]),
+			  curriculumtype: parseInt(location.href.split("curriculumtype=")[1].split("&")[0]),
+			  referencematerial:referencematerial,
+			  teachingmaterials:teachingmaterials,
+			  teachinggoal:teachinggoal,
+			  akey:akey,
+			  difficulty:difficulty,
+			   teachingactivities:teachingactivities
+			  
+		}),function(data){
+			if(data.Code==200){
+				stanby=true;
+				ui.showToast( '成功！');
+			 	setTimeout(function(){
+			 		sessionStorage.setItem("ifReload",1);
+			 		history.go(-2);
+			 	},800)
+			   	
+			}else{
+				ui.showToast( '请填写全部的备课信息！');
+			}
+		})
+	            },null,"确认","取消","提示");
+		
+	})
+	if(location.href.indexOf("xiugai")>0){
+		getAjax(hostAjax+"/api/tch/v1/selectpreparelessonsedit",{//备课--信息
+			id:location.href.split("xiugaiId=")[1].split("&")[0]
+		},function(data){
+			var str="",haseCommite="";
+			if(data.Data!=""){
+				referencematerial=data.Data.list[0].referencematerial;
+				teachingmaterials=data.Data.list[0].teachingmaterials;
+				teachinggoal=data.Data.list[0].teachinggoal;
+				akey=data.Data.list[0].akey;
+				difficulty=data.Data.list[0].difficulty;
+				teachingactivities=data.Data.list[0].teachingactivities;
+				init();
+				$('.main>p').eq(0).find("span").text(data.Data.list[0].curriculumtheme);
+				$('.main>p').eq(1).find("span").text(data.Data.list[0].classtime.split(' ')[0]);
+				$('.main>p').eq(2).find("span").text(data.Data.list[0].curriculumtypename);
+				$('.main>p').eq(3).find("span").text(data.Data.list[0].coursetime);
+				$('.main>p').eq(4).find("span").text(data.Data.list[0].preparations);
+				$('.main>p').eq(5).find("span").text(data.Data.list[0].t_teachernickname);
+				$('.main>p').eq(6).find("span").text(data.Data.list[0].referencematerial);
+//				console.log($("#"+data.Data.list[0].curriculumtype))
+				$('.main>p').eq(7).find("span").text(data.Data.list[0].teachingmaterials);
+				$('.main>p').eq(9).find("span").text(data.Data.list[0].teachinggoal);
+				$('.main>p').eq(10).find("span").text(data.Data.list[0].akey);
+				$('.main>p').eq(11).find("span").text(data.Data.list[0].difficulty);
+				$('.main>p').eq(13).find("span").text(data.Data.list[0].teachingactivities);
+				
+			}
+		})
+	}
+</script>
+</html>

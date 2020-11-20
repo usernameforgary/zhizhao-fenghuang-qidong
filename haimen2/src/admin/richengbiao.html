@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+		<title>日报表</title>
+		<link rel="stylesheet" href="../../time/css/normalize3.0.2.min.css" />
+		<link rel="stylesheet" href="../../time/css/style.css?v=7" />
+		<link href="../../time/css/mobiscroll.css" rel="stylesheet" />
+		<link href="../../time/css/mobiscroll_date.css" rel="stylesheet" />
+
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			
+			body {
+				font-family: "微软雅黑";
+				background: #f3f3f3;
+				font-size: 14px;
+			}
+			
+			img {
+				width: 1.3rem;
+				height: 1.3rem;
+				margin-top: 0.6rem;
+			}
+			
+			header {
+				height: 7vh;
+				display: flex;
+				justify-content: space-between;
+				padding: 0 7%;
+				line-height: 7vh;
+				box-shadow: 0px -2px 5px 0px #e9e8e9;
+			}
+			
+			section {
+				height: 92vh;
+			}
+			
+			h2 {
+				margin-top: 1.2rem;
+				font-weight: normal;
+				font-size: 12px;
+				color: #333333;
+			}
+			
+			p {
+				font-size: 22px;
+				font-weight: 400;
+				line-height: 2.2rem;
+			}
+			
+			section>div {
+				height: 15vh;
+				background: #fff;
+				border: 1px solid #f3f3f3;
+				border-left: 0;
+				border-right: 0;
+				padding: 0 5%;
+			}
+			
+			section div:nth-child(2),
+			section div:nth-child(3),
+			section div:nth-child(4),
+			section div:nth-child(5) {
+				display: flex;
+			}
+			
+			section div:nth-child(2) div,
+			section div:nth-child(3) div,
+			section div:nth-child(4) div,
+			section div:nth-child(5) div {
+				width: 50%;
+				display: flex;
+				flex-direction: column;
+			}
+			
+			section div:nth-child(2) div:last-child,
+			section div:nth-child(3) div:last-child,
+			section div:nth-child(4) div:last-child,
+			section div:nth-child(5) div:last-child {
+				border-left: 1px solid #f3f3f3;
+				padding-left: 3%;
+				width: 47%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<div>
+				<label></label>
+				<input type="text" name="USER_AGE" id="USER_AGE" readonly class="input" placeholder="" style="width: 100%;height: 50%;font-size: 12px;text-align: center;" />
+			</div>
+			<img id="EndDateimg" src="../../img/bodyBg/rili@3x.png" />
+		</header>
+		<section id="mainbody">
+			<!--今日收费开始-->
+			<div id="" onclick="window.location.href='shoufei.html'">
+				<h2>今日收费 (元)</h2>
+				<p style="font-size: 1.6rem;color: #fe2c2c;"></p>
+			</div>
+			<!--今日收费结束-->
+			<div id="">
+				<!--今日新增学员开始-->
+				<div id="" onclick="window.location.href='xinzengstu.html'">
+					<h2>今日新增学员 (人)</h2>
+					<p></p>
+				</div>
+				<!--今日新增学员结束-->
+
+				<!--今日新增非学员开始-->
+				<div id="" onclick="window.location.href='zengfeistu.html'">
+					<h2>今日新增非学员 (人)</h2>
+					<p></p>
+				</div>
+				<!--今日新增非学员结束-->
+			</div>
+
+			<div id="">
+				<!--今日续费开始-->
+				<div id="" onclick="window.location.href='dayxufei.html'">
+					<h2>今日续费 (人)</h2>
+					<p></p>
+				</div>
+				<!--今日续费结束-->
+				<div id="">
+					<h2></h2>
+					<p></p>
+				</div>
+			</div>
+
+			<div id="">
+				<!--今日上课人数开始-->
+				<div id="" onclick="window.location.href='dayclasspeo.html'">
+					<h2>今日上课人数(人)</h2>
+					<p></p>
+				</div>
+				<!--今日上课人数结束-->
+				<!--今日上课节数开始-->
+				<div id="jieshu" onclick="window.location.href='dayclasscishu.html'">
+					<h2>今日上课节数 (节)</h2>
+					<p></p>
+				</div>
+				<!--今日上课节数结束-->
+			</div>
+
+			<div id="">
+				<!--今日电话邀约开始-->
+				<div id="" onclick="window.location.href='dayphoneyaoyue.html'">
+					<h2>今日电话邀约 (人)</h2>
+					<p></p>
+				</div>
+				<!--今日电话邀约结束-->
+				<!--今日到访开始-->
+				<div id="" onclick="window.location.href='daycomepeo.html'">
+					<h2>今日到访 (人)</h2>
+					<p></p>
+				</div>
+				<!--今日到访结束-->
+			</div>
+		</section>
+	</body>
+	<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../time/js/mobiscroll_date.js" charset="gb2312"></script>
+	<script src="../../time/js/mobiscroll.js"></script>
+	<script type="text/javascript">
+		
+		if(history.length>0){
+			if($("#USER_AGE").val() == '') {
+					var myDate = new Date();
+					var year = myDate.getFullYear();
+					var mounth = myDate.getMonth()+1;
+					var days = myDate.getDate();
+					$("#USER_AGE").val(year + '-' + mounth + '-' + days)
+					
+					
+					var a = localStorage.getItem('zhizhao_uid')
+				//		console.log(a)
+				
+				$.ajax({
+					url: 'http://139.224.133.133:8013/api/overpipe/v1/overmanagementreport',
+					type: 'GET',
+					data: {
+						user_id: a,
+						date: $("#USER_AGE").val()
+					},
+					success: function(data) {
+						if(data.Code == 200) {
+							console.log(data);
+							$('section>div:nth-child(1)>p').html(data.Data.charge);
+							$('section>div:nth-child(2)>div:first-child>p').html(data.Data.newtrainees);
+							$('section>div:nth-child(2)>div:last-child>p').html(data.Data.nontrainees);
+							$('section>div:nth-child(3)>div:first-child>p').html(data.Data.renewals);
+							$('section>div:nth-child(4)>div:first-child>p').html(data.Data.classattendance);
+							$('section>div:nth-child(4)>div:last-child>p').html(data.Data.lessonnumber);
+							$('section>div:nth-child(5)>div:first-child>p').html(data.Data.telephoneinviter);
+							$('section>div:nth-child(5)>div:last-child>p').html(data.Data.numberofvisitors);
+						} else if(data.Code == 1000) {
+							alert('暂无更多信息！！！')
+							
+						}
+
+					}
+
+				});
+				}else{
+					var a = localStorage.getItem('zhizhao_uid')
+				//		console.log(a)
+				
+				$.ajax({
+					url: 'http://139.224.133.133:8013/api/overpipe/v1/overmanagementreport',
+					type: 'GET',
+					data: {
+						user_id: a,
+						date: $("#USER_AGE").val()
+					},
+					success: function(data) {
+						if(data.Code == 200) {
+							console.log(data);
+							$('section>div:nth-child(1)>p').html(data.Data.charge);
+							$('section>div:nth-child(2)>div:first-child>p').html(data.Data.newtrainees);
+							$('section>div:nth-child(2)>div:last-child>p').html(data.Data.nontrainees);
+							$('section>div:nth-child(3)>div:first-child>p').html(data.Data.renewals);
+							$('section>div:nth-child(4)>div:first-child>p').html(data.Data.classattendance);
+							$('section>div:nth-child(4)>div:last-child>p').html(data.Data.lessonnumber);
+							$('section>div:nth-child(5)>div:first-child>p').html(data.Data.telephoneinviter);
+							$('section>div:nth-child(5)>div:last-child>p').html(data.Data.numberofvisitors);
+						} else if(data.Code == 1000) {
+							alert('暂无更多信息！！！')
+							
+						}
+
+					}
+
+				});
+				}
+			
+//			alert('0000')
+localStorage.getItem('zhizhao_time');
+//			var b = $("#USER_AGE").val(localStorage.getItem('zhizhao_time', b));
+				//				console.log(b);
+//				localStorage.setItem('zhizhao_time', b)
+
+				
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+			var currYear = (new Date()).getFullYear();
+			var opt = {};
+			opt.date = {
+				preset: 'date'
+			};
+			opt.datetime = {
+				preset: 'datetime'
+			};
+			opt.time = {
+				preset: 'time'
+			};
+			opt.default = {
+				theme: 'android-ics light', //皮肤样式
+				display: 'modal', //显示方式 
+				mode: 'scroller', //日期选择模式
+				dateFormat: 'yyyy-mm-dd',
+				lang: 'zh',
+				showNow: true,
+				nowText: "今天",
+				startYear: currYear - 5, //开始年份
+				endYear: currYear + 5 //结束年份
+			};
+
+			$("#USER_AGE").mobiscroll($.extend(opt['date'], opt['default']));
+			
+			
+			
+			
+//			
+			$("#USER_AGE").change(function() {
+				var b = $("#USER_AGE").val();
+				//				console.log(b);
+				localStorage.setItem('zhizhao_time', b)
+
+				var a = localStorage.getItem('zhizhao_uid')
+				//		console.log(a)
+				
+				$.ajax({
+					url: 'http://139.224.133.133:8013/api/overpipe/v1/overmanagementreport',
+					type: 'GET',
+					data: {
+						user_id: a,
+						date: b
+					},
+					success: function(data) {
+						if(data.Code == 200) {
+							console.log(data);
+							$('section>div:nth-child(1)>p').html(data.Data.charge);
+							$('section>div:nth-child(2)>div:first-child>p').html(data.Data.newtrainees);
+							$('section>div:nth-child(2)>div:last-child>p').html(data.Data.nontrainees);
+							$('section>div:nth-child(3)>div:first-child>p').html(data.Data.renewals);
+							$('section>div:nth-child(4)>div:first-child>p').html(data.Data.classattendance);
+							$('section>div:nth-child(4)>div:last-child>p').html(data.Data.lessonnumber);
+							$('section>div:nth-child(5)>div:first-child>p').html(data.Data.telephoneinviter);
+							$('section>div:nth-child(5)>div:last-child>p').html(data.Data.numberofvisitors);
+						} else if(data.Code == 1000) {
+							alert('暂无更多信息！！！')
+						}
+
+					}
+
+				});
+			})
+
+	</script>
+
+</html>

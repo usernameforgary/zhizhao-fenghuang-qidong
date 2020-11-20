@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="hg.css"> -->
+    <!-- <link rel="stylesheet" href="ddd.css"> -->
+    <style>
+         .warp-opact {
+            position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2222;
+    background-color: rgba(0, 0, 0, 0.5);
+         }
+         .artpo{
+            z-index: 2222;
+    position: absolute;
+    width: 5.4rem;
+    background-color: #fff;
+    border-radius: 0.12rem;
+    box-sizing: border-box;
+    font-size: 0.28rem;
+    background-clip: padding-box;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+         }
+         .qx{
+            width: 50%;
+    float: left;
+    border-bottom-left-radius: 0.096rem;
+    /* display: none; */
+    padding: 0;
+    margin: 0;
+    line-height: 0.96rem;
+    font-size: 0.34rem;
+    text-align: center;
+    color: #158cfb;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    background-clip: padding-box;
+    border: none;
+    box-sizing: border-box;
+         }
+         .qr{
+            width: 50%;
+    float: left;
+    border-bottom-left-radius: 0.096rem;
+    /* display: none; */
+    padding: 0;
+    margin: 0;
+    line-height: 0.96rem;
+    font-size: 0.34rem;
+    text-align: center;
+    color: #158cfb;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    background-clip: padding-box;
+    border: none;
+    box-sizing: border-box;
+    border-left: 1px #ccc  solid;
+         }
+         .ts{
+            font-size: 0.32rem;
+    line-height: 1.2rem;
+    font-weight: bold;
+         }
+         .but-qx{
+             border-top: #ccc 1px solid;
+         }
+    </style>
+</head>
+
+<body>
+   <div class="warp-opact">
+       <div class="artpo">
+           <div class="ts">提示</div>
+           <div class="but-qx">
+               <button class="qx">取消</button>
+               <button  class="qr">确认</button>
+           </div>
+       </div>
+   </div>
+</body>
+<script>
+        ; (function () {
+            function a() {
+                //1.获取屏幕宽度
+                var html = document.documentElement;
+                var w = html.getBoundingClientRect().width;
+                //2.屏幕宽度/7.5(设计稿的尺寸是750，如果设计稿的尺寸为640，则除以6.4)
+                if (w > 750) {
+                    w = 750;
+                }
+                var f = w / 7.5;
+                // 3.设置html的font-size
+                html.style.fontSize = f + "px";
+            }
+            a();
+            var timer;
+            window.onresize = function () {
+                clearTimeout(timer);
+                timer = setTimeout(a, 300);
+            }
+        })();
+
+    </script>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
+    />
+    <title>查看补课详情</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css" />
+    <link rel="stylesheet" href="../../css/weui.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../css/simplePagination.css"
+    />
+    <link rel="stylesheet" href="../../css/quebuke.min.css" />
+    <script
+      src="../../js/resize.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+  </head>
+
+  <body class="up-page">
+    <div class="up-page-wrapper detailsBox">
+      <div class="float" style="display: none;opacity: 0;"></div>
+      <div class="input" style="z-index: 1111;position: fixed;display: none;">
+        <input type="text" name="" id="" value="" placeholder="评论" /><button
+          class=""
+        >
+          发送
+        </button>
+      </div>
+      <div class="list"></div>
+    </div>
+  </body>
+  <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+  <script
+    src="../../js/jquery-3.3.1.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/jquery.simplePagination.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/commonUI.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/utils.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/mobileSelect.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/datePicker.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script src="../../js/jquery-weui.min.js"></script>
+  <script>
+    var studentclassid
+    function hideLoading() {
+      $('.weui-mask_transparent').remove()
+      $('.weui-toast.weui_loading_toast').remove()
+    }
+    function GetQueryString(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+      var r = window.location.search.substr(1).match(reg)
+      if (r != null) return unescape(r[2])
+      return null
+    }
+    // 获取学员信息
+    function getStudent() {
+      $.showLoading()
+      getAjax(
+        hostAjax + '/api/stu/v1/getstudetnclassroominfos',
+        {
+          user_id: GetQueryString('id')
+        },
+        function(data) {
+          hideLoading()
+          if (data.Data.length != 0) {
+            let html = ''
+            for (let i = 0; i < data.Data.length; i++) {
+              const element = data.Data[i]
+              html += `
+                <div class="item item_box" data-id="${element.id}">
+                  <div class="_header">
+                    <div class="headpicbox">
+                      <img src="${
+                        element.teacherimg != ''
+                          ? element.teacherimg
+                          : '../../img/default_person.png'
+                      }" alt="" srcset="" />
+                    </div>
+                    <div class="right">
+                      <div class="name">
+                        ${element.teachername}
+                      </div>
+                      <div class="time">${element.dateweek.split(' ')[0] +
+                        '  ' +
+                        element.starttime +
+                        '-' +
+                        element.endtime}</div>
+                    </div>
+                  </div>
+                  <div class="_content">
+                    <div class="text _contenttext">
+                      ${element.principalsevaluation}
+                    </div>
+                    <div class="imgbox">`
+              if (element.imgurllist !== '') {
+                for (let j = 0; j < element.imgurllist.split('|').length; j++) {
+                  const elementj = element.imgurllist.split('|')[j]
+                  html += `<div>
+                        <img src="${elementj}" alt="" srcset="" />
+                      </div>`
+                }
+              }
+              html += `</div>
+                    <div class="discuss">`
+
+              let pinglun = element['pinglun_' + element.id]
+              if (pinglun.length != 0) {
+                for (let k = 0; k < pinglun.length; k++) {
+                  const elementk = pinglun[k]
+                  html += `<div class="item pinglun_box" data-parent="${elementk.id}">
+                        <div class="name">${elementk.username}</div>
+                        <div class="text pinglun_box" data-parent="${elementk.id}">
+                          ${elementk.content}
+                        </div>
+                      </div>`
+                  let huifu = elementk['huifu_' + elementk.id]
+                  for (let l = 0; l < huifu.length; l++) {
+                    const elementl = huifu[l]
+                    html += `<div class="item huifu_box" data-parent="${elementk.id}" data-huifu="${elementl.id}">
+                        <div class="name">${elementl.username}</div>
+                        <div class="text huifu_box" data-parent="${elementk.id}" data-huifu="${elementl.id}">
+                          回复<span>${elementl.whouserusername}</span>：${elementl.content}
+                        </div>
+                      </div>`
+                  }
+                }
+              }
+              html += `</div>
+                  </div>
+                </div>
+              `
+            }
+            $('.detailsBox .list').html(html)
+          } else {
+            ui.showToast('该学员暂无课堂表现！', 2000)
+          }
+        }
+      )
+    }
+    //初始化学员信息
+    getStudent()
+    $('.detailsBox .list').click(function(e) {
+      if ($(e.target).hasClass('_contenttext')) {
+        parent = 0
+        huiparentid = 0
+        studentclassid = $(e.target)
+          .parents('.item_box')
+          .attr('data-id')
+        $('.input').show()
+        $('.float').show()
+        return
+      }
+      if ($(e.target).hasClass('pinglun_box')) {
+        parent = $(e.target).attr('data-parent')
+        huiparentid = 0
+        studentclassid = $(e.target)
+          .parents('.item_box')
+          .attr('data-id')
+        $('.input').show()
+        $('.float').show()
+        return
+      }
+      if ($(e.target).hasClass('huifu_box')) {
+        parent = $(e.target).attr('data-parent')
+        huiparentid = $(e.target).attr('data-huifu')
+        studentclassid = $(e.target)
+          .parents('.item_box')
+          .attr('data-id')
+        $('.input').show()
+        $('.float').show()
+        return
+      }
+    })
+    $('.float').click(function() {
+      $('.input').hide()
+      $(this).hide()
+    })
+    $('.input input').on('input propertychange', function() {
+      if ($(this).val() != '') {
+        $('.input button').addClass('on')
+      } else {
+        $('.input button').attr('class', '')
+      }
+    })
+    $('.input button').click(function() {
+      if ($('.input input').val() != '') {
+        //提交评论
+        postAjax(
+          hostAjax + '/api/stu/v1/setmodelcomment',
+          JSON.stringify({
+            userid: uid,
+            studentclassid: studentclassid,
+            content: $('.input input').val(),
+            type: 1,
+            // type: localStorage.getItem('zhizhao_typle'),
+            parent: parent,
+            huiparentid: huiparentid
+          }),
+          function(data) {
+            if (data.Code == 0) {
+              ui.showToast('提交成功', 500)
+              $('.input input').val('')
+              $('.float').click()
+              parent = 0
+              studentclassid = 0
+              huiparentid = 0
+              getStudent()
+            } else {
+              ui.showToast(data.Msg, 500)
+            }
+          }
+        )
+      }
+    })
+  </script>
+</html>

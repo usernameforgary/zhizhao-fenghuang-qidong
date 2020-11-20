@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>今日电话邀约</title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			html{
+				font-size: 12px;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			body {
+				font-family: "微软雅黑";
+				/* background: ; */
+				width: 100%;
+				height: 100%;
+			}
+			#dayphone{
+				width: 100%;
+				height: auto;
+			}
+			#dayphone li{
+				box-shadow: 0px 3px 10px #ccc;
+				padding-bottom: 5%;
+			}
+			#dayphone li h1{
+				font-weight: normal;
+				height: 4rem;
+				line-height: 4rem;
+				background: #f3f3f3;
+				font-size: 16px;
+				display: flex;
+				color: #333;
+			}
+			#dayphone li h1 span:first-child{
+				padding-left: 18%;
+				height: 4rem;
+				width: 20%;
+				background: url(img/学生@3x.png) no-repeat 20% 40%;
+				background-size: 2rem;
+			}
+			#dayphone li h1 span:last-child{
+				padding-left: 12%;
+				height: 4rem;
+				width: 28%;
+				background: url(img/课程顾问@3x.png) no-repeat 0% 40%;
+				background-size: 2.5rem;
+			}
+			#dayphone li div{
+				margin-top: 1.5rem;
+				display: flex;
+				padding-left: 8%;
+				font-size: 15px;
+				color: #999;
+			}
+			#dayphone li div span:first-child{
+				width: 38%;
+				background: url(img/电话@3x.png) no-repeat 0% 50%;
+				background-size: 2.5rem;
+				line-height: 3.5rem;
+				padding-left: 12%;
+			}
+			#dayphone li div span:last-child{
+				width: 38%;
+				background: url(img/生日@3x.png) no-repeat 0% 50%;
+				background-size: 2.5rem;
+				line-height: 3.5rem;
+				padding-left: 12%;
+			}
+			#dayphone li>span{
+				display: block;
+				margin-top: 1rem;
+				line-height: 3.5rem;
+				background: url(img/邀约时间@3x.png) no-repeat 8.3% 50%;
+				background-size: 2.5rem;
+				padding-left: 19%;
+				font-size: 15px;
+				color: #999;
+			}
+		</style>
+	</head>
+
+	<body>
+		<ul id="dayphone">
+			<!--<li>
+				<h1>
+					<span>王一一</span>
+					<span>于娜娜</span>
+				</h1>
+				<div id="">
+					<span>18438628395</span>
+					<span>2019-03-03</span>
+				</div>
+				<span>12:30</span>
+			</li>-->
+		</ul>
+		
+		
+		
+		<!--信息提示框开始-->
+		<div class="newalert" style="width: 50%;height: 5rem;border-radius: 1rem;position: fixed;top: 20%;left: 25%;z-index: 5;text-align: center;line-height: 5rem;font-size: 18px;box-shadow: -3px 2px 5px 1px #333;display: none;">
+			
+		</div>
+		<!--信息提示框结束-->
+	</body>
+	<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var userid = localStorage.getItem('zhizhao_uid');
+		///http://139.224.133.133:8088/api/overpipe/v1/getnewtrainees?user_id=25&starttime=2019-02-02&endtime=2019-03-03
+		//页面跳转传值与取值--开始
+//		var ids=0;
+//		window.location.href='nosetupnow.html?ids='+ids+''//当前页面跳转向下一个页面传值
+		//跳转至另一个页面当，另一个页面中获取上一个页面通过跳转传来的值
+		var url = location.search; //获取url中"?"符后的字串 ('?modFlag=business&role=1')  
+		var theRequest = new Object();
+		if(url.indexOf("?") != -1) {
+			var str = url.substr(1); //substr()方法返回从参数值开始到结束的字符串；  
+			var strs = str.split("&");
+			for(var i = 0; i < strs.length; i++) {
+				theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+			}
+			console.log(theRequest);
+		}
+		
+		var starttime=theRequest.ti1;
+		var endtime=theRequest.ti2;
+		var str='';
+		
+		
+		
+		
+		$.ajax({
+			type:"get",
+			url:"http://139.224.133.133:8088/api/overpipe/v1/gettelephoneinviter",
+			async:false,
+			data:{
+				user_id: userid,
+				starttime: starttime,
+				endtime: endtime,
+			},
+			success:function(data){
+				console.log(data)
+				if(data.Code==1000){
+					$('.newalert').html(data.Msg)
+//					$('body').css('background','#f1f1f1')
+					$('.newalert').fadeIn(1500);
+				}
+				if(data.Code==200){
+					for(i in data.Data.list){
+						str+=`<li>
+								<h1>
+									<span>${data.Data.list[i].studentname}</span>
+									<span>${data.Data.list[i].teachername}</span>
+								</h1>
+								<div id="">
+									<span>${data.Data.list[i].phone}</span>
+									<span>${data.Data.list[i].birthday}</span>
+								</div>
+								<span>${data.Data.list[i].time}</span>
+							</li>`
+						$('#dayphone').html(str);
+					}
+				}
+			}
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</script>
+
+</html>

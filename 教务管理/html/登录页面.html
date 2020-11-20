@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/long.css">
+    <link rel="stylesheet" href="../css/conmosui.css">
+  
+  </head>
+  <body>
+    <div class="warp-box">
+      <div class="img-box">
+        <img src="../img/logop.png" alt="" class="log">
+      </div>
+      <div class="lists">
+        <div class="list list1">
+          <div class="left">
+            <img src="../img/1.png" alt="">
+          </div>
+          <input type="text" name="tel" id="tel" value="" placeholder="账号" />
+        </div>
+        <div class="list">
+          <div class="left">
+            <img src="../img/2.png" alt="">
+          </div>
+          <input type="password" name="tel" id="passd" value="" placeholder="密码" />
+        </div>
+      </div>
+      <button>登录</button>
+      <p style="color: #888;text-align: center; font-size: .24rem">忘记密码?</p>
+      <div class="jb"></div>
+    </div>
+  </body>
+  <script src="../js/rem.js"></script>
+  <script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../js/long.js"></script>
+  <script src="../js/md5.js"></script>
+  <script src="../js/conmosui.js"></script>
+  <script src="../../js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/md5.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    var ui = window.CUMS.UI;
+    var mima = '';
+    //	ui.showToast( '板块正在开发！');
+    if (location.href.indexOf('type=1')) {
+      $('.img_children').hide();
+    } else {
+      $('.img_teacher').hide();
+    }
+    $('.main img').click(function () {
+      $('.on').removeClass('on');
+      $(this).addClass('on');
+//		localStorage.setItem("cardClass",$(this).attr('index'));
+//		history.back()
+    })
+    $('.main img').click(function () {
+      localStorage.setItem('cardClass', $('.on').attr('index'));
+//		history.back()
+    })
+    $('.list_bottom i').click(function () {
+      $('.icon-p').attr('class', 'iconfont icon-icon-test');
+      $(this).attr('class', 'iconfont icon-p');
+    })
+    if (localStorage.getItem('zhizhao_typle') == 1) {
+      $('#tel').val(localStorage.getItem('jwzhanghao'));
+      $('#passd').val(localStorage.getItem('jwmima'));
+      $('.icon-icon-test').eq(0).attr('class', 'iconfont icon-p');
+    } else if (localStorage.getItem('zhizhao_typle') == 2) {
+      $('#tel').val(localStorage.getItem('jwzhanghao'));
+      $('#passd').val(localStorage.getItem('jwmima'));
+      $('.icon-icon-test').eq(1).attr('class', 'iconfont icon-p');
+    }
+    $('button').click(function () {
+      if ($('#tel').val() == '') {
+        return false;
+      }
+      if ($('#passd').val() == '') {
+        return false;
+      }
+      // if($('.icon-p').length==0){
+      // 	return false;
+      // }
+      if (localStorage.getItem('zhizhao_typle')) {
+        mima = $('#passd').val();
+      } else {
+        mima = $('#passd').val();
+      }
+      if ($('#tel').val() != localStorage.getItem('zhanghao') || $('#passd').val() != localStorage.getItem('mima')) {
+        mima = $('#passd').val();
+      }
+
+      $.ajax({
+
+        type: 'get',//方法类型
+        //dataType: "json",//预期服务器返回的数据类型
+        url: 'http://139.224.133.133:8088/api/overpipe/v1/jwlogin',//url
+        data: {
+          username: $('#tel').val(),
+          password: mima,
+        },
+        success: function (data) {
+          console.log(data)
+          if (data.Data != '') {
+            localStorage.setItem('zhizhao_uid', data.Data.user_id);
+            localStorage.setItem('zhizhao_token', data.Data.token);
+            localStorage.setItem('zhizhao_typle', data.Data.iType);
+            localStorage.setItem('jwzhanghao', $('#tel').val());
+            localStorage.setItem('jwmima', $('#passd').val());
+            if (data.Data.iType !== 4) {
+              location.href = './校长首页详情.html';
+              return false;
+            }
+            if ($('.icon-p').attr('index') == '1') {
+              location.href = 'Tindex.html'
+            } else if ($('.icon-p').attr('index') == '2') {
+              if (data.Data.loginnum == 1) {//判断家长是否是第一次登录
+                sessionStorage.setItem('firstlogin', 1);
+                location.href = 'childIndex.html';
+              } else {
+                location.href = 'childIndex.html';
+              }
+            }
+          } else {
+            ui.showToast(data.Msg);
+            // console.log(111)
+          }
+        }
+
+      });
+    })
+
+  </script>
+
+</html>

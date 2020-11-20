@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+		<link rel="stylesheet" href="../css/reset.css">
+		<link rel="stylesheet" href="../css/xzkb.css">
+		<link rel="stylesheet" href="../css/commonUI.css">
+	</head>
+
+	<body>
+		<div class="warp">
+			<div class="bag-box">
+				<div style='width:100%; height:0.4rem'> </div>
+				<div class="cont-box">
+					<div class="tp-bgant">
+						<span class="class-name">班级名称:</span>
+						<select name="" id="clazz" class="select">
+							<!-- <option value="">选择班级</option>
+                                    <option value="">1</option>
+                                    <option value="">1</option> -->
+						</select>
+						<span class="new-class">新增班级</span>
+					</div>
+					<div class="tp-bgant gap">
+						<span class="class-name left-class">第一次上课时间:</span>
+						<div class="search">
+							<img src="../img/日历.png">
+							<input class="birthday" readonly="readonly" type="text" name="birthday" id="birthday" value="" />
+						</div>
+						<!-- <span class="l-ft">星期六</span> -->
+					</div>
+					<div class="tp-bgant gap">
+						<span class="class-name  course">星期几:</span>
+						<select name="" id="dat" class="select">
+							<option value="1" class="lm">星期一</option>
+							<option value="2" class="lm">星期二</option>
+							<option value="3" class="lm">星期三</option>
+							<option value="4" class="lm">星期四</option>
+							<option value="5" class="lm">星期五</option>
+							<option value="6" class="lm">星期六</option>
+							<option value="7" class="lm">星期日</option>
+						</select>
+					</div>
+					<div class="tp-bgant gap">
+						<span class="class-name  course">教室:</span>
+						<select name="" id="classroom" class="select">
+							<option value="">选择教室</option>
+							<option value="13">教室7</option>
+							<option value="12">教室6</option>
+							<option value="11">教室5</option>
+							<option value="10">教室4</option>
+							<option value="9">教室3</option>
+							<option value="8">教室2</option>
+							<option value="7">教室1</option>
+
+						</select>
+					</div>
+					<div class="tp-bgant gap">
+						<span class="class-name course">课程:</span>
+						<select name="" id="kc" class="select">
+							<!-- <option value="">选择课程</option>
+                                        <option value="">1</option>
+                                        <option value="">1</option> -->
+						</select>
+					</div>
+					<div class="tp-bgant gap">
+						<span class="class-name left-class">开始时间:</span>
+						<div class="search">
+							<img src="../img/日历.png">
+							<span id="starttime"></span>
+						</div>
+						<img src="../img/对号2.png" alt="" class="correct1">
+					</div>
+					<div class="tp-bgant gap">
+						<span class="class-name left-class">结束时间:</span>
+						<div class="search">
+							<img src="../img/日历.png">
+							<span id="endtime"></span>
+						</div>
+						<img src="../img/对号2.png" alt="" class="correct2">
+					</div>
+					<div class="tp-bgant gap">
+						<span class="class-name">上课老师:</span>
+						<select name="" id="teacher" class="select">
+							<!-- <option value="">河马老师</option>
+                                            <option value="">1</option>
+                                            <option value="">1</option> -->
+						</select>
+					</div>
+					<div class="tp-bgant gap">
+						<span class="class-name">助教老师:</span>
+						<select name="" id="otherTeacher" class="select">
+							<!-- <option value="">一一老师</option>
+                                            <option value="">1</option>
+                                            <option value="">1</option> -->
+						</select>
+					</div>
+					<div class="tp-bgant gap">
+						<span class="class-name">单次课耗:</span>
+						<input type="number" id="classhour" style="width:1rem; border: 1px solid #549cdb;">
+						<!-- <select name="" id="" class="select plt">
+                                            <option value="">1.5</option>
+                                            <option value="">1</option>
+                                            <option value="">1</option>
+                                        </select> -->
+					</div>
+					<div class="tp-bgant gap">
+						<span class="class-name">更新类型:</span>
+						<!-- <input type="number" id="classhour" style="width:1rem; border: 1px solid #549cdb;"> -->
+						<select name="" id="form" class="select plt">
+							<option value="0">按周更新</option>
+							<option value="1">按天更新</option>
+
+						</select>
+					</div>
+					<div class="tp-bgant gap">
+						<span class="class-name">总课程次数:</span>
+						<input type="text" class="select1  all" id="zks">
+						<img src="../img/对号2.png" alt="" class="correct3">
+					</div>
+					<div class="but">
+						<span class="btton submit">提交保存</span>
+						<span class="btton return" id="fh1">返回</span>
+					</div>
+
+				</div>
+				<p style="color: #fff;
+                    margin: 0.2rem 0 0 0.5rem;">注：提交保存后系统将根据您所提交的内容自动更新即时课表</p>
+			</div>
+			<div class="commonUI-mask" style="display: none;">
+				<div class="commonUI-alert">
+					<div class="commonUI-alertTitle">
+						<p>提示</p>
+					</div>
+					<div class=" commonUI-alertTop">
+						<p>提交成功</p>
+					</div>
+					<div class="commonUI-alertBottom">
+
+						<button style="padding: 0;
+                          margin: 0;
+                          line-height: 0.96rem;
+                          font-size: 0.34rem;
+                          text-align: center;
+                          color: #158cfb;
+                          background-color: #fff;
+                          cursor: pointer;
+                          outline: none;
+                          background-clip: padding-box;
+                          border: none;
+                          box-sizing: border-box;" class="qd">确定</button>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</body>
+	<script src="../js/rem.js"></script>
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script src="../js/time.js"></script>
+	<script src="../js/conmosui.js"></script>
+	<script src="../js/long.js"></script>
+	<script>function getQueryString(name) {
+	var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+	var r = decodeURIComponent(window.location.search).substr(1).match(reg);
+	if(r != null) {
+		return unescape(r[2]);
+	}
+	return null;
+}
+$('.new-class').click(function() {
+	window.location.href = "../html/新增班级.html?from=pb"
+
+})
+var starttimePicker = new datePicker();
+starttimePicker.init({
+	'trigger': '#starttime',
+	/*按钮选择器，用于触发弹出插件*/
+	'type': 'time',
+	/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+	'onSubmit': function() { /*确认时触发事件*/
+		var theSelectData = starttimePicker.value;
+		$('#starttime').text(theSelectData);
+		// setClassName();
+	},
+});
+
+var endtimePicker = new datePicker();
+endtimePicker.init({
+	'trigger': '#endtime',
+	/*按钮选择器，用于触发弹出插件*/
+	'type': 'time',
+	/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+	'onSubmit': function() { /*确认时触发事件*/
+		var theSelectData = endtimePicker.value;
+		$('#endtime').text(theSelectData);
+		// setClassName();
+	},
+});
+var calendar = new datePicker();
+calendar.init({
+	'trigger': '#birthday',
+	/*按钮选择器，用于触发弹出插件*/
+	'type': 'date',
+	/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+	'minDate': '1900-1-1',
+	/*最小日期*/
+	'maxDate': '2100-12-31',
+	/*最大日期*/
+	'onSubmit': function() { /*确认时触发事件*/
+		//			var theSelectData=calendar.value;
+	},
+	'onClose': function() { /*取消时触发事件*/ }
+});
+$('.time').blur(function() {
+	if($('.time').val() == '') {
+		console.log(666)
+		$('.correct1').css('display', 'block')
+		$('.correct1').attr("src", "../img/叉号.png");
+	} else {
+		$('.correct1').css('display', 'block')
+		$('.correct1').attr("src", "../img/对号2.png");
+		console.log(888)
+	}
+
+})
+$('.over').blur(function() {
+	if($('.over').val() == '') {
+		console.log(666)
+		$('.correct2').css('display', 'block')
+		$('.correct2').attr("src", "../img/叉号.png");
+	} else {
+		$('.correct2').css('display', 'block')
+		$('.correct2').attr("src", "../img/对号2.png");
+		console.log(888)
+	}
+
+})
+
+$('.all').blur(function() {
+	if($('.all').val() == '') {
+		console.log(666)
+		$('.correct3').css('display', 'block')
+		$('.correct3').attr("src", "../img/叉号.png");
+	} else {
+		$('.correct3').css('display', 'block')
+		$('.correct3').attr("src", "../img/对号2.png");
+		console.log(888)
+	}
+
+})
+new Promise((resolve => {
+	getAjax(
+		hostAjax + '/api/principal/v1/selectclassList', {},
+		function(data) {
+			if(data.Success) {
+				$('#clazz').html(data.Data.list.map(x => `
+            <option value="${x.id}">${x.classname}</option>
+            `).join(''));
+				resolve();
+			}
+		}
+	)
+})).then(() => new Promise(resolve => {
+	getAjax(
+		hostAjax + '/api/course/v1/getregistercourse', {},
+		function(data) {
+			if(data.Success) {
+				$('#kc').html('<option value="">选择课程</option>' + data.Data.map(x => `
+             <option value="${x.id}">${x.subjectname}</option>
+            `).join(''));
+				resolve();
+			}
+		}
+	);
+})).then(() => new Promise(resolve => {
+	getAjax(
+		hostAjax + '/api/overpipe/v1/selectteacherlist', {
+			userid: +localStorage.zhizhao_uid
+		},
+		function(data) {
+			if(data.Success) {
+				$('#otherTeacher').html($('#teacher').html(data.Data.list.map(x => `
+            <option value="${x.id}">${x.name}</option>
+            `).join('')).html());
+				resolve();
+			}
+		}
+	);
+})).then(() => {
+	var classid = getQueryString('classid');
+	if(classid) {
+		$('#clazz').val(classid);
+		clazzChange();
+	}
+	// var id = getQueryString('id');
+	// if (id) {
+	//   getAjax(
+	//     hostAjax + '/api/overpipe/v1/getclalsslist',
+	//     {
+	//       userid: +localStorage.zhizhao_uid,
+	//       id,
+	//     },
+	//     function (data) {
+	//       var clazz = data.Data.list[0];
+	//       $('#upper').val(clazz.stunums);
+	//       $('#classname').val(clazz.classname);
+	//       $('#classnum').val(clazz.classnum);
+	//       if (clazz.state === '已开班') {
+	//         $('#kb').prop('checked', true);
+	//         $('.layui-form-switch').addClass('layui-form-onswitch');
+	//       } else {
+	//         $('#kb').prop('checked', false);
+	//         $('.layui-form-switch').removeClass('layui-form-onswitch');
+	//       }
+	//     }
+	//   )
+	// }
+});
+
+function clazzChange() {
+	$.ajax({
+		url: 'http://139.224.133.133:8088/api/overpipe/v1/getclassdetails',
+		data: {
+			userid: localStorage.zhizhao_uid,
+			classid: $("#clazz").val(),
+		},
+		success: function(data) {
+			$('#starttime').text(data.Data.list[0].starttime)
+			//  $('.mnb').val(data.Data.list[0].agetype)
+			$('#endtime').text(data.Data.list[0].endtime)
+			$('#dat').val(data.Data.list[0].week)
+			$('#teacher').val(data.Data.list[0].techerid)
+			$('#kc').val('')
+			$('#classroom').val('')
+		}
+	})
+}
+
+$('#clazz').change(clazzChange);
+
+$('#fh1').click(function() {
+	window.history.go(-1);
+	// alert(111)
+	// console.log(1111)
+})
+$('.qd').click(function() {
+	//  $('.commonUI-mask').css({'display':'none'})
+	// window.history.go(-1);
+
+	window.location.href = './校长首页详情.html';
+	// alert(111)
+	// console.log(1111)
+})
+
+$('.submit').click(function() {
+	// window.location.href = './校长首页详情.html';
+	//  $('.commonUI-mask').css({'display':'block'})
+	// window.history.go(-1);
+	// alert(111)
+	// console.log(1111)
+})
+
+$('.submit').click(function() {
+	// var id = getQueryString('id');
+	ui.showLoading();
+	postAjax(
+		hostAjax + "/api/overpipe/v1/addfixedclasscourse",
+
+		JSON.stringify({
+			// id: id || undefined,
+			userid: +localStorage.zhizhao_uid,
+			classid: $('#clazz').val(),
+			dateweek: $('#birthday').val(),
+			classroomid: $('#classroom').val(),
+			subjectid: $('#kc').val(),
+			starttime: $('#starttime').text(),
+			endtime: $('#endtime').text(),
+			teacherid: $('#teacher').val(),
+			weeks: +$('#dat').val(),
+			assistantteacherid: $('#otherTeacher').val(),
+			classhour: $('#classhour').val(),
+			daytype: $('#form').val(),
+			sumweeks: $('#zks').val(),
+		}),
+		function(data) {
+			// console.log(data)
+			$('#commonUILoading').remove();
+			if(data.Success) {
+				$('.submit').css({
+					'background': 'red'
+				}).text('提交成功')
+
+				ui.showAlert(
+					'',
+					() => {
+						window.location.reload()
+					},
+					() => {
+						window.location.href = './校长首页详情.html'
+					},
+					'再次排课',
+					'返回首页',
+					'提交成功',
+				);
+			} else {
+				alert(data.Msg);
+			}
+		}
+	)
+
+})</script>
+
+</html>

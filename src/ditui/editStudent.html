@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
+    />
+    <title>编辑学员资料</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css" />
+    <link rel="stylesheet" href="../../css/weui.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../css/simplePagination.css"
+    />
+    <link rel="stylesheet" href="../../css/History.min.css" />
+    <script
+      src="../../js/resize.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <script
+      src="../../js/const.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+
+  </head>
+  <body class="up-page">
+    <div class="up-page-wrapper editStudentBox">
+      <div class="_top">
+        <div class="title">基本信息</div>
+        <div class="content" style="margin-bottom:.4rem;">
+          <div class="item">
+            <div class="left">个人头像：</div>
+            <div class="right">
+              <div class="headpicBox">
+                <img src="../../img/default_person.png" alt="" srcset="" />
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="left">学员姓名：</div>
+            <div class="right">
+              <div class="inputBox">
+                <input type="text" id="NAME" value="" />
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="left">手机号码：</div>
+            <div class="right">
+              <div class="inputBox">
+                <!-- <div class="selectBox" style="border-right:none;">
+                  <select name="tigong" id="tigong">
+                    <option value="妈妈">妈妈</option>
+                    <option value="爸爸">爸爸</option>
+                  </select>
+                </div> -->
+                <input type="text" id="phone" value="" />
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="left">性别：</div>
+            <div class="right">
+              <div class="inputBox">
+                <input type="text" id="sex" value="" />
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="left">出生年月日：</div>
+            <div class="right">
+              <div class="inputBox">
+                <input type="text" value="" id="birthday" />
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="left">就读学校：</div>
+            <div class="right">
+              <div class="inputBox">
+                <input type="text" id="nowschool" value="" />
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="left">当前年级：</div>
+            <div class="right">
+              <div class="inputBox">
+                <input type="text" name="" id="nowgrade" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="_bottom">
+        <div class="title">其他信息</div>
+        <div class="content">
+          <div class="item">
+            <div class="left">跟进状态：</div>
+            <div class="right">
+              <div class="inputBox">
+                <div class="selectBox" style="width: 100%;">
+                  <select id="followup"> </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="left">意向级别：</div>
+            <div class="right">
+              <div class="inputBox">
+                <div class="selectBox" style="width: 100%;">
+                  <select id="Intention"> </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="left">学员来源：</div>
+            <div class="right">
+              <div class="inputBox">
+                <input type="text" id="source" value="王易易" />
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="left">跟进人：</div>
+            <div class="right">
+              <div class="inputBox">
+                <div class="selectBox" style="width: 100%;">
+                  <select id="followupperson"> </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="left">标签：</div>
+            <div class="right">
+              <div class="inputBox">
+                <div class="selectBox" style="flex:1">
+                  <select id="studentlable"> </select>
+                </div>
+                <div class="manage_sign">管理标签</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="_btn">
+        <div class="cancel">取消</div>
+        <div class="save">保存</div>
+      </div>
+      <div class="manageBox">
+        <div class="box">
+          <div class="top">
+            <div class="title">编辑标签</div>
+            <div class="close">×</div>
+          </div>
+          <div class="center">
+            <input type="text" id="sign_input" />
+          </div>
+          <div class="bottom">
+            <div class="close">取消</div>
+            <div class="add">保存</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+  <script
+    src="../../js/jquery-3.3.1.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/jquery.simplePagination.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/commonUI.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/utils.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/mobileSelect.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/datePicker.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script src="../../js/jquery-weui.min.js"></script>
+  <script>
+var calendar = new datePicker();
+	calendar.init({
+		'trigger': '#birthday', /*按钮选择器，用于触发弹出插件*/
+		'type': 'date',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+		'minDate':'1900-1-1',/*最小日期*/
+		'maxDate':'2100-12-31',/*最大日期*/
+		'onSubmit':function(){/*确认时触发事件*/
+//			var theSelectData=calendar.value;
+		},
+		'onClose':function(){/*取消时触发事件*/
+		}
+    });
+
+
+
+
+    let followupArr = [],
+      IntentionArr = [],
+      followuppersonArr = [],
+      studentlableArr = []
+    $('.manageBox').click(function(event) {
+      event.stopPropagation()
+    })
+    $('.manage_sign').click(function() {
+      $('.manageBox').show()
+    })
+    $('.manageBox .close').click(function() {
+      $('.manageBox').hide()
+    })
+    $('.cancel').click(function(params) {
+      window.history.back(-1)
+    })
+    $('.manageBox .add').click(function() {
+      if (
+        $('#sign_input')
+          .val()
+          .trim() === ''
+      ) {
+        ui.showToast('标签内容不能为空！')
+        return
+      }
+      $.showLoading()
+      getAjax(
+        FenghuangConst.hostAjax + '/api/tch/v1/addstudentlable',
+        {
+          user_id: uid,
+          type: '1',
+          name: $('#sign_input')
+            .val()
+            .trim()
+        },
+        function(data) {
+          getSign('1')
+          $('.manageBox').hide()
+          hideLoading()
+          $('#sign_input').val('')
+        }
+      )
+    })
+    $('.save').click(function() {
+      let params = {
+        id: GetQueryString('id'),
+        name: $('#NAME').val(),
+        sex: $('#sex').val(),
+        birthday: $('#birthday').val(),
+        nowschool: $('#nowschool').val(),
+        nowgrade: $('#nowgrade').val(),
+        phone: $('#phone').val(),
+        studentlableid: $('#studentlable').val(),
+        followup: $('#followup').val(),
+        intention: $('#Intention').val(),
+        source: $('#source').val(),
+        followupperson: $('#followupperson').val()
+      }
+      for (const key in params) {
+        if (params.hasOwnProperty(key)) {
+          const element = params[key]
+          if (element === null) {
+            params[key] = ''
+          }
+        }
+      }
+      $.showLoading()
+      postAjax(
+        FenghuangConst.hostAjax + '/api/stu/v1/updatestudent',
+        JSON.stringify(params),
+        function(data) {
+          hideLoading()
+          ui.showToast(data.Msg)
+          if (data.Code === 200 || data.Success === true) {
+            window.history.back(-1)
+          }
+        }
+      )
+    })
+
+    function hideLoading() {
+      $('.weui-mask_transparent').remove()
+      $('.weui-toast.weui_loading_toast').remove()
+    }
+    function GetQueryString(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+      var r = window.location.search.substr(1).match(reg)
+      if (r != null) return unescape(r[2])
+      return null
+    }
+    function getSign(type) {
+      if (type === '1') {
+        $('#studentlable').html('')
+      } else if (type === '2') {
+        $('#followup').html('')
+      } else {
+        $('#Intention').html('')
+      }
+      $.showLoading()
+      getAjax(
+        FenghuangConst.hostAjax + '/api/tch/v1/selectstudentlable',
+        {
+          user_id: uid,
+          type: type
+        },
+        function(data) {
+          if (data.Code === 200) {
+            let html = ''
+            for (let i = 0; i < data.Data.list.length; i++) {
+              const element = data.Data.list[i]
+              html += `<option value="${element.id}">${element.name}</option>`
+            }
+            if (type === '1') {
+              $('#studentlable').html(html)
+              studentlableArr = data.Data.list
+            } else if (type === '2') {
+              $('#followup').html(html)
+              followupArr = data.Data.list
+            } else {
+              $('#Intention').html(html)
+              IntentionArr = data.Data.list
+            }
+          }
+        }
+      )
+    }
+    getSign('1')
+    getSign('2')
+    getSign('3')
+    function getTCH() {
+      $('#followupperson').html('')
+      getAjax(
+        FenghuangConst.hostAjax + '/api/principal/v1/selectteacherlist',
+        { user_id: uid },
+        function(data) {
+          if (data.Code === 200) {
+            let html = ''
+            for (let i = 0; i < data.Data.list.length; i++) {
+              const element = data.Data.list[i]
+              html += `<option value="${element.id}">${element.name}</option>`
+            }
+            $('#followupperson').html(html)
+            followuppersonArr = data.Data.list
+          }
+        }
+      )
+    }
+    getTCH()
+    // 获取学员信息
+    function getStudent() {
+      $.showLoading()
+      let url = ''
+      if (GetQueryString('type') === 'formalStudent') {
+        url = '/api/tch/v1/getstudentsinginfo'
+      } else {
+        url = '/api/tch/v1/getstudentsinglist'
+      }
+      getAjax(
+        FenghuangConst.hostAjax + url,
+        {
+          //已签单
+          user_id: uid,
+          studentid: GetQueryString('id')
+        },
+        function(data) {
+          hideLoading()
+          if (data.Data != '') {
+            let { Data } = data
+            let { list } = Data
+            $('#NAME').val(list[0].NAME)
+            $('#phone').val(list[0].phone)
+            $('#sex').val(list[0].sex)
+            $('#nowschool').val(list[0].nowschool)
+            $('#nowgrade').val(list[0].nowgrade)
+            $('#birthday').val(list[0].birthday)
+            for (let i = 0; i < followupArr.length; i++) {
+              const element = followupArr[i]
+              if (element.name === list[0].followup) {
+                list[0].followup = element.id
+              }
+            }
+            $('#followup').val(list[0].followup)
+            for (let i = 0; i < IntentionArr.length; i++) {
+              const element = IntentionArr[i]
+              if (element.name === list[0].Intention) {
+                list[0].Intention = element.id
+              }
+            }
+            $('#Intention').val(list[0].Intention)
+            $('#source').val(list[0].source)
+            for (let i = 0; i < followuppersonArr.length; i++) {
+              const element = followuppersonArr[i]
+              if (element.name === list[0].followupperson) {
+                list[0].followupperson = element.id
+              }
+            }
+            $('#followupperson').val(list[0].followupperson)
+            for (let i = 0; i < studentlableArr.length; i++) {
+              const element = studentlableArr[i]
+              if (element.name === list[0].studentlable) {
+                list[0].studentlable = element.id
+              }
+            }
+            $('#studentlable').val(list[0].studentlable)
+          }
+        }
+      )
+    }
+    function initData() {
+      //初始化学员信息
+      getStudent()
+    }
+    initData()
+  </script>
+</html>

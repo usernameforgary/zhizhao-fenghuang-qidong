@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>新增学员</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	body{
+    		background-image: url(../../img/bodyBg/newStudentbg@3x.jpg);
+    		background-size: 100%;
+    	}
+    	.header,.main,.yes,.no{
+    		font-size: 0.26rem;
+    	}
+    	.title{
+    		width: 4.47rem;
+    		height: 0.75rem;
+    		line-height: 0.75rem;
+    		background-image: url(../../img/bodyBg/newTitleBg.png);
+    		background-size: 100%;
+    		text-align: center;
+    		color: white;
+    		background-repeat: no-repeat;
+    		margin: 0.5rem auto ;
+    	}
+    	.header ul,.yes ul,.no ul{
+    		padding:0.2rem  0.5rem;
+    	}
+    	select{
+    		background-color: #fff;
+    	}
+    	.header input,.yes input,.no input,.header select,.yes select,.no select,.main select{
+    		height: 0.6rem;
+    		font-size: 0.26rem;
+    		margin: 0.26rem 0;
+    		padding-left: 0.16rem;
+    		border: 1px solid #aaa;
+    		box-sizing: border-box;
+    	}
+    	.main{
+    		padding:0.2rem 0.5rem;
+    		padding-bottom: 0;
+    	}
+    	.haseBaoming {
+    		margin-top: 0.2rem;
+    	}
+    	.haseBaoming ul{
+    		display: flex;
+    		justify-content: space-between;
+    	}
+    	.haseBaoming ul li{
+    		float: left;
+    		width: 1.3rem;
+    		height: 0.6rem;
+    		line-height: 0.6rem;
+    		text-align: center;
+    		border: 1px solid #000;
+    	}
+    	.haseBaoming ul li.on{
+    		border: 1px solid #EEB40F;
+    		color: #EEB40F;
+    	}
+    	.haseBaoming ul li input{
+    		margin-right: 0.26rem;
+    		margin-top: 0.26rem;
+    		margin-left: 0;
+    		font-size: 0.3rem;
+    		width: 0.26rem!important;
+    		height: 0.26rem!important;
+    	}
+    	.up-page-wrapper button{
+    		width: 6.5rem;
+    		display: block;
+    		margin: 0 auto 1rem auto;
+    		height: 0.6rem;
+    		line-height: 0.6rem;
+    		background-color: #EFB511;
+    		border-radius: 0.6rem;
+    		border: 0;
+    		box-shadow: 2px 5px 2px #aaa;
+    		color: white;
+    		font-size: 0.26rem;
+    	}
+    	.register{
+    		background-color: #fff;
+    	}
+    	.register button{
+    		background-color: #EDB41C;
+    		width: 5.6rem;
+    		height: 0.87rem;
+    		line-height: 0.87rem;
+    		border-radius: 0.87rem;
+    		border: 0;
+    		box-shadow: 2px 2px  6px #eee;
+    		display: block;
+    		margin:0.3rem auto 0.5rem auto;
+    		color: white;
+    		background: linear-gradient(#EDB41C,#FFCC3C);
+    	}
+		.register .list{
+			width: 5.6rem;
+			height: 0.88rem;
+			line-height: 0.88rem;
+			margin-left: auto;
+			margin-right: auto;
+			overflow: hidden;
+			position: relative;
+		}
+		.register .list i{
+			color: #F0BA21;
+			font-size: 0.45rem;
+		}
+		.register .left{
+			width: 0.88rem;
+			float: left;
+			text-align: center;
+		}
+    </style>
+</head>
+<body class="up-page">
+	<div class="up-page-wrapper" >
+		<div class="header">
+			<div class="title">凤凰机器人报名表</div>
+			<ul>
+				<li style="float: left;margin-right: 0.9rem;"><label for="cname">学员姓名：</label><br /><input style="width: 2.75rem;" type="text" name="cname" id="cname" value="" /></li>
+				<li><label for="six">学员性别：</label><br /><select style="width: 2.75rem;" name="six">
+					<option value="男">男</option><option value="女">女</option>
+				</select></li>
+				<li><label for="birthday">学员生日：</label><br /><input style="width: 100%;" readonly="readonly" type="text" name="birthday" id="birthday" value="" /></li>
+				<li style="float: left;width: 60%;"><label for="school">所在学校：</label><br /><input style="width: 3.75rem;" type="text" name="school" id="school" value="" /></li>
+				<li style="float: right;"><label for="nowClass">就读班级：</label><br /><input style="width: 1.75rem;" type="text" name="nowClass" id="nowClass" value="" /></li>
+				<div class="clearfix">
+					
+				</div>
+				<li><label for="tel">家长联系方式：</label><br /><input style="width: 100%;" type="tel" name="tel" id="tel" value="" /></li>
+			</ul>
+		</div>
+		<div class="main">
+			<header style="margin-bottom: 0.2rem;">学员类型：</header>
+			<select class="ifSign" name=""style="width: 2.75rem;">
+				<option value="0">请选择</option>
+					<option value="1">非学员</option>
+					<option value="2">学员</option>
+				</select>
+			<!--<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="1"  checked="checked"/>	<label for="">非学员</label>	&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+			<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="2" />		<label for="">学员</label>-->
+			
+		</div>
+		<div class="yes" ><!--常规课课-->
+			<form >
+				
+			
+			<ul>
+				
+				<li class="huodong" style="float: left;margin-right: 0.9rem;"><label for="money">收费金额：</label><br /><input style="width: 2.75rem;" type="tel" name="money" id="money" value="" /></li>
+				<div class="clearfix"></div>
+				<div class="haseBaoming secondShow" style="">
+				<!--<header>报名课程类型：</header>
+				<select class="courseType" name=""style="width: 2.75rem;">
+					<option value="1">活动课时</option>
+					<option value="2">专项课时</option>
+				</select>-->
+				
+			</div>
+				<div class="changgui">
+				<div class="addCourseType secondShow">
+					<!--<li style="float: left;margin-right: 0.9rem;"><label for="money">赠送课时类型：</label><br /><select class="courseType1" name=""style="width: 2.75rem;">
+					<option value="1">活动课时</option>
+					<option value="2">专项课时</option>
+				</select></li>
+				<li><label for="totleTime2">赠送课时：</label><br /><input style="width: 2.75rem;" type="tel" name="totleTime2" id="totleTime2" value="" /></li>-->
+				
+				</div>
+				</div>
+				<div class="addIcon secondShow" style="text-align: center;"><i class="iconfont icon-plus-add" style="font-size: 0.5rem;color: #888; border: 1px solid #888;width: 0.6rem;height: 0.6rem;border-radius: 0.6rem;"></i></div>
+				<li class="huodong secondShow"><label for="hetongnum">合同号/收据编号：</label><br /><input style="width: 100%;" type="text" name="hetongnum" id="hetongnum" value="" /></li>
+				<li><label for="remark">备注：</label><br /><input style="width: 100%;" type="text" name="remark" id="remark" value="" /></li>
+			</ul></form>
+		</div>
+		<button id="submit">提交</button>
+	</div>
+	<div class=" register" style="padding-top: 0.5rem;position: fixed;top: 0;left: 0;bottom: 0;right: 0;display: none;">
+		<div class="main">
+			<div class="lists">
+				<div class="list">
+					<div class="left">
+						<i class="iconfont icon-tubiaolunkuo-"></i>
+					</div>
+					账号：<span class="zhanghao"></span>
+				</div>
+				<div class="list">
+					<div class="left">
+						<i class="iconfont icon-mima"></i>
+					</div>
+					密码：123456
+				</div>
+			</div>
+		</div>
+		<button onclick="history.back();">确定</button>
+		<p style="color: #888;padding-left: 1.4rem;font-size: 0.24rem;">默认密码可在登录后修改</p>
+	</div>
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI,stanby=false,addStr="";
+//	ui.showToast( '板块正在开发！');
+	//所有的课程类型
+	getAjax(hostAjax+"/api/course/v1/getsubjecttype",{
+		
+	},function(data){
+		var str="";
+		for (var s=0;s<data.Data.length;s++) {
+			if(data.Data[s].id!=2){//2是常规课
+				str+='<option value="'+data.Data[s].id+'">'+data.Data[s].typename+'</option>';
+		}
+			}
+			
+		addStr='<li style="float: left;margin-right: 0.9rem;"><label for="money">赠送课时类型：</label><br /><select class="courseType" name=""style="width: 2.75rem;"><option value="0">请选择</option>'+
+					str+
+				'</select></li>'+
+				'<li><label for="">赠送课时：</label><br /><input style="width: 2.75rem;" type="tel" name="totleTime2" class="totleTime" value="" /></li>';
+				$(".haseBaoming").html('<div style="float: left;margin-right: 0.9rem;"><header>报名课程类型：</header>'+
+				'<select class="courseType" name=""style="width: 2.75rem;"><option value="0">请选择</option><option value="2">常规课</option>'+
+					str+
+				'</select></div><li class="huodong"><label for="totleTime">购买课时：</label><br /><input style="width: 2.75rem;" type="tel" name="totleTime" class="totleTime" value="" /></li></li>');
+		$(".addCourseType").html(addStr);
+		$(".secondShow").hide();
+		$("#money").on("input propertychange",function(){
+			if($(this).val()==""){
+				$(".secondShow").hide();
+			}else{
+				$(".secondShow").eq(0).show();
+				$(".secondShow").eq(1).show();
+				$(".secondShow").eq(2).show();
+				$(".secondShow").eq(3).show();
+			}
+		})
+		$(".addIcon i").click(function(){
+			$(".addCourseType").append(addStr);
+		})
+		$(".haseBaoming select").on("change",function(){
+			if($(this).val()==4){
+				$(".addCourseType").hide();$(".addIcon").hide();
+			}
+		})
+		$(".ifSign").on("change",function(){
+			if($(this).val()==1){
+				console.log('非学员')
+				$(".secondShow").show();
+				$("#money").unbind();
+				$(".haseBaoming option").eq(1).remove();
+				
+			}else{
+				$(".haseBaoming").html('<div style="float: left;margin-right: 0.9rem;"><header>报名课程类型：</header>'+
+				'<select class="courseType" name=""style="width: 2.75rem;"><option value="0">请选择</option><option value="2">常规课</option>'+
+					str+
+				'</select></div><li class="huodong"><label for="totleTime">购买课时：</label><br /><input style="width: 2.75rem;" type="tel" name="totleTime" class="totleTime" value="" /></li></li>');
+			}
+		})
+		//选择非学员、学员的时候，隐藏掉常规课
+	})
+	var calendar = new datePicker();
+	calendar.init({
+		'trigger': '#birthday', /*按钮选择器，用于触发弹出插件*/
+		'type': 'date',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+		'minDate':'1900-1-1',/*最小日期*/
+		'maxDate':'2100-12-31',/*最大日期*/
+		'onSubmit':function(){/*确认时触发事件*/
+//			var theSelectData=calendar.value;
+		},
+		'onClose':function(){/*取消时触发事件*/
+		}
+	});
+//	var calendar1 = new datePicker();
+//	calendar1.init({
+//		'trigger': '#baomingTime', /*按钮选择器，用于触发弹出插件*/
+//		'type': 'date',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+//		'minDate':'1900-1-1',/*最小日期*/
+//		'maxDate':'2100-12-31',/*最大日期*/
+//		'onSubmit':function(){/*确认时触发事件*/
+////			var theSelectData=calendar.value;
+//		},
+//		'onClose':function(){/*取消时触发事件*/
+//		}
+//	});
+	$(".haseBaoming ul li").click(function(){
+		$(".on").removeClass("on");
+		$(this).addClass("on");
+		$("form")[0].reset();
+		if($(this).attr("tabindex")==1){//常规课
+			$(".changgui").show();$(".huodong").show();
+		}else if($(this).attr("tabindex")==2){
+			$(".changgui").hide();
+			$(".huodong").show();
+		}else if($(this).attr("tabindex")==3){
+			$(".changgui").hide();$(".huodong").show();
+		}else if($(this).attr("tabindex")==4){
+			$(".changgui").hide();
+			$(".huodong").hide();
+		}
+	})
+	$("#submit").click(function(){
+		var classhourtype="";
+		if($("#money").val()!=""&&$(".totleTime").eq(0).val()==""){
+			ui.showToast( "请输入购买课时",1500);
+			return false;
+		}
+		if($("#money").val()==""&&$(".totleTime").eq(0).val()==""){
+			classhourtype="4|0,";
+		}
+		
+		if(stanby){
+			return false;
+		}
+		stanby=true;
+		var birthDay= $("#birthday").val();
+		if(birthDay==""){
+			birthDay="未填写";
+		}
+		var stop=false;
+		$(".totleTime").each(function(i){//courseType
+			if($(this).val()!=""&&$(".courseType").eq(i).val()==0){
+				stanby=false;
+				if($("#money").val()==""){
+					ui.showToast( "请输入金额",2000);
+				}else{
+					ui.showToast( "请选择课时对应的课时类型",2000);
+						
+				}
+				stop=true;
+					return false;	
+				}
+			if($(this).val()!=""&&$(".courseType").eq(i).val()!=0){
+				classhourtype+=$(".courseType").eq(i).val()+"|"+$(".totleTime").eq(i).val()+",";
+			}else if($(".courseType").eq(i).val()==4){
+				classhourtype+=$(".courseType").eq(i).val()+"|"+0+",";
+			}
+		})
+		if(stop){
+					return false;
+				}
+		classhourtype=classhourtype.substring(0,classhourtype.length-1);
+		var alertStr="";
+		if($(".main select").val()==1){
+			alertStr='是否确认新增非学员：';
+		}else{
+			alertStr='是否确认新增学员：';
+		}
+		ui.showAlert(alertStr+$("#cname").val(), function () {
+			if($(".main select").val()==0){
+				ui.showToast( '请选择学员类型',1500);
+				stanby=false;
+				return false;
+			}
+			var ajaxData=JSON.stringify({
+			  "userid": uid,
+			  "name": $("#cname").val(),
+			  "sex": $("select").val(),
+			  Ifsignup:$(".main select").val(),
+			  "birthday": birthDay,
+			  "price": $("#money").val(),
+			  classhourtype :classhourtype,
+			  "contractno": $("#hetongnum").val(),
+			  "phone": $("#tel").val(),
+			  "nowschool": $("#school").val(),
+			  "nowgrade": $("#nowClass").val(),
+			  "remark": $("#remark").val()
+			})
+//			if($("#money").val()!=""&&$(".totleTime").eq(0).val()==0){
+//				ui.showToast( "购买课时不能为0",1500);stanby=false;
+//				return false;
+//			}
+			postAjax(hostAjax+"/api/tch/v1/addstudent",ajaxData,function(data){
+				if(data.Data!=""){
+					stanby=true;
+					ui.showToast( '提交成功',500);
+					$(".register").show();
+					$('.zhanghao').text(data.Data.Accountnumber);
+				}else{
+					stanby=false;
+					ui.showToast( data.Msg,1500);
+				}
+			})
+			
+			
+				if($(".on").attr("tabindex")==1){//常规
+			
+			
+			if($("#totleTime1").val()!=""&&$("#totleTime2").val()!=""&&$(".courseType").val()==$(".courseType1").val()){
+				ui.showToast( '赠送课程类型不对',500);
+				return false;
+			}
+			
+			if($("#money").val()!=""&&$(".totleTime").eq(0).val()==0){
+				ui.showToast( "购买课时不能为0",1500);stanby=false;
+				return false;
+			}
+			
+			
+			
+			
+			
+		}else if($(".on").attr("tabindex")==2){//活动
+			postAjax(hostAjax+"/api/tch/v1/addstudent",JSON.stringify({
+			   "userid": uid,
+			  "name": $("#cname").val(),
+			  "sex": $("select").val(),
+			  Ifsignup:1,
+			  "birthday": birthDay,
+			  "price": $("#money").val(),
+			  "activityhour": $("#totleTime").val(),
+			  "contractno": $("#hetongnum").val(),
+			  "phone": $("#tel").val(),
+			  "nowschool": $("#school").val(),
+			  "nowgrade": $("#nowClass").val(),
+			  "remark": $("#remark").val()
+			}),function(data){
+				
+				if(data.Data!=""){
+					stanby=true;
+//					ui.showToast( '提交成功',1000);
+//					setTimeout(function(){
+//						history.back();
+//					},1000)
+					ui.showToast( '提交成功',500);
+					$(".register").show();
+					$('.zhanghao').text(data.Data.Accountnumber);
+				}else{
+					stanby=false;
+					ui.showToast( data.Msg,1500);
+				}
+				
+			})
+		}else if($(".on").attr("tabindex")==3){//赛事
+			
+			
+			
+			
+			if($("#money").val()!=""&&$(".totleTime").eq(0).val()==0){
+				ui.showToast( "购买课时不能为0",1500);stanby=false;
+				return false;
+			}
+			
+			
+			
+			postAjax(hostAjax+"/api/tch/v1/addstudent",JSON.stringify({
+			   "userid": uid,
+			  "name": $("#cname").val(),
+			  "sex": $("select").val(),
+			  Ifsignup:1,
+			  "birthday": birthDay,
+			  "price": $("#money").val(),
+			  "matchhour": $("#totleTime").val(),
+			  "contractno": $("#hetongnum").val(),
+			  "phone": $("#tel").val(),
+			  "nowschool": $("#school").val(),
+			  "nowgrade": $("#nowClass").val(),
+			  "remark": $("#remark").val()
+			}),function(data){
+				
+				if(data.Data!=""){
+					stanby=true;
+//					ui.showToast( '提交成功',1000);
+//					setTimeout(function(){
+//						history.back();
+//					},1000)
+					ui.showToast( '提交成功',500);
+					$(".register").show();
+					$('.zhanghao').text(data.Data.Accountnumber);
+				}else{
+					stanby=false;
+					ui.showToast( data.Msg,1500);
+				}
+				
+			})
+		}else if($(".on").attr("tabindex")==4){//试听
+			postAjax(hostAjax+"/api/tch/v1/addstudent",JSON.stringify({
+			   "userid": uid,
+			  "name": $("#cname").val(),
+			  "sex": $("select").val(),
+			  Ifsignup:1,
+			  "birthday": birthDay,
+			  "phone": $("#tel").val(),
+			  "contractno":"",
+			  "nowschool": $("#school").val(),
+			  "nowgrade": $("#nowClass").val(),
+			  "remark": $("#remark").val()
+			}),function(data){
+				
+				if(data.Data!=""){
+					stanby=true;
+//					ui.showToast( '提交成功',1000);
+//					setTimeout(function(){
+//						history.back();
+//					},1000)
+					ui.showToast( '提交成功',500);
+					$(".register").show();
+					$('.zhanghao').text(data.Data.Accountnumber);
+				}else{
+					stanby=false;
+					ui.showToast( data.Msg,1500);
+				}
+				
+			})
+		}else{
+			stanby=false;
+		}
+	            },function(){
+	            	stanby=false;
+	            },"确认","取消","提示");
+		
+		
+			
+	})
+</script>
+</html>

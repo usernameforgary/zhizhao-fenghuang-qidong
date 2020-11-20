@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>今日续费</title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			body {
+				font-family: "微软雅黑";
+				background: #f3f3f3;
+			}
+			
+			i {
+				font-style: normal;
+				text-align: center;
+				color: #fe2c2c;
+			}
+			
+			em {
+				font-style: normal;
+				font-size: 12px;
+				text-align: center;
+				margin-top: 0.4vh;
+				color: #999999;
+			}
+			
+			p {
+				font-size: 16px;
+			}
+			
+			span {
+				font-size: 13px;
+			}
+			
+			h4 {
+				text-align: center;
+				font-size: 13px;
+				font-weight: normal;
+			}
+			
+			strong {
+				text-align: center;
+				display: flex;
+				flex-direction: column;
+				font-weight: normal;
+				border-right: 2px solid #f3f3f3;
+			}
+			
+			section {
+				display: flex;
+				flex-direction: column;
+				height: 100vh;
+				overflow: auto;
+			}
+			
+			section>ul>li {
+				background: #fff;
+				margin-bottom: 0.35rem;
+				margin-top: 0.15rem;
+			}
+			
+			section>ul> {
+				box-shadow: 0px -2px 5px 0px #e9e8e9;
+			}
+			
+			section>ul>li>header {
+				display: flex;
+				justify-content: space-between;
+				padding: 0 5%;
+				height: 8vh;
+				line-height: 8vh;
+			}
+			
+			section>ul>li>ul {
+				display: flex;
+				padding: 0 5%;
+				justify-content: space-around;
+			}
+			
+			section>ul>li>ul>li {
+				display: flex;
+				flex-direction: column;
+				padding: 1.5vh 0;
+				width: 30%;
+			}
+			hr{
+				width: 80%;
+				margin: 0 10%;
+				background: #f3f3f3;
+				border: 0;
+				height: 1px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<section>
+			<ul id="">
+				<!--<li id="">
+					<header>
+						<p></p>
+						<span></span>
+					</header>
+					<hr style="width: 80%;margin: 0 10%;background: #f3f3f3;border: 0;height: 2px;" />
+					<ul>
+						<li>
+							<strong>
+							<i></i>
+							<em>续费金额</em>
+						</strong>
+
+						</li>
+						<li>
+							<strong>
+							<h4></h4>
+							<em>收费老师</em>
+						</strong>
+						</li>
+						<li>
+							<strong style="border: 0;">
+							<h4></h4>
+							<em>购买课时</em>
+						</strong>
+						</li>
+					</ul>
+				</li>-->
+
+			</ul>
+
+		</section>
+	</body>
+	<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var a = localStorage.getItem('zhizhao_uid');
+		var b = localStorage.getItem('zhizhao_time');
+		var str = '';
+		//		console.log(b)
+		//		console.log(a);
+		$.ajax({
+			type: "get",
+			url: "http://139.224.133.133:8013/api/overpipe/v1/getrenewals",
+			data: {
+				user_id: a,
+				date: b
+			},
+			cache:false,
+			success: function(data) {
+				console.log(data.Data);
+				if(data.Code == 200) {
+					for(i in data.Data.list){
+						str+=`<li><header><p>${data.Data.list[i].studentname}</p><span>${data.Data.list[i].classname}</span></header><hr/><ul><li><strong><i>${data.Data.list[i].e_price}</i><em>缴费金额</em></strong></li><li><strong><i>${data.Data.list[i].cc}</i><em>收费老师</em></strong></li><li><strong style='border-right:0;'><i>${data.Data.list[i].classhour}</i><em>购买课时</em></strong></li></ul></li>`
+					$("section>ul").html(str);
+					}
+					
+				}else if(data.Code==1000){
+					alert('暂无更多信息！！！')
+					window.history.go(-1);
+				}
+			}
+			/*$('section>ul>li>header>p').append(data.Data.studentname);
+			$('section>ul>li>header>span').append(data.Data.classname);
+			$('section>ul>li>ul>li:first-child>strong>i').append(Number(data.Data.e_price)*Number(data.Data.classhour));
+			$('section>ul>li>ul>li:nth-child(2)>strong>h4').append(data.Data.cc);
+			$('section>ul>li>ul>li:nth-child(3)>strong>h4').append(data.Data.classhour);*/
+		});
+	</script>
+
+</html>

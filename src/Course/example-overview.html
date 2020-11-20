@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css" />
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+    <title>课表总览</title>
+    <style>
+      html {
+        height: 100%;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background-image: linear-gradient(140deg, #e33633, #f9a623);
+      }
+
+      #weeks {
+        width: 100%;
+        height: .84rem;
+        background: #e9b114;
+        color: white;
+        font-size: .25rem;
+        display: flex;
+        padding-bottom: .06rem;
+      }
+
+      #weeks li {
+        padding-top: .27rem;
+        flex: 1;
+        text-align: center;
+        background: #e33633;
+      }
+
+      #weeks li.is-active {
+        background: #e9b114;
+      }
+
+      #body {
+        flex: 1;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      #head {
+        height: .55rem;
+        display: flex;
+      }
+
+      #head div {
+        min-width: 1.48rem;
+        background: white;
+      }
+
+      #times li {
+        width: 2rem;
+      }
+
+      #times {
+        display: flex;
+        background: white;
+      }
+
+      #head div, #times li {
+        text-align: center;
+        color: #c1910b;
+        font-size: .208rem;
+        line-height: .55rem;
+      }
+
+      #exas {
+        flex: 1;
+        overflow-y: auto;
+        width: fit-content;
+      }
+
+      #exas > li {
+        display: flex;
+        color: white;
+      }
+
+      #exas > li > div {
+        width: 1.48rem;
+        font-size: .25rem;
+        text-align: center;
+        height: 1.41rem;
+        min-height: 100px;
+        line-height: 1.41rem;
+        border-left: solid 1px white;
+        border-right: solid 1px white;
+        border-bottom: solid 1px white;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .exa {
+        display: flex;
+      }
+
+      .exa > li {
+        width: 2rem;
+        height: 1.41rem;
+        min-height: 100px;
+        border-right: solid 1px white;
+        border-bottom: solid 1px white;
+        padding: .05rem .18rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .exa .name {
+        font-size: .21rem;
+        color: black;
+        text-align: center;
+        border-radius: 0.135rem;
+        height: .27rem;
+        min-height: 14px;
+        width: 100%;
+      }
+
+      .exa .blue {
+        background-color: #00a0e9;
+      }
+
+      .exa .yellow {
+        background-color: #fbd15b;
+      }
+
+      .exa .students {
+        font-size: .21rem;
+        overflow-y: auto;
+      }
+
+      #foot {
+        display: flex;
+        justify-content: space-around;
+        padding: .3rem 0;
+      }
+
+      button {
+        width: 1.8rem;
+        height: 0.6rem;
+        border-radius: 0.6rem;
+        color: #d79034;
+        background: white;
+        border: 0;
+        font-size: 0.26rem;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="weeks">
+      <li week="1">星期一</li>
+      <li week="2">星期二</li>
+      <li week="3">星期三</li>
+      <li week="4">星期四</li>
+      <li week="5">星期五</li>
+      <li week="6">星期六</li>
+      <li week="7">星期日</li>
+    </ul>
+
+    <div id="body">
+      <div id="head">
+        <div>教室/时间</div>
+        <ul id="times"></ul>
+      </div>
+      <ul id="exas"></ul>
+    </div>
+
+    <div id="foot" style="display: none;">  
+      <button id="pre">上一周</button>
+      <button id="next">下一周</button>
+    </div>
+    <script>
+      var dd = GetDate(new Date(), 1);
+
+      function GetDate(dd, _week) {
+        dd = new Date(typeof dd === 'string' ? dd.replace(/-/g, '/') : dd);
+        var week = dd.getDay(); //获取时间的星期数
+        var minus = week ? week - 1 : 6;
+        dd.setDate(dd.getDate() - minus + _week - 1); //获取minus天前的日期
+        var y = dd.getFullYear();
+        var m = dd.getMonth() + 1; //获取月份
+        var d = dd.getDate();
+        return y + '-' + m + '-' + d;
+      }
+
+      function getData(week) {
+        $('#times').html('');
+        $('#exas').html('');
+        getAjax(
+          hostAjax + '/api/course/v1/newgettingtimetable',
+          {
+            nowdate: GetDate(dd, week),
+          },
+          function (data) {
+            if (data.Code === 1000) {
+              ui.showToast('无更多信息').css({ position: 'fixed', width: '100%', marginTop: '100px' });
+            } else {
+              var times = Object.keys(data.Data.list[0])
+                .filter(x => x !== 'roomname' && data.Data.list.some(d => d[x]))
+                .sort((a, b) => a.localeCompare(b));
+              $('#times').html(times.map(x => `<li>${x}</li>`).join(''));
+              var str = '';
+              data.Data.list.forEach(x => {
+                str += `<li><div>${x.roomname}</div><ul class="exa">`;
+                times.forEach(t => {
+                  if (x[t]) {
+                    var detail = x[t].split('/');
+                    str += `<li data-id="${detail[0]}">
+                              <div class="name ${detail[2] === '常规课' ? 'blue' : 'yellow'}">
+                                ${detail[1].replace(detail[2], `<span style="margin-left: 5px">${detail[2]}</span>`)}
+                              </div>
+                              <div class="students" style="margin-top: 2px">${detail[4].replace(/,/g, '、')}</div>
+                            </li>`;
+                  } else {
+                    str += `<li></li>`
+                  }
+                });
+                str += `</ul></li>`
+              });
+              $('#exas').html(str);
+              $('.exa li').click(function () {
+                if (!$(this).attr('data-id')) return;
+                window.location.href = `detail.html?id=${$(this).attr('data-id')}`;
+              })
+            }
+          }
+        )
+      }
+
+      $(function () { // 点击星期
+        $(`[week="${new Date().getDay() || 7}"]`).addClass('is-active');
+        $('#weeks li').click(function () {
+          $('#weeks li').removeClass('is-active');
+          $(this).addClass('is-active');
+          getData(+$(this).attr('week'));
+        });
+
+        $('#pre').click(function () { // 上周
+          dd = new Date(dd.replace(/-/g, '/')) - 7 * 24 * 60 * 60 * 1000;
+          getData(+$('#weeks li.is-active').eq(0).attr('week'));
+        });
+
+        $('#next').click(function () { // 下周
+          dd = new Date(dd.replace(/-/g, '/')) + 7 * 24 * 60 * 60 * 1000;
+          getData(+$('#weeks li.is-active').eq(0).attr('week'));
+        });
+
+        getData(new Date().getDay() || 7);
+      })
+    </script>
+  </body>
+</html>

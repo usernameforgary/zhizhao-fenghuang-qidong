@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>新增备课笔记</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	body{
+    		background-color: #fff;
+    		background-image: url(../../img/bodyBg/beikeBg.png);
+    		background-size: 100% 100%;
+    		background-repeat: no-repeat;
+    		
+    	}
+    	.header,.main{
+    		width: 6.5rem;
+    		height: 3.8rem;
+    		border: 4px solid #000;
+    		margin: auto;
+    		background-color: #fff;
+    		border-radius: 0.3rem;
+    		padding: 0.5rem 0.3rem;
+    		margin-top: 1.1rem;
+    		line-height: 0.7rem;
+    	}
+    	.main1{
+    		width: 6.5rem;
+    		border: 4px solid #000;
+    		margin: auto;
+    		background-color: #fff;
+    		border-radius: 0.3rem;
+    		padding: 0.5rem 0.3rem;
+    		margin-top: 1.1rem;
+    		line-height: 0.6rem;
+    		padding-top: 0.3rem!important;
+    	}
+    	.header input{
+    		border: 0;
+    		border-bottom: 1px solid #000;
+    		width: 4.2rem;
+    		outline: none;
+    		padding-left: 0.26rem;
+    		box-sizing: border-box;
+    	}
+    	.header i{
+    		display: inline-block;
+    		width: 1rem;
+    		border-bottom: 1px solid #000;
+    		margin:0 0.1rem;
+    	}
+    	.header i:first-of-type{
+    		margin-left: 0;
+    	}
+    	.main {
+    		height: 4.3rem;
+    		line-height: 0.6rem;
+    		padding-top: 0.3rem!important;
+    	}
+    	.main input{
+    		font-size: 0.3rem;
+    		width: 0.26rem!important;
+    		height: 0.26rem!important;
+    		margin-right: 0.25rem;
+    	}
+    	.up-page-wrapper button{
+    		width: 2.18rem;
+    		height: 0.85rem;
+    		border-radius: 0.85rem;
+    		background-color: #23A8F2;
+    		border: 3px solid #000;
+    		display: block;
+    		color: white;
+    		margin:0.5rem auto;
+    	}
+    	li,header,button{
+    		font-size: 0.26rem;
+    		position: relative;
+    	}
+    	#classTime{
+    		border: 1px solid #000;
+    		position: absolute;
+    		left: 0;
+    		width: 100%;
+    		height: 100%;
+    		opacity: 0;
+    	}
+    	.classTime i{
+    		font-style: normal;
+    		text-align: center;
+    	}
+    </style>
+</head>
+<body class="up-page">
+	<div class="zhuanbanFloat" style="display: none;">
+		<div class="float" style="display: block;"></div>
+		<div class="zhuanbanWrap">
+			<p>
+				<textarea></textarea>
+			</p>
+			<p style="text-align: center;"><button class="submit">提交</button></p>
+		</div>
+	</div>
+	<div class="up-page-wrapper" >
+		<div class="header">
+			<ul>
+				<li><b>课程主题</b>：<input type="text" /></li>
+				<li class="classTime"><b>上课时间</b>：<i></i>年<i></i>月<i></i>日
+					<input readonly="readonly" type="text" name="" id="classTime" value="" />
+				</li>
+				<li><b>教学用具</b>：<input type="text" /></li>
+				<li><b>课程时间(分钟)</b>：<input style="width: 3.5rem;" type="tel" /></li>
+			</ul>
+		</div>
+		<div class="main1" style="padding:0.5rem;">
+			<header><b>课程等级</b></header>
+			<ul>
+				<!--<li><input type="radio" name="type" id="a" value="" checked="checked"/><label for="a">一阶</label></li>
+				<li><input type="radio" name="type" id="b" value="" /><label for="b">二阶</label></li>
+				<li><input type="radio" name="type" id="c" value="" /><label for="c">二阶</label></li>
+				<li><input type="radio" name="type" id="d" value="" /><label for="d">慧鱼</label></li>
+				<li><input type="radio" name="type" id="e" value="" /><label for="e">EQ-duino</label></li>-->
+			</ul>
+		</div>
+		<button>下一步</button>
+	</div>
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI;
+//	ui.showToast( '板块正在开发！');
+	var calendar = new datePicker();
+	calendar.init({
+		'trigger': '#classTime', /*按钮选择器，用于触发弹出插件*/
+		'type': 'date',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+		'minDate':'1900-1-1',/*最小日期*/
+		'maxDate':'2100-12-31',/*最大日期*/
+		'onSubmit':function(){/*确认时触发事件*/
+			var theSelectData=calendar.value;
+			$(".classTime i").eq(0).text(theSelectData.split("-")[0]);
+			$(".classTime i").eq(1).text(theSelectData.split("-")[1]);
+			$(".classTime i").eq(2).text(theSelectData.split("-")[2]);
+		},
+		'onClose':function(){/*取消时触发事件*/
+		}
+	});
+	//性别选择
+	$('.search img').click(function(){
+		if($('.tab li.active').attr('index')==1){
+			yiqiandan($("input").val());
+		}else if($('.tab li.active').attr('index')==2){
+			weiqiandan($("input").val());
+		}
+	})
+	$('.commit').click(function(){
+		$(".zhuanbanFloat").show();
+	})
+	$('.float').click(function(){
+		$(".zhuanbanFloat").hide();
+	})
+	getAjax(hostAjax+"/api/course/v1/gettagetype",{//获取所有的课型
+			
+		},function(data){
+			var str="";
+			if(data.Data!=""){
+				for (var i=0;i<data.Data.length;i++) {
+					str+='<li><input type="radio" name="type" id="'+data.Data[i].id+'" value="" /><label for="'+data.Data[i].id+'">'+data.Data[i].name+'</label></li>'
+				}
+				$(".main1 ul").html(str);
+				$('input[name="type"]').eq(0).attr("checked",true);
+				$("button").click(function(){
+					if(location.href.indexOf("xiugai")>0){
+						location.href="addbaike2.html?curriculumtheme="+decodeURI($('.header li').eq(0).find("input").val())
+					+"&classtime="+$('.header li').eq(1).find("input").val()
+					+"&preparations="+decodeURI($('.header li').eq(2).find("input").val())
+					+"&coursetime="+$('.header li').eq(3).find("input").val()
+					+"&curriculumtype="+$('input[name="type"]:checked').attr('id')
+					+"&xiugaiId="+location.href.split("xiugaiId=")[1].split("&")[0];
+						return false;
+					}
+					location.href="addbaike2.html?curriculumtheme="+decodeURI($('.header li').eq(0).find("input").val())
+					+"&classtime="+$('.header li').eq(1).find("input").val()
+					+"&preparations="+decodeURI($('.header li').eq(2).find("input").val())
+					+"&coursetime="+$('.header li').eq(3).find("input").val()
+					+"&curriculumtype="+$('input[name="type"]:checked').attr('id');
+				})
+				if(location.href.indexOf("xiugai")>0){
+					
+					getAjax(hostAjax+"/api/tch/v1/selectpreparelessonsedit",{//备课--信息
+						id:location.href.split("xiugaiId=")[1].split("&")[0]
+					},function(data){
+						var str="",haseCommite="";
+						if(data.Data!=""){
+							for (var i=0;i<data.Data.list.length;i++) {
+								if(data.Data.list[i].listenedname=="未评价"){
+									haseCommite="";
+								}else{
+									haseCommite='<span>【已评论】</span>';
+								}
+								str+='<div class="list" id='+data.Data.list[i].id+'>'+
+									'<b>'+haseCommite+'课程主题：《'+data.Data.list[i].curriculumtheme+'》</b>'+
+									'<p>上课时间：'+data.Data.list[i].classtime.split(' ')[0]+'</p>'+
+									'<p>课程类型：'+data.Data.list[i].curriculumtypename+'</p>'+
+									'<p>上课老师：'+data.Data.list[i].t_teachernickname+'</p>'+
+								'</div>';
+							}
+							$('.header li').eq(0).find("input").val(data.Data.list[0].curriculumtheme);
+							$('.header li').eq(1).find("input").val(data.Data.list[0].classtime.split(' ')[0]);
+							console.log(data.Data.list[0].classtime.split(' ')[0]);
+							$(".classTime i").eq(0).text(data.Data.list[0].classtime.split(' ')[0].split("/")[0]);
+							$(".classTime i").eq(1).text(data.Data.list[0].classtime.split(' ')[0].split("/")[1]);
+							$(".classTime i").eq(2).text(data.Data.list[0].classtime.split(' ')[0].split("/")[2]);
+							$('.header li').eq(2).find("input").val(data.Data.list[0].preparations);
+							$('.header li').eq(3).find("input").val(data.Data.list[0].coursetime);
+							$("input#"+data.Data.list[0].curriculumtype).attr("checked","checked");
+							$('.main>p').eq(0).find("span").text(data.Data.list[0].curriculumtheme);
+							$('.main>p').eq(1).find("span").text(data.Data.list[0].classtime.split(' ')[0]);
+							$('.main>p').eq(2).find("span").text(data.Data.list[0].curriculumtypename);
+							$('.main>p').eq(3).find("span").text(data.Data.list[0].coursetime);
+							$('.main>p').eq(4).find("span").text(data.Data.list[0].preparations);
+							$('.main>p').eq(5).find("span").text(data.Data.list[0].t_teachernickname);
+							$('.main>p').eq(6).find("span").text(data.Data.list[0].referencematerial);
+			//				console.log($("#"+data.Data.list[0].curriculumtype))
+							$('.main>p').eq(7).find("span").text(data.Data.list[0].teachingmaterials);
+							$('.main>p').eq(9).find("span").text(data.Data.list[0].teachinggoal);
+							$('.main>p').eq(10).find("span").text(data.Data.list[0].akey);
+							$('.main>p').eq(11).find("span").text(data.Data.list[0].difficulty);
+							$('.main>p').eq(13).find("span").text(data.Data.list[0].teachingactivities);
+							$('.list').click(function(){
+								location.href="tingikeDetail.html?id="+$(this).attr('id');
+							})
+							$('.main button').click(function(){
+								//修改笔记
+								location.href="addbaike.html?xiiugaiId="+location.href.split("id=")[1].split("&")[0];
+							})
+						}
+					})
+				}
+			}
+		})
+				
+</script>
+</html>

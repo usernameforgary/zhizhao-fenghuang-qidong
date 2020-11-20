@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>更多评论</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	body{
+    		background-color: #fff;
+    		/*background-image: url(../../img/bodyBg/ditui@3x.jpg);*/
+    		background-size: 100%;
+    		background-repeat: no-repeat;
+    		background-position: bottom;
+    	}
+    	button{
+    		display: block;
+		    width: 5.6rem;
+		    height: 0.6rem;
+		    border-radius: 0.6rem;
+		    background-color: #fff;
+		    border: 0;
+		    background: linear-gradient(to bottom,#FFCC3C,#F0B715);
+		    color: white;
+		    margin: 0.3rem auto;
+    	}
+    	.main{
+    		line-height: 0.5rem;
+    	}
+    	.teacherIdea {
+    		padding: 0.5rem;
+    	}
+    	.teacherIdea header span{
+    		float: right;
+    	}
+    	.share {
+    		padding-left: 0.8rem;
+    		margin-top: 0.2rem;
+    	}
+    </style>
+</head>
+<body class="up-page">
+	<div class="zhuanbanFloat" style="display: none;">
+		<div class="float" style="display: block;"></div>
+		<div class="zhuanbanWrap">
+			<p>申请人：鲨鱼老师</p>
+			<p>申请转班对象：王思思</p>
+			<p>专班理由：
+				<textarea></textarea>
+			</p>
+			<p style="text-align: center;"><button class="submit">提交</button></p>
+		</div>
+	</div>
+	<div class="up-page-wrapper" >
+		<div class="header">
+			
+		</div>
+		<div class="teacherIdea">
+			<header><b>听老师反馈</b> <span>更多<i class="iconfont icon-you"></i></span></header>
+			<div class="teacherLists">
+				<!--<div class="share">
+					<header><img src="../../img/bodyBg/defined.jpg" alt="" /><div class="name">鲨鱼老师</div><time>10.29 12:00</time></header>
+					<p>王文文上课很认真，进步很大。王文文上课很认真，进步很大。王文文上课很认真，进步很大。</p>
+				</div>
+				<div class="share">
+					<header><img src="../../img/bodyBg/defined.jpg" alt="" /><div class="name">鲨鱼老师</div><time>10.29 12:00</time></header>
+					<p>王文文上课很认真，进步很大。王文文上课很认真，进步很大。王文文上课很认真，进步很大。</p>
+				</div>
+				<div class="share">
+					<header><img src="../../img/bodyBg/defined.jpg" alt="" /><div class="name">鲨鱼老师</div><time>10.29 12:00</time></header>
+					<p>王文文上课很认真，进步很大。王文文上课很认真，进步很大。王文文上课很认真，进步很大。</p>
+				</div>-->
+			</div>
+			<!--<div class="">
+				<header><b>校长小结</b> </header>
+				<div class="share">
+					<header><img src="../../img/bodyBg/defined.jpg" alt="" /><div class="name">鲨鱼老师</div><time>10.29 12:00</time></header>
+					<p>王文文上课很认真，进步很大。王文文上课很认真，进步很大。王文文上课很认真，进步很大。</p>
+				</div>
+			</div>	-->
+				
+		</div>
+	</div>
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI;
+//	ui.showToast( '板块正在开发！');
+	//性别选择
+	$('.search img').click(function(){
+		if($('.tab li.active').attr('index')==1){
+			yiqiandan($("input").val());
+		}else if($('.tab li.active').attr('index')==2){
+			weiqiandan($("input").val());
+		}
+	})
+	getAjax(hostAjax+"/api/tch/v1/selectpreparelessonsedit",{//备课
+		id:location.href.split("id=")[1].split("&")[0]
+	},function(data){
+		var str="",haseCommite="";
+		if(data.Data!=""){
+			for (var i=0;i<data.Data.list.length;i++) {
+				if(data.Data.list[i].listenedname=="未评价"){
+					haseCommite="";
+				}else{
+					haseCommite='<span>【已评论】</span>';
+				}
+				str+='<div class="list" id='+data.Data.list[i].id+'>'+
+					'<b>'+haseCommite+'课程主题：《'+data.Data.list[i].curriculumtheme+'》</b>'+
+					'<p>上课时间：'+data.Data.list[i].classtime.split(' ')[0]+'</p>'+
+					'<p>课程类型：'+data.Data.list[i].curriculumtypename+'</p>'+
+					'<p>上课老师：'+data.Data.list[i].t_teachernickname+'</p>'+
+				'</div>';
+			}
+			$('.main>p').eq(0).find("span").text(data.Data.list[0].curriculumtheme);
+			$('.main>p').eq(1).find("span").text(data.Data.list[0].classtime.split(' ')[0]);
+			$('.main>p').eq(2).find("span").text(data.Data.list[0].curriculumtypename);
+			$('.main>p').eq(3).find("span").text(data.Data.list[0].coursetime);
+			$('.main>p').eq(4).find("span").text(data.Data.list[0].preparations);
+			$('.main>p').eq(5).find("span").text(data.Data.list[0].t_teachernickname);
+			$('.main>p').eq(6).find("span").text(data.Data.list[0].referencematerial);
+			console.log(	$('.main>p').eq(11).text())
+			$('.main>p').eq(7).find("span").text(data.Data.list[0].teachingmaterials);
+			$('.main>p').eq(9).find("span").text(data.Data.list[0].teachinggoal);
+			$('.main>p').eq(10).find("span").text(data.Data.list[0].akey);
+			$('.main>p').eq(11).find("span").text(data.Data.list[0].difficulty);
+			$('.main>p').eq(13).find("span").text(data.Data.list[0].teachingactivities);
+			$('.list').click(function(){
+				location.href="tingikeDetail.html?id="+$(this).attr('id');
+			})
+			$('.main button').click(function(){
+				//修改笔记
+			})
+		}
+	})
+		getAjax(hostAjax+"/api/tch/v1/seleclistenedlessons",{//评论
+		id:location.href.split("id=")[1].split("&")[0]
+	},function(data){
+		var str="",haseCommite="",imgUrl;
+		if(data.Data!=""){
+			for (var j=0;j<data.Data.list.length;j++) {
+				if(data.Data.list[j].t_teacherimgurl==""){
+					data.Data.list[j].t_teacherimgurl="../../img/bodyBg/defined.jpg";
+				}
+				str+='<div class="share">'+
+					'<header><img src="'+data.Data.list[j].t_teacherimgurl+'" alt="" /><div class="name">'+data.Data.list[j].t_teachernickname+'</div><time>'+data.Data.list[j].createdat.split(" ")[0]+'</time></header>'+
+					'<p>'+data.Data.list[j].evaluationcontent+'</p>'+
+				'</div>';
+			}
+			$('.teacherLists').html(str);
+//			$('.teacherLists share').click(function(){
+//				location.href="beikeDetail.html?id="+$(this).attr('id');
+//			})
+		}
+	})
+</script>
+</html>

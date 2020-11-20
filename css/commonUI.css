@@ -1,0 +1,592 @@
+﻿@charset "utf-8";
+
+/* 通用UI组件 */
+.commonUI-overflow {
+    overflow: hidden;
+}
+.commonUI-mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2222;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.commonUI-loading-mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0);
+}
+.commonUI-loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0.2rem;
+    padding: 0.1rem 0.2rem;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    min-width: 1.2rem;
+    max-width: 3rem;
+}
+.commonUI-loadingText {
+    width: 100%;
+    line-height: 0.48rem;
+    color: white;
+    text-align: center;
+    font-size: 0.24rem;
+    margin-top: 0.1rem;
+}
+.commonUI-loadingPic {
+    position: relative;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin: 0 auto;
+}
+.commonUI-toast {
+    position: fixed;
+    top: 50%;
+    width: 100%;
+    z-index: 2222;
+    height: 2.5rem;
+    overflow: hidden;
+}
+.commonUI-toast-wrapper {
+    position: relative;
+    width: 200%;
+    margin-left: -50%;
+}
+.commonUI-toast-wrapper span {
+    position: absolute;
+    top: -6rem;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    display: inline-block;
+    min-width: 2rem;
+    max-width: 4.5rem;
+    border-radius: 0.12rem;
+    padding: 0.24rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 0.3rem;
+    text-align: center;
+    z-index: 9999;
+}
+.commonUI-alert {
+	z-index: 2222;
+    position: absolute;
+    width: 5.4rem;
+    background-color: #fff;
+    border-radius: 0.12rem;
+    box-sizing: border-box;
+    font-size: 0.28rem;
+    background-clip: padding-box;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.commonUI-alertTitle {
+    font-size: 0.32rem;
+    line-height: 1.2rem;
+    font-weight: bold;
+}
+.commonUI-alertTitle p {
+    margin: 0;
+}
+.commonUI-alertTop {
+    padding: 0rem 0.3rem 0.25rem;
+    box-sizing: border-box;
+}
+.commonUI-alertTop p {
+    display: table;
+    margin: 0 auto;
+    line-height: 0.48rem;
+}
+.commonUI-alertBottom {
+    box-sizing: border-box;
+    border-top: 1px solid #d4d4d4;
+}
+.commonUI-alertButton {
+    display: none;
+    padding: 0;
+    margin: 0;
+    line-height: 0.96rem;
+    font-size: 0.34rem;
+    text-align: center;
+    color: #158cfb;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    background-clip: padding-box;
+    border: none;
+    box-sizing: border-box;
+}
+
+.commonUI-alertButton[data-btn="Yes"] {
+    width: 50%;
+    float: right;
+    border-left: 1px solid #d4d4d4;
+  /*  border-bottom-right-radius: 0.096rem;*/
+}
+
+.commonUI-alertButton[data-btn="No"] {
+    width: 50%;
+    float: left;
+    /*border-bottom-left-radius: 0.096rem;*/
+}
+
+.commonUI-alertButton[data-btn="OK"] {
+    width: 100%;
+   /* border-bottom-left-radius: 0.096rem;
+    border-bottom-right-radius: 0.096rem;*/
+}
+
+/* 等待对话框 */
+.commonUI-waiting {
+    position: absolute;
+    width: 5.4rem;
+    background-color: #fff;
+    border-radius: 0.12rem;
+    box-sizing: border-box;
+    font-size: 0.28rem;
+    background-clip: padding-box;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.commonUI-waitingTop {
+    padding: 0.3rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid #d4d4d4;
+}
+.commonUI-waitingInner {
+    height: 2rem;
+    background-image: url('../img/icon_waiting.png');
+    background-position: 0 50%;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+}
+.commonUI-waitingBottom {
+    box-sizing: border-box;
+}
+.commonUI-waiting-text1, .commonUI-waiting-text2 {
+    height: 1rem;
+    padding-left: 0.7rem;
+    margin: 0;
+    font-size: 0.3rem;
+    line-height: 0.5rem;
+    color: #999;
+    text-align: left;
+}
+.commonUI-waiting-text1 {
+    color: #333;
+}
+.commonUI-waitingButton {
+    padding: 0;
+    margin: 0;
+    line-height: 1rem;
+    font-size: 0.34rem;
+    text-align: center;
+    color: #158cfb;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    background-clip: padding-box;
+    border: none;
+    box-sizing: border-box;
+    width: 100%;
+ /*   border-bottom-left-radius: 0.01rem;
+    border-bottom-right-radius: 0.01rem;*/
+}
+/* 各类CSS动画 */
+@-webkit-keyframes loadWaiting {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    70% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+@keyframes loadWaiting {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    70% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+.fadeIn {
+    -webkit-animation: fadeIn 0.8s 0s ease both;
+    animation: fadeIn 0.8s 0s ease both;
+}
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}
+.fadeOut {
+    -webkit-animation: fadeOut 0.8s 0s ease both;
+    animation: fadeOut 0.8s 0s ease both;
+}
+
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 1
+    }
+    100% {
+        opacity: 0
+    }
+}
+@keyframes fadeOut {
+    0% {
+        opacity: 1
+    }
+    100% {
+        opacity: 0
+    }
+}
+/*地区联动*/
+
+.areaSelect .select{
+    height:7rem;
+    overflow: auto;
+}
+.areaSelect .select li{
+    margin: 0.3rem;
+    text-align: center;
+    color: #999;
+    cursor:pointer;
+}
+.areaSelect .addArea {
+    margin-top: 0.3rem;
+    color: #1e83d3;
+}
+.areaSelect .addArea span{
+    margin: 0.3rem;
+    color: #1e83d3;
+    cursor:pointer;
+    font-size:0.28rem;
+}
+.areaSelect span.active{
+    padding:0.1rem;
+    border-bottom: 1px solid #FA4C4B;
+}
+.areaSelect span.tip{
+    color:#FA4C4B;
+}
+.areaSelect span#tip{
+    color:#FA4C4B;
+}
+.areaSelect li.active{
+    border: 1px solid #FA4C4B;
+    padding:0.1rem;
+}
+.areaSelect {
+    position: relative;
+    z-index: 0;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity 0.4s, z-index 0.4s;
+    transition: opacity 0.4s, z-index 0.4s;
+}
+.areaSelect * {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.areaSelect .grayLayer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #eee;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 888;
+    display: block;
+}
+.areaSelect .content {
+    width: 100%;
+    display: block;
+    position: fixed;
+    z-index: 889;
+    color: black;
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+    bottom: -350px;
+    left: 0;
+    background: white;
+}
+.areaSelect .content .fixWidth {
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+.areaSelect .content .fixWidth:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.areaSelect .content .btnBar {
+    border-bottom: 1px solid #DCDCDC;
+    font-size: 15px;
+    height: 45px;
+    position: relative;
+    text-align: center;
+    line-height: 45px;
+}
+.areaSelect .content .btnBar .cancel,
+.areaSelect .content .btnBar .ensure {
+    height: 45px;
+    width: 55px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+}
+.areaSelect .content .btnBar .cancel {
+    left: 0;
+    color: #666;
+    cursor:pointer;
+}
+.areaSelect .content .btnBar .ensure {
+    right: 0;
+    color: #1e83d3;
+    cursor:pointer;
+}
+.areaSelect .content .btnBar .title {
+    font-size: 15px;
+    padding: 0 15%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.areaSelect .content .panel:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.areaSelect .select li {
+    margin: 0.3rem;
+    text-align: center;
+    color: #999;
+    cursor:pointer;
+    font-size:0.28rem;
+
+}
+.areaSelect-show {
+    opacity: 1;
+    z-index: 10000;
+    visibility: visible;
+}
+.areaSelect-show .content {
+    bottom: 0;
+}
+
+
+/*时间选择*/
+.dateSelect{
+    position: relative;
+    z-index: 0;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity 0.4s, z-index 0.4s;
+    transition: opacity 0.4s, z-index 0.4s;
+}
+.dateSelect-show {
+    opacity: 1;
+    z-index: 50;
+    visibility: visible;
+    width: 7.5rem;
+    margin: 0 auto;
+}
+.dateSelect .grayLayer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #eee;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 888;
+    display: block;
+}
+.dateSelect .content {
+    /*width: 100%;*/
+    width:7.5rem;
+    margin:0 auto;
+    display: block;
+    position: fixed;
+    z-index: 889;
+    color: black;
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+   /* bottom: -350px;
+    left: 0;*/
+    background: white;
+    left:-375px;
+    top:0;
+}
+.dateSelect-show .content {
+    /*bottom: 0;*/
+    left:0;
+}
+.dateSelect .content .btnBar {
+    border-bottom: 1px solid #DCDCDC;
+    font-size: 0.32rem;
+    height: 0.8rem;
+    position: relative;
+    text-align: center;
+    line-height: 0.8rem;
+}
+.dateSelect .content .fixWidth {
+    /* width: 90%; */
+    margin: 0 auto;
+    position: relative;
+  /*  height: 100%;
+    overflow: auto;*/
+}
+.dateSelect .content .btnBar .cancel {
+    left: 0;
+    color: #666;
+}
+
+.dateSelect .content .btnBar .cancel, .dateSelect .content .btnBar .ensure {
+    height: 0.5rem;
+    width: 1rem;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+}
+.dateSelect .content .btnBar .title {
+    font-size: 0.3rem;
+    padding: 0 15%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.dateSelect .content .btnBar .ensure {
+    right: 0;
+    color: #1e83d3;
+}
+
+
+.dateSelect .content .btnBar .cancel, .dateSelect .content .btnBar .ensure {
+    height: 0.8rem;
+    width: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    padding: 0 0.2rem;
+}
+.dateSelect-title{
+    text-align: center;
+    background: #eee;
+    padding: 0.2rem;
+    font-size:0.26rem;
+}
+.dateSelect .list{
+    overflow:hidden;
+}
+.dateSelect .list li{
+    position:relative;
+    float: left;
+    /*margin-right: 3px;*/
+    list-style: none;
+    width: 1rem;
+    height: 1rem;
+    text-align: center;
+    font-size: 0.26rem;
+    padding: 0.1rem;
+    color: #333;
+    text-align: center;
+}
+.dateSelect .list li.today{
+    position:relative;
+  /*  background: #1e83d3;*/
+    color:#1e83d3;
+}
+.dateSelect .list li.today i {
+    position: absolute;
+    top: 0.5rem;
+    font-size: 12px;
+    left: 0.3rem;
+    font-style: normal
+}
+.dateSelect .list li.goday{
+    position:relative;
+    background: #1e83d3;
+    color:#fff;
+}
+.dateSelect .list li.red{
+    color: red;
+}
+.dateSelect .list li.red.goday{
+    color:#fff;
+}
+.dateSelect .list li.goday span {
+    position: absolute;
+    top: 30px;
+    font-size: 12px;
+    left: 0.2rem;
+}
+.dateSelect .list li.grey{
+    color: #aaa;
+}
+
+.dateList{
+    height:12rem;
+    overflow-y:auto;
+}

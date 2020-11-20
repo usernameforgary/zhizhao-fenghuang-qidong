@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>任务大厅</title>
+    <link rel="stylesheet" href="../css/rwdt.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/swipe.css">
+    <script src="../js/rem.js"></script>
+<style>
+  .wrap {
+            width: 200px;
+            /* height: 460px; */
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cont ul li {
+            width: 200px;;
+            /* height: 460px; */
+        }
+
+        .cont ul li {
+            float: left;
+        }
+
+
+</style>
+</head>
+
+<body>
+    <div class="warp">
+        <div class="top-img">
+            <img src="../img/任务大厅1.png" alt="">
+        </div>
+        <div class="inform">
+            <div class="laba">
+                <img src="../img/喇叭.png" alt="">
+                <!-- <p class="gonggao">有新的任务上线了啦，快来赚取更多的凤凰币吧！！</p> -->
+                <!-- <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"></div> 
+                        <div class="swiper-slide gonggao">1111</div>
+                        
+                        <div class="swiper-slide gonggao">Slide 33333333333333333</div>
+                    </div>
+              
+            </div> -->
+            <div class="wrap">
+                <div class="cont" >
+                    <ul class="cont1">
+                        <li>1111111111111</li>
+                        <li>22222222</li>
+                       
+                    </ul>
+                </div>
+                <div class="left" style="display: none;"></div>
+                <div class="right" style="display: none;"></div>
+                <!-- <div class="btn" style="display: none;">
+                    <ul>
+                        <li class="active"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div> -->
+            </div>
+            </div>
+        </div>
+        <div class='signin'>
+            <div>
+                <div>
+                    <span class="continue">已连续签到</span>
+                    <span class="continue data">0 <span>天</span></span>
+                    <span class="check-ins ">
+                        点击签到
+                    </span>
+                </div>
+            </div>
+            <div>
+                <span class="tomorrow">明日签到可获得</span>
+                <span class="total">5积分</span>
+            </div>
+
+            <div class="sing">
+                <!-- <div>
+                    <img src="../img/对勾.png" alt="" class="tick">
+                    <p>星期一</p>
+
+                </div>
+                <div>
+                    <img src="../img/对勾.png" alt="" class="tick">
+                    <p>周二</p>
+
+                </div>
+                <div>
+                    <img src="../img/对勾.png" alt="" class="tick">
+                    <p>周三</p>
+
+                </div>
+                <div>
+                    <img src="../img/对勾.png" alt="" class="tick">
+                    <p>周四</p>
+
+                </div>
+                <div>
+                    <img src="../img/对勾1.png" alt="" class="tick">
+                    <p>周五</p>
+
+                </div>
+                <div>
+                    <img src="../img/对勾1.png" alt="" class="tick">
+                    <p>周六</p>
+
+                </div>
+                <div>
+                    <img src="../img/对勾1.png" alt="" class="tick">
+                    <p>周日</p>
+
+                </div> -->
+            </div>
+
+        </div>
+        <div class="tp-conten">
+            <div class="everyday">
+                <img src="../img/日常任务.png" alt="" class="centen-img">
+            </div>
+            <div>
+                <img src="../img/挑战任务.png" alt="" class="centen-img">
+            </div>
+            <div class="top1-img">
+                <img src="../img/特殊任务.png" alt="" class="centen-img">
+            </div>
+            <div class="top1-img">
+                <img src="../img/高额任务.png" alt="" class="centen-img">
+            </div>
+        </div>
+        <div>
+            <div class="plokm">
+                <div class="tx-box">
+                    <div>
+                        <img src="../img/账户明细.png" alt="" class="detail">
+                    </div>
+                    <div class="tite">
+                        <p class="bank">账户明细</p>
+                        <p class="manke">账户明细多少看这里便知</p>
+                    </div>
+                </div>
+                <div class="warp-img">
+                    <img src="../img/箭头 (1).png" alt="" class="arrows">
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <div class="plokm">
+                <div class="tx-box">
+                    <div>
+                        <img src="../img/帮助中心.png" alt="" class="detail">
+                    </div>
+                    <div class="tite">
+                        <p class="bank">帮助中心</p>
+                        <p class="manke">帮助中心反馈看这里</p>
+                    </div>
+                </div>
+                <div class="warp-img">
+                    <img src="../img/箭头 (1).png" alt="" class="arrows">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</body>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/swiper.min.js"></script>
+<script>
+
+var mySwiper = new Swiper('.swiper-container', {
+
+// 轮播图的方向，也可以是vertical方向
+
+direction: 'horizontal',
+
+//播放速度
+
+loop: true,
+
+// 自动播放时间
+
+autoplay: true,
+
+// 播放的速度
+
+speed: 500,
+
+// 如果需要分页器，即下面的小圆点
+
+pagination: {
+
+  el: '.swiper-pagination',
+
+},
+
+// 这样，即使我们滑动之后， 定时器也不会被清除
+
+autoplayDisableOnInteraction: false,
+
+
+
+});
+
+
+ function cuo(){
+ // 克隆第一张图片
+ $('.cont ul').append($('.cont li:first').clone(true));
+            // 设置盒子的长度
+            $('.cont').css({ width: 200 * $('.cont li').length });
+            var n = 0;//记录图片的个数
+            var len = $('.cont li').length;
+            var time;
+            $('.right').click(function () {
+                n++;
+                if (n > len - 1) {
+                    n = 1;
+                    $('.cont').css({ marginLeft: 0 })
+                }
+                changeBtn(n > 3 ? 0 : n);
+                $('.cont').stop().animate({ marginLeft: -200 * n }, 1000, function () {
+                    time = setTimeout(function () {
+                        $('.right').click();
+                    }, 1000)
+                })
+            })
+
+            function changeBtn(n) {
+                $('.btn li').eq(n).addClass('active').siblings().removeClass('active');
+            }
+       
+            time = setTimeout(function () {
+                $('.right').click();
+            }, 1000);
+         
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cuo()
+
+
+
+
+
+
+
+$.ajax({
+    type:'get',
+    url:'http://139.224.133.133:8088//api/phoenixcoin/v1/noticelist',
+    success:function(data){
+        console.log(data)
+        var html=''
+        for(var i=0; i<data.Data.list.length;i++){
+            html+=`
+ 
+          
+                        <li>${data.Data.list[i].content}</li>
+                      
+                        
+                
+            
+            `
+            // console.log(data.Data.list[i].content)
+        }
+        $('.cont1').html(html)
+        
+    }
+   
+})
+
+
+
+
+
+
+
+
+
+ $('.everyday').click(function(){
+     window.location.href='./日常任务.html'
+ })
+ $('.plokm').click(function(){
+     window.location.href='./凤凰币明细.html'
+ })
+
+    var arr = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
+    var html = '';
+    for (var i = 0; i < 7; i++) {
+        html += `
+      <div class ='qiandao'>
+     <img src="../img/dj1.png" alt="" class="tick">
+     <p>${arr[i]}</p>                
+     </div>
+    `
+    }
+
+    $('.sing').html(html);
+
+    $('.qiandao').each(function (index) {
+
+        $(this).click(function () {
+            $(this).children('.tick').attr("src", '../img/dj.png')
+            var a = 0;
+            for (var i = 0; i < $('.qiandao').length; i++) {
+                console.log($(".tick")[i].src);
+                if ($(".tick")[i].src === 'file:///C:/Users/Administrator/Desktop/fhpl/%E5%87%A4%E5%87%B0%E5%B8%81/img/dj.png') {
+                    a++;
+                }
+            }
+            console.log(index)
+       $('.data').text(a+'天')
+
+        })
+
+    })
+</script>
+
+</html>

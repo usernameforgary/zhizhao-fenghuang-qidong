@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>历史记录</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/simplePagination.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	body{
+    		background-color: #fff;
+    		background-image: url(../../img/bodyBg/ditui@3x.jpg);
+    		background-size: 100%;
+    		background-repeat: no-repeat;
+    		background-position: bottom;
+    	}
+    	.content{
+    		padding-bottom: 0.5rem;
+    	}
+    	.name1{
+    		display: inline;
+    	}
+    	.main,.othermain,.othermain1{
+    		font-size: 0.26rem;
+    	}
+    	.main>ul>li,.othermain>ul>li,.othermain1>ul>li{
+    		line-height: 0.86rem;
+    		border-bottom: 1px solid #eee;
+    		padding: 0 0.5rem;
+    		margin-top: 0.01rem;
+    	}
+    	.main ul li span,.othermain ul li span,.othermain1 ul li span{
+    		position: absolute;
+    		right: 0.5rem;
+    		box-sizing: border-box;
+    	}
+    	.main li i,.othermain li i,.othermain1 li i{
+    		display: inline-block;
+    		font-size: .26rem;
+    		margin-left: 0.15rem;
+    		transform:rotate(90deg);
+			-ms-transform:rotate(90deg); 	/* IE 9 */
+			-moz-transform:rotate(90deg); 	/* Firefox */
+			-webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+			-o-transform:rotate(90deg); 
+    	}
+    	.main li b,.othermain li b,.othermain1 li b{
+    		font-weight: normal;
+    	}
+    	.main p span,.othermain p span,.othermain1 p span{
+    		float: right;
+    	}
+    	.main p span i,.othermain p span i,.othermain1 p span i{
+    		transform:rotate(-90deg);
+			-ms-transform:rotate(-90deg); 	/* IE 9 */
+			-moz-transform:rotate(-90deg); 	/* Firefox */
+			-webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
+			-o-transform:rotate(-90deg); 
+    	}
+    	button.paiban{
+    		width: 1.8rem;
+    		height: 0.6rem;
+    		border-radius: 0.6rem;
+    		color: white;
+    		background: linear-gradient(to bottom,#FFCC3C,#F0B715)!important;
+    		position: relative;
+    		top: 0.2rem;
+    		border: 0;
+    		font-size: 0.26rem;
+    	}
+    	button.zhuanban,.main  button.zhuanrang,.main button.history,.main button.nextClass{
+    		width: 1.8rem;
+    		height: 0.6rem;
+    		border-radius: 0.6rem;
+    		color: white;
+    		background: linear-gradient(to bottom,#FF9C3D,#EF4C12);
+    		position: relative;
+    		top: 0.2rem;
+    		border: 0;
+    		font-size: 0.26rem;
+    	}
+    	.main button.zhuanrang,.main button.history{
+    		margin-left: 0.2rem;
+    	}
+    	button.submit{
+    		width: 5.6rem;
+    		height: 0.6rem;
+    		border-radius: 0.6rem;
+    		color: white;
+    		background: linear-gradient(to bottom,#FFCC3C,#F0B715);
+    		position: relative;
+    		top: 0.4rem;
+    		border: 0;
+    		font-size: 0.26rem;
+    	}
+    	
+    	.zhuanbanWrap input,.zhuanbanWrap select{
+    		height: 0.6rem!important;
+    	}
+    	textarea{
+    		width: 100%;
+    		resize: none;
+    		height: 2.5rem;
+    		margin-top: 0.2rem;
+    		text-indent: 2em;
+    		line-height: 0.35rem;
+    		border: 1px solid #aaa;
+    	}
+    	.tab_twoli{
+    		/*padding: 0 0.6rem;*/
+    	}
+    	.tab_twoli .paiban,.tab_twoli .zhuanban{
+    		top: 0;
+    		right: 0;
+    	}
+    	.tab_twoli li{
+    		float: left;
+    		width: 33.33%;
+    	}
+    	.tab_twoli button{
+    		width: 1.8rem;
+    		height: 0.6rem;
+    		border-radius: 0.6rem;
+    		color: white;
+    		background: linear-gradient(to bottom,#FF9C3D,#EF4C12);
+    		position: relative;
+    		/*right: 0.4rem;*/
+    		border: 0;
+    		font-size: 0.26rem;
+    	}
+    	.zhuanzhengFloat input{
+    		height: 0.85rem;
+    		width: 100%;
+    		margin: 0.1rem 0;
+    		border: 1px solid #aaa;
+    		padding-left: 0.26rem;
+    		box-sizing: border-box;
+    	}
+    	.zhuanzhengFloat,.nextClassFloat,.zhuanbanFloat,.beizhuFloat{
+    		position: fixed;
+    		top: 0;bottom: 0;left: 0;right: 0;
+    		z-index: 1111;
+    		display: flex;justify-content:center;align-items:center;
+    	}
+    	.zhuanzhengFloat .zhuanbanWrap{
+    		height: 6.8rem;
+    		overflow-y: auto;
+    	}
+    	.zhuanbanWrap{
+    		padding: 0.25rem;
+    		width: 6.5rem;
+    		
+    		background-color: #fff;
+    		border-radius: 0.3rem;
+    		/*position: static;*/
+    		top: 3.8rem;
+    		left: 0.5rem;
+    		z-index: 2222!important;
+    		line-height: 0.5rem;
+    		padding-bottom: 1rem;
+    		border: 1px solid #eee;
+    		/*display: flex;*/
+    	}
+    </style>
+</head>
+<body class="up-page">
+	<div class="zhuanbanFloat" style="display:none;">
+		<div class="float" style="display: block;"></div>
+		<div class="zhuanbanWrap">
+			<p>申请人：<span class="t_name"></span></p>
+			<p>申请转班对象：<span class="s_name"></span></p>
+			<p>转班理由：
+				<textarea></textarea>
+			</p>
+			
+			<p style="text-align: center;"><button class="submit">提交</button></p>
+		</div>
+	</div>
+	<div class="nextClassFloat" style="display:none;">
+		<div class="float" style="display: block;"></div>
+		<div class="zhuanbanWrap" style="padding-bottom: 0.25rem;top: 30%;">
+			<p>下节课时间：<span class="next1"></span></p>
+			<p>所在班级：<span class="next2"></span></p>
+			<p>任课老师：<span class="next3"></span></p>
+		</div>
+	</div>
+	<div class="zhuanzhengFloat" style="display:none;">
+		<div style="position: relative;z-index: 2222;">
+			<div class="zhuanbanWrap" style="">
+				<label for="a"><b>收费金额：</b></label><br />
+				<input type="tel" name="a" id="a" value="" /><br />
+				<ul><!-- style="display: flex;justify-content: space-between;"-->
+					<div class="changguike"></div>
+					<p style="clear: both;"></p>
+					<div class="addCourseType">
+						
+					</div>
+					<div class="addIcon" style="text-align: center;margin-top: 0.2rem;"><i class="iconfont icon-plus-add" style="font-size: 0.5rem;color: #888; border: 1px solid #888;width: 0.6rem;height: 0.6rem;border-radius: 0.6rem;"></i></div>
+				</ul>
+				
+				<label for="c"><b>收据编号：</b></label><br />
+				<input type="text" name="c" id="c" value="" />
+				<p style="text-align: center;"><button class="submit">提交</button></p>
+			</div>
+		</div>
+			
+			<div class="float" style="display: block;"></div>
+	</div>
+	<div class="beizhuFloat" style="display:none;">
+		<div class="float" style="display: block;"></div>
+		<div class="zhuanbanWrap">
+			<p><b>增加备注：</b>
+				<textarea></textarea>
+			</p>
+			<p style="text-align: center;"><button class="submit">提交</button></p>
+		</div>
+	</div>
+	<div class="up-page-wrapper reloadHistory" >
+		<div class="header">
+			<div class="search">
+				<img src="../../img/bodyBg/search@3x.png"/>
+				<input type="text" name="search" id="search" value="" placeholder="输入学员姓名"/>
+			</div>
+		</div>
+		<div class="teacher">
+			<div class="tab" style="margin-bottom: 0.15rem;">
+				<ul>
+					<li class="active" index="1"><span style="font-size:0.35rem;">学员</span></li>
+					<li index="2"><span style="font-size:0.35rem;">非学员</span></li>
+					<!--<li index="3"><span>资源库</span></li>-->
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="main">
+			
+			
+			<ul>
+				
+			</ul>
+		</div>
+		<div class="othermain" style="display: none;">
+			<ul>
+				
+			</ul>
+			
+		</div>
+		<div class="othermain1" style="display: none;">
+			<ul>
+				
+			</ul>
+		</div>
+		<div id="light-pagination1" class="pagination"></div>
+		<div id="light-pagination2" class="pagination" ></div>
+	</div>
+</body>
+
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script> 
+<script type="text/javascript">
+	console.log(returnCitySN["cip"]+','+returnCitySN["cname"])
+</script>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery.simplePagination.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI,studentId,_this,newewclassid=0,if_lists_model=true,pageindex=1,pagesize=15,reload1=false,reload2=false,reload3=false;
+//	ui.showToast( '板块正在开发！');
+	//性别选择
+	var mo=function(e){e.preventDefault();};
+
+/***禁止滑动***/
+function stop(){
+        document.body.style.overflow='hidden';        
+        document.addEventListener("touchmove",mo,false);//禁止页面滑动
+}
+
+/***取消滑动限制***/
+function move(){
+        document.body.style.overflow='';//出现滚动条
+        document.removeEventListener("touchmove",mo,false);        
+}
+	$('.search img').click(function(){
+		pageindex=1;
+		if($('.tab li.active').attr('index')==1){
+			yiqiandan($("#search").val());
+		}else if($('.tab li.active').attr('index')==2){
+			weiqiandan($("#search").val());
+		}else{
+			ziyuanku($("#search").val());
+		}
+	})
+	$('#search').bind('keyup', function(event) {
+
+	　　if (event.keyCode == "13") {
+	pageindex=1;
+	　　　　//回车执行查询
+			if($('.tab li.active').attr('index')==1){
+				yiqiandan($("#search").val());
+			}else if($('.tab li.active').attr('index')==2){
+				weiqiandan($("#search").val());
+			}else{
+				ziyuanku($("#search").val());
+			}
+	
+	　　}
+	
+	});
+	$('.teacher .tab li').click(function(){
+		$("#search").val("")
+		$('.content').hide();
+		$('b').show();
+		$(".othermain1").hide();
+		$('.teacher .tab li.active').removeClass('active');
+		$(this).addClass('active');
+		pageindex=1;
+		
+		//下面需要修改 扇形表的数据
+		if($(this).text()=="学员"){
+			if(reload1){
+				if_lists_model=true;
+			}else{
+				if_lists_model=false;
+			}
+			$(".main").show();
+			$(".othermain1").hide();
+			$(".othermain").hide();
+			$("#light-pagination1").show();
+			$("#light-pagination2").hide();
+			$("body").css("background-image","url(../../img/bodyBg/ditui@3x.jpg)");
+			yiqiandan();
+	
+		}else if($(this).text()=="非学员"){
+			if(reload2){
+				if_lists_model=true;
+			}else{
+				if_lists_model=false;
+			}
+			$(".main").hide();
+			$(".othermain").show();
+			$("#light-pagination1").hide();
+			$("#light-pagination2").show();
+			$("body").css("background-image","url(../../img/bodyBg/e588fb4a3829738be827a3d1c3fe63b.png)");
+			weiqiandan();
+		}else{
+			if(reload3){
+				if_lists_model=true;
+			}else{
+				if_lists_model=false;
+			}
+			$(".main").hide();
+			$(".othermain").hide();
+			$(".othermain1").show();
+			$("body").css("background-image","url(../../img/bodyBg/e588fb4a3829738be827a3d1c3fe63b.png)")
+		}
+	})
+	localStorage.getItem('zhizhao_uid')
+	var uids=localStorage.getItem('zhizhao_uid');
+	console.log(uids)
+	var weekdayArr=[],teacherId=[],chooseId=0;
+	getAjax(hostAjax+"/api/principal/v1/selectteacherlist",{//查看所有老师
+		user_id:uids
+	},function(data){
+		var str="",haseCommite="",imgUrl;
+		if(data.Data!=""){
+			for (var i=0;i<data.Data.list.length;i++) {
+				weekdayArr.push(data.Data.list[i].nickname);
+				teacherId.push(data.Data.list[i].id);
+			}
+			
+		}
+	})
+	yiqiandan();
+	weiqiandan();
+//	ziyuanku();
+	function yiqiandan(nameStr){getAjax(hostAjax+"/api/tch/v1/signedbilllist",{//已签单
+			user_id:uid,
+			student_name:nameStr
+		},function(data){
+			var str="",color="";
+			if(data.Data!=""){
+				if(pageindex==1){
+						$('#light-pagination1').pagination({//分页
+							pages: Math.ceil(data.Data.list.length/15>1?data.Data.list.length/15:1),
+							cssStyle: 'light-theme',
+						});
+					}
+				if(data.Data.list.length>(pageindex)*pagesize){
+					reload1=true;
+					if_lists_model=true;
+				}else{
+					reload1=false;
+						if_lists_model=false;
+					}
+				for (var i=((pageindex-1)*pagesize);i>=((pageindex-1)*pagesize)&&i<((pageindex)*pagesize)&&i<data.Data.list.length;i++) {//每页显示
+					if(data.Data.list[i].classhour<=8){
+						color= 'style="color:red;margin:0 0.1rem;font-size:0.3rem"';
+					}else{
+						color="";
+					}
+					
+					str+='<li id="'+data.Data.list[i].id+'"><div class="name1">'+data.Data.list[i].name+'</div><span><b >剩余<b '+color+' >'+parseFloat(data.Data.list[i].classhour<=0?0:data.Data.list[i].classhour)+'</b>课时</b><i class="iconfont icon-you"></i></span>'+
+					'<div class="content" style="display:none ;">'+
+						
+						'<p>生日：</p>'+
+						'<p>性别：</p>'+
+					'	<p>电话：</p>'+
+					'	<p>学校：</p>'+
+						'<p>班级：</p>'+
+						'<p>报名课时：课时</p>'+
+						'<p>报名时间：</p>'+
+						
+						'<p>已报名总课时：课时</p>'+
+						'<p>已消耗课时：课时</p>'+
+						'<p>剩余课时：课时</p>'+
+						'<p style="position: relative;bottom: 0.6rem;"><span>收起<i class="iconfont icon-you"></i></span><div class="clearfix"></div></p>'+
+						
+					'</div></li>'
+				}
+				$(".main ul").html(str);
+				if(data.Data.list.length<=(pageindex)*pagesize&&data.Data.list.length>15){
+					$(".main ul").append("<p style='    margin-top: 0.2rem;text-align: center;'>到底了哦</p>");
+				}
+				$(".main li i").click(function(){
+					var _this=this,xufeiStr="",studentId=$(_this).parents("li").attr('id');
+			//		ui.showToast( '展开信息！');
+					if($(this).parents('li').find('.content').css("display")=="block"){
+						$(this).parents('li').find('.content').hide();
+						$(this).parents('li').find('b').show();
+						return false;
+					}
+					//展开显示详情
+					getAjax(hostAjax+"/api/tch/v1/getstudentsinginfo",{
+						user_id:$(_this).parents("li").attr('id')
+					},function(data){
+						var str="";
+						if(data.Data!=""){
+							if(data.Data.createdat==""){
+								data.Data.createdat="无"
+							}
+							if(data.Data.yytime==""){
+								data.Data.yytime="无"
+							}
+							if(data.Data.appointmentcordcontent==""){
+								data.Data.appointmentcordcontent="无"
+							}
+							if(data.Data.yynums==""){
+								data.Data.yynums="0"
+							}
+							try{
+								for (var j=0;j<data.Data.renew_list.length;j++){
+								xufeiStr+='<p>第'+(j+1)+'次续费课时：'+data.Data.renew_list[j].classhour+'课时</p>'+
+						'<p>第'+(j+1)+'次续费时间：'+data.Data.renew_list[j].createdAt+'</p>';
+							}
+							}catch(e){
+								//TODO handle the exception
+							}
+							
+							var paibanStr="",shengyuSatr="",zhuanStr="";
+							paibanStr+='<button class="paiban">排班</button>';
+							if(data.Data.list[0].classid.length==0){
+								data.Data.list[0].classname='未排班';
+								
+							}else{
+								data.Data.list[0].classname="";
+								for (var l=0;l<data.Data.list[0].classid.length;l++) {
+									data.Data.list[0].classname+=data.Data.list[0].classid[l].classname+"班</br>";
+								}
+								data.Data.list[0].classname=data.Data.list[0].classname.substring(0,data.Data.list[0].classname.length-1);
+							}
+							if(data.Data.list[0].syclasshour<=0){
+								data.Data.list[0].syclasshour=0;
+							}
+							for(var t=0;t<data.Data.listtype.length;t++){
+								if(data.Data.listtype[t].classhour<0){
+										data.Data.listtype[t].classhour=0;
+									}
+								if(data.Data.listtype[t].classhour!=0){
+									
+									shengyuSatr+="（"+parseFloat(data.Data.listtype[t].classhour)+'课时'+data.Data.listtype[t].typename+'）';
+								}
+								
+							}
+							if(shengyuSatr==""){
+									shengyuSatr="0课时常规课"
+								}
+//							if(data.Data.list[0].activityhour!=0){
+//								shengyuSatr+="（"+parseFloat(data.Data.list[0].activityhour)+'课时活动课）';
+//							}
+							if(data.Data.list[0].courseadvisor==uid){
+								zhuanStr='<button class="zhuanrang">学员转让</button>';
+							}
+//							gostr="goUrl('studyhistry.html?studentId=&children')";
+							$(_this).parents("li").find('.content').html('<p>登录账号：'+data.Data.list[0].Accountnumber+'</p>'+'<p>生日：'+data.Data.list[0].birthday+'</p>'+
+						'<p>性别：'+data.Data.list[0].sex+'</p>'+
+						'<p>电话：<a href="tel:'+data.Data.list[0].phone+'">'+data.Data.list[0].phone+'</a></p>'+
+//						'<p>学校：'+data.Data.list[0].nowschool+'</p>'+
+						'<p>学校：'+(data.Data.list[0].nowschool)+'  &ensp;&ensp;'+(data.Data.list[0].nowgrade?data.Data.list[0].nowgrade:"")+'</p>'+
+						'<div style="line-height: 0.45rem;display:flex;margin-bottom: 0.2rem;"><p>班级：</p>'+data.Data.list[0].classname+'</div></div>'+
+//						'<p>报名课时：'+data.Data.list[0].classhour+'课时</p>'+
+//						'<p>报名时间：'+data.Data.list[0].createdAt+'</p>'+
+						xufeiStr+
+//						'<p>已报名总课时：'+data.Data.list[0].sumclasshour+'课时</p>'+
+						'<p class="consume">已消耗课时：'+parseFloat(data.Data.list[0].consumeclasshour) +'课时</p>'+
+						'<p style="line-height: 0.4rem;">剩余  '+shengyuSatr+'</p>'+
+						paibanStr+zhuanStr
+						+
+						'<button class="history" >课堂记录</button>'+
+						'<button class="nextClass" >下节课</button>'+
+						'<p class="hidden" style="position: relative;bottom: 0rem;height: 0.5rem;"><span>收起<i class="iconfont icon-you"></i></span><div class="clearfix"></div></p>');
+						//<button class="paiban">排班</button>
+						if(data.Data.list[0].courseadvisor!=uid){
+								$(".nextClass").css('margin-left','0.2rem');
+							}
+						newewclassid=data.Data.list[0].classid;
+							$(".hidden span").click(function(){
+								if($(this).parents('li').find('.content').css("display")=="block"){
+									$(this).parents('li').find('.content').hide();
+									$(this).parents('li').find('b').show();
+									return false;
+								}
+							})
+							$(".consume").click(function(){
+									location.href="../../consume.html?studentId="+studentId;
+								})
+							$(".history").click(function(){
+								location.href="../../studyhistry.html?studentId="+studentId+"&children";
+							})
+							$(".nextClass").click(function(){
+								getAjax(hostAjax+"/api/stu/v1/getnextsectioncourseInfo",{//
+								user_id: parseInt($(this).parents("li").attr("id"))
+								  
+							},function(data){
+								if(data.Code==200){
+									$(".next1").text(data.Data.classtime);
+									$(".next2").text(data.Data.classname);
+									$(".next3").text(data.Data.teachername);
+									$(".nextClassFloat").show();
+								}else{
+									ui.showToast( data.Msg);
+								}
+								$(".nextClassFloat .float").click(function(){
+									$(".nextClassFloat").hide();
+								})
+							})
+							})
+							
+							$(".paiban").unbind();
+							$(".zhuanban").unbind();
+							$(".zhuanbanFloat .float").unbind();
+							$(".zhuanbanFloat .submit").unbind();
+							$(".paiban").click(function(){
+								sessionStorage.removeItem("zhuanban");
+								location.href="../paiban/tap.html?id="+$(this).parents("li").attr('id');
+							})
+							
+							$(".zhuanban").click(function(){
+//								if($(this).text()=="已申请转班"){
+//									return false;
+//								}
+								sessionStorage.setItem("zhuanban",newewclassid);
+								location.href="../paiban/tap1.html?id="+$(this).parents("li").attr('id');
+								return false;
+								$('.zhuanbanFloat textarea').val("")
+								$(".zhuanbanFloat").show();
+								$(".t_name").text(localStorage.getItem("zhizhao_Name"));
+								$(".s_name").text($(this).parents('li').find('.name1').text());
+							})
+							$(".zhuanbanFloat .float").click(function(){
+								$(".zhuanbanFloat").hide();
+							})
+							//判断是否已经提交申请
+							getAjax(hostAjax+"/api/tch/v1/applicationrecordfortransfer",{//
+								user_id: parseInt(uid)
+								  
+							},function(data){
+								if(data.Code==200){
+									for (var a=0;a<data.Data.list.length;a++) {
+										if(data.Data.list[a].Shiftstudentid==$(_this).parents("li").attr("id")){
+//											ui.showToast( '成功！');
+											$(_this).parents("li").find(".zhuanban").text("已申请转班");
+										}
+									}
+								}else{
+									
+								}
+							})
+							if(Select!=undefined){
+								$(".zhuanrang").click(function(){
+									Select.show();
+									$(".mobileSelect .content").show()
+								})
+								
+							}else if(data.Data.list[0].courseadvisor==uid){
+							Select=new MobileSelect({
+							    trigger: '.zhuanrang', 
+							    title: '选择老师',  
+							    wheels: [
+							                {data: weekdayArr}
+							            ],
+							    position:[2], //初始化定位 打开时默认选中的哪个 如果不填默认为0
+							    transitionEnd:function(indexArr, data){
+							        console.log(data);
+							       
+							    },
+							    callback:function(indexArr, data){
+							        console.log(data); console.log(indexArr);
+							        chooseId=teacherId[indexArr];
+							        //调取转让接口
+							        ui.showAlert('是否确认转让给'+data[0], function () {
+					 getAjax(hostAjax+"/api/tch/v1/transferstudent",{//老师电话邀约之后的备注
+			user_id: parseInt(uid),
+			teacherid: parseInt(chooseId),
+			studentid: studentId
+			  
+		},function(data){
+//			if(stanby){
+//				return false;
+//			}
+			if(data.Code==200){
+				ui.showToast( '成功！');
+			}else{
+				ui.showToast( data.Msg);
+			}
+		})
+	            },null,"确认","取消","提示");
+							       
+							    }
+							})};
+							$(".zhuanbanFloat .submit").click(function(){
+								if($('.zhuanbanFloat textarea').val()==""){
+									ui.showToast( '请填写原因');
+									return false;
+								}
+								postAjax(hostAjax+"/api/tch/v1/addshiftrecord",JSON.stringify({//提交转班申请
+									  userid: uid,
+									  shiftstudentid: studentId,
+									  classid: newewclassid,
+									  newewclassid: 0,
+									  reason: $('.zhuanbanFloat textarea').val()
+								}),function(data){
+									if(data.Code==200){
+										
+										ui.showToast(data.Msg,2000);
+									}else{
+										ui.showToast(data.Msg,2000);
+									}
+								})
+								$(".zhuanbanFloat").hide();
+							})
+						}
+					})
+					$('.content').hide();
+					$('b').show();
+					$(this).parents('li').find('.content').show();
+					$(this).parents('li').find('b').hide();
+				})
+			}else{
+				if(pageindex==1){
+					$(".main ul").html('<div class="" style="margin-top: 20%;text-align: center;"><img style="width: 3rem;" src="../../img/nostudent.png"/><p>暂无学员</p></div>');
+				}
+				
+				if($('#search').val()==""){
+				}else{
+					ui.showToast( '学员中没有您要搜索的学生');
+				}
+				
+			}
+		})}
+	function weiqiandan(nameStr){
+		getAjax(hostAjax+"/api/tch/v1/notsignedlist",{//未签单
+				user_id:uid,
+				student_name:nameStr
+			},function(data){
+				
+				var str="",yaoyueStr="",bigArr=data.Data.list,smallArr=[];
+				if(data.Data!=""){
+					if(pageindex==1){
+						$('#light-pagination2').pagination({//分页
+							pages: Math.ceil(data.Data.list.length/15>1?data.Data.list.length/15:1),
+							cssStyle: 'light-theme',
+						});
+						
+						
+					}
+					if($(".tab .active").text()=="学员"){
+							$("#light-pagination2").hide();
+						}
+					//1、循环遍历获取 bigArr、smallArr
+					for (var j=0;j<data.Data.list.length;j++){
+						if(data.Data.list[j].maxtimes==""){
+							smallArr.push(new Date("0"));
+						}else{
+							smallArr.push(new Date(data.Data.list[j].maxtimes));
+						}
+					}
+					for(var i=0;i<smallArr.length;i++){//冒泡排序--降序
+						for(var j=i+1;j<smallArr.length;j++){
+							if(smallArr[i]<smallArr[j]){
+								var temp=smallArr[i];
+								smallArr[i]=smallArr[j];
+								smallArr[j]=temp;
+								var temp1=bigArr[i];
+								bigArr[i]=bigArr[j];
+								bigArr[j]=temp1;
+							}
+						}
+					}
+					data.Data.list=bigArr;
+					if(data.Data.list.length>(pageindex)*pagesize){
+						reload2=true;
+					if_lists_model=true;
+				}else{
+					reload2=false;
+						if_lists_model=false;
+					}
+					for (var i=((pageindex-1)*pagesize);i>=((pageindex-1)*pagesize)&&i<((pageindex)*pagesize)&&i<data.Data.list.length;i++) {
+						if(data.Data.list[i].maxtimes!=""){
+							yaoyueStr='<span style="position:absolute;left:2.5rem;font-size:0.23rem;"><a href="../Course/yaoyue.html?sid='+data.Data.list[i].id+'" class=""  style="color:#333;">'+data.Data.list[i].maxtimes.split(" ")[0]+'</a></span>';						}else{
+								yaoyueStr="";
+							}
+						str+='<li id="'+data.Data.list[i].id+'"><div class="name1" style="font-size:0.28rem;">'+data.Data.list[i].name+'</div>'+yaoyueStr+'<span><b><a href="tel:'+data.Data.list[i].phone+'">'+data.Data.list[i].phone+'</a></b><i class="iconfont icon-you"></i></span>'+
+						'<div class="content" style="display:none;">'+
+							'<p>生日：</p>'+
+							'<p>性别：</p>'+
+							'<p>电话：</p>'+
+							'<p>学校：</p>'+
+							'<p>录入时间：</p>'+
+							'<p>上次邀约时间：</p>'+
+							'<p>预约次数：次</p>'+
+							'<p>备注：</p>'+
+							'<p style="position: relative;bottom: 0.6rem;"><span>收起<i class="iconfont icon-you"></i></span><div class="clearfix"></div></p>'+
+							
+						'</div></li>'
+					}
+					$(".othermain ul").html(str);
+					if(data.Data.list.length<=(pageindex)*pagesize&&data.Data.list.length>15){
+					$(".othermain ul").append("<p style='    margin-top: 0.2rem;text-align: center;'>到底了哦</p>");
+				}
+					$(".othermain li i").click(function(){
+						 _this=this;
+						studentId=$(_this).parents("li").attr('id');
+						if($(this).parents('li').find('.content').css("display")=="block"){
+							$(this).parents('li').find('.content').hide();
+							$(this).parents('li').find('b').show();
+							return false;
+						}
+						//展开显示详情
+						getAjax(hostAjax+"/api/tch/v1/getstudentsinglist",{
+							user_id:$(_this).parents("li").attr('id')
+						},beizhuRefash,_this);
+						$('.content').hide();
+						$('b').show();
+						$(this).parents('li').find('.content').show();
+						$(this).parents('li').find('b').hide();
+						
+					})
+				}else{
+					if(pageindex==1){
+						$(".othermain ul").html('<div class="" style="margin-top: 20%;text-align: center;"><img style="width: 3rem;" src="../../img/nostudent.png"/><p>暂无学员</p></div>');
+					}
+					
+					if($('#search').val()==""){
+						
+					}else{
+						ui.showToast( '非学员中没有您要搜索的学生');
+					}
+				}
+			})
+	}
+	function ziyuanku(nameStr){
+		getAjax(hostAjax+"/api/tch/v1/studentresourceslist",{//资源库
+				user_id:uid,
+				student_name:nameStr
+			},function(data){
+				var str="";
+				if(data.Data!=""){
+					if(data.Data.list.length>(pageindex)*pagesize){
+						if_lists_model=true;
+						reload3=true;
+					}else{
+						reload3=false;
+						if_lists_model=false;
+					}
+					for (var i=0;i<((pageindex)*pagesize)&&i<data.Data.list.length;i++) {
+						str+='<li id="'+data.Data.list[i].id+'"><div class="name1">'+data.Data.list[i].name+'</div><span><b>'+data.Data.list[i].phone+'</b><i class="iconfont icon-you"></i></span>'+
+						'<div class="content" style="display:none ;">'+
+							'<p>生日：</p>'+
+							'<p>性别：</p>'+
+							'<p>电话：</p>'+
+							'<p>学校：</p>'+
+							'<p>录入时间：</p>'+
+							'<p>上次邀约时间：</p>'+
+							'<p>预约次数：次</p>'+
+							'<p>备注：</p>'+
+							'<p style="position: relative;bottom: 0.6rem;"><span>收起<i class="iconfont icon-you"></i></span><div class="clearfix"></div></p>'+
+							
+						'</div></li>'
+					}
+					$(".othermain1 ul").html(str);
+					if(data.Data.list.length<=(pageindex)*pagesize&&data.Data.list.length>15){
+					$(".othermain1 ul").append("<p style='    margin-top: 0.2rem;text-align: center;'>到底了哦</p>");
+				}
+					$(".othermain1 li i").click(function(){
+						 _this=this;
+						studentId=$(_this).parents("li").attr('id');
+						if($(this).parents('li').find('.content').css("display")=="block"){
+							$(this).parents('li').find('.content').hide();
+							$(this).parents('li').find('b').show();
+							return false;
+						}
+						//展开显示详情
+						getAjax(hostAjax+"/api/tch/v1/getstudentsinglist",{
+							user_id:$(_this).parents("li").attr('id')
+						},beizhuRefash1,_this);
+						$('.content').hide();
+						$('b').show();
+						$(this).parents('li').find('.content').show();
+						$(this).parents('li').find('b').hide();
+						
+					})
+				}else{
+					if(pageindex==1){
+						$(".othermain1 ul").html('<div class="" style="margin-top: 20%;text-align: center;"><img style="width: 3rem;" src="../../img/nostudent.png"/><p>暂无学员</p></div>');
+					}
+					
+					if($('#search').val()==""){
+						
+					}else{
+						ui.showToast( '资源库中没有您要搜索的学生');
+					}
+				}
+			})
+	}
+	function getLocalTime(nS) {  
+ return new Date(parseInt(nS) ).toLocaleString().replace(/:\d{1,2}$/,' ');  
+}
+	var Select=undefined;
+		//点击备注之后在页面中显示--已经备注的信息
+		function beizhuRefash(data,_this){
+							var str="";
+							if(data.Data!=""){
+								if(data.Data.list[0].createdat==""){
+									data.Data.list[0].createdat="无"
+								}
+								if(data.Data.list[0].yytime==""){
+									data.Data.list[0].yytime="无"
+								}
+								if(data.Data.list[0].appointmentcordcontent==""){
+									data.Data.list[0].appointmentcordcontent="无"
+								}
+								if(data.Data.list[0].yynums==""){
+									data.Data.list[0].yynums="0"
+								}
+								var paibanStr="",shengyuSatr="",zhuanStr="";
+//								paibanStr+='<button class="zhuanban">转班</button>';
+data.Data.list[0].classname='未排班';
+									paibanStr+='<button class="paiban">排班</button>';
+								if(data.Data.list[0].classid.length==0){
+								data.Data.list[0].classname='未排班';
+								
+							}else{
+								data.Data.list[0].classname="";
+								for (var l=0;l<data.Data.list[0].classid.length;l++) {
+									data.Data.list[0].classname+=data.Data.list[0].classid[l].classname+"班</br>";
+								}
+								data.Data.list[0].classname=data.Data.list[0].classname.substring(0,data.Data.list[0].classname.length-1);
+							}
+								for(var t=0;t<data.Data.listtype.length;t++){
+								if(data.Data.listtype[t].classhour<0){
+										data.Data.listtype[t].classhour=0;
+									}
+								if(data.Data.listtype[t].classhour!=0){
+									
+									shengyuSatr+="（"+parseFloat(data.Data.listtype[t].classhour)+'课时'+data.Data.listtype[t].typename+'）';
+								}
+								
+							}
+								if(shengyuSatr==""){
+									shengyuSatr="0课时试听课"
+								}
+							if(data.Data.list[0].courseadvisor==uid){
+								zhuanStr='<button class="zhuanrang">学员转让</button>';
+							}
+								$(_this).parents("li").find('.content').html('<p>登录账号：'+data.Data.list[0].Accountnumber+'</p>'+'<p>生日：'+data.Data.list[0].birthday+'</p>'+
+							'<p>性别：'+data.Data.list[0].sex+'</p>'+
+							'<p>电话：<a href="tel:'+data.Data.list[0].phone+'">'+data.Data.list[0].phone+'</a></p>'+
+							'<p>学校：'+(data.Data.list[0].nowschool)+'  &ensp;&ensp;'+data.Data.list[0].nowgrade+'</p>'+
+							'<div style="line-height: 0.45rem;display:flex;margin-bottom: 0.2rem;"><p>班级：</p>'+data.Data.list[0].classname+'</div></div>'+
+							'<p style="line-height: 0.4rem;">剩余  '+shengyuSatr+'</p>'+
+							'<p>录入时间：'+data.Data.list[0].createdat+'</p>'+
+							'<p>上次邀约时间：'+data.Data.list[0].yytime+'</p>'+
+							'<p>邀约次数：<a href="../Course/yaoyue.html?sid='+studentId+'" class="">'+data.Data.list[0].yynums+'次</a> &ensp;&ensp;<a href="javascript:void(0);" class="beizhu">添加</a></p>'+
+							'<p>邀约备注：'+data.Data.list[0].appointmentcordcontent+'</p>'+
+							'<ul class="tab_twoli">'+
+							'<li>'+paibanStr+'</li>'+
+							'<li>'+zhuanStr+'</li>'+
+				'<li><button class="zhuanzheng">转为学员</button></li>'+
+//				'<li><button class="beizhu">邀约备注</button></li>'+
+				'<li><button class="history" >课堂记录</button></li>'+
+				'<button class="nextClass" >下节课</button>'+
+				'<div class="clearfix"></div>'+
+			'</ul>'+
+							'<p class="hidden" style="position: relative;bottom: 0.2rem;"><span>收起<i class="iconfont icon-you"></i></span><div class="clearfix"></div></p>');
+							$(".hidden").click(function(){
+								if($(this).parents('li').find('.content').css("display")=="block"){
+									$(this).parents('li').find('.content').hide();
+									$(this).parents('li').find('b').show();
+									return false;
+								}
+							})
+							$(".history").click(function(){
+								location.href="../../studyhistry.html?studentId="+studentId+"&children";
+							})
+							$(".nextClass").click(function(){
+								getAjax(hostAjax+"/api/stu/v1/getnextsectioncourseInfo",{//
+								user_id: parseInt($(this).parents("li").attr("id"))
+								  
+							},function(data){
+								if(data.Code==200){
+									$(".next1").text(data.Data.classtime);
+									$(".next2").text(data.Data.classname+"班");
+									$(".next3").text(data.Data.teachername);
+									$(".nextClassFloat").show();
+								}else{
+									ui.showToast( data.Msg);
+								}
+								$(".nextClassFloat .float").click(function(){
+									$(".nextClassFloat").hide();
+								})
+							})
+							})
+							$(".zhuanzheng").unbind();
+							$(".zhuanrang").unbind();
+							$(".zhuanzhengFloat .float").unbind();
+							$(".beizhu").unbind();
+							$(".beizhuFloat .float").unbind();
+							$(".zhuanzheng").click(function(){
+								$('.zhuanzhengFloat textarea').val("")
+								$(".zhuanzhengFloat").show();
+								getAjax(hostAjax+"/api/course/v1/getsubjecttype",{
+		
+	},function(data){//插入转正表中的课程类型
+		var str="";
+		for (var s=0;s<data.Data.length;s++) {
+			if(data.Data[s].id!=2){
+				str+='<option value="'+data.Data[s].id+'">'+data.Data[s].typename+'</option>';
+			}
+			
+		}
+		addStr='<li style="float: left;"><label for="money">赠送课时类型：</label><br /><select class="courseType" name=""style="width: 2.75rem;margin: 0.1rem 0;"><option value="0">请选择</option>'+
+					str+
+				'</select></li>'+
+				'<li style="float: right;"><label for="">赠送课时：</label><br /><input style="width: 2.75rem;" type="tel" name="totleTime2" class="totleTime" value="" /></li><p style="clear: both;"></p>';
+				$(".changguike").html('<li style="float: left;"><header >报名课程类型：</header>'+
+				'<select class="courseType" name=""style="width: 2.75rem;margin: 0.1rem 0;"><option value="0">请选择</option><option value="2">常规课</option>'+
+					str+
+				'</select></li>'+'<li style="float: right;"><label for="" >报名课时：</label><br /><input style="width: 2.75rem;" type="tel" name="totleTime2" class="totleTime" value="" /></li>');
+		$(".addCourseType").html(addStr);
+		
+		$(".addIcon i").click(function(){
+			$(".addCourseType").append(addStr);
+		})
+	})
+//								stop()
+							})
+							
+							if(Select!=undefined){
+								$(".zhuanrang").click(function(){
+									console.log(Select)
+									Select.show();
+									$(".mobileSelect .content").show()
+								})
+								
+							}else if(data.Data.list[0].courseadvisor==uid){
+								
+							Select=new MobileSelect({
+							    trigger: '.zhuanrang', 
+							    title: '选择老师',  
+							    wheels: [
+							                {data: weekdayArr}
+							            ],
+							    position:[2], //初始化定位 打开时默认选中的哪个 如果不填默认为0
+							    transitionEnd:function(indexArr, data){
+							        console.log(data);
+							       
+							    },
+							    callback:function(indexArr, data){
+							        console.log(data); console.log(indexArr);
+							        chooseId=teacherId[indexArr];
+							        ui.showAlert('是否确认转让给'+data[0], function () {
+										//调取转让接口
+							        getAjax(hostAjax+"/api/tch/v1/transferstudent",{//老师电话邀约之后的备注
+			user_id: parseInt(uid),
+			teacherid: parseInt(chooseId),
+			studentid: studentId
+			  
+		},function(data){
+//			if(stanby){
+//				return false;
+//			}
+			if(data.Code==200){
+				ui.showToast( '成功！');
+			}else{
+				ui.showToast( data.Msg);
+			}
+		})
+						            },null,"确认","取消","提示");
+							        
+							    }
+							})};
+							$(".zhuanzhengFloat .float").click(function(){
+								$(".zhuanzhengFloat").hide();
+							})
+							$(".beizhu").click(function(){
+								$('.zhuanzhengFloat textarea').val("");
+								$(".beizhuFloat").show();
+								
+							})
+							$(".beizhuFloat .float").click(function(){
+								$(".beizhuFloat").hide();
+							})
+							$(".zhuanzhengFloat .submit").click(function(){
+								if($('#a').val()==""){
+									ui.showToast( '请填写收费金额');
+									return false;
+								}
+								var classhourtype="";
+								if($("#a").val()!=""&&$(".totleTime").eq(0).val()==""){
+									ui.showToast( "请输入购买课时",1500);
+									return false;
+								}
+//								if($("#a").val()==""&&$(".totleTime").eq(0).val()==""){
+//									classhourtype="4|0,";
+//								}
+								if($('#b').val()==""){
+									ui.showToast( '请填写购买课时');
+									return false;
+								}
+								
+								if($(".totleTime").eq(0).val()==0){
+									ui.showToast( "购买课时不能为0",1500);
+									return false;
+								}
+								if($('#c').val()==""){
+									ui.showToast( '请填写收据编号');
+									return false;
+								}
+								var stop=false;
+				$(".totleTime").each(function(i){//courseType
+					if($(this).val()!=""&&$(".courseType").eq(i).val()==0){
+						ui.showToast( "请选择课时对应的课时类型",2000);
+						stop=true;
+						return false;
+					}
+					if($(this).val()!=""&&$(".courseType").eq(i).val()!=0){
+						classhourtype+=$(".courseType").eq(i).val()+"|"+$(".totleTime").eq(i).val()+",";
+					}else if($(".courseType").eq(i).val()==4){
+						classhourtype+=$(".courseType").eq(i).val()+"|"+0+",";
+					}
+				})
+				if(stop){
+					return false;
+				}
+				classhourtype=classhourtype.substring(0,classhourtype.length-1);
+								var ajaxData=JSON.stringify({//续费接口
+								 		userid: uid,
+									  studentid: studentId,
+									 	price: $('#a').val(),
+									  classhourtype: classhourtype,
+									  contractno: $('#c').val(),
+									  remark: ""
+								})
+									ui.showAlert('是否确认', function () {
+					postAjax(hostAjax+"/api/tch/v1/atranslator",ajaxData,function(data){
+									if(data.Code==200){
+										ui.showToast( '成功！');
+										setTimeout(function(){
+											location.reload();
+										})
+									 	$('#a').val("");
+									 	$('#b').val("");
+									 	$('#c').val("");
+									   	$(".zhuanzhengFloat").hide();
+									   	
+									}else{
+										ui.showToast( data.Msg);
+									}
+								})
+	            },null,"确认","取消","提示");
+								
+								$(".zhuanbanFloat").hide();
+							})
+							$(".paiban").unbind();
+							$(".zhuanban").unbind();
+							$(".zhuanbanFloat .float").unbind();
+							$(".zhuanbanFloat .submit").unbind();
+							$(".paiban").click(function(){
+								sessionStorage.removeItem("zhuanban");
+								location.href="../paiban/tap.html?id="+$(this).parents("li").parents("li").attr('id');
+							})
+							$(".zhuanban").click(function(){
+//								if($(this).text()=="已申请转班"){
+//									return false;
+//								}
+								sessionStorage.setItem("zhuanban",newewclassid);
+								location.href="../paiban/tap1.html?id="+$(this).parents("li").parents("li").attr('id');
+								return false;
+								$('.zhuanbanFloat textarea').val("")
+								$(".zhuanbanFloat").show();
+								$(".t_name").text(localStorage.getItem("zhizhao_Name"));
+								$(".s_name").text($(this).parents('li').parents('li').find('.name1').text());
+							})
+							$(".zhuanbanFloat .float").click(function(){
+								$(".zhuanbanFloat").hide();
+							})
+							newewclassid=data.Data.classid;
+							$(".zhuanbanFloat .submit").click(function(){
+								if($('.zhuanbanFloat textarea').val()==""){
+									ui.showToast( '请填写原因');
+									return false;
+								}
+								postAjax(hostAjax+"/api/tch/v1/addshiftrecord",JSON.stringify({//提交转班申请
+									  userid: uid,
+									  shiftstudentid: studentId,
+									  classid: newewclassid,
+									  newewclassid: 0,
+									  reason: $('.zhuanbanFloat textarea').val()
+								}),function(data){
+									if(data.Code==200){
+										ui.showToast(data.Msg,2000);
+									}else{
+										ui.showToast(data.Msg,2000);
+									}
+								})
+								$(".zhuanbanFloat").hide();
+							})
+							$(".beizhuFloat .submit").unbind();
+							var doOne=false;
+							$(".beizhuFloat .submit").click(function(){
+								if($('.beizhuFloat textarea').val()==""){
+									ui.showToast( '请填写备注信息');
+									return false;
+								}
+								if(doOne){
+									return false;
+								}
+								doOne=true;
+								postAjax(hostAjax+"/api/tch/v1/addappointmentcord",JSON.stringify({//老师电话邀约之后的备注
+									  userid: uid,
+									  studentid: studentId,
+									 content: $('.beizhuFloat textarea').val(),
+									  type: 0,
+									  remark: ""
+								}),function(data){
+									doOne=false;
+									if(data.Code==200){
+										ui.showToast( '成功！');
+									 	$('.beizhuFloat textarea').val("");
+									   	$(".beizhuFloat").hide();
+									   	
+									   	getAjax(hostAjax+"/api/tch/v1/getstudentsinglist",{
+											user_id:$(_this).parents("li").attr('id')
+										},beizhuRefash,_this);
+										$(".beizhuFloat .submit").unbind();
+									}
+								})
+								$(".zhuanbanFloat").hide();
+							})
+							//判断是否已经提交申请
+							getAjax(hostAjax+"/api/tch/v1/applicationrecordfortransfer",{//
+								user_id: parseInt(uid)
+								  
+							},function(data){
+								if(data.Code==200){
+									for (var a=0;a<data.Data.list.length;a++) {
+										if(data.Data.list[a].Shiftstudentid==$(_this).parents("li").attr("id")){
+//											ui.showToast( '成功！');
+											$(_this).parents("li").find(".zhuanban").text("已申请转班");
+										}
+									}
+								}else{
+									
+								}
+							})
+							}
+						}
+		function beizhuRefash1(data,_this){
+							var str="";
+							if(data.Data!=""){
+								if(data.Data.list[0].createdat==""){
+									data.Data.list[0].createdat="无"
+								}
+								if(data.Data.list[0].yytime==""){
+									data.Data.list[0].yytime="无"
+								}
+								if(data.Data.list[0].appointmentcordcontent==""){
+									data.Data.list[0].appointmentcordcontent="无"
+								}
+								if(data.Data.list[0].yynums==""){
+									data.Data.list[0].yynums="0"
+								}
+								var paibanStr="",shengyuSatr="",zhuanStr="";
+//								paibanStr+='<button class="zhuanban">转班</button>';
+data.Data.list[0].classname='未排班';
+									paibanStr+='<button class="paiban">排班</button>';
+								if(data.Data.list[0].classid.length==0){
+								data.Data.list[0].classname='未排班';
+								
+							}else{
+								data.Data.list[0].classname="";
+								for (var l=0;l<data.Data.list[0].classid.length;l++) {
+									data.Data.list[0].classname+=data.Data.list[0].classid[l].classname+"班</br>";
+								}
+								data.Data.list[0].classname=data.Data.list[0].classname.substring(0,data.Data.list[0].classname.length-1);
+							}
+								for(var t=0;t<data.Data.listtype.length;t++){
+								if(data.Data.listtype[t].classhour<0){
+										data.Data.listtype[t].classhour=0;
+									}
+								if(data.Data.listtype[t].classhour!=0){
+									
+									shengyuSatr+="（"+parseFloat(data.Data.listtype[t].classhour)+'课时'+data.Data.listtype[t].typename+'）';
+								}
+								
+							}
+								if(shengyuSatr==""){
+									shengyuSatr="0课时试听课"
+								}
+							if(data.Data.list[0].courseadvisor==uid){
+								zhuanStr='<button class="zhuanrang">学员转让</button>';
+							}
+								$(_this).parents("li").find('.content').html('<p>登录账号：'+data.Data.list[0].Accountnumber+'</p>'+'<p>生日：'+data.Data.list[0].birthday+'</p>'+
+							'<p>性别：'+data.Data.list[0].sex+'</p>'+
+							'<p>电话：<a href="tel:'+data.Data.list[0].phone+'">'+data.Data.list[0].phone+'</a></p>'+
+							'<p>学校：'+(data.Data.list[0].nowschool)+'  &ensp;&ensp;'+data.Data.list[0].nowgrade+'</p>'+
+							'<div style="line-height: 0.45rem;display:flex;margin-bottom: 0.2rem;"><p>班级：</p>'+data.Data.list[0].classname+'</div></div>'+
+							'<p style="line-height: 0.4rem;">剩余  '+shengyuSatr+'</p>'+
+							'<p>录入时间：'+data.Data.list[0].createdat+'</p>'+
+							'<p>上次邀约时间：'+data.Data.list[0].yytime+'</p>'+
+							'<p>邀约次数：<a href="javascript:void(0);" class="">'+data.Data.list[0].yynums+'次</a> &ensp;&ensp;<a href="javascript:void(0);" class="beizhu">添加</a></p>'+
+							'<p>邀约备注：'+data.Data.list[0].appointmentcordcontent+'</p>'+
+							'<ul class="tab_twoli">'+
+							'<li>'+paibanStr+'</li>'+
+							'<li>'+zhuanStr+'</li>'+
+//				'<li><button class="zhuanzheng">转为学员</button></li>'+
+//				'<li><button class="beizhu">邀约备注</button></li>'+
+//				'<li><button class="history" >课堂记录</button></li>'+
+//				'<button class="nextClass" >下节课</button>'+
+				'<div class="clearfix"></div>'+
+			'</ul>'+
+							'<p class="hidden" style="position: relative;bottom: 0.2rem;"><span>收起<i class="iconfont icon-you"></i></span><div class="clearfix"></div></p>');
+							$(".hidden").click(function(){
+								if($(this).parents('li').find('.content').css("display")=="block"){
+									$(this).parents('li').find('.content').hide();
+									$(this).parents('li').find('b').show();
+									return false;
+								}
+							})
+							$(".history").click(function(){
+								location.href="../../studyhistry.html?studentId="+studentId+"&children";
+							})
+							$(".nextClass").click(function(){
+								getAjax(hostAjax+"/api/stu/v1/getnextsectioncourseInfo",{//
+								user_id: parseInt($(this).parents("li").attr("id"))
+								  
+							},function(data){
+								if(data.Code==200){
+									$(".next1").text(data.Data.classtime);
+									$(".next2").text(data.Data.classname+"班");
+									$(".next3").text(data.Data.teachername);
+									$(".nextClassFloat").show();
+								}else{
+									ui.showToast( data.Msg);
+								}
+								$(".nextClassFloat .float").click(function(){
+									$(".nextClassFloat").hide();
+								})
+							})
+							})
+							$(".zhuanzheng").unbind();
+							$(".zhuanrang").unbind();
+							$(".zhuanzhengFloat .float").unbind();
+							$(".beizhu").unbind();
+							$(".beizhuFloat .float").unbind();
+							$(".zhuanzheng").click(function(){
+								$('.zhuanzhengFloat textarea').val("")
+								$(".zhuanzhengFloat").show();
+//								stop()
+							})
+							
+							if(Select!=undefined){
+								$(".zhuanrang").click(function(){
+									console.log(Select)
+									Select.show();
+									$(".mobileSelect .content").show()
+								})
+								
+							}else if(data.Data.list[0].courseadvisor==uid){
+							Select=new MobileSelect({
+							    trigger: '.zhuanrang', 
+							    title: '选择老师',  
+							    wheels: [
+							                {data: weekdayArr}
+							            ],
+							    position:[2], //初始化定位 打开时默认选中的哪个 如果不填默认为0
+							    transitionEnd:function(indexArr, data){
+							        console.log(data);
+							       
+							    },
+							    callback:function(indexArr, data){
+							        console.log(data); console.log(indexArr);
+							        chooseId=teacherId[indexArr];
+							        ui.showAlert('是否确认转让给'+data[0], function () {
+										//调取转让接口
+							        getAjax(hostAjax+"/api/tch/v1/transferstudent",{//老师电话邀约之后的备注
+			user_id: parseInt(uid),
+			teacherid: parseInt(chooseId),
+			studentid: studentId
+			  
+		},function(data){
+//			if(stanby){
+//				return false;
+//			}
+			if(data.Code==200){
+				ui.showToast( '成功！');
+			}else{
+				ui.showToast( data.Msg);
+			}
+		})
+						            },null,"确认","取消","提示");
+							        
+							    }
+							})};
+							$(".zhuanzhengFloat .float").click(function(){
+								$(".zhuanzhengFloat").hide();
+							})
+							$(".beizhu").click(function(){
+								$('.zhuanzhengFloat textarea').val("");
+								$(".beizhuFloat").show();
+							})
+							$(".beizhuFloat .float").click(function(){
+								$(".beizhuFloat").hide();
+							})
+							$(".zhuanzhengFloat .submit").click(function(){
+								if($('#a').val()==""){
+									ui.showToast( '请填写收费金额');
+									return false;
+								}
+								if($('#b').val()==""){
+									ui.showToast( '请填写购买课时');
+									return false;
+								}
+								if($('#c').val()==""){
+									ui.showToast( '请填写收据编号');
+									return false;
+								}
+								var ajaxData;
+								if($(".courseType").val()==1){//赠送活动课
+										ajaxData=JSON.stringify({//续费接口
+								 		userid: uid,
+									  studentid: studentId,
+									 	price: $('#a').val(),
+									  classhour: $('#b').val(),
+									   activityhour: $('#d').val(),
+									  contractno: $('#c').val(),
+									  remark: ""
+								})
+									}else{
+										ajaxData=JSON.stringify({//续费接口
+								 userid: uid,
+									  studentid: studentId,
+									 	price: $('#a').val(),
+									  classhour: $('#b').val(),
+									  matchhour: $('#d').val(),
+									  contractno: $('#c').val(),
+									  remark: ""
+								})
+									}
+									ui.showAlert('是否确认', function () {
+					postAjax(hostAjax+"/api/tch/v1/atranslator",ajaxData,function(data){
+									if(data.Code==200){
+										ui.showToast( '成功！');
+										setTimeout(function(){
+											location.reload();
+										})
+									 	$('#a').val("");
+									 	$('#b').val("");
+									 	$('#c').val("");
+									   	$(".zhuanzhengFloat").hide();
+									   	
+									}
+								})
+	            },null,"确认","取消","提示");
+								
+								$(".zhuanbanFloat").hide();
+							})
+							$(".paiban").unbind();
+							$(".zhuanban").unbind();
+							$(".zhuanbanFloat .float").unbind();
+							$(".zhuanbanFloat .submit").unbind();
+							$(".paiban").click(function(){
+								sessionStorage.removeItem("zhuanban");
+								location.href="../paiban/tap.html?id="+$(this).parents("li").parents("li").attr('id');
+							})
+							$(".zhuanban").click(function(){
+//								if($(this).text()=="已申请转班"){
+//									return false;
+//								}
+								sessionStorage.setItem("zhuanban",newewclassid);
+								location.href="../paiban/tap1.html?id="+$(this).parents("li").parents("li").attr('id');
+								return false;
+								$('.zhuanbanFloat textarea').val("")
+								$(".zhuanbanFloat").show();
+								$(".t_name").text(localStorage.getItem("zhizhao_Name"));
+								$(".s_name").text($(this).parents('li').parents('li').find('.name1').text());
+							})
+							$(".zhuanbanFloat .float").click(function(){
+								$(".zhuanbanFloat").hide();
+							})
+							newewclassid=data.Data.classid;
+							$(".zhuanbanFloat .submit").click(function(){
+								if($('.zhuanbanFloat textarea').val()==""){
+									ui.showToast( '请填写原因');
+									return false;
+								}
+								postAjax(hostAjax+"/api/tch/v1/addshiftrecord",JSON.stringify({//提交转班申请
+									  userid: uid,
+									  shiftstudentid: studentId,
+									  classid: newewclassid,
+									  newewclassid: 0,
+									  reason: $('.zhuanbanFloat textarea').val()
+								}),function(data){
+									if(data.Code==200){
+										ui.showToast(data.Msg,2000);
+									}else{
+										ui.showToast(data.Msg,2000);
+									}
+								})
+								$(".zhuanbanFloat").hide();
+							})
+							$(".beizhuFloat .submit").unbind();
+							var doOne=false;
+							$(".beizhuFloat .submit").click(function(){
+								if($('.beizhuFloat textarea').val()==""){
+									ui.showToast( '请填写备注信息');
+									return false;
+								}
+								if(doOne){
+									return false;
+								}
+								doOne=true;
+								postAjax(hostAjax+"/api/tch/v1/addappointmentcord",JSON.stringify({//老师电话邀约之后的备注
+									  userid: uid,
+									  studentid: studentId,
+									 content: $('.beizhuFloat textarea').val(),
+									  type: 0,
+									  remark: ""
+								}),function(data){
+									doOne=false;
+									if(data.Code==200){
+										ui.showToast( '成功！');
+									 	$('.beizhuFloat textarea').val("");
+									   	$(".beizhuFloat").hide();
+									   	getAjax(hostAjax+"/api/tch/v1/getstudentsinglist",{
+											user_id:$(_this).parents("li").attr('id')
+										},beizhuRefash,_this);
+										$(".beizhuFloat .submit").unbind();
+									}
+								})
+								$(".zhuanbanFloat").hide();
+							})
+							//判断是否已经提交申请
+							getAjax(hostAjax+"/api/tch/v1/applicationrecordfortransfer",{//
+								user_id: parseInt(uid)
+								  
+							},function(data){
+								if(data.Code==200){
+									for (var a=0;a<data.Data.list.length;a++) {
+										if(data.Data.list[a].Shiftstudentid==$(_this).parents("li").attr("id")){
+//											ui.showToast( '成功！');
+											$(_this).parents("li").find(".zhuanban").text("已申请转班");
+										}
+									}
+								}else{
+									
+								}
+							})
+							}
+						}
+</script>
+</html>

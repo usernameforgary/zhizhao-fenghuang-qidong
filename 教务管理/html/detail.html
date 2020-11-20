@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css" />
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+    <title>课程表详情</title>
+    <style>
+      html {
+        height: 100%;
+      }
+
+      body {
+        padding: .4rem .6rem;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .title {
+        font-size: .36rem;
+        margin-bottom: .5rem;
+      }
+
+      .detail-item {
+        display: flex;
+        font-size: .28rem;
+      }
+
+      .detail-item + .detail-item {
+        margin-top: .2rem;
+      }
+
+      .students-title {
+        margin-top: .6rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: .14rem;
+      }
+
+      .students-title .title {
+        margin-bottom: 0;
+      }
+
+      .students-title #add {
+        text-decoration: none;
+        width: 1.53rem;
+        height: .49rem;
+        background-color: #fbd15b;
+        border-radius: .05rem;
+        font-size: .26rem;
+        color: white;
+        text-align: center;
+        line-height: .49rem;
+      }
+
+      #students {
+        flex: 1;
+        overflow-y: auto;
+      }
+
+      #students > li {
+        border-bottom: solid 1px #535353;
+        padding: .54rem 0 .16rem;
+        display: flex;
+        align-items: center;
+      }
+
+      #students img {
+        width: .85rem;
+        height: .85rem;
+        margin-right: .47rem;
+      }
+
+      .s-detail {
+        flex: 1;
+      }
+
+      .top {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .top .remove {
+        width: 1.24rem;
+        height: 0.41rem;
+        border-radius: 0.05rem;
+        border: solid 0.02rem #fbd15b;
+        font-size: .24rem;
+        line-height: .41rem;
+        text-align: center;
+      }
+
+      .top label {
+        font-size: .206rem;
+        color: #232323;
+      }
+
+      .name {
+        font-size: .275rem;
+        color: #232323;
+      }
+
+      .tel {
+        font-size: .206rem;
+        color: #288dff;
+      }
+
+      .left li {
+        display: flex;
+        align-items: center;
+      }
+
+      .bottom {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .bottom li {
+        display: flex;
+      }
+
+      .bottom label {
+        font-size: .206rem;
+        color: #565656;
+      }
+
+      .bottom div {
+        font-size: .206rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="title">我的课程</div>
+      <div class="detail-item">
+        <label>课程类型：</label>
+        <div class="value" style="color: #efb511"></div>
+      </div>
+      <div class="detail-item">
+        <label>上课时间：</label>
+        <div class="value"></div>
+      </div>
+      <div class="detail-item">
+        <label>所在班级：</label>
+        <div class="value"></div>
+      </div>
+      <div class="detail-item">
+        <label>课程主题：</label>
+        <div class="value"></div>
+      </div>
+    </div>
+
+    <div class="students-title">
+      <div class="title">班级成员：</div>
+      <a id="add">添加学员</a>
+    </div>
+
+    <ul id="students"></ul>
+  </body>
+  <script>
+    function getQueryString(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) {
+        return unescape(r[2]);
+      }
+      return null;
+    }
+
+    function getStudentHtml(student, isTimeOut, classhour) {
+      return `
+      <li>
+        <img src="${student.imgurl || '../../img/default_person.png'}">
+        <div class="s-detail">
+          <div class="top">
+            <ul class="left">
+              <li>
+                <label>姓名：</label>
+                <div class="name">${student.nickname}</div>
+              </li>
+              <li>
+                <label>电话：</label>
+                <a href="tel:${student.phone}" class="tel">${student.phone}</a>
+              </li>
+            </ul>
+            ${isTimeOut ? '' : `<a class="remove" data-id="${student.id}" data-name="${student.nickname}">移出学员</a>`}
+          </div>
+          <ul class="bottom">
+            <li>
+              <label>授课课时：</label>
+              <div class="value" style="color: #efb511">${classhour}课时</div>
+            </li>
+            <li>
+              <label>剩余课时：</label>
+              <div class="value" style="color: #efb511">${student.typeclasshour}课时</div>
+            </li>
+          </ul>
+        </div>
+      </li>`
+    }
+
+    function removeStudent(id, fixedcourseid, $el) {
+      getAjax(
+        hostAjax + `/api/course/v1/deletearrangeclass`,
+        {
+          studentid: id,
+          fixedcourseid: fixedcourseid,
+          teacherid: +localStorage.getItem('zhizhao_uid'),
+        },
+        function (data) {
+          if (data.Code === 200) {
+            ui.showToast('移出成功').css({ position: 'fixed', width: '100%', marginTop: '100px', marginLeft: '-.6rem' });
+            $el.parent().parent().parent().remove();
+          } else {
+            ui.showToast('移出失败').css({ position: 'fixed', width: '100%', marginTop: '100px', marginLeft: '-.6rem' });
+          }
+        },
+      )
+    }
+
+    $(function () {
+      var id = getQueryString('id');
+      $('#add').attr('href', `add-students.html?id=${id}`);
+      ui.showLoading();
+      getAjax(
+        hostAjax + `/api/tch/v1/getclasscourseinfo?curriculumid=${id}`,
+        {},
+        function (data) {
+          if (data.Code !== 200) {
+            ui.showToast('查询失败').css({ position: 'fixed', width: '100%', marginTop: '100px', marginLeft: '-.6rem' });
+          } else {
+            var course = data.Data.classcourse;
+            var students = data.Data.studentlist || [];
+            var isTimeOut = Date.now() > +new Date(course.classtime.split('-')[0].replace(/[年月]/g, '/').replace('日', '') + ':00');
+            if (isTimeOut) {
+              $('#add').remove();
+            }
+            $('.detail-item .value').eq(0).text(course.subjecttype);
+            $('.detail-item .value').eq(1).text(course.classtime);
+            $('.detail-item .value').eq(2).text(course.classname);
+            $('.detail-item .value').eq(3).text(course.subjectname);
+            $('#students').html(students.map(x => getStudentHtml(x, isTimeOut, course.classhour)).join(''));
+            $('#students .remove').click(function () {
+              ui.showAlert(
+                `是否移出学员：${$(this).attr('data-name')}`,
+                () => removeStudent(+$(this).attr('data-id'), +id, $(this)),
+                () => {
+                },
+                '确定',
+                '取消',
+                '移出学员',
+              );
+            });
+          }
+          $('#commonUILoading').remove();
+        },
+      );
+    })
+  </script>
+</html>

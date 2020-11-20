@@ -1,0 +1,365 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+	<title>登录</title>
+	<link rel="stylesheet" type="text/css" href="css/common.css" />
+	<link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css" />
+	<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="css/commonUI.css" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/index1.css" />
+
+	<script src="js/const.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+	<style type="text/css">
+		body {
+			background: #fff;
+			background-image: url(img/bodyBg/loginBg@3x.png);
+			background-size: 100%;
+			background-repeat: no-repeat;
+			background-position: 0 -.6rem;
+		}
+
+		.main {
+			margin-top: 4rem;
+
+		}
+
+		.main img {
+			width: 6.5rem;
+			margin-bottom: 0.3rem;
+		}
+
+		.main img.on {
+			border-radius: 0.48rem;
+			box-shadow: 0px 0px 8px 6px #FFD31C;
+		}
+
+		button {
+			background-color: #EDB41C;
+			width: 5.6rem;
+			height: 0.87rem;
+			line-height: 0.87rem;
+			border-radius: 0.87rem;
+			border: 0;
+			box-shadow: 2px 2px 6px #eee;
+			display: block;
+			margin: 0.3rem auto 0.5rem auto;
+			color: white;
+			background: linear-gradient(#EDB41C, #FFCC3C);
+		}
+
+		.lists {
+			background-color: #fff;
+
+		}
+
+		.register .list {
+			width: 5.6rem;
+			border-bottom: 1px solid #A4A4A4;
+			height: 0.88rem;
+			line-height: 0.88rem;
+			margin-left: auto;
+			margin-right: auto;
+			overflow: hidden;
+			position: relative;
+		}
+
+		.list_bottom {
+			width: 5.6rem;
+			height: 0.88rem;
+			line-height: 0.88rem;
+			margin-left: auto;
+			margin-right: auto;
+			overflow: hidden;
+			position: relative;
+		}
+
+		.list_bottom li {
+			float: left;
+			width: 50%;
+		}
+
+		.list_bottom li i {
+			font-size: 0.26rem;
+		}
+
+		.register .list input {
+			padding-left: 0.2rem;
+			border: 0;
+			font-size: 0.26rem;
+			outline: none;
+			position: absolute;
+			top: 0.2rem;
+			border-left: 1px solid #eee;
+			height: 0.4rem;
+			line-height: 0.4rem;
+		}
+
+		.register .list i {
+			color: #F0BA21;
+			font-size: 0.45rem;
+		}
+
+		.yanzhengma input {
+			width: 2.6rem;
+		}
+
+		.time {
+			position: absolute;
+			top: -10px;
+			right: 0;
+			height: 0.6rem;
+			border-left: 1px solid #eee !important;
+			line-height: 0.6rem;
+			margin-top: 0.3rem;
+			width: 1.8rem;
+			text-align: center;
+			color: #888;
+			/*background-color: #FF8500;*/
+			font-size: 0.26rem;
+			/*color: white;*/
+		}
+
+		.register .left {
+			/* width: 0.88rem; */
+			float: left;
+			text-align: center;
+		}
+
+		.register .but {
+			text-align: center;
+		}
+
+		.register .not {
+			padding-left: 0.33rem;
+			font-size: 0.26rem;
+			color: #00C6B5;
+		}
+		.proving{
+			position: absolute;
+
+			right: 0.1rem;
+			height: 0.7rem;
+    margin-top: 4px;
+    line-height: 0.7rem;
+    padding: 0 0.2rem;
+    border-radius: 2rem;
+	background: linear-gradient(#EDB41C, #FFCC3C);
+		}
+	</style>
+</head>
+
+<body class="up-page">
+	<div class="up-page-wrapper register" style="padding-top: 0.5rem;">
+		<div class="main">
+			<div class="lists">
+				<div class="list">
+					<div class="left">
+					手机号：
+					</div>
+					<input id="tel" type="text" autocomplete="off" placeholder="请输入手机号"/>	
+					<!-- <input type="text" name="tel" id="tel" value="" placeholder="账号" /> -->
+				</div>
+				<div class="list">
+					<div class="left">
+					验证码：
+					</div>
+					<input type="password" name="passd" id="passd" value="" placeholder="密码" />
+					
+						<input id="btnSendCode1" type="button" class="proving" value="获取验证码" onClick="sendMessage1()" />
+
+				</div>
+			
+			</div>
+		</div>
+		<button>登录</button>
+		<!-- <p style="color: #888;text-align: center;" onclick="goUrl('src/zheEnd/forget.html')">修改密码</p> -->
+	</div>
+
+</body>
+<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/md5.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+	var ui = window.CUMS.UI;
+	var mima = "";
+	var phoneReg = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/;//手机号正则 
+			var count = 60; //间隔函数，1秒执行
+			var InterValObj1; //timer变量，控制时间
+			var curCount1;//当前剩余秒数
+			/*第一*/
+			function sendMessage1() {
+				curCount1 = count;		 		 
+				var phone = $.trim($('#tel').val());
+				if (!phoneReg.test(phone)) {
+					alert(" 请输入有效的手机号码"); 
+					return false;
+				}
+				//设置button效果，开始计时
+				$("#btnSendCode1").attr("disabled", "true");
+				$("#btnSendCode1").val( + curCount1 + "秒再获取");
+				InterValObj1 = window.setInterval(SetRemainTime1, 1000); //启动计时器，1秒执行一次
+				//向后台发送处理数据
+					 
+			}
+			function SetRemainTime1() {
+				if (curCount1 == 0) {                
+					window.clearInterval(InterValObj1);//停止计时器
+					$("#btnSendCode1").removeAttr("disabled");//启用按钮
+					$("#btnSendCode1").val("重新发送");
+				}
+				else {
+					curCount1--;
+					$("#btnSendCode1").val( + curCount1 + "秒再获取");
+				}
+			} 
+			
+	// define = null;
+	// require = null;
+
+	//    $(function(){
+	// wx.login({
+	// 	success(res){
+	// 		console.log(555555555)
+	// 	}
+	// })
+
+	//    })
+
+	// window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx220f1ff8e48f8edb&redirect_uri=http://www.baidu.com&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+
+
+	// var redirect_uri= 'https://www.baidu.com';
+
+
+
+
+	// getAjax("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx220f1ff8e48f8edb&redirect_uri=' encodeURIComponent(redirect_uri) + '&response_type=code&scope=snsapi_base&state=0#wechat_redirect", {
+	// 	// appid:"wx220f1ff8e48f8edb",
+	// 	// redirect_uri:encodeURIComponent(redirect_uri),
+	// 	// response_type:"code",
+	// 	// scope:"snsapi_base",
+	// 	// state:"0#wechat_redirect"
+	// 	}, function (res) {
+	// 		console.log(res)
+	// 	}
+
+	// )
+
+$('.proving').click(function(){
+	// postAjax(hostAjax + "/api/user/v1/sms", {
+	// 	type:"2",
+	// 	account: $("#tel").val()
+	// 	}, function (data) {
+	// 		console.log(data)
+		
+	// 	})
+$.ajax({
+
+	url:FenghuangConst.hostAjax + '/api/user/v1/sms',
+	type:"post",
+	data:{
+	    type:2,
+		account: $("#tel").val()
+	},
+    success:function(data){
+		console.log(data)
+	}
+})
+
+})
+
+
+
+
+
+
+
+
+
+	//	ui.showToast( '板块正在开发！');
+	// if (location.href.indexOf('type=1')) {
+	// 	$(".img_children").hide();
+	// } else {
+	// 	$(".img_teacher").hide();
+	// }
+	// $(".main img").click(function () {
+	// 	$(".on").removeClass("on");
+	// 	$(this).addClass("on");
+	// 	//		localStorage.setItem("cardClass",$(this).attr('index'));
+	// 	//		history.back()
+	// })
+	// $(".main img").click(function () {
+	// 	localStorage.setItem("cardClass", $('.on').attr('index'));
+	// 	//		history.back()
+	// })
+	// $(".list_bottom i").click(function () {
+	// 	$('.icon-p').attr("class", "iconfont icon-icon-test");
+	// 	$(this).attr("class", "iconfont icon-p");
+	// })
+	// if (localStorage.getItem('zhizhao_typle') == 1) {
+	// 	$("#tel").val(localStorage.getItem('zhanghao'));
+	// 	$("#passd").val(localStorage.getItem('mima'));
+	// 	$('.icon-icon-test').eq(0).attr("class", "iconfont icon-p");
+	// } else if (localStorage.getItem('zhizhao_typle') == 2) {
+	// 	$("#tel").val(localStorage.getItem('zhanghao'));
+	// 	$("#passd").val(localStorage.getItem('mima'));
+	// 	$('.icon-icon-test').eq(1).attr("class", "iconfont icon-p");
+	// }
+
+
+	$("button").click(function () {
+		getAjax(FenghuangConst.hostAjax + "/api/user/v1/phoneopenidlogin", {
+			phone: $("#tel").val(),
+            code: $("#passd").val(),
+			openid:localStorage.getItem("zhizhao_openid")
+		}, function (data) {
+			console.log(data)
+			if (data.Data.Ifsignup != 2 ) {
+				localStorage.setItem("zhizhao_uid", data.Data.user_id);
+				 window.location.href = "非学员学生端.html";
+			} else if (data.Data != "") {
+				localStorage.setItem("zhizhao_uid", data.Data.user_id);
+				localStorage.setItem("zhizhao_token", data.Data.token);
+				localStorage.setItem("zhizhao_typle", data.Data.iType);
+				localStorage.setItem("zhanghao", $("#tel").val());
+				localStorage.setItem("mima", $("#passd").val());
+				 window.location.href = "childIndex.html";
+				if (data.Data.teachertype == "1" && data.Data.iType != "2") {
+					location.href = "admin.html?userId=" + data.Data.user_id;
+					return false;
+				}
+				if ($('.icon-p').attr('index') == "1") {
+					 location.href = "Tindex.html"
+				} else if ($('.icon-p').attr('index') == "2") {
+										ui.showToast( '系统维护中！');
+											
+										return false;
+					if (data.Data.loginnum == 1) { //判断家长是否是第一次登录
+						sessionStorage.setItem("firstlogin", 1);
+						 location.href = "childIndex.html";
+					} else {
+						 location.href = "childIndex.html";
+					}
+				} else if (data.Data.Ifsignup != 2) {
+					 location.href = "非学员学生端.html";
+					console.log(data.Data.Ifsignup != 2)
+
+				}
+			} else {
+				ui.showToast(data.Msg);
+
+			}
+		})
+	})
+</script>
+
+
+</html>

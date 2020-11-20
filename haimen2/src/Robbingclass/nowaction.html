@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>历史活动</title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			li{
+				list-style: none;
+			}
+			body{
+				font-family: "微软雅黑";
+				font-size: 12px;
+				height: 100vh;
+			}
+			header{
+				width: 100%;
+				height: 15rem;
+			}
+			h6{
+				height: 2rem;
+				background: #ffffff;
+				font-size: 13px;
+				line-height: 2rem;
+				font-weight: normal;
+				padding-left: 7%;
+			}
+			h5{
+				height: 6vh;
+				background: #fbd15b;
+				line-height: 6vh;
+				padding-left: 5%;
+				font-size: 13px;
+			}
+			h4{
+				height: 2rem;
+				background: #02A9F5;
+				line-height: 2rem;
+			}
+			.activenews{
+				
+			}
+			.activenews li{
+				display: flex;
+				border-bottom: 1px solid #f3f3f3;
+				line-height: 8vh;
+				width: 96%;
+				margin: 0 2%;
+				
+			}
+			.activenews li img{
+				width: 7%;
+				height: 40%;
+				margin: 2.4vh 0.5rem 0 0rem;
+			}
+			.baomingnews{
+				
+			}
+			.baomingnews li{
+				display: flex;
+				height: 2rem;
+				border-bottom: 1px solid #000000;
+				line-height: 2rem;
+			}
+			.baomingnews li img{
+				width: 2rem;
+				height: 100%;
+				margin: 0 0.5rem 0 1rem;
+				border-radius: 50%;
+			}
+			button{
+				background: #DF5000;
+				width: 100%;
+				height: 2rem;
+				line-height: 2rem;
+				border: 0;
+			}
+			i{
+				font-style: normal;
+				font-weight: normal;
+			}
+			p{
+				font-weight: 600;
+				
+			}
+			.vjs-poster{
+				background-size:100% 100% ;
+			}
+		</style>
+		 <!--<link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">-->
+		 	<link rel="stylesheet" type="text/css" href="css/video-js.css"/>
+	</head>
+	<body>
+		<header style="height: 50%;">
+			<!--<img src="img/活动3@3x.png" style="width: 100%;height: 100%;" onclick="videos()"/>-->
+			<video
+  	style="width: 100%;height: 100%;"
+    id="my-player"
+    class="video-js"
+    controls
+    preload="auto"
+    poster="img/活动3@3x.png"
+    data-setup='{}'>
+  <source src='' type="video/mp4"></source>
+  <!--<source src="https://ugcsjy.qq.com/uwMRJfz-r5jAYaQXGdGnC2_ppdhgmrDlPaRvaV7F2Ic/p0840rzvl4d.p712.1.mp4?sdtfrom=v1010&guid=24e18b6419600e6854e66fbdc9672cf3&vkey=D921D81765DF36AF5A713BC8C1C2F7DB926D3902B0C3857E709156F1BCA8042E7FF398E5AAC58099197A6CADE180B8D4AD822E975A23B50CD8BDC31D4C43CA9AC95093B9DA2CDE45BD95A9E538E39740FC131F3EA9A0B8E8F77A16808AA594EE2F2072EED12B8633F4C5E307311DD9F0FDE37A3098994D06" type="video/webm"></source>
+  <source src="https://ugcsjy.qq.com/uwMRJfz-r5jAYaQXGdGnC2_ppdhgmrDlPaRvaV7F2Ic/p0840rzvl4d.p712.1.mp4?sdtfrom=v1010&guid=24e18b6419600e6854e66fbdc9672cf3&vkey=D921D81765DF36AF5A713BC8C1C2F7DB926D3902B0C3857E709156F1BCA8042E7FF398E5AAC58099197A6CADE180B8D4AD822E975A23B50CD8BDC31D4C43CA9AC95093B9DA2CDE45BD95A9E538E39740FC131F3EA9A0B8E8F77A16808AA594EE2F2072EED12B8633F4C5E307311DD9F0FDE37A3098994D06" type="video/ogg"></source>-->
+  <p class="vjs-no-js">
+    To view this video please enable JavaScript, and consider upgrading to a
+    web browser that
+    <a href="http://videojs.com/html5-video-support/" target="_blank">
+      supports HTML5 video
+    </a>
+  </p>
+</video>
+		</header>
+		<section>
+			<h6></h6>
+			<h5>活动信息【已结束】</h5>
+			<ul class="activenews">
+				<!--<li>
+					<img src="img/活动时间@3x.png"/>
+					<p>活动时间：&nbsp;&nbsp;&nbsp;<i>3月3日  13：30</i></p>
+				</li>
+				<li>
+					<img src="img/地点@3x.png"/>
+					<p>活动地点：&nbsp;&nbsp;&nbsp;<i>凤凰机器人南通总校 &nbsp;&nbsp;&nbsp;13：30</i></p>
+				</li>
+				<li>
+					<img src="img/费用@3x.png"/>
+					<p>活动费用：&nbsp;&nbsp;&nbsp;<i>免费</i></p>
+				</li>
+				<li>
+					<img src="img/年龄@3x.png"/>
+					<p>年龄要求：&nbsp;&nbsp;&nbsp;<i>7-12岁</i></p>
+				</li>
+				<li style="height: auto;">
+					<img src="img/活动内容@3x.png"/>
+					<p>活动内容：&nbsp;&nbsp;&nbsp;<i>与小朋友一起做游戏，做元宵，与家长互动玩耍。与小朋友一起做游戏，与家长互动玩耍。</i></p>
+				</li>-->
+			</ul>
+			
+			
+		</section>
+	</body>
+	<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src='https://vjs.zencdn.net/7.4.1/video.js'></script>
+	<script type="text/javascript">
+		var url = location.search; //获取url中"?"符后的字串 ('?modFlag=business&role=1')  
+		var theRequest = new Object();
+		if(url.indexOf("?") != -1) {
+			var str = url.substr(1); //substr()方法返回从参数值开始到结束的字符串；  
+			var strs = str.split("&");
+			for(var i = 0; i < strs.length; i++) {
+				theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+			}
+			console.log(theRequest.id);
+		}
+		var ids=theRequest.id;
+		console.log(ids)
+		var chuanzhi=function(){
+			window.location.href='nosetupnow.html?ids='+ids+''
+		}
+
+
+
+
+
+
+
+
+		var str = '';
+		var strs = '';
+		var lists = '';
+		var urls='';
+		$.ajax({
+			type: "get",
+			url: "http://139.224.133.133:8013/api/act/v1/activitydetails",
+			async: false,
+			data: {
+				id: theRequest.id
+			},
+			success: function(data) {
+				console.log(data)
+				if(data.Code == 200) {
+					for(i in data.Data.list) {
+						str=`<li><img src="img/活动时间@3x.png"/><p>活动时间：&nbsp;&nbsp;&nbsp;<i>${data.Data.list[i].starttime}</i></p></li><li><img src="img/地点@3x.png"/><p>活动地点：&nbsp;&nbsp;&nbsp;<i style="font-size:10px">${data.Data.list[i].address}</i></p></li><li><img src="img/费用@3x.png"/><p>活动费用：&nbsp;&nbsp;&nbsp;<i>免费</i></p></li><li><img src="img/年龄@3x.png"/><p>年龄要求：&nbsp;&nbsp;&nbsp;<i>${data.Data.list[i].age}</i></p></li><li style="height: auto;"><img src="img/活动内容@3x.png"/><p>活动内容：&nbsp;&nbsp;&nbsp;<i>${data.Data.list[i].content}</i></p></li>`
+						$('.activenews').html(str);
+						strs=`【亲子活动】${data.Data.list[i].title}`
+						$('h6').html(strs);
+						urls= data.Data.list[i].video;
+//						console.log(urls)
+						$("source").prop('src',data.Data.list[i].video);
+					}
+				}
+			}
+		});
+		
+		
+		
+		
+		var videos=function(){
+			$('header>img').hide();
+			$('header>video').show()
+			
+		}
+	</script>
+</html>

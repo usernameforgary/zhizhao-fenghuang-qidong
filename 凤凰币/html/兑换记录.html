@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <script src="../js/rem.js"></script>
+    <style>
+    .warp{
+        width: 7.5rem;
+        margin: 0 auto;
+    }
+    .particulars{
+        display: flex;
+        padding: 0.2rem;
+        background: #f2f2f2;
+    }
+    .phone-img{
+        width: 2rem;
+        height: 1.5rem;
+    margin-right: 0.1rem;
+    }
+    .data{
+        font-size: 0.4rem;
+       padding: 0.4rem;
+    }
+    .font{
+        font-size: 0.26rem;
+        line-height: 0.5rem;
+    }
+    .receive{
+        width: 1rem;
+        margin-top: 1rem;
+        margin-left: 0.5rem;
+    }
+    .num{
+        margin-left: 0.2rem;
+    }
+    </style>
+</head>
+<body>
+    <div class='warp'>
+        <p class="plk" style="    font-size: 0.5rem;
+        text-align: center;color: #ccc; display: none;">暂无记录</p>
+          <!-- <div class="plk">
+              <p class="data">2020/1/6</p>
+              <div class="particulars">
+                  <div>
+                      <img src="../img/手机.png" alt="" class="phone-img">
+                  </div>
+                  <div class="font">
+                      <p>商品名称商品名称商品名称</p>
+                      <p><span>兑换码</span><span>123456789abc</span></p>
+                      <p><span>8000</span><span>凤凰币</span><strong class="num">X1</strong></p>
+                  </div>
+                  <div>
+                    <img src="../img/待领取.png" alt="" class="receive">
+                  </div>
+              </div>
+          </div>
+          <div>
+              <p class="data">2020/1/6</p>
+              <div class="particulars">
+                  <div>
+                      <img src="../img/手机.png" alt="" class="phone-img">
+                  </div>
+                  <div class="font">
+                      <p>商品名称商品名称商品名称</p>
+                      <p><span>兑换码</span><span>123456789abc</span></p>
+                      <p><span>8000</span><span>凤凰币</span><strong class="num">X1</strong></p>
+                  </div>
+                  <div>
+                    <img src="../img/已领取.png" alt="" class="receive">
+                  </div>
+              </div>
+          </div> -->
+    </div>
+</body>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/long.js"></script>
+<script>
+var uid =localStorage.getItem("zhizhao_uid") || localStorage.getItem("uid")
+console.log(0)
+console.log(uid)
+ $.ajax({
+   url:'http://139.224.133.133:8088/api/phoenixcoin/v1/goodsexchangerecords',
+   type:'get',
+   data:{
+    studentid:uid
+   },
+   success:function(data){
+     console.log(data)
+     var html=''
+  if(data.Code==1000){
+    $('.plk').css({'display':'block'})
+
+  
+
+  }else{
+
+    for(var i=0;i<data.Data.list.length;i++){
+          const x=data.Data.list[i]
+          html+=`  <div>
+          
+          <p class="data">${x.updateat}</p>
+              <div class="particulars">
+                  <div>
+                      <img src="${x.smallimg}" alt="" class="phone-img">
+                  </div>
+                  <div class="font">
+                      <p>${x.goodsname}</p>
+                      <p><span>兑换码:</span><span style="font-size: 0.22rem;">${x.ordernumber}</span></p>
+                      <p><span>${x.payintegral}</span><span>凤凰币</span><strong class="num">X1</strong></p>
+                  </div>
+                  <div>
+                    <img src="../img/待领取.png" alt="" class="receive">
+                  </div>
+              </div>
+               </div>
+              `
+                 $('.warp').html(html)
+      }
+
+  }
+
+ 
+   }
+  
+ })
+</script>
+</html>

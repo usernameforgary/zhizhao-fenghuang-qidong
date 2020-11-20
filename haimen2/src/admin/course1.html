@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>选择教室</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	body{
+    		background-color: #fff;
+    		/*background-image: url(../../img/bodyBg/xufei@3x.jpg);*/
+    		background-size: 100%;
+    		background-repeat: no-repeat;
+    		background-position: bottom;
+    	}
+    	.main{
+    		padding: 0.5rem;
+    	}
+    	.main header{
+    		margin-bottom: 0.2rem;
+    	}
+    	.t{
+    		width: 6.5rem;
+    		background-color: #FBD15B;
+    		color: white;
+    		line-height: 0.85rem;
+    		border-radius: 0.25rem;
+    		font-size: 0.28rem;
+    		padding-left: 0.3rem;
+    	}
+    	.t i{
+    		float: right;
+    		font-size: 0.35rem;
+    		margin-right: 0.3rem;
+    		transform: rotate(90deg);
+    		-webkit-transform: rotate(90deg);
+    	}
+    	.main ul{
+    		border: 1px solid #eee;
+    		border-radius: 0.3rem;
+    		overflow: hidden;
+    		box-shadow: 2px 2px 5px #eee, -2px 2px 5px #eee;
+    		position: absolute;
+    		background-color: #fff;
+    		display: none;
+    	}
+    	.main li{
+    		width: 6.5rem;
+    		line-height: 0.85rem;
+    		padding-left: 0.5rem;
+    	}
+    	.main li:hover{
+    		background-color: #EEEEEE;
+    	}
+    	button{
+    		width: 6.5rem;
+    		height: 0.85rem;
+    		margin-top: 1rem;
+    		border-radius: 0.25rem;
+    		border: 0;
+    		background-image: url(../../img/bodyBg/paikeButton1@3x.png);
+    		background-size: 100%;
+    		color: white;
+    	}
+    </style>
+</head>
+<body class="up-page">
+	<div class="up-page-wrapper" >
+		<div class="header">
+			
+		</div>
+		<div class="teacher">
+		</div>
+		<div class="main">
+			<div class="aaaa course">
+				<header>选择教室：</header>
+				<div class="t"><span>请选择</span><i class="iconfont icon-you"></i></div>
+				<ul>
+					
+				</ul>
+			</div>
+			<button>下一步</button>
+		</div>
+	</div>
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI,str="",str1="",courseId,weekId,classroomname=undefined,classroomid;
+//	ui.showToast( '板块正在开发！');
+	//性别选择
+	$(".main li i").click(function(){
+//		ui.showToast( '展开信息！');
+		if($(this).parents('li').find('.content').css("display")=="block"){
+			$(this).parents('li').find('.content').hide();
+			$(this).parents('li').find('b').show();
+			return false;
+		}
+		$('.content').hide();
+		$('b').show();
+		$(this).parents('li').find('.content').show();
+		$(this).parents('li').find('b').hide();
+		
+	})
+	$(".t").click(function(){
+		if($(this).parent("div").find("ul").css("display")=="none"){
+			$("ul").hide();
+			$(this).parent("div").find("ul").show();
+		}else{
+			$("ul").hide();
+			$(this).parent("div").find("ul").hide();	
+		}
+	})
+	
+	$("button").click(function(){
+		if($(".course .t span").text()=="请选择"){
+			ui.showToast( '请选择教室！');
+			return false;
+		}
+		location.href="example.html?classroomid="+classroomid+"&name="+encodeURI(weekId);
+	})
+	getAjax(hostAjax+"/api/principal/v1/selectclassroomList",{//获取所有教室
+		user_id:uid,
+		classroomname:classroomname
+	},function(data){
+		str1="";
+		if(data.Data!=""){
+			for (var j=0;j<data.Data.list.length;j++) {
+				str1+='<li id="'+data.Data.list[j].id+'">'+data.Data.list[j].classroomname+'</li>';
+			}
+			$(".course ul").html(str1);
+			$("li").click(function(){
+				classroomid=$(this).attr("id");
+				$(this).parents(".aaaa").find("span").text($(this).text());
+				weekId=$(this).text();
+				if($(this).parent("div").find("ul").css("display")=="none"){
+					$("ul").hide();
+					$(this).parent("div").find("ul").show();
+				}else{
+					$("ul").hide();
+					$(this).parent("div").find("ul").hide();	
+				}
+			})
+		}
+	})
+</script>
+</html>

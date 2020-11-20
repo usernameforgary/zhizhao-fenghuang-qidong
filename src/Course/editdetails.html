@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
+    />
+    <title>添加补课详情</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css" />
+    <link rel="stylesheet" href="../../css/weui.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../css/simplePagination.css"
+    />
+    <link rel="stylesheet" href="../../css/quebuke.min.css" />
+    <script
+      src="../../js/resize.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+  </head>
+
+  <body class="up-page">
+    <div class="up-page-wrapper editDetailsBox">
+      
+    </div>
+  </body>
+  <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+  <script
+    src="../../js/jquery-3.3.1.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/jquery.simplePagination.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/commonUI.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/utils.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/mobileSelect.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/datePicker.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script src="../../js/jquery-weui.min.js"></script>
+  <script>
+    function hideLoading() {
+      $('.weui-mask_transparent').remove()
+      $('.weui-toast.weui_loading_toast').remove()
+    }
+    function GetQueryString(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+      var r = window.location.search.substr(1).match(reg)
+      if (r != null) return unescape(r[2])
+      return null
+    }
+    // 获取学员信息
+    function getStudent() {
+      $.showLoading()
+      getAjax(
+        hostAjax + '/api/tch/v1/getstudetnclassroominfos',
+        {
+          user_id: GetQueryString('id')
+        },
+        function(data) {
+          hideLoading()
+          if (data.Data != '') {
+          }
+        }
+      )
+    }
+    //初始化学员信息
+    getStudent()
+  </script>
+</html>

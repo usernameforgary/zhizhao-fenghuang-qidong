@@ -1,0 +1,468 @@
+*{
+	font-size: 0.26rem;
+}
+.up-page{
+	box-sizing: border-box;
+}
+.t_card {
+	width: 6.9rem;
+	height: 4.5rem;
+	position: fixed;
+	z-index: 222;
+	top: 50%;
+	margin-top: -4.5rem;
+	left: 0.3rem;
+	background-image: url(../img/cardBg/card1@3x.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	padding: 1.8rem 0 0 3rem;
+}
+.t_card div:first-child img{
+	position: absolute;
+	right: 1.5rem;
+	top: 0;
+	width: 1.12rem;
+	height: 1.12rem;
+	border-radius: 1.12rem;
+}
+.card1 {
+	color: #618D38;
+}
+.card1 .name{
+	
+	position: relative;
+}
+.card1 .name span{
+	font-size: 0.5rem;
+}
+.card1 .class{
+	margin-left: 0.6rem;
+}
+.card1 .tel{
+	margin-left: 0.4rem;
+	font-weight: 900;
+}
+.yaoqingma{
+	width: 100%;
+	text-align: right;
+	position: absolute;
+	right: 4.1rem;
+	top: 1.13rem;
+}
+.card1 div:first-child img{
+	right: 4.5rem;
+	top: 0rem;
+}
+.card2 {
+	padding: 2.2rem 0 0 3rem;
+	background-image: url(../img/cardBg/card2@3x.png);
+}
+.card2 .name{
+	font-size: 0.5rem;
+	position: relative;
+}
+.card2 .class{
+	margin-left: 0.6rem;
+}
+.card2 .tel{
+	margin-left: 0.08rem;
+	font-weight: 900;
+}
+.card2 div:first-child img{
+	right: 4.5rem;
+	top: 0.1rem;
+}
+.card3 {
+	padding: 1rem 0 0 3.5rem;
+	background-image: url(../img/cardBg/card3@3x.png);
+}
+.card3 .name{
+	font-size: 0.5rem;
+	position: relative;
+}
+.card3 .class{
+	margin-left: 0.6rem;
+}
+.card3 .yaoqingma,.card5 .yaoqingma{
+	right: 3.7rem;
+	top: 1.3rem;
+}
+
+.card3 .tel{
+	margin-left: 0.08rem;
+	font-weight: 900;
+}
+.card3 div:first-child img{
+	right: 4rem;
+	top: 0.1rem;
+}
+.card4 {
+	color: #84C52D;
+	padding: 2rem 0 0 3.5rem;
+	background-image: url(../img/cardBg/card4@3x.png);
+}
+.card4 .yaoqingma{
+	right: 1.5rem;
+    top: 1.43rem;
+}
+
+
+.card4 .name{
+	font-size: 0.5rem;
+	position: relative;
+}
+.card4 .class{
+	margin-left: 0.6rem;
+	margin-top: 0.3rem;
+}
+.card4 .tel{
+	margin-left: 0.08rem;
+	font-weight: 900;
+}
+.card4 div:first-child img{
+	right: 1.5rem;
+	top: -1.2rem;
+}
+.card5{
+	padding: 1.3rem 0 0 3.5rem;
+	background-image: url(../img/cardBg/card5@3x.png);
+}
+.card5 .name{
+	font-size: 0.5rem;
+	position: relative;
+}
+.card5 .class{
+	margin: 0.15rem 0 0.2rem 0.6rem;
+}
+.card5 .tel{
+	margin-left: 0.08rem;
+	font-weight: 900;
+}
+.card5 div:first-child img{
+	right: 4rem;
+	top: 0.2rem;
+}
+.child .p_card{
+	width: 6.9rem;
+	height: 4.5rem;
+	position: relative;
+	margin: auto;
+	margin-top: 0.4rem;
+	background-image: url(../img/cardBg/card8@3x.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	padding: 1.2rem 0 0 2.9rem;
+}
+.child .p_card div{
+	padding-top: 0.1rem;
+}
+.child .p_card div:first-child{
+	font-size: 0.3rem;
+	font-weight: 900;
+	position: relative;
+}
+.child .p_card div:first-child img{
+	position: absolute;
+	right: 1.1rem;
+	top: 0;
+	width: 0.9rem;
+	height: 0.9rem;
+	border-radius: 0.9rem;
+	
+}
+.child .card6{
+	padding: 1.2rem 0 0 4.08rem;
+	background-image: url(../img/cardBg/card6@3x.png);
+}
+.card6 div:first-child img{
+	right: 3.1rem!important;
+	top: 0.4rem!important;
+}
+.child .card7{
+	padding: 1.2rem 0 0 4.08rem;
+	background-image: url(../img/cardBg/card7@3x.png);
+}
+.card7 div:first-child img{
+	right: 3.1rem!important;
+	top: 0.4rem!important;
+}
+.child .card9{
+	padding: 1.2rem 0 0 4.08rem;
+	background-image: url(../img/cardBg/card9@3x.png);
+}
+.card9 div:first-child img{
+	right: 3.2rem!important;
+	top: 0.4rem!important;
+}
+.child .card10{
+	padding: 1.2rem 0 0 4.08rem;
+	background-image: url(../img/cardBg/card10@3x.png);
+}
+.card10 div:first-child img{
+	right: 3.5rem!important;
+	top: 0rem!important;
+}
+.child .p_card .more{
+	display: block;
+	position: absolute;
+	width: 0.55rem;
+	right: 0.2rem;
+	bottom: 0.2rem;
+}
+.child .main {
+	margin-bottom: 0.5rem;
+}
+.child .main header{
+	font-size: 0.28rem;
+	font-weight: 900;
+	margin-top: 0.4rem;
+	padding: 0 0.5rem;
+}
+.child .main header i{
+	font-size: 0.26rem;
+}
+.child .main header>span{
+	float: right;
+	font-weight: normal;
+	font-size: 0.26rem;
+	position: relative;
+	margin-right: 0.4rem;
+}
+.child .main a{
+	color: #1D8AEF;
+}
+.child .main>div div{
+	padding-left: 0.5rem;
+	margin-top: 0.15rem;
+}
+.share {
+	padding-left: 1.3rem;
+	margin-bottom: 0.5rem;
+}
+.share header {
+	position: relative;
+}
+.share header img{
+	position: absolute;
+	left: -0.8rem;
+	top: 0;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 0.6rem;
+	overflow: hidden;
+}
+.share header .name{
+	font-weight: 700;
+}
+.share header time{
+	font-size: 0.24rem;
+}
+.share>p{
+	margin: 0.25rem 0 0.2rem 0;
+}
+.share  .imgLists{
+	display: flex;
+	flex-direction:row ;
+	flex-wrap: wrap;
+}
+.share  .imgLists div{
+	/*display: flex;*/
+	width: 1.8rem;
+	height: 1.8rem;
+	margin-right: 0.15rem;
+	margin-bottom: 0.15rem;
+	padding: 0;
+	overflow: hidden;
+	background-size:  cover;
+	background-position: center;
+}
+.share  .imgLists div img{
+	display: none;
+}
+.share  .imgLists div span{
+	display: none;
+}
+/*老师端页面*/
+.teacher .tab{
+	padding: 0 2.24rem;
+	font-weight: bolder;
+}
+.teacher .tab li{
+	float: left;
+	height: 0.85remm;
+	line-height: 0.85rem;
+	width: 50%;
+	text-align: center;
+}
+.teacher .tab li span{
+	
+	display: inline-block;
+	height: 0.85rem;
+	
+}
+.teacher .tab li.active span{
+	color: #EFB511;
+	border-bottom: 3px solid #EFB511;
+}
+.webuploader-pick{
+	width: 100%;
+	height: 100%;
+}
+
+.teacher .main{
+	padding: 0.5rem;
+}
+.teacher .main_t .name,.teacher .main_s .name{
+	width: 5rem;
+	margin: auto;
+	margin-top:1rem;
+	position: relative;
+}
+.teacher .main_t .name span,.teacher .main_s .name span{
+	color: #F0BA32;
+	font-size: 0.3rem;
+}
+.teacher .main_t .name b,.teacher .main_s .name b{
+	font-size: 0.35rem;
+	color: red;
+	    float: right;
+    margin-top: 0.55rem;
+}
+.teacher .main_t .name img,.teacher .main_s .name img{
+	width: 0.9rem;
+	height: 0.9rem;
+	border-radius: 0.9rem;
+	margin-right: 0.5rem;
+}
+.teacher .main_t .content li{
+	margin-bottom: 0.2rem;
+}
+.teacher .main_s ._content{
+	margin-top: 0.5rem;
+}
+.teacher .main_s ._content li{
+	width: 50%;
+	float: left;
+	font-weight: bolder;
+	line-height: 0.46rem;
+}
+.teacher .class_show{
+	position: fixed;
+	top: 0rem;
+	left: 0rem;
+	z-index: 222;
+	width: 100%;
+	/*border-radius: 0.2rem;*/
+	background-color: #fff;
+	padding: 0.2rem;
+	
+}
+.teacher .class_show textarea{
+	width: 100%;
+}
+.teacher .class_show .button{
+	position: relative;
+	width: 100%;
+	height: 0.6rem;
+	border-radius: 0.6rem;
+	border: 0;
+	background-color: #FBD15B;
+	color: white;
+	line-height: 0.6rem;
+	text-align: center;
+	margin:0.5rem 0;
+	margin-top: 2.8rem;
+}
+.swiper-slide{
+	border: 1px solid #eee;
+	height: 1.35rem;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.main_y>ul li{
+	width: 50%;
+	float: left;
+	text-align: center;
+	font-size: 0.3rem;
+	
+}
+.main_y>ul li p{
+	font-size: 0.35rem;
+	color: #EF7911;
+	margin-top: 0.2rem;
+}
+.main_y .beike header{
+	font-weight: bolder;
+	font-size: 0.3rem;
+}
+.main_y .beike header span{
+	float: right;
+	color: #888;
+	font-size: 0.24rem;
+}
+.main_y .beike .list{
+	line-height: 0.5rem;
+	margin-top: 0.2rem;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 0.2rem;
+}
+.main_y .beike .list b span{
+	color: #EF7911;
+}
+.main_y .beike button{
+	display: block;
+	width: 5.6rem;
+	height: 0.6rem;
+	border-radius: 0.6rem;
+	background-color: #fff;
+	border: 0;
+	background: linear-gradient(to bottom,#FFCC3C,#F0B715);
+	color: white;
+	margin:0.3rem auto;
+}
+/*////////////////////////////*/
+.search{
+	width: 6.5rem;
+	height: 0.6rem;
+	background-color: #eee;
+	margin:0.25rem auto;
+	position: relative;
+	border-radius:0.1rem;
+}
+.search img{
+	width: 0.45rem;
+	position: absolute;
+	top: 0.075rem;
+	left: 0.2rem;
+	
+}
+.search input{
+	float: right;
+	height: 0.6rem;
+	padding: 0;
+	box-sizing: border-box;
+	width: 5.6rem;
+	border: 0;
+	background-color: #eee;border-radius:0.1rem;
+	font-size: 0.26rem;
+}
+input::-webkit-input-placeholder{
+	color: black;
+}
+   /*////////////////////////////*/
+  	
+	
+._news i{
+	font-size: 0.35rem!important;
+}
+.hite {
+    border: 1px solid #E21918;
+    position: absolute;
+    right: -0.05rem;
+    background-color: #E21918;
+    top: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+}

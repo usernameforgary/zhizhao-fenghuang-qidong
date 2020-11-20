@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/teacher.css">
+</head>
+<body>
+    <div class="warp">
+           <div class="warp-box">
+                <div class="header">
+                        <div class="search">
+                            <img src="../img/search@3x.png">
+                            <input type="text" name="search" id="search" value="" placeholder="输入学员姓名">
+                        </div>
+                    </div>
+                    <ul>
+                        <li>
+                          <div class="list">
+                                <div>
+                                        <p>
+                                                <span>何韵怡</span>
+                                                <span>(可乐老师)</span>
+                                            </p>
+                           
+                                            <p class="tall">
+                                                <span>总课时:</span>
+                                                <span>50/80</span>
+                                                <span>销售额:</span>
+                                                <span>10000/20000</span>
+                                            </p>
+                                   </div>
+                                   <img src="../img/箭头.png" alt=""class="arrows">
+                          </div>
+                          <p class="line"></p>
+                        </li>
+                 
+                    </ul>
+           </div>
+    </div>
+</body>
+<script src="../js/rem.js"></script>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script>
+  for(var i=0;i<7;i++){
+        var html='';
+        html += ` <li >
+                          <div class="list">
+                                <div>
+                                        <p>
+                                                <span>何韵怡</span>
+                                                <span>(可乐老师)</span>
+                                            </p>
+                           
+                                            <p class="tall">
+                                                <span>总课时:</span>
+                                                <span>50/80</span>
+                                                <span>销售额:</span>
+                                                <span>10000/20000</span>
+                                            </p>
+                                   </div>
+                                   <img src="../img/箭头.png" alt=""class="arrows">
+                          </div>
+                          <p class="line"></p>
+                        </li>`;
+             $("ul").append(html);
+    }
+
+
+</script>
+</html>

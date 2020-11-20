@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>修改信息页</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/const.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	body{
+    		background-image: url(../../img/bodyBg/newStudentbg@3x.jpg);
+    		background-size: 100%;
+    	}
+    	.header,.main,.yes,.no{
+    		font-size: 0.26rem;
+    	}
+    	.title{
+    		width: 4.47rem;
+    		height: 0.75rem;
+    		line-height: 0.75rem;
+    		background-image: url(../../img/bodyBg/newTitleBg.png);
+    		background-size: 100%;
+    		text-align: center;
+    		color: white;
+    		background-repeat: no-repeat;
+    		margin: 0.5rem auto ;
+    	}
+    	.header ul,.yes ul,.no ul{
+    		padding: 0.5rem;
+    	}
+    	select{
+    		background-color: #fff;
+    	}
+    	.header input,.yes input,.no input,.header select,.yes select,.no select{
+    		height: 0.6rem;
+    		font-size: 0.26rem;
+    		margin: 0.26rem 0;
+    		padding-left: 0.16rem;
+    		border: 1px solid #aaa;
+    		box-sizing: border-box;
+    	}
+    	.main{
+    		padding: 0.5rem;
+    	}
+    	.haseBaoming ul li{
+    		float: left;
+    		width: 50%;
+    	}
+    	.haseBaoming ul li input{
+    		margin-right: 0.26rem;
+    		margin-top: 0.26rem;
+    		margin-left: 0;
+    		font-size: 0.3rem;
+    		width: 0.26rem!important;
+    		height: 0.26rem!important;
+    	}
+    	button{
+    		width: 6.5rem;
+    		display: block;
+    		margin: 0 auto 1rem auto;
+    		height: 0.6rem;
+    		line-height: 0.6rem;
+    		background-color: #EFB511;
+    		border-radius: 0.6rem;
+    		border: 0;
+    		box-shadow: 2px 5px 2px #aaa;
+    		color: white;
+    		font-size: 0.26rem;
+    	}
+    	.register{
+    		background-color: #fff;
+    	}
+    	.register button{
+    		background-color: #EDB41C;
+    		width: 5.6rem;
+    		height: 0.87rem;
+    		line-height: 0.87rem;
+    		border-radius: 0.87rem;
+    		border: 0;
+    		box-shadow: 2px 2px  6px #eee;
+    		display: block;
+    		margin:0.3rem auto 0.5rem auto;
+    		color: white;
+    		background: linear-gradient(#EDB41C,#FFCC3C);
+    	}
+		.register .list{
+			width: 5.6rem;
+			height: 0.88rem;
+			line-height: 0.88rem;
+			margin-left: auto;
+			margin-right: auto;
+			overflow: hidden;
+			position: relative;
+		}
+		.register .list i{
+			color: #F0BA21;
+			font-size: 0.45rem;
+		}
+		.register .left{
+			width: 0.88rem;
+			float: left;
+			text-align: center;
+		}
+    </style>
+</head>
+<body class="up-page">
+	<div class="up-page-wrapper" >
+		<div class="header">
+			<!--<div class="title">凤凰机器人报名表</div>-->
+			<ul>
+				<li style="float: left;margin-right: 0.9rem;"><label for="cname">学员姓名：</label><br /><input style="width: 2.75rem;" type="text" name="cname" id="cname" value="" /></li>
+				<li><label for="six">学员性别：</label><br /><select style="width: 2.75rem;" name="six">
+					<option value="男">男</option><option value="女">女</option>
+				</select></li>
+				<li><label for="birthday">学员生日：</label><br /><input style="width: 100%;" readonly="readonly" type="text" name="birthday" id="birthday" value="" /></li>
+				<li style="float: left;width: 60%;"><label for="school">所在学校：</label><br /><input style="width: 3.75rem;" type="text" name="school" id="school" value="" /></li>
+				<li style="float: right;"><label for="nowClass">就读班级：</label><br /><input style="width: 1.75rem;" type="text" name="nowClass" id="nowClass" value="" /></li>
+				<div class="clearfix">
+					
+				</div>
+				<li><label for="tel">家长联系方式：</label><br /><input style="width: 100%;" type="tel" name="tel" id="tel" value="" /></li>
+			</ul>
+		</div>
+		<!--<div class="main">
+			<header>是否报名：</header>
+			<div class="haseBaoming">
+				<ul>
+					<li><input type="radio" name="ifBaoMing" id="" value="2" checked="checked"/>非学员</li>
+					<li><input type="radio" name="ifBaoMing" id="" value="1"  />学员</li>
+					
+				</ul>
+			</div>
+		</div>-->
+		<div class="yes" style="display: none;">
+			<ul>
+				<li style="float: left;margin-right: 0.9rem;"><label for="money">收费金额：</label><br /><input style="width: 2.75rem;" type="text" name="money" id="money" value="" /></li>
+				<li><label for="totleTime">购买课时：</label><br /><input style="width: 2.75rem;" type="text" name="totleTime" id="totleTime" value="" /></li></li>
+				<!--<li><label for="baomingTime">报名时间：</label><br /><input style="width: 100%;" readonly="readonly" type="text" name="baomingTime" id="baomingTime" value="" /></li>-->
+				<li><label for="hetongnum">合同号/收据编号：</label><br /><input style="width: 100%;" type="tel" name="hetongnum" id="hetongnum" value="" /></li>
+				<li><label for="remark">备注：</label><br /><input style="width: 100%;" type="tel" name="remark" id="remark" value="" /></li>
+			</ul>
+		</div>
+		<div class="no" style="display: none;">
+			<ul>
+				<li style="float: left;margin-right: 0.9rem;"><label for="money1">收费金额：</label><br /><input style="width: 2.75rem;" type="text" name="money1" id="money1" value="" /></li>
+				<li><label for="totleTime1">购买课时：</label><br /><input style="width: 2.75rem;" type="text" name="totleTime1" id="totleTime1" value="" /></li></li>
+				<!--<li><label for="baomingTime">报名时间：</label><br /><input style="width: 100%;" readonly="readonly" type="text" name="baomingTime" id="baomingTime" value="" /></li>-->
+				<li><label for="hetongnum1">合同号/收据编号：</label><br /><input style="width: 100%;" type="tel" name="hetongnum1" id="hetongnum1" value="" /></li>
+				<li><label for="remark1">备注：</label><br /><input style="width: 100%;" type="tel" name="remark1" id="remark1" value="" /></li>
+			</ul>
+		</div>
+		<button id="submit">提交</button>
+	</div>
+	<div class=" register" style="padding-top: 0.5rem;position: fixed;top: 0;left: 0;bottom: 0;right: 0;display: none;">
+		<div class="main">
+			<div class="lists">
+				<div class="list">
+					<div class="left">
+						<i class="iconfont icon-tubiaolunkuo-"></i>
+					</div>
+					账号：<span class="zhanghao"></span>
+				</div>
+				<div class="list">
+					<div class="left">
+						<i class="iconfont icon-mima"></i>
+					</div>
+					密码：123456
+				</div>
+			</div>
+		</div>
+		<button onclick="history.back();">确定</button>
+		<p style="color: #888;padding-left: 1.4rem;font-size: 0.24rem;">默认密码可在登录后修改</p>
+	</div>
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI,stanby=false;
+//	ui.showToast( '板块正在开发！');
+	//性别选择
+var uid =localStorage.getItem("zhizhao_uid") || localStorage.getItem("uid")
+	var calendar = new datePicker();
+	calendar.init({
+		'trigger': '#birthday', /*按钮选择器，用于触发弹出插件*/
+		'type': 'date',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+		'minDate':'1900-1-1',/*最小日期*/
+		'maxDate':'2100-12-31',/*最大日期*/
+		'onSubmit':function(){/*确认时触发事件*/
+//			var theSelectData=calendar.value;
+		},
+		'onClose':function(){/*取消时触发事件*/
+		}
+	});
+//	var calendar1 = new datePicker();
+//	calendar1.init({
+//		'trigger': '#baomingTime', /*按钮选择器，用于触发弹出插件*/
+//		'type': 'date',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+//		'minDate':'1900-1-1',/*最小日期*/
+//		'maxDate':'2100-12-31',/*最大日期*/
+//		'onSubmit':function(){/*确认时触发事件*/
+////			var theSelectData=calendar.value;
+//		},
+//		'onClose':function(){/*取消时触发事件*/
+//		}
+//	});
+	$(".main input").click(function(){
+		if($(this).val()==1){
+			$(".yes").show();
+			$(".no").hide();
+		}else if($(this).val()==2){
+			$(".yes").hide();
+			$(".no").show();
+		}
+	})
+	$("#submit").click(function(){
+		if(stanby){
+			return false;
+		}
+		stanby=true;
+		var birthDay= $("#birthday").val();
+		if(birthDay==""){
+			birthDay="未填写";
+		}
+			postAjax(FenghuangConst.hostAjax+"/api/stu/v1/updatestudent",JSON.stringify({
+		  		"id": uid,
+			    "name": $("#cname").val(),
+				"sex": $("select").val(),
+				"birthday": birthDay,
+				"nowschool": $("#school").val(),
+				"nowgrade": $("#nowClass").val(),
+				"phone":$("#tel").val()
+			}),function(data){
+				if(data.Code==200){
+					stanby=true;
+					ui.showToast( '提交成功',500);
+window.location.href=document.referrer;
+					setTimeout(function(){
+						sessionStorage.removeItem("firstlogin");
+						sessionStorage.setItem("ifReload",1);
+						history.back();
+					},500)
+				}else{
+					stanby=false;
+					ui.showToast( data.Msg,1500);
+				}
+			})
+			
+	})
+	getAjax(FenghuangConst.hostAjax+"/api/stu/v1/studentinfo",{//学生信息--昵称、名字、电话、头像
+		user_id:uid
+	},function(data){
+		if(data.Data!=""){
+			$("#cname").val(data.Data[0].name);
+			$("select").val(data.Data[0].sex);
+			$("#birthday").val(data.Data[0].birthday);
+			
+			$("#school").val(data.Data[0].nowschool);
+			$("#nowClass").val(data.Data[0].nowgrade);
+			$("#tel").val(data.Data[0].phone);
+		}
+	})
+</script>
+</html>

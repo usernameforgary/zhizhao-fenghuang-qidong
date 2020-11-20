@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/xzbj.css">
+    <link rel="stylesheet" href="../css/layui.css">
+</head>
+<body>
+    <div class="warp">
+        <div class="back-tp">
+            <div style='width:100%; height:0.4rem'> </div>
+           <div class="cont-box">
+            <div class="tp-bgant">
+                <span class="class-name">班级编号:</span>
+                <input type="text" class="number  number3">
+                   <!-- <img src="../img/对号2.png" alt="" class="correct1" > -->
+            </div>
+            <div class="tp-bgant gap">
+                <span class="class-name">星期几:</span>
+                <select name="" id="" class="select" >
+                    <option value="">星期一</option>
+                    <option value="">1</option>
+                    <option value="">1</option>
+                </select>
+            </div>
+            <div class="tp-bgant gap">
+                <span class="class-name">课程体系:</span>
+                <select name="" id="" class="select" >
+                    <option value="">请选择课程体系</option>
+                    <option value="">1</option>
+                    <option value="">1</option>
+                </select>
+            
+            </div>
+            <div class="tp-bgant gap">
+                <span class="class-name left-class">开始时间:</span>
+                        <div class="search">
+                            <img src="../img/日历.png">
+                            <input class="time"  type="text"  value="" />
+                        </div>
+                        <img src="../img/对号2.png" alt="" class="correct2">
+        </div>
+            <div class="tp-bgant gap">
+                <span class="class-name left-class">结束时间:</span>
+                        <div class="search">
+                            <img src="../img/日历.png">
+                            <input class="time1"  type="text"  value="" />
+                        </div>
+                        <img src="../img/对号2.png" alt="" class="correct3">
+        </div>
+        <div class="tp-bgant gap">
+            <span class="class-name">班级类型:</span>
+            <select name="" id="" class="select" >
+                <option value="">请选择课程体系</option>
+                <option value="">1</option>
+                <option value="">1</option>
+            </select>
+        
+        </div>
+        <div class="tp-bgant gap">
+            <span class="class-name">班级名称:</span>
+            <input type="text" class="number number2" >
+            <img src="../img/对号2.png" alt="" class="correct4" >
+        </div>
+        <div class="tp-bgant gap">
+            <span class="class-name">班级上线人数:</span>
+            <input type="text" class="number number1"> <span class="class-name">人</span>
+            <img src="../img/对号2.png" alt="" class="correct5" >
+
+        </div>
+     
+        <div class="tp-bgant gap">
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <span class="class-name">是否开班:</span>
+                    <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="是|否">
+                </div>
+              </form>
+        </div>
+          <div class="but">
+               <span class="btton submit">提交保存</span>
+               <span class="btton return">返回</span>
+          </div>
+
+           </div>
+        </div>
+
+    </div>
+</body>
+<script src="../js/rem.js"></script>
+<script src="../js/layui.all.js"></script>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script>
+    $('.number3').blur(function(){
+        if($('.number3').val()==''){
+            $('.correct1').css('display','block')
+            $('.correct1').attr("src", "../img/叉号.png");
+        }else{
+            $('.correct1').css('display','block')
+            $('.correct1').attr("src", "../img/对号2.png");
+        }
+      
+    })
+    $('.time').blur(function(){
+        if($('.time').val()==''){
+            $('.correct2').css('display','block')
+            $('.correct2').attr("src", "../img/叉号.png");
+        }else{
+            $('.correct2').css('display','block')
+            $('.correct2').attr("src", "../img/对号2.png");
+        }
+      
+    })
+    $('.time1').blur(function(){
+        if($('.time').val()==''){
+            $('.correct3').css('display','block')
+            $('.correct3').attr("src", "../img/叉号.png");
+        }else{
+            $('.correct3').css('display','block')
+            $('.correct3').attr("src", "../img/对号2.png");
+        }
+      
+    })
+    $('.number2').blur(function(){
+        if($('.number2').val()==''){
+            $('.correct4').css('display','block')
+            $('.correct4').attr("src", "../img/叉号.png");
+        }else{
+            $('.correct4').css('display','block')
+            $('.correct4').attr("src", "../img/对号2.png");
+        }
+      
+    })
+    $('.number1').blur(function(){
+        if($('.number1').val()==''){
+            $('.correct5').css('display','block')
+            $('.correct5').attr("src", "../img/叉号.png");
+        }else{
+            $('.correct5').css('display','block')
+            $('.correct5').attr("src", "../img/对号2.png");
+        }
+      
+    })
+
+</script>
+</html>

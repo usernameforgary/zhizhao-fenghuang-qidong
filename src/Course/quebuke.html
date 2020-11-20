@@ -1,0 +1,651 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
+    />
+    <title>缺课补课</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../css/swiper-3.4.2.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css" />
+    <link rel="stylesheet" href="../../css/weui.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../css/simplePagination.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../css/webuploader/webuploader.css"
+    />
+    <link rel="stylesheet" href="../../css/quebuke.min.css" />
+    <script
+      src="../../js/resize.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <style>
+    .QuebukeBox .searchBox img {
+    display: block;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin: 0 0.19rem 0 0.22rem;
+    position: absolute;
+    right: 0.5rem;
+}
+    </style>
+  </head>
+
+  <body class="up-page">
+    <div class="up-page-wrapper QuebukeBox teacher">
+      <div class="searchBox">
+        <img src="../../img/bodyBg/search@3x.png" alt="" />
+        <input type="text" placeholder="输入学员姓名" id="search_input" />
+      </div>
+      <div class="BoxList">
+        <div class="top">
+          <div class="active">缺课补课</div>
+          <div>插班补课</div>
+        </div>
+        <div class="bottom">
+          <div class="isQueke"></div>
+          <div class="isChaban"></div>
+        </div>
+      </div>
+      <div id="light-pagination1"></div>
+      <div class="class_show" style="left: 0rem;">
+        <div class="text">
+          <div class="tup-name">
+            <p>姓名</p>
+            <p class="name-tu">王一一</p>
+          </div>
+          <div style="border-bottom: 1px solid #efefef; "></div>
+          <div class="tup-name">
+            <p>课程名称</p>
+            <p class="regular">一阶常规课</p>
+          </div>
+          <div style="border-bottom: 5px solid #efefef;"></div>
+          <div class="tup-name">
+            <p>上课日期</p>
+            <p class="skdata-class">2019-10-14</p>
+          </div>
+          <div style="border-bottom: 1px solid #efefef; "></div>
+          <div class="tup-name">
+            <p>上课时间</p>
+            <p class="time-sj">10：00-11：00</p>
+          </div>
+          <div style="border-bottom: 5px solid #efefef;"></div>
+          <!-- <div class="tup-name">
+            <p>上课老师</p>
+            <input type="text" id="clam" class="fill-plue" placeholder="请填写1" />
+          </div> -->
+          <div style="border-bottom: 1px solid #efefef;"></div>
+          <!-- <div class="tup-name">
+            <p>上课教室</p>
+            <input type="text" class="fill-plue" placeholder="教室1" />
+          </div> -->
+          <div style="border-bottom: 5px solid #efefef;"></div>
+          <textarea id="text" name="show" rows="" cols=""></textarea>
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" id="modelImg">
+                <img src="../../img/addImg.png" />
+              </div>
+            </div>
+            <div class="pre">
+              <img src="../../img/left@3x.png" />
+            </div>
+            <div class="next">
+              <img src="../../img/right@3x.png" />
+            </div>
+          </div>
+        </div>
+        <div class="ability">
+          <div
+            id="renzhen"
+            style="display: flex;width: 90%;margin: 3% auto;justify-content: space-between;"
+          >
+            <span>认真听讲</span>
+            <div id="" style="display: flex;justify-content: flex-end;">
+              <img
+                class="xing"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+              <img
+                class="xing"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+              <img
+                class="xing"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+              <img
+                class="xing"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+              <img
+                class="xing"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+            </div>
+          </div>
+          <div
+          id="renzhen"
+          style="display: flex;width: 90%;margin: 3% auto;justify-content: space-between;"
+        >
+          <span>行为习惯</span>
+          <div id="" style="display: flex;justify-content: flex-end;">
+            <img
+              class="xing1"
+              src="../../img/未评分.png"
+              style="width: 10%;height: 100%;"
+            />
+            <img
+              class="xing1"
+              src="../../img/未评分.png"
+              style="width: 10%;height: 100%;"
+            />
+            <img
+              class="xing1"
+              src="../../img/未评分.png"
+              style="width: 10%;height: 100%;"
+            />
+            <img
+              class="xing1"
+              src="../../img/未评分.png"
+              style="width: 10%;height: 100%;"
+            />
+            <img
+              class="xing1"
+              src="../../img/未评分.png"
+              style="width: 10%;height: 100%;"
+            />
+          </div>
+        </div>
+          <div
+            id="renzhen"
+            style="display: flex;width: 90%;margin: 3% auto;justify-content: space-between;"
+          >
+            <span>动手能力</span>
+            <div id="" style="display: flex;justify-content: flex-end;">
+              <img
+                class="xing2"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+              <img
+                class="xing2"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+              <img
+                class="xing2"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+              <img
+                class="xing2"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+              <img
+                class="xing2"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+            </div>
+          </div>
+          <div
+            id="renzhen"
+            style="display: flex;width: 90%;margin: 3% auto;justify-content: space-between;"
+          >
+            <span>表达能力</span>
+            <div id="" style="display: flex;justify-content: flex-end;">
+              <img
+                class="xing3"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+              <img
+                class="xing3"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+              <img
+                class="xing3"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+              <img
+                class="xing3"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+              <img
+                class="xing3"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+            </div>
+          </div>
+          <div
+            id="renzhen"
+            style="display: flex;width: 90%;margin: 3% auto;justify-content: space-between;"
+          >
+            <span>积极主动</span>
+            <div id="" style="display: flex;justify-content: flex-end;">
+              <img
+                class="xing4"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+              <img
+                class="xing4"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+              <img
+                class="xing4"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+              <img
+                class="xing4"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+              <img
+                class="xing4"
+                src="../../img/未评分.png"
+                style="width: 10%;height: 100%;"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="button submit">
+          提交
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+  <script
+    src="../../js/jquery-3.3.1.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/swiper-3.4.2.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/jquery.simplePagination.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/commonUI.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/utils.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/mobileSelect.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../css/webuploader/webuploader.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/datePicker.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script src="../../js/jquery-weui.min.js"></script>
+  <script src="../../js/quebuke.js"></script>
+  <script>
+    var _this,
+      pageindex = 1,
+      pagesize = 10,
+      chabanbukeArr = [],
+      quekebukeArr = []
+    $('.searchBox>img').click(function() {
+      pageindex = 1 //回车执行查询
+      initData()
+    })
+    $('#search_input').bind('keyup', function(event) {
+      if (event.keyCode == 13) {
+        pageindex = 1 //回车执行查询
+        initData()
+      }
+    })
+    // tab点击
+    $('.BoxList .top div').click(function() {
+      $('#search_input').val('')
+      $('.BoxList .top div.active').removeClass('active')
+      $(this).addClass('active')
+      pageindex = 1
+      //下面需要修改 扇形表的数据
+      if ($(this).text() == '缺课补课') {
+        $('.isQueke').fadeIn()
+        $('.isChaban').css('display', 'none')
+        quekebuke()
+      } else if ($(this).text() == '插班补课') {
+        $('.isChaban').fadeIn()
+        $('.isQueke').css('display', 'none')
+        chabanbuke()
+      }
+    })
+    //初始化
+    function initData() {
+      if ($('.BoxList .top div.active').index() === 0) {
+        quekebuke($('#search_input').val())
+      } else if ($('.BoxList .top div.active').index() === 1) {
+        chabanbuke($('#search_input').val())
+      }
+    }
+    initData()
+
+    function toPage(params) {
+      window.location.href = params
+    }
+
+    function quekebuke(nameStr) {
+      quekebukeArr = []
+      $.showLoading()
+      // $('.isQueke').html('')
+      getAjax(
+        hostAjax + '/api/tch/v1/getabsencerecordlist',
+        {
+          //已签单
+          user_id: uid,
+          student_name: nameStr,
+          pageindex: pageindex,
+          pagesize: pagesize
+        },
+        function(data) {
+          console.log(data)
+          hideLoading()
+          if (data.Data != '') {
+            if (pageindex == 1) {
+              $('#light-pagination1').pagination({
+                //分页
+                pages: Math.ceil(
+                  data.Data.record / pagesize > 1
+                    ? data.Data.record / pagesize
+                    : 1
+                ),
+                cssStyle: 'light-theme',
+                onPageClick: changePage
+              })
+            }
+            for (let i = 0; i < data.Data.list.length; i++) {
+              const element = data.Data.list[i]
+              if (quekebukeArr.length === 0) {
+                quekebukeArr.push({
+                  data: element.starttime.split(' ')[0],
+                  list: [element]
+                })
+                continue
+              }
+              let sign = -1
+              for (let j = 0; j < quekebukeArr.length; j++) {
+                const elementj = quekebukeArr[j]
+                if (elementj.data === element.starttime.split(' ')[0]) {
+                  sign = j
+                }
+                if (j === quekebukeArr.length - 1) {
+                  if (sign === -1) {
+                    quekebukeArr.push({
+                      data: element.starttime.split(' ')[0],
+                      list: []
+                    })
+                  } else {
+                    quekebukeArr[sign].list.push(element)
+                  }
+                }
+              }
+            }
+            let html = ''
+            for (let i = 0; i < quekebukeArr.length; i++) {
+              const element = quekebukeArr[i]
+              html += `
+              <div>
+                <div class="date_time" style="background:#ccc">${element.data}</div>`
+              for (let j = 0; j < element.list.length; j++) {
+                const elementj = element.list[j]
+                html += `<div class="item">
+                  <div class="left">
+                    <div>${elementj.name}</div>
+                    <div>${elementj.classname}</div>
+                    <div>
+                      <img src="../../img/time_icon.png" alt="" srcset="" />
+                      <div class="time">${elementj.starttime.split(' ')[1]}-${
+                  elementj.endtime.split(' ')[1]
+                }</div>
+                      <img src="../../img/course_icon.png" alt="" srcset="" />
+                      <div>${elementj.classhour}课时</div>
+                    </div>
+                  </div>
+                  <div onclick="tonPage(${
+                    elementj.makeuplessons === '0' ? false : true
+                  },'queke',${i},${j})" data-url="${'./details.html?id=' +
+                  elementj.studentid}" data-id="${
+                  elementj.studentid
+                }" type="queke"  class="right ${
+                  elementj.makeuplessons === '0' ? '' : 'active'
+                }">${elementj.makeuplessons === '0' ? '待补课' : '已补课'}</div>
+                </div>`
+              }
+              html += `</div>
+              `
+            }
+            $('.isQueke').html(html)
+          }
+        }
+      )
+    }
+    function tonPage(sign, type, i, j) {
+      if (type === 'queke') {
+        let element = $('.isQueke>div')
+          .eq(i)
+          .find('.item')
+          .eq(j)
+        if (sign) {
+          window.location.href = $(element)
+            .find('.right')
+            .attr('data-url')
+        } else {
+          $('.class_show').fadeIn()
+          mySwiper = new Swiper('.swiper-container', {
+            autoplay: 5000, //可选选项，自动滑动
+            slidesPerView: 3,
+            spaceBetween: 25
+          })
+          let data = quekebukeArr[i].list[j]
+          $('.name-tu').html(data.name)
+          $('#clam').val(data.teachername)
+          $('.regular').html(data.classname)
+          $('.skdata-class').html(data.starttime.split(' ')[0])
+          $('.time-sj').html(
+            data.starttime.split(' ')[1] + '-' + data.endtime.split(' ')[1]
+          )
+          $('.class_show').attr({
+            'data-source': 'queke',
+            'data-i': i,
+            'data-j': j
+          })
+          uploaderInit()
+        }
+      } else {
+        let element = $('.isChaban>div')
+          .eq(i)
+          .find('.item')
+          .eq(j)
+        if (sign) {
+          window.location.href = $(element)
+            .find('.right')
+            .attr('data-url')
+        } else {
+          $('.class_show').fadeIn()
+          mySwiper = new Swiper('.swiper-container', {
+            autoplay: 5000, //可选选项，自动滑动
+            slidesPerView: 3,
+            spaceBetween: 25
+          })
+          let data = chabanbukeArr[i].list[j]
+          $('.name-tu').html(data.name)
+          $('#clam').val(data.name)
+          $('.regular').html(data.subjectname)
+          $('.skdata-class').html(data.updatetime.split(' ')[0])
+          $('.time-sj').html(data.updatetime.split(' ')[1])
+          $('.class_show').attr({
+            'data-source': 'chaban',
+            'data-i': i,
+            'data-j': j
+          })
+          uploaderInit()
+        }
+      }
+    }
+    function hideLoading() {
+      $('.weui-mask_transparent').remove()
+      $('.weui-toast.weui_loading_toast').remove()
+    }
+
+    function changePage(params) {
+      let page_index = $('#light-pagination1').pagination('getCurrentPage')
+      pageindex = page_index
+      initData()
+    }
+
+    function chabanbuke(nameStr) {
+      chabanbukeArr = []
+      $.showLoading()
+      $('.isChaban').html('')
+      getAjax(
+        hostAjax + '/api/tch/v1/newgetmakeulist',
+        {
+          //已签单
+          user_id: uid,
+          student_name: nameStr,
+          pageindex: pageindex,
+          pagesize: pagesize
+        },
+        function(data) {
+          hideLoading()
+          if (data.Data != '') {
+            if (pageindex == 1) {
+              $('#light-pagination1').pagination({
+                //分页
+                pages: Math.ceil(
+                  data.Data.record / pagesize > 1
+                    ? data.Data.record / pagesize
+                    : 1
+                ),
+                cssStyle: 'light-theme',
+                onPageClick: changePage
+              })
+            }
+            for (let i = 0; i < data.Data.list.length; i++) {
+              const element = data.Data.list[i]
+              if (chabanbukeArr.length === 0) {
+                chabanbukeArr.push({
+                  data: element.updatetime.split(' ')[0],
+                  list: [element]
+                })
+                continue
+              }
+              let sign = -1
+              for (let j = 0; j < chabanbukeArr.length; j++) {
+                const elementj = chabanbukeArr[j]
+                if (elementj.data === element.updatetime.split(' ')[0]) {
+                  sign = j
+                }
+                if (j === chabanbukeArr.length - 1) {
+                  if (sign === -1) {
+                    chabanbukeArr.push({
+                      data: element.updatetime.split(' ')[0],
+                      list: []
+                    })
+                  } else {
+                    chabanbukeArr[sign].list.push(element)
+                  }
+                }
+              }
+            }
+            let html = ''
+            for (let i = 0; i < chabanbukeArr.length; i++) {
+              const element = chabanbukeArr[i]
+              html += `
+              <div>
+                <div class="date_time" style="background:#ccc">${element.data}</div>`
+              for (let j = 0; j < element.list.length; j++) {
+                const elementj = element.list[j]
+                html += `<div class="item">
+                  <div class="left">
+                    <div><div>${
+                      elementj.name
+                    }</div><a href="${'./details.html?id=' +
+                  elementj.studentid}" style="display:${
+                  elementj.makeuplessons === '0' ? 'none' : 'block'
+                }" class="ybkeshi">已补${elementj.makeuplessons}课时</a></div>
+                    <div>课程类型：${elementj.subjectname}</div>
+                    <div>
+                      <img src="../../img/time_icon.png" alt="" srcset="" />
+                      <div class="time">待补课时:${
+                        elementj.nomakeupclasshous
+                      }课时
+                </div>
+                      <img src="../../img/course_icon.png" alt="" srcset="" />
+                      <div>待补课节数：${elementj.nomissedlessons}节</div>
+                    </div>
+                  </div>
+                  <div
+                  onclick="tonPage(${
+                    elementj.nomissedlessons !== '0' ? false : true
+                  },'chaban',${i},${j})" data-url="${'./details.html?id=' +
+                  elementj.studentid}" data-id="${
+                  elementj.studentid
+                }" type="chaban"  class="right ${
+                  elementj.nomissedlessons !== '0' ? '' : 'active'
+                }">${
+                  elementj.nomissedlessons !== '0' ? '待补课' : '已补课'
+                }</div>
+                </div>`
+              }
+              html += `</div>
+              `
+            }
+            $('.isChaban').html(html)
+          }
+        }
+      )
+    }
+  </script>
+</html>

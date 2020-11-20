@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
+  />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<link rel="stylesheet" type="text/css" href="../css/common.css" />
+<link rel="stylesheet" href="../css/fhbmx.css">
+<link rel="stylesheet" href="../css/lsdfhbcz.css">
+<script src="../js/rem.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<style>
+.warp{
+    width: 7.5rem;
+    margin: 0 auto;
+}
+.wirp-box1{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem;
+    border-bottom: 1px solid #ccc;
+    font-size: 0.26rem;
+    font-weight: 900;
+    text-align: center;
+    
+}
+.wirp-box2{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem;
+    border-bottom: 1px solid #ccc;
+    font-size: 0.26rem;
+    /* color: #b0b0b0; */
+}
+.imn{
+  width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 0.61rem;
+}
+</style>
+<body>
+     <div class="warp">
+         <!-- <div class="wirp-box1">
+             <p>日期</p>
+             <p style='margin-left: 2.2rem;'>事件</p>
+             <p>凤凰币</p>
+         </div> -->
+        <div class="box">
+  
+     </div>
+ 
+</body>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/long.js"></script>
+<script>
+var uid =localStorage.getItem("zhizhao_uid") || localStorage.getItem("uid")
+$.ajax({
+   type:'get',
+   url:'http://139.224.133.133:8088/api/phoenixcoin/v1/rechargerecord',
+   data:{
+    teacherid:uid,
+    // pageindex :10,
+    // pagesize:10,
+
+   },
+   success: function(data){
+       console.log(data)
+       var html='';
+     if(data.Code==1000){
+          alert('暂无数据')
+     }else{
+           for(var i=0; i<data.Data.list.length;i++){
+               html+=`           <div class="wirp-box2">
+            <div style="display: flex;">
+              <div>
+                <img src="../img/dtc.png" alt="" class="imn">
+              </div>
+              <div style="margin-left: 0.3rem;">
+                <p>${data.Data.list[i].name}<span style="    margin-left: 0.5rem;
+                  background-color: #f0f0f0;
+                  padding: 0.05rem;
+                  border-radius: 5px;">${data.Data.list[i].teachername}</span></p>
+                <p style='margin-top: 0.2rem'>${data.Data.list[i].updatetime}</p>
+              </div>
+               <div style="margin-left: 1.5rem;
+               font-size: 0.3rem;
+               color: #bb796b;">+${data.Data.list[i].integral}凤凰币</div>
+            </div>
+         
+        </div>`
+           }
+            $('.box').html(html)  
+     }
+  
+   }
+
+
+})
+
+
+</script>
+</html>

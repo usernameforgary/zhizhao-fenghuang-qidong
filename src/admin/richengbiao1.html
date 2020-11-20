@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+       <script src="js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+		<title>日报表</title>
+
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			li{
+				list-style: none;
+			}
+			html{
+				font-size: 12px;
+			}
+			body {
+				width: 100%;
+				font-family: "微软雅黑";
+				background: #fff;
+				height: 100vh;
+			}
+			h1{
+				text-align: center;
+				color: #fff;
+			}
+			h2{
+				text-align: center;
+				color: #fff;
+				font-size: 14px;
+				font-weight: normal;
+				margin-top: 5%;
+			}
+			
+			header {
+				background: url(img/背景1@3x.png);
+				width: 100%;
+				height: 28%;
+				background-size: 100%;
+				font-size: 13px;
+				padding-top: 5%;
+				display: flex;
+				flex-direction: column;
+			}
+			header div{
+				display: flex;
+				height: 3rem;
+				line-height: 3rem;
+				padding: 0 3%;
+				color: #FFF;
+			}
+			header div input{
+				margin-right: 3%;
+				border: 0;
+				border-bottom: 1px solid #fff;
+				background:transparent;
+				width: 20%;
+				color: #fff;
+			}
+			header div button{
+				border: 0;
+				background: transparent;
+				color: #fff;
+				margin-left: 5%;
+			}
+			section {
+				width: 100%;
+				height: 75%;
+				/*position: relative;*/
+			}
+			#xueyuan{
+				position: relative;
+				top: -2rem;
+				width: 90%;
+				margin: 0 5%;
+				height: 10vh;
+				background: #fff;
+				display: flex;
+				border-radius: 1.5rem;
+				box-shadow: 0px 3px 10px #ccc;
+			}
+			#xueyuan li{
+				width: 49%;
+				text-align: center;
+			}
+			#xueyuan li h3{
+				line-height: 2.5rem;
+				color: #999;
+				font-size: 14px;
+				font-weight: normal;
+			}
+			#xueyuan li span{
+				color: #ff4e50;
+			}
+			#container{
+				margin-top: -3rem;
+				width: 100%;
+				height: 30vh;
+				/*border: 1px solid #000;*/
+			}
+			#liebiao{
+				width: 90%;
+				/* height: ; */
+				margin: 0 5%;
+				margin-top: 8%;
+			}
+			#liebiao li{
+				width: 80%;
+				height: 7vh;
+				background: #F2DEDE;
+				border-radius: 0.7rem;
+				box-shadow: 0px 3px 10px #ccc;
+				display: flex;
+				line-height: 7vh;
+				justify-content: space-between;
+				/*padding: 0 10%;*/
+				padding-left: 17%;
+				padding-right: 3%;
+				margin-bottom: 4%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header style="">
+			<div id="">
+				开始时间：
+				<input readonly="readonly" type="text" name="starttime" id="starttime" value="" />
+				结束时间：
+				<input readonly="readonly" type="text" name="endtime" id="endtime" value="" />
+				<button id="query">查询</button>
+			</div>
+			<!--收费汇总开始-->
+			<h2 onclick="shoufei()">收费汇总</h2>
+			<h1 onclick="shoufei()"></h1>
+			<!--收费汇总结束-->
+		</header>
+		
+		
+		
+		
+		
+		<section>
+			<ul id="xueyuan">
+				<li onclick="xinzengstu()">
+					<h3>新增学员</h3>
+					<span></span>
+				</li>
+				<div id="" style="width: 1px; background: #E3E3E3;height: 3.5rem;margin: auto 0;">
+					
+				</div>
+				<!--<li onclick="xinzengnostu()">-->
+				<li onclick="xinzengnostu()">
+					<h3>新增非学员</h3>
+					<span style="color: #f9a523;"></span>
+				</li>
+			</ul>
+			
+			<!--饼状图表开始-->
+			 <!--<div id="container"></div>-->
+       
+			<div id="huan" style="width: 100%;height: 55vh;">
+				
+			</div>
+			
+			<!--饼状图表结束-->
+			
+			
+			<!---->
+			<ul id="liebiao">
+				<li style="background: url(img/上课人数@3x.png) no-repeat 2% 50%;background-size: 2.5rem; " onclick="dayclasspeo()">
+					<span>上课人数(人)</span>
+					<p></p>
+				</li>
+				<li style="background: url(img/上课节数@3x.png) no-repeat 2% 50%;background-size: 2.5rem; " onclick="dayclassnum()">
+					<span>上课节数(节)</span>
+					<p></p>
+				</li>
+				<li style="background: url(img/电话邀约@3x.png) no-repeat 2% 50%;background-size: 2.5rem; " onclick="dayphone()">
+					<span>电话邀约(人)</span>
+					<p></p>
+				</li>
+				<li style="background: url(img/到访人数@3x.png) no-repeat 2% 50%;background-size: 2.5rem; " onclick="daycomepeo()">
+					<span>到访人数(人)</span>
+					<p></p>
+				</li>
+			</ul>
+			<!---->
+		</section>
+	</body>
+    <script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    	var myDate = new Date();
+		var year = myDate.getFullYear();
+		var mounth = myDate.getMonth()+1;
+		var days = myDate.getDate();
+    	var newaddstu='';
+    	var newaddnostu='';
+    	var newaddxufei='';
+    	var userid = localStorage.getItem('zhizhao_uid');
+    	var ti1='';
+    	var ti2='';
+    	var shoufei=function(){
+    		
+    	};
+    	var xinzengstu=function(){
+    		
+    	};
+    	var xinzengnostu=function(){
+    		
+    	};
+    	var daycomepeo=function(){
+    		
+    	};
+    	var dayphone=function(){
+    		
+    	};
+    	var dayclassnum=function(){
+    		
+    	};
+    	var dayclasspeo=function(){
+    		
+    	};
+    	
+    	
+    	//默认查询当天
+    	$("#starttime").val(year + '-' + (mounth) + '-' + days);
+		$("#endtime").val(year + '-' + mounth + '-' + days);
+		var nowtime1=$("#starttime").val();
+    	var nowtime2=$("#starttime").val();
+    	$.ajax({
+    		type:"get",
+    		url:"http://139.224.133.133:8088/api/overpipe/v1/overmanagementreport",
+    		async:false,
+    		data:{
+    			user_id: userid,
+    			starttime: nowtime1,
+    			endtime: nowtime2,
+    		},
+    		success:function(data){
+//  			console.log(data)
+    			if(data.Code==200){
+    				$('h1').html(data.Data.charge);
+    				$('#xueyuan li:first-child span').html(data.Data.newtrainees);
+    				$('#xueyuan li:last-child span').html(data.Data.nontrainees);
+    				newaddstu=data.Data.newtrainees;
+    				newaddnostu=data.Data.nontrainees;
+    				newaddxufei=data.Data.renewals;
+    				$('#liebiao li:first-child p').html(data.Data.classattendance);
+    				$('#liebiao li:nth-child(2) p').html(data.Data.lessonnumber);
+    				$('#liebiao li:nth-child(3) p').html(data.Data.telephoneinviter);
+    				$('#liebiao li:last-child p').html(data.Data.numberofvisitors);
+    			}
+    		}
+    	});
+    	shoufei=function(){
+    		window.location.href='shoufei1.html?ti1='+nowtime1+'&ti2='+nowtime2+'';
+//  		console.log('默认查询当天收费汇总的信息');
+    	}
+    	xinzengstu=function(){
+    		window.location.href='xinzengstu1.html?ti1='+nowtime1+'&ti2='+nowtime2+'';
+//  		console.log('默认查询当天新增学员的信息');
+    	}
+    	xinzengnostu=function(){
+    		window.location.href='zengfeistu1.html?ti1='+nowtime1+'&ti2='+nowtime2+'';
+//  		console.log('默认查询当天新增非学员的信息');
+    	}
+    	daycomepeo=function(){
+    		window.location.href='daycomepeo1.html?ti1='+nowtime1+'&ti2='+nowtime2+'';
+//  		console.log('默认查询当天到访人数的信息');
+    	}
+    	dayphone=function(){
+    		window.location.href='dayphoneyaoyue1.html?ti1='+nowtime1+'&ti2='+nowtime2+'';
+//  		console.log('默认查询当天电话邀约人数的信息');
+    	}
+    	dayclassnum=function(){
+    		window.location.href='dayclasscishu1.html?ti1='+nowtime1+'&ti2='+nowtime2+'';
+//  		console.log('默认查询当天上课节数的信息');
+    	}
+    	dayclasspeo=function(){
+    		window.location.href='dayclasspeo1.html?ti1='+nowtime1+'&ti2='+nowtime2+'';
+//  		console.log('默认查询当天上课人数详情的信息');
+    	}
+    	//饼状图显示区域开始
+    	var myChart = echarts.init(document.getElementById('huan'));
+        myChart.setOption({
+            title: {
+                   text: '新增人次',
+                   textStyle: {
+                       fontSize:'16',
+                       fontFamily:'sans-serif',
+                       fontStyle:'normal',
+                       color:'#000',
+                       fontWeight: 'normal'
+                       },                      
+                   x: 'center',
+                   y: '30%'
+                   },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+                        },
+            
+            legend: {
+                orient: 'vertical',
+                x: 'center',//控制图例的x坐标
+                y:'bottom',//控制图例的y坐标
+                data:['新增学员(人)','新增非学员(人)','新增续费(人)']  //控制图例的文字内容              
+                },
+               color:['#f41a5c','#f9cf23','#fe6345'],//控制图例的颜色
+               icon: "circle",//控制图例的形状
+            series: [
+                {
+                    name:'新增人次',
+                    type:'pie',
+                    radius: ['38%', '70%'],
+                    center:['50%','35%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center',
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '0',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data:[
+                        {value:newaddstu, name:'新增学员(人)'},
+                        {value:newaddnostu, name:'新增非学员(人)'},
+                        {value:newaddxufei, name:'新增续费(人)'},
+                       
+                        ]
+                }
+            ]
+            
+        });
+        //饼状图展示区域结束
+    	
+    	//点击查询按钮之前的默认显示结果结束
+    	
+    	
+    	
+    	
+    	
+    	//点击查询操作--------------------------------------------------------------------------------
+    	
+    	//点击查询按钮之后的默认显示结果开始
+    	$('#query').click(function(){
+    		ti1=$('#starttime').val();
+    		ti2=$('#endtime').val();
+//  		console.log(ti1,ti2)
+    		
+    		
+    		console.log($('#starttime').val(),$('#endtime').val())
+    		$.ajax({
+    		type:"get",
+    		url:"http://139.224.133.133:8088/api/overpipe/v1/overmanagementreport",
+    		async:false,
+    		data:{
+    			user_id: userid,
+    			starttime: $('#starttime').val(),
+    			endtime: $('#endtime').val(),
+    		},
+    		success:function(data){
+//  			console.log(data)
+    			if(data.Code==200){
+    				$('h1').html(data.Data.charge);
+    				$('#xueyuan li:first-child span').html(data.Data.newtrainees);
+    				$('#xueyuan li:last-child span').html(data.Data.nontrainees);
+    				newaddstu=data.Data.newtrainees;
+    				newaddnostu=data.Data.nontrainees;
+    				newaddxufei=data.Data.renewals;
+    				$('#liebiao li:first-child p').html(data.Data.classattendance);
+    				$('#liebiao li:nth-child(2) p').html(data.Data.lessonnumber);
+    				$('#liebiao li:nth-child(3) p').html(data.Data.telephoneinviter);
+    				$('#liebiao li:last-child p').html(data.Data.numberofvisitors);
+    			}
+    			
+    		}
+    	});
+    	shoufei=function(){
+    		window.location.href='shoufei1.html?ti1='+ti1+'&ti2='+ti2+'';
+//  		console.log('查询自定义日期内收费汇总的信息');
+    	}
+    	xinzengstu=function(){
+    		window.location.href='xinzengstu1.html?ti1='+ti1+'&ti2='+ti2+'';
+//  		console.log('查询自定义日期内新增学员的信息');
+    	}
+    	xinzengnostu=function(){
+    		window.location.href='zengfeistu1.html?ti1='+ti1+'&ti2='+ti2+'';
+//  		console.log('查询自定义日期内新增非学员的信息');
+    	}
+    	daycomepeo=function(){
+    		window.location.href='daycomepeo1.html?ti1='+ti1+'&ti2='+ti2+'';
+//  		console.log('查询自定义日期内到访人数的信息');
+    	}
+    	dayphone=function(){
+    		window.location.href='dayphoneyaoyue1.html?ti1='+ti1+'&ti2='+ti2+'';
+//  		console.log('查询自定义日期内电话邀约人数的信息');
+    	}
+    	dayclassnum=function(){
+    		window.location.href='dayclasscishu1.html?ti1='+ti1+'&ti2='+ti2+'';
+//  		console.log('查询自定义日期内上课节数的信息');
+    	}
+    	dayclasspeo=function(){
+    		window.location.href='dayclasspeo1.html?ti1='+ti1+'&ti2='+ti2+'';
+//  		console.log('默认查询当天上课人数详情的信息');
+    	}
+    	//饼状图显示区域开始
+    	var myChart = echarts.init(document.getElementById('huan'));
+        myChart.setOption({
+            title: {
+                   text: '新增人次',
+                   textStyle: {
+                       fontSize:'16',
+                       fontFamily:'sans-serif',
+                       fontStyle:'normal',
+                       color:'#000',
+                       fontWeight: 'normal'
+                       },                      
+                   x: 'center',
+                   y: '30%'
+                   },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+                        },
+            legend: {
+                orient: 'vertical',
+                x: 'center',//控制图例的x坐标
+                y:'bottom',//控制图例的y坐标
+                data:['新增学员(人)','新增非学员(人)','新增续费(人)']  //控制图例的文字内容              
+                },
+               color:['#f41a5c','#f9cf23','#fe6345'],//控制图例的颜色
+               icon: "circle",//控制图例的形状
+            series: [
+                {
+                    name:'新增人次',
+                    type:'pie',
+                    radius: ['38%', '70%'],
+                    center:['50%','35%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center',
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '0',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data:[
+                        {value:newaddstu, name:'新增学员(人)'},
+                        {value:newaddnostu, name:'新增非学员(人)'},
+                        {value:newaddxufei, name:'新增续费(人)'},
+                       
+                        ]
+                }
+            ]
+            
+        });
+        //饼状图展示区域结束
+    	
+    	
+    	
+    	
+    	
+    	
+    	})
+    	
+    	
+    	
+    	
+    	
+        
+        </script>
+    </script>
+	<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//	ui.showToast( '板块正在开发！');
+		//性别选择
+
+		var satrtcalendar = new datePicker();
+		satrtcalendar.init({
+			'trigger': '#starttime',
+			/*按钮选择器，用于触发弹出插件*/
+			'type': 'date',
+			/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+			'minDate': '1900-1-1',
+			/*最小日期*/
+			'maxDate': '2100-12-31',
+			/*最大日期*/
+			'onSubmit': function() { /*确认时触发事件*/
+				//			var theSelectData=calendar.value;
+			},
+			'onClose': function() { /*取消时触发事件*/ }
+		});
+		var endcalendar = new datePicker();
+		endcalendar.init({
+			'trigger': '#endtime',
+			/*按钮选择器，用于触发弹出插件*/
+			'type': 'date',
+			/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+			'minDate': '1900-1-1',
+			/*最小日期*/
+			'maxDate': '2100-12-31',
+			/*最大日期*/
+			'onSubmit': function() { /*确认时触发事件*/
+				//			var theSelectData=calendar.value;
+			},
+			'onClose': function() { /*取消时触发事件*/ }
+		});
+		//	var calendar1 = new datePicker();
+		//	calendar1.init({
+		//		'trigger': '#baomingTime', /*按钮选择器，用于触发弹出插件*/
+		//		'type': 'date',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+		//		'minDate':'1900-1-1',/*最小日期*/
+		//		'maxDate':'2100-12-31',/*最大日期*/
+		//		'onSubmit':function(){/*确认时触发事件*/
+		////			var theSelectData=calendar.value;
+		//		},
+		//		'onClose':function(){/*取消时触发事件*/
+		//		}
+		//	});
+	</script>
+
+</html>

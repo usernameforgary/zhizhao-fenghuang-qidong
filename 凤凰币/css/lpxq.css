@@ -1,0 +1,85 @@
+.warp{
+    width: 7.5rem;
+    margin: 0 auto;
+}
+.tp-awrp img{
+    width: 7.5rem;
+}
+.product-name{
+    font-size: 0.2rem;
+   font-weight: 900;
+}
+.props{
+    font-size: 0.4rem;
+    color: #f84d37;
+}
+.titi-pro{
+    color: #f84d37;
+}
+.flax-box{
+    display: flex;
+    
+    margin-top: 0.2rem;
+}
+.apply{
+    background: #f84d37;
+    padding: 0.1rem;
+    border-radius: 5px;
+    color: #fff;
+    margin-left: 2rem;
+}
+.ydh{
+    margin-left: 2.5rem;
+}
+.color{
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 0.1rem;
+    margin-left: 0.3rem;
+}
+.box-content{
+    padding: 0.2rem 0.5rem;
+}
+.active{
+    background: #f84d37;
+}
+.select-color{
+    margin-top: 0.2rem;
+}
+.con{
+    width: 0.5rem;
+    border: none;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+.tint{
+    display: inline-block;
+    width: 0.3rem;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+.quantity{
+    margin-top: 0.2rem;
+}
+.introduce{
+    padding: 0.2rem 0.5rem;
+    line-height: 0.5rem;
+    height: 3.75rem;
+}
+.button{
+    display: flex;
+    /* justify-content: space-around; */
+    position: fixed;
+    bottom: 0;
+}
+.button-le{
+    width: 3.5rem;
+    text-align: center;
+    padding: 0.2rem;
+}
+.button-rg{
+    width: 4rem;
+    text-align: center;
+    padding: 0.2rem;
+    background: linear-gradient(90deg, #ff4e50, #f9a623)
+}

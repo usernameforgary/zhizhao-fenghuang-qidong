@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>凤凰机器人2周年校庆抢报名</title>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		body {
+			font-family: "微软雅黑";
+			font-size: 12px;
+		}
+
+		header {
+			width: 100%;
+			height: 15rem;
+		}
+
+		h6 {
+			background: #ffffff;
+			font-size: 13px;
+			line-height: 2rem;
+			font-weight: normal;
+			padding-left: 7%;
+		}
+
+		h5 {
+			height: 6vh;
+			background: #49b2fe;
+			line-height: 6vh;
+			padding-left: 5%;
+			font-size: 13px;
+		}
+
+		h4 {
+			height: 6vh;
+			background: #49b2fe;
+			line-height: 6vh;
+			padding-left: 5%;
+			font-size: 13px;
+		}
+
+		.activenews {}
+
+		.activenews li {
+			display: flex;
+			
+			border-bottom: 1px solid #f3f3f3;
+			line-height: 4vh;
+			width: 90%;
+			margin: 0 5%;
+		}
+
+		.activenews li img {
+			width: 7%;
+			height: 40%;
+			margin: 2.4vh 0.5rem 0 0rem;
+		}
+
+		.baomingnews {}
+
+		.baomingnews li {
+			display: flex;
+			height: 8vh;
+			border-bottom: 1px solid #f3f3f3;
+			line-height: 8vh;
+			width: 90%;
+			margin: 0 5%;
+		}
+
+		.baomingnews li img {
+			width: 7%;
+			height: 40%;
+			margin: 2.4vh 0.5rem 0 0rem;
+		}
+
+		button {
+			background-color: red;
+			/*background: url(img/报名@3x.png) #e60012 no-repeat 33% 50%;*/
+			background-size: 8%;
+			width: 100%;
+			height: 7vh;
+			line-height: 7vh;
+			border: 0;
+			color: #fff;
+			font-size: 14px;
+		}
+
+		.aget span{
+display: block;
+    width: 60px;
+
+}
+.listul p{
+ line-height: 8vh;
+}
+.aget{
+  line-height: 8vh;
+}
+ li p{
+  
+}
+.listy {
+line-height:1;
+}
+
+	</style>
+</head>
+
+<body>
+	<header>
+		<img class="headImg" style="width: 100%;height: 100%;" />
+	</header>
+	<section>
+		<h6 class="contentTitle"></h6>
+		<h6 class="contentInfo pl" style="line-height: 20px;"></h6>
+		
+		<ul class="activenews cl">
+			<!--<li>
+					<img src="img/报名时间@3x.png"/>
+					<p>报名时间：3月1日  20：00前</p>
+				</li>
+				<li>
+					<img src="img/报名时间@3x.png"/>
+					<p>活动时间：3月3日  13：30</p>
+				</li>
+				<li>
+					<img src="img/报名时间@3x.png"/>
+					<p>活动地点：凤凰机器人南通总校&nbsp;&nbsp;&nbsp;13：30</p>
+				</li>
+				<li>
+					<img src="img/报名时间@3x.png"/>
+					<p>活动费用：免费</p>
+				</li>
+				<li>
+					<img src="img/报名时间@3x.png"/>
+					<p>年龄要求：7-12岁</p>
+				</li>
+				<li>
+					<img src="img/报名时间@3x.png"/>
+					<p>报名人数：10组</p>
+				</li>-->
+		</ul>
+			
+		<ul class="baomingnews">
+			<!--<li>
+					<img src="img/头像4@3x.png"/>
+					<span>123123123123</span>
+				</li>
+				<li>
+					<img src="img/头像4@3x.png"/>
+					<span>123123123123</span>
+				</li>
+				<li>
+					<img src="img/头像4@3x.png"/>
+					<span>123123123123</span>
+				</li>
+				<li>
+					<img src="img/头像4@3x.png"/>
+					<span>123123123123</span>
+				</li>-->
+		</ul>
+
+		<button onclick="chuanzhi()">立即报名</button>
+		<!--<button onclick="window.location.href='nosetupnow.html?id=theRequest.id'">立即报名</button>-->
+
+	</section>
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+          $(document).ready(function(){
+
+  
+    $(".pl").after("<h5>活动信息</h5>");
+  
+});
+	var url = location.search; //获取url中"?"符后的字串 ('?modFlag=business&role=1')  
+	var theRequest = new Object();
+	if (url.indexOf("?") != -1) {
+		var str = url.substr(1); //substr()方法返回从参数值开始到结束的字符串；  
+		var strs = str.split("&");
+		for (var i = 0; i < strs.length; i++) {
+			theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+		}
+		//			console.log(theRequest);
+	}
+	var ids = theRequest.id,
+		price = theRequest.price;
+	//		console.log(price)
+	var chuanzhi = function () {
+		window.location.href = 'nosetupnow.html?ids=' + ids + '&price=' + price
+	}
+	var imgs = '';
+	var str = '';
+	var strs = '';
+	var lists = '';
+	$.ajax({
+		type: "get",
+		url: "http://139.224.133.133:8088/api/act/v1/activitydetails",
+		async: false,
+		data: {
+			id: theRequest.id
+		},
+		success: function (data) {
+			console.log(data)
+			$(".headImg").attr("src", data.Data.list[0].imgurl);
+			$(".contentInfo").html(data.Data.list[0].content);
+			$(".contentTitle").text(data.Data.list[0].title);
+			if (data.Code == 200) {
+
+ 
+
+
+
+
+
+
+
+
+				for (i in data.Data.list) {
+
+
+
+
+					var datestars = data.Data.list[i].starttime;
+            var dateends = data.Data.list[i].endtime;
+            var datestar = new Date(datestars);
+            var dateend = new Date(dateends);
+
+            var starttime = "";
+
+            
+          if (datestar.getFullYear() == dateend.getFullYear() && datestar.getMonth() == dateend.getMonth() && datestar.getDate() == dateend.getDate()) {
+                starttime = datestar.getFullYear() + "年" + (datestar.getMonth() + 1 < 10 ? (datestar.getMonth() + 1) : datestar.getMonth() + 1) + "月" + datestar.getDate() + "日 " + (datestar.getHours() < 10 ? "0" + datestar.getHours() : datestar.getHours()) + ":" + (datestar.getMinutes() < 10 ? "0" + datestar.getMinutes() : datestar.getMinutes()) + "-" + (dateend.getHours() < 10 ? "0" + dateend.getHours() : dateend .getHours()) + ":" + (dateend .getMinutes() < 10 ? "0" + dateend .getMinutes() : dateend .getMinutes());
+               
+            } else {
+                starttime = datestar.getFullYear() + "年" + (datestar.getMonth() + 1 < 10 ? (datestar.getMonth() + 1) : datestar.getMonth() + 1) + "月" + datestar.getDate() + "日 " + (datestar.getHours() < 0 ? "0" + datestar.getHours() : datestar.getHours()) + ":" + (datestar.getMinutes() < 10 ? "0" + datestar.getMinutes() : datestar.getMinutes()) + "-" + dateend.getFullYear() + "年" + (dateend.getMonth() + 1 < 10 ? (dateend.getMonth() + 1) : dateend.getMonth() + 1) + "月" + dateend.getDate() + "日 " + (dateend .getHours() < 10 ? "0" + dateend .getHours() : dateend .getHours()) + ":" + (dateend .getMinutes() < 10 ? "0" + dateend .getMinutes() : dateend .getMinutes());
+                
+            }
+                console.log(starttime)
+				        str += `
+						<li class="listul"><img src="img/活动时间@3x.png"/><p style='font-size:12px'>活动时间：${starttime}</p></li>
+						<li class="listul"><img src="img/地点@3x.png"/><p>活动地点：${data.Data.list[i].address}</p></li>
+                                                <li class="listul"><img src="img/费用@3x.png"/><p>活动费用：${data.Data.list[i].price}元</p></li>
+						<li><img src="img/年龄@3x.png"/ style="margin-top: 0.1rem"><p class="aget"><span style="margin-top: -0.88rem">年龄要求:</span>${data.Data.list[i].age}</p></li>
+						<li class="listul"><img src="img/人数@3x.png"/><p>报名人数：${data.Data.list[i].number}组</p></li>`
+						$('.activenews').html(str);
+				}
+			}
+	localStorage.setItem('kas',data.Data.list[0].price)
+			  console.log(localStorage.getItem('kas'))
+		}
+	});
+	$.ajax({
+		type: "get",
+		url: "http://139.224.133.133:8088/api/act/v1/registrationinformationnum",
+		async: false,
+		data: {
+			id: theRequest.id
+		},
+		success: function (data) {
+			console.log(data)
+			if (data.Code == 200) {
+				for (i in data.Data) {
+					//						console.log(data)
+					//						console.log(data.Data.group)
+					if (Number(data.Data.group) < 0) {
+						//							console.log(Number(data.Data.group));
+						strs = `<span>【剩余0组】</span>`
+						//							$('h4').html(strs);
+					} else {
+						strs = `<span>${data.Data.group}</span>`
+					}
+					 $(".cl").after("<h4>【剩余"+strs+"组】</h4>");
+
+				}
+			}
+		}
+	});
+	//		console.log(theRequest.id)
+	$.ajax({
+		type: "get",
+		url: "http://139.224.133.133:8088/api/act/v1/registrationinformation",
+		async: false,
+		data: {
+			id: theRequest.id,
+			orderby: 0,
+			search: '',
+			pageindex: 1,
+			pagesize: 50
+		},
+		success: function (data) {
+			console.log(data)
+			if (data.Code == 200) {
+								console.log(data.Data)
+				for (i in data.Data.list) {
+										console.log(data.Data.list[i].Phone.length)
+					if (data.Data.list[i].Phone.length == 11) {
+						var tel = data.Data.list[i].Phone;
+						//							console.log(tel)
+						tel = "" + tel;
+						var tel1 = tel.substr(0, 3) + "****" + tel.substr(7)
+						//							console.log(tel1);
+						imgs += `<li><img src="img/fenghuang.png"/><span>${tel1}</span></li>`
+					} else {
+						lists +=
+							`<li><img src="${data.Data.list[i].imgurl}"/><span>${data.Data.list[i].Phone}</span></li>`
+					}
+
+					$('.baomingnews').html(imgs + lists)
+				}
+			}
+		}
+	});
+</script>
+
+</html>

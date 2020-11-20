@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>分配学员</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/fpxy.css">
+    <link rel="stylesheet" href="../css/conmosui.css">
+  </head>
+  <style>
+
+  </style>
+  <body>
+    <div class="warp">
+      <div class="bag-box">
+        <div class="title">
+          
+        </div>
+        <div class="box" style="overflow-y: hidden; display: flex; flex-direction: column;">
+          <p class="topic">已分配学员列表</p>
+          <div class="allocated">
+            <span>姓名</span>
+            <span>电话</span>
+            <span>课程顾问</span>
+            <span>取消分配</span>
+          </div>
+
+          <ul id="shuttle_box1" style="flex: 1; overflow-y: auto">
+            <li class="shuttle_box_li shuttle_box_near">
+              <ul id="shuttle_box_left" class="hid-box"></ul>
+            </li>
+          </ul>
+        </div>
+        <div class="box" style="overflow-y: hidden; display: flex; flex-direction: column;">
+     <div class="search1">
+            <span class="condition">搜索条件:</span>
+            <div class="search">
+              <img src="../img/search@3x.png" class="img">
+              <input class="input" type="text" name="search" id="search" value="" placeholder="输入姓名/手机号">
+            </div>
+          </div>
+          <p class="topic" style="margin-top:0.5rem">待分配学员列表</p>
+
+     
+          <div class="allocated">
+            <span>选择</span>
+            <span>姓名</span>
+            <span>手机号</span>
+            <span>课程顾问</span>
+          </div>
+
+          <ul id="shuttle_box" style="flex: 1; overflow-y: auto">
+            <li class="shuttle_box_li shuttle_box_near">
+              <ul id="shuttle_box_right"></ul>
+            </li>
+          </ul>
+
+          <div class="btns">
+            <button id="submit">保存</button>
+            <button id="return">返回</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/conmosui.js"></script>
+    <script src="../js/rem.js"></script>
+    <script src="../js/long.js"></script>
+    <script>
+      function getQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = decodeURIComponent(window.location.search).substr(1).match(reg);
+        if (r != null) {
+          return unescape(r[2]);
+        }
+        return null;
+      }
+
+      $('#classname').text(getQueryString('name'));
+
+      function fetchData() {
+        ui.showLoading();
+        getAjax(
+          hostAjax + '/api/overpipe/v1/assignedstudentslist',
+          {
+            userid: +localStorage.zhizhao_uid,
+            classid: getQueryString('id'),
+            pagesize: 100000,
+          },
+          function (data) {
+            $('#shuttle_box_left').html('');
+            $('#commonUILoading').remove();
+            fetchOther();
+            if (data.Success) {
+              $('#shuttle_box_left').html(data.Data.list.map(x => `
+               <li class="list">
+                 <span class="information">${x.name}</span>
+                 <span class="information">${x.phone}</span>
+                 <span class="information">${x.CourseAdvisor}</span>
+                 <span class="information cancel" data-id="${x.id}" data-name="${x.name}">取消</span>
+               </li>`));
+              $('.cancel').click(function () {
+                ui.showAlert(
+                  `是否取消分配：${$(this).attr('data-name')}`,
+                  () => {
+                    ui.showLoading();
+                    getAjax(
+                      hostAjax + '/api/overpipe/v1/fpstudent',
+                      {
+                        userid: +localStorage.zhizhao_uid,
+                        classid: getQueryString('id'),
+                        classtype: 1,
+                        studentids: $(this).attr('data-id'),
+                      },
+                      function (data) {
+                        $('#commonUILoading').remove();
+                        if (data.Success) {
+                          fetchData();
+                        } else {
+                          alert(data.Msg);
+                        }
+                      }
+                    )
+                  },
+                  () => {},
+                  '确定',
+                  '取消',
+                  '取消分配',
+                );
+              })
+            }
+          }
+        );
+      }
+
+      function fetchOther() {
+        ui.showLoading();
+        getAjax(
+          hostAjax + '/api/overpipe/v1/tobeallocatedstudentsList',
+          {
+            userid: +localStorage.zhizhao_uid,
+            classid: getQueryString('id'),
+            pagesize: 200,
+            nameorphone: $('#search').val() || undefined,
+          },
+          function (data) {
+            $('#shuttle_box_right').html('');
+            $('#commonUILoading').remove();
+            if (data.Success) {
+              $('#shuttle_box_right').html(data.Data.list.map(x => `
+                <li class="list">
+                  <input type="checkbox" data-id="${x.id}" class="information">
+                  <span class="information">${x.name}</span>
+                  <span class="information">${x.phone}</span>
+                  <span class="information">${x.CourseAdvisor}</span>
+                </li>
+              `));
+            }
+          }
+        );
+      }
+
+      fetchData();
+      $('#search').change(fetchOther);
+      $('#submit').click(function () {
+        if (!Array.from($(':checked')).length) return;
+        ui.showLoading();
+        getAjax(
+          hostAjax + '/api/overpipe/v1/fpstudent',
+          {
+            userid: +localStorage.zhizhao_uid,
+            classid: getQueryString('id'),
+            classtype: 2,
+            studentids: Array.from($(':checked').map((i,x)=>$(x).attr('data-id'))).join(),
+          },
+          function (data) {
+            $('#commonUILoading').remove();
+            if (data.Success) {
+              fetchData();
+            } else {
+              alert(data.Msg);
+            }
+          }
+        )
+      });
+      $('#return').click(function () {
+        window.history.back();
+      })
+    </script>
+  </body>
+</html>

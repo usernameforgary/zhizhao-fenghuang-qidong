@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>忘记密码</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/swiper-3.4.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	body{
+    		background-color: #fff;
+    		background-size: 100%;
+    		background-repeat: no-repeat;
+    		background-position:0 -.6rem ;
+    	}
+    	
+    	.main{
+    		
+    	}
+    	.main img{
+    		width: 6.5rem;
+    		margin-bottom: 0.3rem;
+    	}
+    	.main img.on{
+    		border-radius: 0.48rem;
+    		box-shadow: 0px 0px 8px 6px #FFD31C;
+    	}
+    	button{
+    		
+    		background-color: #EDB41C;
+    		width: 5.6rem;
+    		height: 0.87rem;
+    		line-height: 0.87rem;
+    		border-radius: 0.87rem;
+    		border: 0;
+    		box-shadow: 2px 2px  6px #eee;
+    		display: block;
+    		margin:0.3rem auto 0.5rem auto;
+    		color: white;
+    		background: linear-gradient(#EDB41C,#FFCC3C);
+    	}
+    	.lists{
+	background-color: #fff;
+}
+.register .list{
+	width: 5.6rem;
+	height: 0.88rem;
+	border-bottom: 1px solid #A4A4A4;
+	line-height: 0.88rem;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+	position: relative;
+}
+.list_bottom{
+	width: 5.6rem;
+	height: 0.88rem;
+	line-height: 0.88rem;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+	position: relative;
+}
+.list_bottom li{
+	float: left;
+	width: 50%;
+}
+.list_bottom li i{
+	font-size: 0.26rem;
+}
+.register .list input{
+	padding-left: 0.2rem;
+	border: 0;
+	font-size: 0.26rem;
+	outline: none;
+	position: absolute;
+	top: 0.2rem;
+	border-left: 1px solid #eee;
+	height: 0.4rem;
+	line-height: 0.4rem;
+}
+.register .list i{
+	color: #F0BA21;
+	font-size: 0.45rem;
+}
+.yanzhengma input{
+	width: 2.6rem;
+	border: 1px solid #000;
+}
+.yanzhengma p{
+	width: 1.7rem;text-align: center;
+	float: right;
+	height: 0.6rem;
+	line-height: 0.6rem;
+	background-color: #FFCB3B;
+	color: white;
+	border-radius: 0.08rem;
+	margin-top: 0.14rem;
+}
+.register .left{
+	width: 0.88rem;
+	float: left;
+	text-align: center;
+}
+.register .but{
+	text-align: center;
+}
+
+.register .not{
+	padding-left: 0.33rem;
+	font-size: 0.26rem;
+	color: #00C6B5;
+}
+    </style>
+</head>
+<body class="up-page">
+	<div class="up-page-wrapper register" style="padding-top: 0.5rem;">
+		<div class="main">
+			<div class="lists">
+				<div class="list">
+					<div class="left">
+						<i class="iconfont icon-tubiaolunkuo-"></i>
+					</div>
+					<input type="tel" name="zhanghao" id="zhanghao" value="" placeholder="账号"/>
+				</div>
+				<div class="list">
+					<div class="left">
+						<i class="iconfont icon-tubiaolunkuo-"></i>
+					</div>
+					<input type="tel" name="tel" id="tel" value="" placeholder="手机号"/>
+				</div>
+				<div class="list yanzhengma">
+					<div class="left">
+						<i class="iconfont icon-shouji-copy"></i>
+					</div>
+					<input type="tel" name="code" id="code" value="" placeholder="请输入验证码"/>
+					<p class="time">获取验证码</p>
+				</div>
+				<div class="list">
+					<div class="left">
+						<i class="iconfont icon-mima"></i>
+					</div>
+					<input type="password" name="passd" id="passd" value="" placeholder="输入新密码"/>
+				</div>
+			</div>
+		</div>
+		<button>确认</button>
+		<!--<p style="color: #888;text-align: center;">忘记密码?</p>-->
+	</div>
+</body>
+<script src="../../js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/md5.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI;
+//	ui.showToast( '板块正在开发！');
+if(location.href.indexOf('type=1')){
+	$(".img_children").hide();
+}else{
+	$(".img_teacher").hide();
+}
+	$(".main img").click(function(){
+		$(".on").removeClass("on");
+		$(this).addClass("on");
+//		localStorage.setItem("cardClass",$(this).attr('index'));
+//		history.back()
+	})
+//	$(".main img").click(function(){
+//		localStorage.setItem("cardClass",$('.on').attr('index'));
+////		history.back()
+//	})
+	$(".list_bottom i").click(function(){
+		$('.icon-p').attr("class","iconfont icon-icon-test");
+		$(this).attr("class","iconfont icon-p");
+	})
+	$("button").click(function(){
+		if($("#tel").val()==""){
+			return false;
+		}
+		if($("#passd").val()==""){
+			return false;
+		}
+		postAjax(hostAjax+"/api/user/v1/resetpwd",JSON.stringify({
+		  "Accountnumber": $("#zhanghao").val(),
+		  "phone": $("#tel").val(),
+		  "pwd": md5($("#passd").val()),
+		  "qrpwd": md5($("#passd").val()),
+		  "code": $("#code").val()
+		}),function(data){
+			if(data.Code==0||data.Code==200){
+				ui.showToast( '修改成功！');
+				setTimeout(function(){
+					history.back();
+				},800)
+				
+			}else{
+				ui.showToast(data.Msg);
+			}
+			
+		})
+	})
+	var wait=60;
+    var ifTime=true;
+	function time() {
+	  if (wait == 0) {
+	    $(".time").text("获取验证码");//BFBFBF
+//	    $(".time").css("background-color","#BFBFBF");
+	    ifTime=true;
+	   wait = 60;
+	  } else { 
+	   wait--;
+	   $(".time").text("" + wait + " 秒");
+	   setTimeout(function() {
+	    time()
+	   },
+	   1000)
+	  }
+	}
+    $(".time").click(function(){
+    	if(1){
+    		if (ifTime) {
+	    		//执行倒计时
+	    		
+	    		all_function.getCode(1);
+	    	}
+	    	ifTime=false;
+    	}
+    })
+</script>
+</html>

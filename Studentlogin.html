@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
+    />
+    <meta http-equiv='cache-control' content='no-cache'> 
+    <meta http-equiv='expires' content='0'> 
+    <meta http-equiv='pragma' content='no-cache'> 
+    <title>凤凰机器人登录</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css" />
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="css/commonUI.css" />
+    <link rel="stylesheet" type="text/css" href="css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/index1.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/webuploader/webuploader.css"
+    />
+    <link rel="stylesheet" href="./css/Tindex.min.css" />
+    <script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        .centen{
+            width: 6.5rem;
+            margin: 3rem auto;
+        }
+        .rudin{
+            width: 0.45rem;
+    height: 0.45rem;
+    border: 5px solid #ec4c57;
+    border-radius: 50%;
+    margin-left: 0.1rem;
+        }
+        .list-li{
+          display:flex;
+          margin-top: 0.4rem;
+          width: 6.5rem;
+          background: #eee;
+          height: 1.5rem;
+          border-radius: 5px;
+          line-height: 1.5rem;
+        }
+    </style>
+
+  </head>
+  <body class="up-page">
+
+    <div class="up-page-wrapper TindexBox">
+      <img src="./img/TindexBG.png" class="TindexBG" alt="" srcset="" />
+        <div class="centen">
+            <div style="display: flex;">
+                <div class="rudin"></div>
+                <p style="font-size: 0.36rem; font-weight: 600;margin-left: 0.3rem;">请选择关联学员</p>
+            </div>
+
+
+            <div class="pol">
+         
+           
+         </div>
+        </div>
+      
+    </div>
+  </body>
+  <script
+    src="js/jquery-1.7.2.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="js/Timetables.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="js/swiper-3.4.2.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script src="js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+  <script
+    src="css/webuploader/webuploader.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="js/const.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script>
+
+    
+  
+
+
+
+    $(function(){
+      getAjax(
+        FenghuangConst.hostAjax + '/api/user/v1/wxloginopenid',
+      {
+      openid:localStorage.getItem("zhizhao_openid"),
+		   imgurl:	 1,
+      nickname:	 1,
+      unionid:	1,	
+      },
+      function(data) {
+        console.log(data)
+        var array= data.Data.list
+        var html=''
+        for (var index = 0; index < array.length; index++) {
+          const element = array[index];
+          html+=`
+          <div class="list-li">
+                 <div>
+                  <img src="./img/ti.png" alt="" style=" width: 1rem;
+                  margin-top: 0.25rem;
+                  margin-left: 0.5rem;">
+                 </div>
+                 <div class='tou'>
+                  <p style="font-size: 0.36rem; font-weight: 600;margin-left: 0.3rem;">${element.NAME}</p>
+                 </div>
+               
+              </div>
+          `
+     
+        }
+  
+
+
+        $('.pol').html(html)
+
+             $('.list-li').each(function(index,rl){
+        $(this).click(function(){
+        getAjax(
+            FenghuangConst.hostAjax  + '/api/user/v1/wxloginopenid',
+            {
+            openid:localStorage.getItem("zhizhao_openid"),
+                imgurl:	 1,
+                nickname:	 1,
+                unionid:	1,	
+            },
+            function(data) {
+                console.log(data)
+                if(data.Data && data.Data.list && data.Data.list[index] && data.Data.list[index].user_id) {
+                    localStorage.setItem('zhizhao_uid',data.Data.list[index].user_id); 
+                    localStorage.setItem('uid',data.Data.list[index].user_id); 
+                }
+                if(data.Data.list[index].Ifsignup==2){
+                    window.location.href = "childIndex.html";
+                }else{
+                    window.location.href = "非学员学生端.html";
+                }
+       
+       
+                
+
+            }
+    )
+console.log(index)
+    })
+  })
+    
+      }
+    )
+    })
+
+
+
+  </script>
+</html>

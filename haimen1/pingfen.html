@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			body{
+				font-size: 14px;
+				font-family: "微软雅黑";
+			}
+			span{
+				width: 30%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="pingfen">
+			<textarea class="texts" style="width: 80%;height: 15vh;margin: 5% 8%;border: 1px solid #999;text-align: start;">
+		
+			</textarea>
+
+			<div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+				<span>认真听讲</span>
+				<div id="" style="display: flex;justify-content: flex-end;">
+					<img class="xing" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing" src="img/未评分.png" style="width: 10%;height: 100%;" />
+				</div>
+
+			</div>
+
+			<div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+				<span>行为习惯</span>
+				<div id="" style="display: flex;justify-content: flex-end;">
+					<img class="xing1" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing1" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing1" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing1" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing1" src="img/未评分.png" style="width: 10%;height: 100%;" />
+				</div>
+
+			</div>
+
+			<div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+				<span>动手能力</span>
+				<div id="" style="display: flex;justify-content: flex-end;">
+					<img class="xing2" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing2" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing2" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing2" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing2" src="img/未评分.png" style="width: 10%;height: 100%;" />
+				</div>
+
+			</div>
+
+			<div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+				<span>表达能力</span>
+				<div id="" style="display: flex;justify-content: flex-end;">
+					<img class="xing3" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing3" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing3" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing3" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing3" src="img/未评分.png" style="width: 10%;height: 100%;" />
+				</div>
+
+			</div>
+
+			<div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+				<span>积极主动</span>
+				<div id="" style="display: flex;justify-content: flex-end;">
+					<img class="xing4" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing4" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing4" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing4" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing4" src="img/未评分.png" style="width: 10%;height: 100%;" />
+				</div>
+
+			</div>
+
+			<button class="btn" style="width: 70%;height: 7vh;background: #FBD15B;border: 0;margin: 50% 15%;border-radius: 1rem;color: #fff;">提交</button>
+		</div>
+	</body>
+	<script src="../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var imgs = document.getElementsByClassName("xing");
+		var imgs1 = document.getElementsByClassName("xing1");
+		var imgs2 = document.getElementsByClassName("xing2");
+		var imgs3 = document.getElementsByClassName("xing3");
+		var imgs4 = document.getElementsByClassName("xing4");
+		for(var i = 0; i < imgs.length; i++) {
+			imgs[i].setAttribute("score", i + 1); //设置分数
+			imgs[i].onclick = function() { //点击时调用方法
+
+				var srcEl = event.srcElement; //通过event来获取原元素
+
+				var score = srcEl.getAttribute("score"); //获取分数
+				for(var j = 0; j < score; j++) {
+					imgs[j].src = "img/已评分.png";
+				}
+				for(var j = score; j < imgs.length; j++) {
+					imgs[j].src = "img/未评分.png";
+				}
+			}
+		};
+
+		for(var i = 0; i < imgs1.length; i++) {
+			imgs1[i].setAttribute("score", i + 1); //设置分数
+			imgs1[i].onclick = function() { //点击时调用方法
+
+				var srcEl = event.srcElement; //通过event来获取原元素
+
+				var score = srcEl.getAttribute("score"); //获取分数
+				for(var j = 0; j < score; j++) {
+					imgs1[j].src = "img/已评分.png";
+				}
+				for(var j = score; j < imgs1.length; j++) {
+					imgs1[j].src = "img/未评分.png";
+				}
+			}
+		};
+
+		for(var i = 0; i < imgs2.length; i++) {
+			imgs2[i].setAttribute("score", i + 1); //设置分数
+			imgs2[i].onclick = function() { //点击时调用方法
+
+				var srcEl = event.srcElement; //通过event来获取原元素
+
+				var score = srcEl.getAttribute("score"); //获取分数
+				for(var j = 0; j < score; j++) {
+					imgs2[j].src = "img/已评分.png";
+				}
+				for(var j = score; j < imgs2.length; j++) {
+					imgs2[j].src = "img/未评分.png";
+				}
+			}
+		};
+
+		for(var i = 0; i < imgs3.length; i++) {
+			imgs3[i].setAttribute("score", i + 1); //设置分数
+			imgs3[i].onclick = function() { //点击时调用方法
+
+				var srcEl = event.srcElement; //通过event来获取原元素
+
+				var score = srcEl.getAttribute("score"); //获取分数
+				for(var j = 0; j < score; j++) {
+					imgs3[j].src = "img/已评分.png";
+				}
+				for(var j = score; j < imgs3.length; j++) {
+					imgs3[j].src = "img/未评分.png";
+				}
+			}
+		};
+
+		for(var i = 0; i < imgs4.length; i++) {
+			imgs4[i].setAttribute("score", i + 1); //设置分数
+			imgs4[i].onclick = function() { //点击时调用方法
+
+				var srcEl = event.srcElement; //通过event来获取原元素
+
+				var score = srcEl.getAttribute("score"); //获取分数
+				for(var j = 0; j < score; j++) {
+					imgs4[j].src = "img/已评分.png";
+				}
+				for(var j = score; j < imgs4.length; j++) {
+					imgs4[j].src = "img/未评分.png";
+				}
+			}
+		};
+	</script>
+</html>

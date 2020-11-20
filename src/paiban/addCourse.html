@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>加课</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="../../css/index1.css"/>-->
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	body{
+    		background-color: #fff;
+    		/*background-image: url(../../img/bodyBg/xufei@3x.jpg);*/
+    		background-size: 100%;
+    		background-repeat: no-repeat;
+    		background-position: bottom;
+    		
+    	}
+    	.main{
+    		font-size: 0.26rem;
+    		padding: 0.5rem;
+    	}
+    	.main header{
+    		margin-bottom: 0.2rem;
+    	}
+    	.t{
+    		width: 6.5rem;
+    		background-color: #FBD15B;
+    		color: white;
+    		line-height: 0.85rem;
+    		border-radius: 0.25rem;
+    		font-size: 0.28rem;
+    		padding-left: 0.3rem;
+    	}
+    	.t i{
+    		float: right;
+    		font-size: 0.35rem;
+    		margin-right: 0.3rem;
+    		transform: rotate(90deg);
+    		-webkit-transform: rotate(90deg);
+    	}
+    	.main ul{
+    		border: 1px solid #eee;
+    		border-radius: 0.3rem;
+    		overflow: hidden;
+    		box-shadow: 2px 2px 5px #eee, -2px 2px 5px #eee;
+    		position: absolute;
+    		background-color: #fff;
+    		display: none;
+    	}
+    	.main li{
+    		width: 6.5rem;
+    		line-height: 0.85rem;
+    		padding-left: 0.5rem;
+    	}
+    	.main li:hover{
+    		background-color: #EEEEEE;
+    	}
+    	.main button{
+    		width: 6.5rem;
+    		height: 0.85rem;
+    		margin-top: 1rem;
+    		border-radius: 0.25rem;
+    		border: 0;
+    		background-image: url(../../img/bodyBg/paikeButton1@3x.png);
+    		background-size: 100%;
+    		color: white;
+    		font-size: 0.26rem;
+    	}
+    	input{
+    		font-size: 0.26rem;color: #fff;border: 0;
+    	}
+    	input::-webkit-input-placeholder {
+    		color: #fff;
+    		
+    	}
+    	textarea{
+    		font-size: 0.26rem;
+    	}
+    </style>
+</head>
+<body class="up-page">
+	<div class="up-page-wrapper" >
+		<div class="header">
+			
+		</div>
+		<div class="teacher">
+		</div>
+		<div class="main">
+			
+			<div class="aaaa course">
+				<header>开课课程：</header>
+				<div class="t"><span>请选择</span><i class="iconfont icon-you"></i></div>
+				<ul>
+				</ul>
+			</div>
+			<div class="aaaa coutype" style="margin-top: 0.5rem;">
+				<header>课程类型：</header>
+				<div class="t"><span>请选择</span><i class="iconfont icon-you"></i></div>
+				<ul>
+					<li index="1">活动课</li>
+					<li index="2">常规课</li>
+					<li index="3">赛事课</li>
+					<li index="4">试听课</li>
+				</ul>
+			</div>
+			<div class="aaaa week"style="margin-top: 0.5rem;">
+				<header>选择星期：</header>
+				<div class="t"><span>请选择</span><i class="iconfont icon-you"></i></div>
+				<ul>
+					<li index="1">周一</li>
+					<li index="2">周二</li>
+					<li index="3">周三</li>
+					<li index="4">周四</li>
+					<li index="5">周五</li>
+					<li index="6">周六</li>
+					<li index="7">周日</li>
+				</ul>
+			</div>
+			<div class="aaaa stime" style="margin-top: 0.5rem;">
+				<header>开始时间：</header>
+				<div class="t" id="demo1"><input readonly="readonly" placeholder="请选择" style="background-color: rgba(0,0,0,0);outline: none;"></input><i class="iconfont icon-you"></i></div>
+				
+			</div>
+			<div class="aaaa etime" style="margin-top: 0.5rem;">
+				<header>结束时间：</header>
+				<div class="t" id="demo2"><input readonly="readonly" placeholder="请选择" style="background-color: rgba(0,0,0,0);outline: none;"></input><i class="iconfont icon-you"></i></div>
+				
+			</div>
+			<div class="aaaa " style="margin-top: 0.5rem;">
+				<header>备注：</header>
+				<textarea name="" rows="" cols="" style="resize: none;width: 100%;height: 2.8rem;border-radius: 0.2rem;padding: 0.2rem;box-sizing: border-box;" placeholder="请输入备注："></textarea>
+			</div>
+			<button style="margin-bottom: 1rem;">提交</button>
+		</div>
+	</div>
+	<div class="" style="position: absolute;bottom: 0.5rem;width: 100%;text-align: center;"><a class="jilu" href="history.html?jiake" style="color: #666;display: ;font-size: 0.32rem;">历史记录</a></div>
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI,str="",str1="",courseId,weekId,ifClick=true,coutype="",alertName="";
+	var calendar = new datePicker(),calendar1 = new datePicker();
+calendar.init({
+	'trigger': '#demo1', /*按钮选择器，用于触发弹出插件*/
+	'type': 'time',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+	'onSubmit':function(){/*确认时触发事件*/
+		var theSelectData=calendar.value;
+		$(".stime input").val(theSelectData);
+	},
+	'onClose':function(){/*取消时触发事件*/
+	}
+});
+calendar1.init({
+	'trigger': '#demo2', /*按钮选择器，用于触发弹出插件*/
+	'type': 'time',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+	'onSubmit':function(){/*确认时触发事件*/
+		var theSelectData=calendar1.value;
+		console.log(theSelectData)
+		$(".etime input").val(theSelectData);
+	},
+	'onClose':function(){/*取消时触发事件*/
+	}
+});
+	$(".main li i").click(function(){
+//		ui.showToast( '展开信息！');
+		if($(this).parents('li').find('.content').css("display")=="block"){
+			$(this).parents('li').find('.content').hide();
+			$(this).parents('li').find('b').show();
+			return false;
+		}
+		$('.content').hide();
+		$('b').show();
+		$(this).parents('li').find('.content').show();
+		$(this).parents('li').find('b').hide();
+		
+	})
+	$(".t").click(function(){
+		if($(this).parent("div").find("ul").css("display")=="none"){
+			$("ul").hide();
+			$(this).parent("div").find("ul").show();
+		}else{
+			$("ul").hide();
+			$(this).parent("div").find("ul").hide();	
+		}
+	})
+	
+	$("button").click(function(){
+		alertName="";
+		if($(".course .t span").text()=="请选择"){
+			ui.showToast( '请选择课程！');
+			return false;
+		}else{
+			alertName+="("+$(".course .t span").text()+")";
+		}
+		if($(".coutype .t span").text()=="请选择"){
+			ui.showToast( '请选择课程类型！');
+			return false;
+		}else{
+			alertName+="("+$(".coutype .t span").text()+")";
+		}
+		if($(".week .t span").text()=="请选择"){
+			ui.showToast( '请选择星期！');
+			return false;
+		}
+		if($(".stime input").val()==""){
+			ui.showToast( '请选择开始时间！');
+			return false;
+		}
+		if($(".etime input").val()==""){
+			ui.showToast( '请选择结束时间！');
+			return false;
+		}
+		if($("textarea").val()==""){
+			$("textarea").val(" ");
+		}
+		
+		//调取转班接口POST /api/tch/v1/addscheduling申请学员排课表加课表
+		if(ifClick){
+			ifClick=false;
+			ui.showAlert('是否确认加课'+alertName, function () {
+					postAjax(hostAjax+"/api/tch/v1/addscheduling",JSON.stringify({
+    			userid:uid,
+				type:courseId,
+				subjecttype:coutype,
+				starttime:$(".stime input").val(),
+				endtime:$(".etime input").val(),
+				week:weekId,
+				remark:$("textarea").val()
+			}),function(data){
+					if(data.Code==200){
+						ui.showToast( '申请成功',3000);
+						setTimeout(function(){
+//							if(location.href.indexOf("goback2")>0){
+//								history.go(-2);
+//							}else{
+//								history.back();
+//							}
+							
+							
+						},2000)
+					}else{
+						ifClick=true;
+						ui.showToast( data.Msg,3000);
+					}
+			})
+	            },null,"确认","取消","提示");
+			
+		}
+    		
+	})
+	getAjax(hostAjax+"/api/course/v1/gettagetype",{//获取所报棵习
+	},function(data){
+		str1="";
+		if(data.Data!=""){
+			for (var j=0;j<data.Data.length;j++) {
+				str1+='<li id="'+data.Data[j].id+'">'+data.Data[j].name+'</li>';
+			}
+			$(".course ul").html(str1);
+			$("li").click(function(){
+				$(this).parents(".aaaa").find("span").text($(this).text());
+				if($(this).parents(".aaaa").attr('class').indexOf("course")>=0){
+					courseId=$(this).attr("id");
+				}else if($(this).parents(".aaaa").attr('class').indexOf("coutype")>=0){
+					coutype=$(this).attr("index");
+				}else{
+					weekId=$(this).attr("index");
+				}
+				if($(this).parent("div").find("ul").css("display")=="none"){
+					$("ul").hide();
+					$(this).parent("div").find("ul").show();
+				}else{
+					$("ul").hide();
+					$(this).parent("div").find("ul").hide();	
+				}
+			})
+		}
+	})
+</script>
+</html>

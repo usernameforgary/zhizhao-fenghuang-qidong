@@ -1,0 +1,44 @@
+.search{
+	width: 6.5rem;
+	height: 0.6rem;
+	background-color: #eee;
+	margin:0.25rem auto;
+	position: relative;
+	border-radius:0.1rem;
+}
+.search img{
+	width: 0.45rem;
+	position: absolute;
+	top: 0.075rem;
+	left: 0.2rem;
+	
+}
+.search input{
+	float: right;
+	height: 0.6rem;
+	padding: 0;
+	box-sizing: border-box;
+	width: 5.6rem;
+	border: 0;
+	background-color: #eee;border-radius:0.1rem;
+	font-size: 0.26rem;
+}
+.list{
+    width: 6.5rem;
+    margin: 0.3rem auto;
+    font-size: 0.24rem;
+    display: flex;
+    justify-content: space-between;
+}
+.arrows{
+    width: 0.5rem;
+    height: 0.5rem;
+    text-align: right;
+}
+.tall{
+    margin-top: 0.2rem;
+}
+.line{
+    width: 7.5rem;
+    border-bottom: 1px solid #ccc;
+}

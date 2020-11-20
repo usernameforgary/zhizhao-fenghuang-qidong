@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>老师端主页</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index1.css"/>
+    <link rel="stylesheet" type="text/css" href="css/webuploader/webuploader.css"/>
+    <script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	.left-hand-name{
+    		font-size: 0.16rem;
+    	}
+    	.my_course header,.my_children header{
+    		margin-top: 0.2rem;
+    		margin-bottom: 0.15rem;
+    		font-size: 0.28rem;
+    		font-weight: 900;
+    	}
+    	.ditui{
+    		position: relative;
+    		height: 1.8rem;
+    		border-radius: 0.2rem;
+    		overflow: hidden;
+    		box-shadow: 2px 2px 8px #aaa, -2px 2px 8px #aaa;
+    		margin-bottom: 0.5rem;
+    	}
+    	.ditui header{
+    		float: left;
+    		line-height: 1.8rem;
+    	}
+    	.ditui header img{
+    		width: 0.5rem;
+    		position: relative;
+    		top: 0.1rem;
+    		margin:0 0.5rem;
+    	}
+    	.ditui ul{
+    		background-color: #FBD15B;
+    		position: absolute;
+    		right: 0;
+    		height:1.8rem;
+    		color: white;
+    		/*border-bottom: 1px solid #eee;*/
+    	}
+    	.ditui ul li{
+    		
+    		line-height: 0.9rem;
+    		padding: 0 0.2rem;
+    	}
+    	.ditui ul li:first-child{
+    		border-bottom: 1px solid #eee;
+    	}
+    	.my_course i{
+    		float: right;
+    		font-weight: 100;
+    	}
+    	.my_course img{
+    		width: 4rem;
+    		display: block;
+    		margin: auto;
+    	}
+    	.my_course li{
+    		margin-top: 0.2rem;
+    	}
+    	.my_children{
+    		margin-bottom: 0.5rem;
+    	}
+    	.my_children ul ul{
+    		clear: both;
+    		position: relative;
+    		right: 0.5rem;
+    		border-bottom: 1px solid #eee;
+    	}
+    	.my_children ul ul li{
+    		text-align: center;
+    		float: left;
+    		width: 33.33%;
+    		padding-bottom: 0.15rem;
+    		padding-top: 0.2rem;
+    		
+    	}
+    	.my_children img{
+    		width: 0.61rem;
+    		height: 0.61rem;
+    		border-radius: 0.61rem;
+    		
+    	}
+    	.my_children button{
+    		margin-bottom: 0.15rem;
+    		width: 1.6rem;
+    		height: 0.55rem;
+    		border-radius: 0.55rem;
+    		background-color: #FBD15B;
+    		border: 0;
+    	}
+    	.pre,.swiper-container .next{
+    		display: none;
+    	}
+    	.pre img{
+    		width: 0.4rem;
+    		position: absolute;
+    		top: 0.45rem;
+    		left: 0.2rem;
+    		z-index: 222;
+    	}
+    	.swiper-container .next img{
+    		z-index: 222;
+    		width: 0.4rem;
+    		position: absolute;
+    		top: 0.45rem;
+    		right: 0.2rem!important;
+    	}
+    	.hadregister{
+    		background-color: #FDE8AD!important;
+    	}
+    	.noregister{
+    		background-color: #EAEAEA!important;
+    	}
+    	.t_card .more{
+    		display: block;
+		    position: absolute;
+		    width: 0.55rem;
+		    right: 0.2rem;
+		    bottom: 0.2rem;
+    	}
+    	.teacher .tab{
+			padding: 0 1.2rem;
+		}
+		.teacher .tab li{
+			width: 33.33%;
+			
+		}
+		.teacher .tab li span{
+			font-size: 0.3rem!important;
+		}
+		.circle_out{
+			width: 5.5rem;
+			height: 4.5rem;
+			margin: auto;
+			border-left: 0.277rem solid #809292;
+			border-bottom: 0.277rem solid #809292;
+			position: relative;
+		}
+		.circle1{
+			position: absolute;
+			height: 80%;
+			width: 1.34rem;
+			background-color: red;
+			left: 0.47rem;
+			bottom: 0;
+		}
+		.circle2{
+			position: absolute;
+			height: 0%;
+			width: 1.34rem;
+			background-color: #EFB511;
+			left: 2.8rem;
+			bottom: 0;
+		}
+		.t{
+			position: absolute;
+			top: -0.5rem;
+			width: 100%;
+			text-align: center;
+			color: red;
+			font-size: 0.35rem;
+			font-weight: bolder;
+		}
+		.b{
+			width: 1.9rem;
+			left: -0.2rem;
+			position: absolute;
+			bottom: -0.8rem;
+		}
+		.content{
+			padding-left: 1.5rem;
+			margin-top: 0.2rem;
+		}
+		.t_card a{
+    		position: absolute;
+    		bottom: 0.28rem;
+    		right: 1.2rem;
+    	}
+    </style>
+    <style type="text/css">
+    	 #coursesTable {
+            padding: 15px 10px;
+        }
+
+        .Courses-head {
+            background-color: #edffff;
+            /*left: 0px;*/
+            z-index: 22;
+        }
+
+        .Courses-head > div {
+            text-align: center;
+            font-size: 14px;
+            line-height: 28px;
+        }
+
+        .left-hand-TextDom, .Courses-head {
+            background-color: #f2f6f7;
+        }
+
+        .Courses-leftHand {
+            background-color: #f2f6f7;
+            font-size: 12px;
+        }
+
+        .Courses-leftHand .left-hand-index {
+            color: #9c9c9c;
+            margin-bottom: 4px !important;
+        }
+
+        .Courses-leftHand .left-hand-name {
+            color: #666;
+        }
+
+        .Courses-leftHand p {
+            text-align: center;
+            font-weight: 900;
+        }
+
+        .Courses-head > div {
+            border-left: none !important;
+        }
+
+        .Courses-leftHand > div {
+            padding-top: 5px;
+            border-bottom: 1px dashed rgb(219, 219, 219);
+        }
+
+        .Courses-leftHand > div:last-child {
+            border-bottom: none !important;
+        }
+
+        .left-hand-TextDom, .Courses-head {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .Courses-content > ul {
+            border-bottom: 1px dashed rgb(219, 219, 219);
+            box-sizing: border-box;
+        }
+
+        .Courses-content > ul:last-child {
+            border-bottom: none !important;
+        }
+
+        .highlight-week {
+            color: #02a9f5 !important;
+        }
+
+        .Courses-content li {
+            text-align: center;
+            color: #666666;
+            font-size: 14px;
+            line-height: 50px;
+        }
+
+        .Courses-content li span {
+            padding: 6px 2px;
+            box-sizing: border-box;
+            line-height: 18px;
+            border-radius: 4px;
+            white-space: normal;
+            word-break: break-all;
+            cursor: pointer;
+        }
+
+        .grid-active {
+            z-index: 9999;
+        }
+
+        .grid-active span {
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        ._news {
+		    position: absolute;
+		    top: 0;
+		    z-index: 22;
+		    right: -0.35rem;
+		}
+    </style>
+</head>
+<body class="up-page">
+	<div class="t_card animated card1 zoomIn" style="display: none;">
+		<div class="name"><p style="font-size: 0.5rem;"></p> <img src="img/bodyBg/defined.jpg" alt="" /><div class="yaoqingma">
+			
+		</div></div>
+		<div class="tName" style="margin-left: 0.6rem;"></div>
+		<div class="tel"></div>
+		<a href="person_edit/userInfo.html">修改头像</a>
+		<img class="more" onclick="goUrl('changeCard.html?type=1')" src="img/moreCards.png"/>
+	</div>
+	<div class="up-page-wrapper teacher">
+		<div class="header">
+			<div class="tab">
+				<ul>
+					<li class="active"><span>教学记录</span></li>
+					<li><span>销售记录</span></li>
+					<li><span>业务学习</span></li>
+				</ul>
+				<p style="text-align: center;margin-top: 0.5rem;color: #EFB511;"></p>
+			</div>
+			<div class="clearfix"></div>
+			
+		</div>
+		<div class="clearfix"></div>
+		<div class="main">
+			<div class="main_t">
+				<p class="kebiaoTime" style="text-align: center;"></p>
+				<div id="coursesTable"></div>
+				<!--下面是图标展示-->
+			<!--<div class="circle_wrap">
+				<div class="circle_out">
+					<div class="circle1" ><div class="t"></div><div class="b">本月课时指标</div></div>
+					<div class="circle2" ><div class="t"></div><div class="b">本月课时完成量</div></div>
+				</div>
+				<div class="clearfix"></div>
+			</div>-->
+			<p style="text-align: center;">
+				<a class=""  href="src/Course/queke.html">缺课记录</a>
+				<a class=""  href="src/Course/buke.html">补课记录</a>
+			</p>
+			
+				<div class="name"><img  onclick="showTeacherCard();"  style="float: left;" src="img/bodyBg/defined.jpg"/><!--<span>本月课程完成率: <b></b></span>--><p style="padding-top: 0.2rem;"></p>
+					<div class="_news" onclick="goUrl('news.html')"><i class="iconfont icon-lingdang"></i><div class="ifHite hite"></div></div>
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="my_course">
+					<header onclick="goUrl('src/Course/example.html')">我的课表<i class="iconfont icon-you"></i><i style="position: relative;left: 0.15rem;" class="iconfont icon-you"></i></header>
+					<ul>
+						<li>课程类型：<span style="color: #EFB511;"></span></li>
+						<li class="">上课时间：<span></span></li>
+						<li class="">所在班级：<span></span></li>
+						<!--<li class="">课程主题：<span></span></li>-->
+					</ul>
+				</div>
+				<div class="my_children">
+					<header>班级成员</header>
+					<ul>
+						<li>
+							<ul class="ul" id="'+data.Data.studentlist[i].id+'">
+								<!--<li><img src="img/default_person.png" alt="" /><p>名字</p></li>
+								<li><button class="edit_button">课堂表现</button></li>
+								<li><p style="margin-top:0.1rem;">剩余课时：<span '+color+'>1</span></p></li>
+								<div class="clearfix"></div>-->
+							</ul>
+						</li>
+					</ul>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<div class="main_s"  style="display: none;">
+				<!--下面是图标展示-->
+			<div class="circle_wrap">
+				<div class="circle_out">
+					<div class="circle1" ><div class="t"></div><div class="b">本月销售指标</div></div>
+					<div class="circle2" ><div class="t"></div><div class="b">本月销售完成量</div></div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+				<div class="name" ><img onclick="showTeacherCard();"  src="img/bodyBg/defined.jpg"/><span>本月销售完成率: <b></b></span><p>鲨鱼老师</p></div>
+				<div class="_content"><ul>
+
+					<li>本月地推人数：<span></span></li>
+					<li>本月待续费人数：<span class="dxfnums"></span></li>
+					
+					<li>本月电话邀约数：<span></span></li>
+				
+					<li>本月已续费人数：<span></span></li>
+					<li>转化率：<span></span>%</li>
+					<!--<li>转化率：<span></span></li>-->
+					<li>转化率：<span></span>%</li>
+					<div class="clearfix" style="margin-bottom: 0.5rem;"></div>
+				</ul></div>
+				<div class="ditui" style="margin-top: 0.4rem;">
+					<header><img src="img/bodyBg/dituiIcon@3x.png"/>地推</header>
+					<ul>
+						<li onclick="goUrl('src/ditui/newStudent.html')">新增学员</li>
+						<li onclick="goUrl('src/ditui/history.html')">历史记录</li>
+					</ul>
+				</div>
+				<div class="ditui">
+					<header><img src="img/bodyBg/xufeiIcom@3x.png"/>续费</header>
+					<ul>
+						<li style="line-height: 1.8rem;background-color: #5BBDFB;" onclick="goUrl('src/xufei/newStudent.html')">新增学员</li>
+						<!--<li onclick="goUrl('src/xufei/history.html')">历史记录<i class="iconfont icon-you"></i></li>-->
+					</ul>
+				</div>
+				<div class="ditui">
+					<header><img src="img/bodyBg/addcourseIcon.png"/>加课</header>
+					<ul>
+						<li style="line-height: 1.8rem;background-color: #F93E3E;" onclick="goUrl('src/paiban/addCourse.html')">申请加课</li>
+						<!--<li style="background-color: #F93E3E;" onclick="goUrl('src/xufei/newStudent.html')">加课记录</li>-->
+					</ul>
+				</div>
+			</div>
+			<div class="main_y" style="display: none;">
+				<ul style="margin-bottom: 0.25rem;">
+					<li>本月听课数量<p>20</p></li>
+					<li>本月试讲数量<p>10</p></li>
+					<div class="clearfix"></div>
+				</ul>
+				<div class="beike">
+					<header>备课笔记 <span onclick="goUrl('src/yewu/index.html')">更多<i class="iconfont icon-you"></i></span></header>
+					<div class="lists">
+					
+
+					</div>
+						<button onclick="goUrl('src/yewu/addbaike.html')">新增笔记</button>
+				   </div>
+				<div class="beike">
+					<header>听课笔记 <span onclick="goUrl('src/yewu/index2.html')">更多<i class="iconfont icon-you"></i></span></header>
+					<div class="lists">
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="float"></div>
+		<div class="class_show"  style="left: -7.5rem;">
+			<div class="text">
+				<textarea style="resize: none;height: 1.9rem;text-align: left;text-indent: 2em;border: 1px solid #eee;padding: 0.15rem;line-height: 0.45rem;box-sizing: border-box;" id="text" name="show" rows="" cols="">
+					
+				</textarea>
+				<div class="button submit">
+					提交
+				</div>
+				<div class="swiper-container">
+				  <div class="swiper-wrapper">
+				  	<div class="swiper-slide" id="modelImg"><img src="img/addImg.png"/></div>
+				    <!--<div class="swiper-slide">slider1</div>
+				    <div class="swiper-slide">slider2</div>
+				    <div class="swiper-slide">slider3</div>-->
+				  </div>
+				  <div class="pre">
+				  	<img src="img/left@3x.png"/>
+				  </div>
+				  <div class="next">
+				  	<img src="img/right@3x.png"/>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+ <script src="js/Timetables.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="css/webuploader/webuploader.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI;
+	var classImgLists="";
+//	ui.showToast( '板块正在开发！');
+var mySwiper = new Swiper('.swiper-container', {
+	autoplay: 5000,//可选选项，自动滑动
+	slidesPerView: 3,
+	spaceBetween: 10
+})
+$("textarea").text("");
+//设置自己的卡片背景
+	if(localStorage.getItem("cardClass")){
+		if(localStorage.getItem("cardClass").split("card")[1]<=5){
+			$(".t_card").addClass(localStorage.getItem("cardClass"));
+		}	
+	}
+//、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
+var BASE_URL= window.location.pathname;
+var uploader;
+uploaderInit();
+function uploaderInit(){
+uploader= WebUploader.create({
+    // 选完文件后，是否自动上传。
+    auto: true,
+    // swf文件路径
+    swf: BASE_URL + '/css/webuploader/Uploader.swf',
+    // 文件接收服务端。
+    server: hostAjax+'/api/other/v1/PostFile',
+    // 选择文件的按钮。可选。
+    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+    pick: {
+    	id:'#modelImg',
+    	multiple:true	
+    },
+    // 只允许选择图片文件。
+    accept: {
+        title: 'Images',
+        extensions: '*',
+        mimeTypes: 'image/*',
+    }
+});
+ /* 上传前判断 */
+    uploader.on('beforeFileQueued', function (file) {	
+      progress = 0;
+      /* 图片 */
+      if ('gif,jpg,jpeg,bmp,png'.indexOf(file.ext.toLowerCase()) == -1) {
+       alert('请上传图片文件');
+        return false;
+      }else{
+      	/* makeThumb方法生成缩略图获取图片base64 */
+        uploader.makeThumb(file, function(error, src){
+          if (error) {
+            alert('图片错误');
+            return;
+          }
+//        this.$refs.cropImg.changeImg(src, this.width, this.height, this.dataId);
+        }, 1, 1); /* 缩略图尺寸，大于1为px，0-1之间为百分比 */
+      }
+      /* 视频 */
+      if (this.type == 'video') {
+        if ('mp4,webm,m3u8,ogg'.indexOf(file.ext.toLowerCase()) == -1) {
+         alert('请上传支持的视频文件');
+          return false;
+        }
+      }
+      if (file.size > (3 * 1e8)) {
+       alert('文件大小不可超过300M');
+        return false;
+      }
+      /* 裁剪 */
+//    if (this.crop) {
+//      /* makeThumb方法生成缩略图获取图片base64 */
+//      this.uploader.makeThumb(file, (error, src) => {
+//        if (error) {
+//          this.$message('图片错误');
+//          return;
+//        }
+//        this.$refs.cropImg.changeImg(src, this.width, this.height, this.dataId);
+//      }, 1, 1); /* 缩略图尺寸，大于1为px，0-1之间为百分比 */
+//      return false;
+//    }
+//    this.loading = true;
+      return true;
+    })
+// 当有文件添加进来的时候
+uploader.on( 'uploadSuccess', function( file ,response) {
+		if(classImgLists.split("|").length>9){//超过之后的判断
+			uploader.stop();
+			ui.showToast("限制9张,已满！");
+			return false;
+		}
+classImgLists+=response.Data[0].f_url+"|";console.log(classImgLists);
+if(classImgLists.split("|").length>3){
+	$(".pre").show();
+	$(".next").show();
+}
+if(classImgLists.split("|").length>9){
+	$('#modelImg').hide();
+}
+var $li = $(
+            '<div class="swiper-slide file-item thumbnail"  ontouchstart="gtouchstart(this)" ontouchmove="gtouchmove(this)" ontouchend="gtouchend(this)" style="background-image: url('+response.Data[0].f_url+');">' +
+//              '<img  src="'+response.Data[0].f_url+'"/>' +
+            '</div>'
+            ),
+        $img = $li.find('img');
+    // $list为容器jQuery实例
+    $('.swiper-wrapper').append( $li );
+    mySwiper.update();
+});
+// 文件上传过程中创建进度条实时显示。
+uploader.on( 'uploadProgress', function( file, percentage ) {
+	
+    var $li = $( '#'+file.id ),
+        $percent = $li.find('.progress span');
+    // 避免重复创建
+    if ( !$percent.length ) {
+        $percent = $('<p class="progress"><span></span></p>')
+                .appendTo( $li )
+                .find('span');
+    }
+
+    $percent.css( 'width', percentage * 100 + '%' );
+    progress=parseInt(percentage* 100);
+});
+
+}
+//////////////////////////////////////////////------------------------------------
+var timeOutEvent=0;//定时器   
+//开始按   
+function gtouchstart(_this){  
+    timeOutEvent = setTimeout(function(){
+    	longPress(_this);
+    },1000);//这里设置定时器，定义长按500毫秒触发长按事件，时间可以自己改，个人感觉500毫秒非常合适
+    return false;   
+};   
+//手释放，如果在500毫秒内就释放，则取消长按事件，此时可以执行onclick应该执行的事件   
+function gtouchend(_this){   
+    clearTimeout(timeOutEvent);//清除定时器   
+    if(timeOutEvent!=0){   
+        //这里写要执行的内容（尤如onclick事件）   
+    }   
+    return false;   
+};   
+//如果手指有移动，则取消所有事件，此时说明用户只是要移动而不是长按   
+function gtouchmove(_this){   
+    clearTimeout(timeOutEvent);//清除定时器   
+    timeOutEvent = 0;   
+      
+};   
+   
+//真正长按后应该执行的内容   
+function longPress(_this){   
+    timeOutEvent = 0;   
+    //执行长按要执行的内容，如弹出菜单   
+   ui.showAlert('是否确认删除该图片', function () {//确认
+               $(_this).remove();
+                $(".imgs").css("width",$(".imgs img").length*170+"px");
+            },function(){//不是默认地址
+            	
+            	return false;
+            },"确定","取消","提示");
+} 
+$(".next").click(function(){
+	mySwiper.slideNext();
+})
+$(".pre").click(function(){
+	mySwiper.slidePrev();
+})
+
+$('.float').click(function(){
+	
+	
+	clearFloat();
+	
+	 
+})
+	function showTeacherCard(){
+		$(".float").show();
+		$(".t_card").show();
+	}
+	$(".float").click(function(){
+		$(this).fadeOut();
+		$(".t_card").fadeOut();
+	})
+</script>
+<script type="text/javascript">
+//	AJAX
+	var curriculumid,studentId;//课程ID/学生id
+	getAjax(hostAjax+"/api/tch/v1/getteachersaleinfo",{//本月销售记录
+			user_id:uid
+		},function(data){
+			if(data.Data!=""){
+				$(".main_s ._content li").eq(0).find("span").text(data.Data[0].dtnums);
+//				$(".main_s ._content li").eq(1).find("span").text(data.Data[0].yjnums);
+				$(".main_s ._content li").eq(2).find("span").text(data.Data[0].yjnums);
+//				$(".main_s ._content li").eq(3).find("span").text(data.Data[0].dfnums);
+				$(".main_s ._content li").eq(4).find("span").text(data.Data[0].yjpercent);
+//				$(".main_s ._content li").eq(5).find("span").text(data.Data[0].dfpercent);
+				
+//				$(".main_s ._content li").eq(6).find("span").text(data.Data[0].dfnums);
+				$(".main_s ._content li").eq(1).find("span").text(data.Data[0].dxfnums);
+				if(data.Data[0].dxfnums>0){
+					$('.dxfnums').css("color","red");
+					$('.dxfnums').css("font-size","0.3rem");
+				}
+//				$(".main_s ._content li").eq(8).find("span").text(data.Data[0].qynums);
+				$(".main_s ._content li").eq(3).find("span").text(data.Data[0].xfnums);
+//				$(".main_s ._content li").eq(10).find("span").text(data.Data[0].qfpercent);
+				$(".main_s ._content li").eq(5).find("span").text(data.Data[0].xfpercent);
+			}
+		})
+	getAjax(hostAjax+"/api/tch/v1/getmodelist",{//老师销售记录图表
+			user_id:uid
+		},function(data){
+			if(data.Data!=""){
+				$(".main_s .monthindex").text(data.Data.monthindex);
+				$(".main_s .circle1 .t").text(data.Data.monthindex);
+				$(".main_s .circle2 .t").text(data.Data.Completionofindicators);
+				$(".main_s .Completionofindicators").text(data.Data.Completionofindicators);
+				if(data.Data.ifexcess==1){//超过
+					$(".main_s .minus").text(0);
+					$(".main_s .circle2").css("height",((data.Data.Completionofindicators/50000)*80).toFixed(2)+"%");
+					if(data.Data.Completionofindicators>50000){
+						$(".main_s .circle2").css("height",(1*80).toFixed(2)+"%");
+					}
+					if(data.Data.monthindex==0){
+						$('.main_s .circle1').hide();
+					}
+					$(".main_s .name b").text(((data.Data.Completionofindicators/50000)*100).toFixed(2)+"%");
+				}else{
+					$(".main_s .minus").text(data.Data.monthindex-data.Data.Completionofindicators);
+						$(".main_s .circle2").css("height",((data.Data.Completionofindicators/data.Data.monthindex)*80).toFixed(2)+"%");
+					$(".main_s .name b").text(((data.Data.Completionofindicators/data.Data.monthindex)*100).toFixed(2)+"%");
+					if(data.Data.monthindex==0){
+						$('.main_s .circle1').hide();
+						if(data.Data.Completionofindicators==0){
+							$(".main_s .name b").text("0%");
+							
+						}
+					}
+				}
+				
+			}
+		})
+	showTime();
+	function showTime(){getAjax(hostAjax+"/api/tch/v1/getteachinglist",{//老师教学记录图表
+			user_id:uid
+		},function(data){
+			if(data.Data!=""){
+				$(".main_t .monthindex").text(data.Data.list.classhourindex);
+				$(".main_t .circle1 .t").text(data.Data.list.classhourindex);
+				$(".main_t .circle2 .t").text(data.Data.list.completeclasshour);
+				$(".main_t .Completionofindicators").text(data.Data.list.completeclasshour);
+				if(data.Data.list.completeclasshour>data.Data.list.classhourindex){
+					$(".main_t .minus").text(0);
+					$(".main_t .name b").text("100%");
+					$(".main_t .circle2").css("height","80%");
+					if(data.Data.list.classhourindex==0){
+						$('.main_t .circle1').hide();
+					}
+					
+				}else{
+					$(".main_t .minus").text(data.Data.list.classhourindex-data.Data.list.completeclasshour);
+					$(".main_t .circle2").css("height",((data.Data.list.completeclasshour/data.Data.list.classhourindex)*80).toFixed(2)+"%");
+					$(".main_t .name b").text((data.Data.list.completeclasshour/data.Data.list.classhourindex*100).toFixed(2)+"%");
+					if(data.Data.list.completeclasshour==0){
+						$(".main_t .name b").text((0*100).toFixed(2)+"%");
+					}
+					if(data.Data.list.classhourindex==0){
+						$('.main_t .circle1').hide();
+					}
+				}
+				if(JSON.stringify(data.Data.classcourse)=="{}"){
+					$(".my_course ul").html('<img src="img/noCource.png"/>');
+					$(".my_children").hide();
+					
+				}else{
+					$(".my_course ul li").eq(0).find("span").text(data.Data.classcourse.subjecttype);
+					$(".my_course ul li").eq(1).find("span").text(data.Data.classcourse.classtime);
+						$(".my_course ul li").eq(2).find("span").text(data.Data.classcourse.classname+"班");
+					
+					
+					$(".my_course ul li").eq(3).find("span").text(data.Data.classcourse.subjectname);
+					curriculumid=data.Data.classcourse.id;//记录本节课的课程id
+					var str="",registerStr="",registerClass="",color="",quekelustr="",quekelustr1="";
+					if(data.Data.studentlist!=undefined){
+					for(var i=0;i<data.Data.studentlist.length;i++){
+						
+						if(data.Data.studentlist[i].state=="3"){
+							quekelustr="background-color:#eee;";
+							quekelustr1="";
+							registerClass="已添加";
+						}else if(data.Data.studentlist[i].state==1){//签到
+							registerClass="已添加";
+							quekelustr="background-color:#eee;";
+						}else if(data.Data.studentlist[i].state==2){
+							registerClass="已缺课";
+							quekelustr="background-color:#eee;";
+						}else if(data.Data.studentlist[i].principalsevaluation.length>5){
+							registerClass="已添加";
+							quekelustr="";
+						}else{
+							quekelustr="";
+							registerClass="课堂表现";
+						}
+						if(data.Data.studentlist[i].typeclasshour<=8){
+							color= 'style="color:red;margin:0 0.1rem;font-size:0.3rem"';
+						}else{
+							color="";
+						}
+						if(data.Data.studentlist[i].typeclasshour<=0){
+							data.Data.studentlist[i].typeclasshour=0;
+						}
+						
+						if(data.Data.studentlist[i].state=="2"){//缺课
+							
+//							quekelustr1="display:none;";
+						}else{
+//							quekelustr="";
+							quekelustr1="";
+						}
+						
+						str+='<li>'+
+							'<ul class="ul" id="'+data.Data.studentlist[i].id+'">'+
+								'<li><img src="img/default_person.png" alt="" /><p>'+data.Data.studentlist[i].NAME+'</p></li>'+
+								
+								'<li><button class="edit_button" style="'+quekelustr1+'">'+registerClass+'</button><button class="queke" style="'+quekelustr+'">缺课</button></li>'+
+								'<li><p style="margin-top:0.1rem;">剩余课时：<span class="classhour" '+color+'>'+data.Data.studentlist[i].typeclasshour+'</span></p></li>'+
+								'<div class="clearfix"></div>'+
+							'</ul>'+
+						'</li>';
+					}
+					if(str==""){
+						
+					}
+					}else{
+//						$(".my_course ul").html('<img src="img/noCource.png"/>');
+						$(".my_children").hide();
+					}
+					$(".my_children ul").html(str);
+					$(".my_children img").click(function(){
+						location.href="./src/ditui/studentDetail.html?studentId="+$(this).parents("ul").attr("id");
+					})
+					$(".classhour").click(function(){
+						location.href="./src/ditui/studentDetail.html?studentId="+$(this).parents("ul").attr("id");
+					})
+					if((new Date()-new Date(data.Data.classcourse.classtime.split("-")[0].replace(/日/,"").replace(/年/,"/").replace(/月/,"/"))>-600000)){
+						$(".edit_button").click(function(){
+							if($(this).text()=="已缺课"){
+								ui.showToast( "已缺课",2000);
+								return false;
+							}
+							//记录学生id
+							studentId=$(this).parents('.ul').attr('id');
+							$('.float').show();
+							$('.class_show').css("left","0.6rem");
+							$('.class_show').show();
+						})
+						$(".queke").click(function(){
+							if($(this).css("background-color")=="rgb(238, 238, 238)"&&$(this).prev("button").text()=="已添加"){
+								ui.showToast( "已添加课堂表现",2000);
+								return false;
+							}else if($(this).css("background-color")=="rgb(238, 238, 238)"){
+								ui.showToast( "已缺课",2000);
+								return false;
+							}
+							var _this=this;
+							ui.showAlert('请确认是否缺课', function () {
+		                //调取缺课按钮
+							getAjax(hostAjax+"/api/tch/v1/studentabsence",{
+								user_id:$(_this).parents('.ul').attr('id'),//学生ID
+								curriculumid:curriculumid,
+								teacherid:uid
+							},function(data){
+								if(data.Code==200){
+									ui.showToast( "操作成功",2000);
+									showTime();
+								}
+							})
+		            },null,"是的","取消","提示");
+							
+						})
+					}else{
+						$(".edit_button").click(function(){
+							ui.showToast( '亲，时间还没到不能评论哦！',2000);
+						})
+						$(".queke").click(function(){
+							ui.showToast( '亲，时间还没到哦！',2000);
+						})
+					}
+					
+					$(".register").click(function(){//签到
+						var _this=this;
+						getAjax(hostAjax+"/api/tch/v1/studentsingin",{//老师给学生签到
+							user_id:$(this).parents('.ul').attr('id'),
+							curriculumid:curriculumid,
+							teacherid:uid
+						},function(data){
+							if(data.Code==200){
+								$(_this).addClass("hadregister");
+								$(_this).text("已签到");
+							}
+						})
+					})
+				} 
+			}
+		})}
+	getAjax(hostAjax+"/api/stu/v1/getmessagelist",{//所有的消息
+		user_id:uid,
+		type:localStorage.getItem("zhizhao_typle")
+	},function(data){
+		if(data.Code==1000){
+			$(".ifHite").removeClass("hite");
+			return false;
+		}
+		
+	})
+		getAjax(hostAjax+"/api/tch/v1/teacherinfo",{//老师信息--昵称、名字、电话、头像
+			user_id:uid
+		},function(data){
+			if(data.Data!=""){
+				console.log(data);
+				$(".name p").text(data.Data.nickname);
+				if(data.Data.imgurl!=""){
+					$(".name img").attr("src",data.Data.imgurl);
+				}
+				$(".tName").text(data.Data.name);
+				$(".yaoqingma").text('邀请码：'+data.Data.Teacherid);
+				localStorage.setItem("zhizhao_Name",data.Data.nickname);
+				$(".tel").text(data.Data.phone);
+			}
+		})
+		$(".submit").click(function(){//
+			if($('textarea').val().trim().length<=8){
+				ui.showToast( '课堂表现的评语不能少于八个字',2000);
+				return false;
+			}
+			getAjax(hostAjax+"/api/tch/v1/addclassroomperformance",{//添加学生的课堂表现
+				user_id:studentId,
+				curriculumid:curriculumid,
+				teacherid:uid,
+				principalsevaluation:$('textarea').val(),
+				imglist:classImgLists.substring(0,classImgLists.length - 1)
+			},function(data){
+				if(data.Code==200){
+					ui.showToast( '提交成功');
+					showTime();
+					clearFloat();
+					$("#"+studentId).find(".edit_button").text("已添加");
+				}
+			})
+		})
+		function clearFloat(){
+			$('.float').hide();
+			$('.class_show').hide();
+			classImgLists="";
+			$("textarea").val(" ");
+			$(".swiper-wrapper").html('<div class="swiper-slide" id="modelImg"><img src="img/addImg.png"/></div>');
+			 mySwiper.update();
+			 console.log(classImgLists.split('|').length)
+			 uploaderInit();
+		}
+//		main_y
+		getAjax(hostAjax+"/api/tch/v1/selectpreparelessonscount",{//业务学习板块
+			user_id:uid
+		},function(data){
+			if(data.Data!=""){
+				$(".main_y ul li").eq(0).find("p").text(data.Data.listenedlessonscount);
+				$(".main_y ul li").eq(1).find("p").text(data.Data.preparelessonscount);
+			}
+		})
+		getAjax(hostAjax+"/api/tch/v1/selectpreparelessonslist",{//备课列表
+			user_id:uid
+		},function(data){
+			var str="",haseCommite="";
+			if(data.Data!=""){
+				for (var i=0;i<data.Data.list.length&&i<3;i++) {
+					str+='<div class="list" id='+data.Data.list[i].id+'>'+
+						'<b>'+haseCommite+'课程主题：《'+data.Data.list[i].curriculumtheme+'》</b>'+
+						'<p>上课时间：'+data.Data.list[i].classtime.split(' ')[0]+'</p>'+
+						'<p>课程类型：'+data.Data.list[i].curriculumtypename+'</p>'+
+					'</div>';
+				}
+				$('.beike').eq(0).find(".lists").html(str);
+				$('.beike').eq(0).find('.list').click(function(){
+					location.href="src/yewu/beikeDetail.html?id="+$(this).attr('id');
+				})
+			}else{
+				$('.beike').eq(0).find('header span').hide();
+			}
+		})
+		getAjax(hostAjax+"/api/tch/v1/selectlistenedlessonslist",{//听课列表
+			user_id:uid
+		},function(data){
+			var str="",haseCommite="";
+			if(data.Data!=""){
+				for (var i=0;i<data.Data.list.length&&i<3;i++) {
+					if(data.Data.list[i].listenedname=="未评价"){
+						haseCommite="";
+					}else{
+						haseCommite='<span>【已评论】</span>';
+					}
+					str+='<div class="list" id='+data.Data.list[i].id+'>'+
+						'<b>'+haseCommite+'课程主题：《'+data.Data.list[i].curriculumtheme+'》</b>'+
+						'<p>上课时间：'+data.Data.list[i].classtime.split(' ')[0]+'</p>'+
+						'<p>课程类型：'+data.Data.list[i].curriculumtypename+'</p>'+
+						'<p>上课老师：'+data.Data.list[i].t_teachernickname+'</p>'+
+					'</div>';
+				}
+				$('.beike').eq(1).find(".lists").html(str);
+				$('.beike').eq(1).find('.list').click(function(){
+					location.href="src/yewu/tingikeDetail.html?id="+$(this).attr('id');
+				})
+			}else{
+				$('.beike').eq(1).find('header span').hide();
+			}
+		})
+</script>
+<script>
+//	var ui = window.CUMS.UI;
+	 var courseList=[],courseType=[];
+	 var arr1=[],arr2=[],arr3=[],arr4=[],arr5=[],arr6=[],arr7=[];
+getAjax(hostAjax+"/api/course/v1/gettingtimetable",{
+	teacherid:uid
+},function(data){
+	if(data.Code==1000){
+		 $(".Courses-head").css("width",$(".stage_1").css("width"));
+    if(sessionStorage.getItem("teacherTab")=="1"){
+	$('.teacher .tab li').eq(1).click();
+}else if(sessionStorage.getItem("teacherTab")=="2"){
+	$('.teacher .tab li').eq(2).click();
+}else if(sessionStorage.getItem("teacherTab")=="0"){
+	$('.teacher .tab li').eq(0).click();	
+}
+//		ui.showToast( '抱歉，你这周没课！',3000);
+		return false;
+	}
+	var time=new Date();
+	
+	var timeShow=new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate();
+	if(time.getDay()==1){
+		data.Data.predate=new Date(time).getFullYear()+"-"+(new Date(time).getMonth()+1)+"-"+new Date(time).getDate();
+		data.Data.downdate=new Date(Date.parse(time)+6*24*60*60*1000).getFullYear()+"-"+(new Date(Date.parse(time)+6*24*60*60*1000).getMonth()+1)+"-"+new Date(Date.parse(time)+6*24*60*60*1000).getDate();
+	}else if(time.getDay()==2){
+		data.Data.predate=new Date(time-1*24*60*60*1000).getFullYear()+"-"+(new Date(time-1*24*60*60*1000).getMonth()+1)+"-"+new Date(time-1*24*60*60*1000).getDate();
+		data.Data.downdate=new Date(Date.parse(time)+5*24*60*60*1000).getFullYear()+"-"+(new Date(Date.parse(time)+5*24*60*60*1000).getMonth()+1)+"-"+new Date(Date.parse(time)+5*24*60*60*1000).getDate();
+		
+	}else if(time.getDay()==3){
+		data.Data.predate=new Date(time-2*24*60*60*1000).getFullYear()+"-"+(new Date(time-2*24*60*60*1000).getMonth()+1)+"-"+new Date(time-2*24*60*60*1000).getDate();
+		data.Data.downdate=new Date(Date.parse(time)+4*24*60*60*1000).getFullYear()+"-"+(new Date(Date.parse(time)+4*24*60*60*1000).getMonth()+1)+"-"+new Date(Date.parse(time)+4*24*60*60*1000).getDate();
+	}else if(time.getDay()==4){
+		data.Data.predate=new Date(time-3*24*60*60*1000).getFullYear()+"-"+(new Date(time-3*24*60*60*1000).getMonth()+1)+"-"+new Date(time-3*24*60*60*1000).getDate();
+		data.Data.downdate=new Date(Date.parse(time)+3*24*60*60*1000).getFullYear()+"-"+(new Date(Date.parse(time)+3*24*60*60*1000).getMonth()+1)+"-"+new Date(Date.parse(time)+3*24*60*60*1000).getDate();
+	}else if(time.getDay()==5){
+		data.Data.predate=new Date(time-4*24*60*60*1000).getFullYear()+"-"+(new Date(time-4*24*60*60*1000).getMonth()+1)+"-"+new Date(time-4*24*60*60*1000).getDate();
+		data.Data.downdate=new Date(Date.parse(time)+2*24*60*60*1000).getFullYear()+"-"+(new Date(Date.parse(time)+2*24*60*60*1000).getMonth()+1)+"-"+new Date(Date.parse(time)+2*24*60*60*1000).getDate();
+	}else if(time.getDay()==6){
+		data.Data.predate=new Date(time-5*24*60*60*1000).getFullYear()+"-"+(new Date(time-5*24*60*60*1000).getMonth()+1)+"-"+new Date(time-5*24*60*60*1000).getDate();
+		data.Data.downdate=new Date(Date.parse(time)+1*24*60*60*1000).getFullYear()+"-"+(new Date(Date.parse(time)+1*24*60*60*1000).getMonth()+1)+"-"+new Date(Date.parse(time)+1*24*60*60*1000).getDate();
+	}else{
+		data.Data.predate=new Date(time-6*24*60*60*1000).getFullYear()+"-"+(new Date(time-6*24*60*60*1000).getMonth()+1)+"-"+new Date(time-6*24*60*60*1000).getDate();
+		data.Data.downdate=new Date(time).getFullYear()+"-"+(new Date(time).getMonth()+1)+"-"+new Date(time).getDate();
+	}
+	$(".kebiaoTime").text(data.Data.predate+'至'+data.Data.downdate+"课表");
+	arr1=[],arr2=[],arr3=[],arr4=[],arr5=[],arr6=[],arr7=[];
+	courseList=[],courseType=[];
+	//循环遍历
+	for (var i=0;i<data.Data.list.length;i++) {
+		courseType.push([{index: (i+1), name: data.Data.list[i].nums.split('-')[0]}, 1]);
+		courseType.push([{index: (i+1), name: data.Data.list[i].nums.split('-')[1]}, 1]);
+		if(data.Data.list[i].day1!=""){
+			arr1.push(data.Data.list[i].day1.split('/')[1]+" "+data.Data.list[i].day1.split('/')[3]+"&"+data.Data.list[i].day1.split('/')[0]);
+			arr1.push(data.Data.list[i].day1.split('/')[1]+" "+data.Data.list[i].day1.split('/')[3]+"&"+data.Data.list[i].day1.split('/')[0]);
+		}else{
+			arr1.push("");arr1.push("");
+		}
+		if(data.Data.list[i].day2!=""){
+			arr2.push(data.Data.list[i].day2.split('/')[1]+" "+data.Data.list[i].day2.split('/')[3]+"&"+data.Data.list[i].day2.split('/')[0]);
+			arr2.push(data.Data.list[i].day2.split('/')[1]+" "+data.Data.list[i].day2.split('/')[3]+"&"+data.Data.list[i].day2.split('/')[0]);
+		}else{
+			arr2.push("");arr2.push("");
+		}
+		if(data.Data.list[i].day3!=""){
+			arr3.push(data.Data.list[i].day3.split('/')[1]+" "+data.Data.list[i].day3.split('/')[3]+"&"+data.Data.list[i].day3.split('/')[0]);
+			arr3.push(data.Data.list[i].day3.split('/')[1]+" "+data.Data.list[i].day3.split('/')[3]+"&"+data.Data.list[i].day3.split('/')[0]);
+		}else{
+			arr3.push("");arr3.push("");
+		}
+		if(data.Data.list[i].day4!=""){
+			arr4.push(data.Data.list[i].day4.split('/')[1]+" "+data.Data.list[i].day4.split('/')[3]+"&"+data.Data.list[i].day4.split('/')[0]);
+			arr4.push(data.Data.list[i].day4.split('/')[1]+" "+data.Data.list[i].day4.split('/')[3]+"&"+data.Data.list[i].day4.split('/')[0]);
+		}else{
+			arr4.push("");arr4.push("");
+		}
+		if(data.Data.list[i].day5!=""){
+			arr5.push(data.Data.list[i].day5.split('/')[1]+" "+data.Data.list[i].day5.split('/')[3]+"&"+data.Data.list[i].day5.split('/')[0]);
+			arr5.push(data.Data.list[i].day5.split('/')[1]+" "+data.Data.list[i].day5.split('/')[3]+"&"+data.Data.list[i].day5.split('/')[0]);
+		}else{
+			arr5.push("");arr5.push("");
+		}
+		if(data.Data.list[i].day6!=""){
+			arr6.push(data.Data.list[i].day6.split('/')[1]+" "+data.Data.list[i].day6.split('/')[3]+"&"+data.Data.list[i].day6.split('/')[0]);
+			arr6.push(data.Data.list[i].day6.split('/')[1]+" "+data.Data.list[i].day6.split('/')[3]+"&"+data.Data.list[i].day6.split('/')[0]);
+		}else{
+			arr6.push("");arr6.push("");
+		}
+		if(data.Data.list[i].day7!=""){
+			arr7.push(data.Data.list[i].day7.split('/')[1]+" "+data.Data.list[i].day7.split('/')[3]+"&"+data.Data.list[i].day7.split('/')[0]);
+			arr7.push(data.Data.list[i].day7.split('/')[1]+" "+data.Data.list[i].day7.split('/')[3]+"&"+data.Data.list[i].day7.split('/')[0]);
+		}else{
+			arr7.push("");arr7.push("");
+		}
+		
+		
+		
+		
+		
+		
+//		console.log(arr1);
+	}
+	courseList.push(arr1);
+	courseList.push(arr2);
+	courseList.push(arr3);
+	courseList.push(arr4);
+	courseList.push(arr5);
+	courseList.push(arr6);
+	courseList.push(arr7);
+//	console.log(arr1);
+	var week =['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+  	var day = new Date().getDay();
+  
+  // 实例化(初始化课表)
+  var Timetable = new Timetables({
+    el: '#coursesTable',
+    timetables: courseList,
+    week: week,
+    timetableType: courseType,
+    highlightWeek: day,
+    gridOnClick: function (e) {
+      if(e.id){
+      	 location.href="src/Course/index.html?id="+e.id;
+      }
+     
+    },
+    styles: {
+      Gheight: 50
+    }
+  });
+  window.onscroll=function(){
+		if($("#coursesTable")[0].offsetTop-(document.documentElement.scrollTop||document.body.scrollTop)+15<=0){
+			if($("#coursesTable")[0].offsetTop-(document.documentElement.scrollTop||document.body.scrollTop)+$("#coursesTable").height()-30<=0){
+			$(".Courses-head").css({"position":"static","top":0});
+			$(".Courses-content").css("padding-top","0px");
+		}else{
+			$(".Courses-head").css({"position":"fixed","top":0});
+			$(".Courses-content").css("padding-top","30px");
+		}
+		
+			
+		}else{
+			$(".Courses-head").css({"position":"static","top":0});
+			$(".Courses-content").css("padding-top","0px");
+		}
+	}
+   $(".Courses-head").css("width",$(".stage_1").css("width"));
+    if(sessionStorage.getItem("teacherTab")=="1"){
+	$('.teacher .tab li').eq(1).click();
+}else if(sessionStorage.getItem("teacherTab")=="2"){
+	$('.teacher .tab li').eq(2).click();
+}else if(sessionStorage.getItem("teacherTab")=="0"){
+	$('.teacher .tab li').eq(0).click();	
+}
+})
+$('.teacher .tab li').click(function(){
+	$('.teacher .tab li.active').removeClass('active');
+	$(this).addClass('active');
+	//下面需要修改 扇形表的数据
+	if($(this).text()=="教学记录"){
+		sessionStorage.setItem("teacherTab",0)
+		$(".main_t").show();
+		$(".main_y").hide();
+		$(".main_s").hide();
+	}else if($(this).text()=="销售记录"){
+		sessionStorage.setItem("teacherTab",1)
+		$(".main_t").hide();
+		$(".main_y").hide();
+		$(".main_s").show();
+	}else{
+		sessionStorage.setItem("teacherTab",2)
+		$(".main_t").hide();
+		$(".main_s").hide();
+		$(".main_y").show();
+	}
+})
+ 
+//courseList = [
+//  ['大学英语(Ⅳ)@10203', '大学英语(Ⅳ)@10203', '', '', '', '', '毛概@14208', '毛概@14208', '', '', '', '选修'],
+//  ['', '', '信号与系统@11302', '信号与系统@11302', '模拟电子技术基础@16204', '模拟电子技术基础@16204', '', '', '', '', '', ''],
+//  ['大学体育(Ⅳ)', '大学体育(Ⅳ)', '形势与政策(Ⅳ)@15208', '形势与政策(Ⅳ)@15208', '', '', '电路、信号与系统实验', '电路、信号与系统实验', '', '', '', ''],
+//  ['', '', '', '', '电装实习@11301', '电装实习@11301', '', '', '', '大学体育', '大学体育', ''],
+//  ['', '', '数据结构与算法分析', '数据结构与算法分析', '', '', '', '', '信号与系统', '信号与系统', '', ''],
+//];
+//var week = window.innerWidth > 360 ? ['周一', '周二', '周三', '周四', '周五', '周六', '周日'] :
+//  ['一', '二', '三', '四', '五','六','七'];
+ 	
+
+ 
+
+
+</script>
+</html>

@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>课程表详情</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/swiper-3.4.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/animate.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/webuploader/webuploader.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	body{
+    		background-color: #fff;
+    	}
+    	.my_course header,.my_children header,.ditui header{
+    		margin-top: 0.2rem;
+    		margin-bottom: 0.15rem;
+    		font-size: 0.28rem;
+    		font-weight: 900;
+    	}
+    	.ditui li{
+    		height: 0.9rem;
+    		line-height: 0.9rem;
+    		border-bottom: 1px solid #eee;
+    	}
+    	.ditui li i{
+    		float: right;
+    		font-size: 0.3rem;
+    	}
+    	.my_course i{
+    		float: right;
+    		font-weight: 100;
+    	}
+    	.my_course img{
+    		width: 4rem;
+    		display: block;
+    		margin: auto;
+    	}
+    	.my_course li{
+    		margin-top: 0.2rem;
+    	}
+    	.my_children{
+    		margin-bottom: 0.5rem;
+    	}
+    	.my_children ul ul{
+    		clear: both;
+    		position: relative;
+    		right: 0.5rem;
+    		width: 7.5rem;
+    		border-bottom: 1px solid #eee;
+    	}
+    	.my_children ul ul li{
+    		text-align: center;
+    		float: left;
+    		width: 33.33%;
+    		padding-bottom: 0.15rem;
+    		padding-top: 0.2rem;
+    		
+    	}
+    	.my_children img{
+    		width: 0.61rem;
+    		height: 0.61rem;
+    		border-radius: 0.61rem;
+    		
+    	}
+    	.my_children button{
+    		margin-bottom: 0.15rem;
+    		width: 1.6rem;
+    		height: 0.55rem;
+    		border-radius: 0.55rem;
+    		background-color: #FBD15B;
+    		border: 0;
+    	}
+    	.pre img{
+    		width: 0.4rem;
+    		position: absolute;
+    		top: 0.45rem;
+    		left: 0.2rem;
+    		z-index: 222;
+    	}
+    	.pre,.next{
+    		display: none;
+    	}
+    	.next img{
+    		z-index: 222;
+    		width: 0.4rem;
+    		position: absolute;
+    		top: 0.45rem;
+    		right: 0.2rem!important;
+    	}
+    	.hadregister{
+    		background-color: #FDE8AD!important;
+    	}
+    	.noregister{
+    		background-color: #EAEAEA!important;
+    	}
+    	.t_card .more{
+    		display: block;
+		    position: absolute;
+		    width: 0.55rem;
+		    right: 0.2rem;
+		    bottom: 0.2rem;
+    	}
+    	.teacher .tab{
+			padding: 0 1.2rem;
+		}
+		.teacher .tab li{
+			width: 33.33%;
+		}
+		.circle_out{
+			width: 5.5rem;
+			height: 4.5rem;
+			margin: auto;
+			border-left: 0.277rem solid #809292;
+			border-bottom: 0.277rem solid #809292;
+			position: relative;
+		}
+		.circle1{
+			position: absolute;
+			height: 80%;
+			width: 1.34rem;
+			background-color: red;
+			left: 0.47rem;
+			bottom: 0;
+		}
+		.circle2{
+			position: absolute;
+			height: 60%;
+			width: 1.34rem;
+			background-color: #EFB511;
+			left: 2.8rem;
+			bottom: 0;
+		}
+		.t{
+			position: absolute;
+			top: -0.4rem;
+			width: 100%;
+			text-align: center;
+			color: red;
+		}
+		.b{
+			width: 1.9rem;
+			left: -0.2rem;
+			position: absolute;
+			bottom: -0.8rem;
+		}
+		.content{
+			padding-left: 1.5rem;
+			margin-top: 0.2rem;
+		}
+		.queke{
+			 margin-top: 0.2rem;
+			 margin-bottom: 0!important;
+		}
+    </style>
+</head>
+<body class="up-page">
+	<div class="t_card animated card1 zoomIn" style="display: none;">
+		<div class="name"><p style="font-size: 0.5rem;"></p> <img src="../../img/bodyBg/defined.jpg" alt="" /></div>
+		<div class="tName" style="margin-left: 0.6rem;"></div>
+		<div class="tel"></div>
+		<img class="more" onclick="goUrl('changeCard.html?type=1')" src="../../img/moreCards.png"/>
+	</div>
+	<div class="up-page-wrapper teacher">
+		<div class="header">
+			<div class="clearfix"></div>
+			
+		</div>
+		<div class="clearfix"></div>
+		<div class="main">
+			<div class="main_t">
+				<div class="my_course">
+					<header> <!--onclick="goUrl('src/Course/example.html')"-->我的课表<!--<i class="iconfont icon-you"></i><i style="position: relative;left: 0.15rem;" class="iconfont icon-you"></i>--></header>
+					<ul>
+						<li>课程类型：<span style="color: #EFB511;"></span></li>
+						<li class="">上课时间：<span></span></li>
+						<li class="">所在班级：<span></span></li>
+						<!--<li class="">课程主题：<span></span></li>-->
+						
+					</ul>
+				</div>
+				<div class="my_children">
+					<header>班级成员</header>
+					<ul>
+						
+					</ul>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="float"></div>
+		
+		
+		
+		<!--评分-->
+		<div class="class_show"  style="background: #;height: 100%;left: -100%;">
+			<div class="text">
+				<textarea style="resize: none;height: 1.9rem;text-align: left;text-indent: 2em;border: 1px solid #eee;padding: 0.15rem;line-height: 0.45rem;box-sizing: border-box;" id="text" name="show" rows="" cols="">
+					
+				</textarea>
+				
+				<div class="swiper-container">
+				  <div class="swiper-wrapper">
+				  	<div class="swiper-slide" id="modelImg"><img src="../../img/addImg.png"/></div>
+				    <!--<div class="swiper-slide">slider1</div>
+				    <div class="swiper-slide">slider2</div>
+				    <div class="swiper-slide">slider3</div>-->
+				  </div>
+				  <div class="pre">
+				  	<img src="../../img/left@3x.png"/>
+				  </div>
+				  <div class="next">
+				  	<img src="../../img/right@3x.png"/>
+				  </div>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!--星星评分--开始-->
+			<div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+				<span style="width: 30%;">认真听讲</span>
+				<div id="" style="display: flex;justify-content: flex-end;">
+					<img class="xing" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<label id="lab"></label>
+				</div>
+
+			</div>
+
+			<div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+				<span style="width: 30%;">行为习惯</span>
+				<div id="" style="display: flex;justify-content: flex-end;">
+					<img class="xing1" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing1" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing1" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing1" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing1" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<label id="lab1"></label>
+				</div>
+
+			</div>
+
+			<div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+				<span style="width: 30%;">动手能力</span>
+				<div id="" style="display: flex;justify-content: flex-end;">
+					<img class="xing2" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing2" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing2" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing2" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing2" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<label id="lab2"></label>
+				</div>
+
+			</div>
+
+			<div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+				<span style="width: 30%;">表达能力</span>
+				<div id="" style="display: flex;justify-content: flex-end;">
+					<img class="xing3" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing3" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing3" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing3" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing3" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<label id="lab3"></label>
+				</div>
+
+			</div>
+
+			<div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+				<span style="width: 30%;">积极主动</span>
+				<div id="" style="display: flex;justify-content: flex-end;">
+					<img class="xing4" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing4" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing4" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing4" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<img class="xing4" src="../../img/未评分.png" style="width: 10%;height: 100%;margin-left: 0.1rem;" />
+					<label id="lab4"></label>
+				</div>
+
+			</div>
+			<!--星星评分--结束-->	
+			
+			
+			<div class="button submit">
+					提交
+				</div>
+			</div>
+		</div>
+		<!--评分结束-->
+		
+		
+		
+		
+		
+		
+		
+	</div>
+</body>
+<script src="../../js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../css/webuploader/webuploader.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	//星星评分开始
+	var imgs = document.getElementsByClassName("xing");
+		var imgs1 = document.getElementsByClassName("xing1");
+		var imgs2 = document.getElementsByClassName("xing2");
+		var imgs3 = document.getElementsByClassName("xing3");
+		var imgs4 = document.getElementsByClassName("xing4");
+		var a1='';
+		for(var i = 0; i < imgs.length; i++) {
+			imgs[i].setAttribute("score", i + 1); //设置分数
+			imgs[i].onclick = function() { //点击时调用方法
+
+				var srcEl = event.srcElement; //通过event来获取原元素
+
+				var score = srcEl.getAttribute("score"); //获取分数
+				for(var j = 0; j < score; j++) {
+					imgs[j].src = "../../img/已评分.png";
+				}
+				for(var j = score; j < imgs.length; j++) {
+					imgs[j].src = "../../img/未评分.png";
+				}
+				a1=srcEl.getAttribute("score")
+				console.log(a1)
+			}
+		};
+		var a2='';
+		for(var i = 0; i < imgs1.length; i++) {
+			imgs1[i].setAttribute("score", i + 1); //设置分数
+			imgs1[i].onclick = function() { //点击时调用方法
+
+				var srcEl = event.srcElement; //通过event来获取原元素
+
+				var score = srcEl.getAttribute("score"); //获取分数
+				for(var j = 0; j < score; j++) {
+					imgs1[j].src = "../../img/已评分.png";
+				}
+				for(var j = score; j < imgs1.length; j++) {
+					imgs1[j].src = "../../img/未评分.png";
+				}
+				a2=srcEl.getAttribute("score")
+				console.log(a2)
+			}
+		};
+		var a3='';
+		for(var i = 0; i < imgs2.length; i++) {
+			imgs2[i].setAttribute("score", i + 1); //设置分数
+			imgs2[i].onclick = function() { //点击时调用方法
+
+				var srcEl = event.srcElement; //通过event来获取原元素
+
+				var score = srcEl.getAttribute("score"); //获取分数
+				for(var j = 0; j < score; j++) {
+					imgs2[j].src = "../../img/已评分.png";
+				}
+				for(var j = score; j < imgs2.length; j++) {
+					imgs2[j].src = "../../img/未评分.png";
+				}
+				a3=srcEl.getAttribute("score")
+				console.log(a3)
+			}
+		};
+		var a4='';
+		for(var i = 0; i < imgs3.length; i++) {
+			imgs3[i].setAttribute("score", i + 1); //设置分数
+			imgs3[i].onclick = function() { //点击时调用方法
+
+				var srcEl = event.srcElement; //通过event来获取原元素
+
+				var score = srcEl.getAttribute("score"); //获取分数
+				for(var j = 0; j < score; j++) {
+					imgs3[j].src = "../../img/已评分.png";
+				}
+				for(var j = score; j < imgs3.length; j++) {
+					imgs3[j].src = "../../img/未评分.png";
+				}
+				a4=srcEl.getAttribute("score")
+				console.log(a4)
+			}
+		};
+		var a4='';
+		for(var i = 0; i < imgs4.length; i++) {
+			imgs4[i].setAttribute("score", i + 1); //设置分数
+			imgs4[i].onclick = function() { //点击时调用方法
+
+				var srcEl = event.srcElement; //通过event来获取原元素
+
+				var score = srcEl.getAttribute("score"); //获取分数
+				for(var j = 0; j < score; j++) {
+					imgs4[j].src = "../../img/已评分.png";
+				}
+				for(var j = score; j < imgs4.length; j++) {
+					imgs4[j].src = "../../img/未评分.png";
+				}
+				a5=srcEl.getAttribute("score")
+				console.log(a5)
+			}
+		};
+	//星星评分结束
+	
+	
+	
+	
+//	AJAX
+	var curriculumid,studentId,classImgLists="";//课程ID/学生id
+//、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
+var mySwiper = new Swiper('.swiper-container', {
+	autoplay: 5000,//可选选项，自动滑动
+	slidesPerView: 3,
+	spaceBetween: 10
+})
+var BASE_URL= window.location.pathname;
+var uploader;
+uploaderInit();
+function uploaderInit(){
+	
+
+uploader= WebUploader.create({
+
+    // 选完文件后，是否自动上传。
+    auto: true,
+
+    // swf文件路径
+    swf: BASE_URL + '/css/webuploader/Uploader.swf',
+
+    // 文件接收服务端。
+    server: hostAjax+'/api/other/v1/PostFile',
+
+    // 选择文件的按钮。可选。
+    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+    pick: {
+    	id:'#modelImg',
+    	multiple:true
+    	
+    }
+    ,
+
+    // 只允许选择图片文件。
+    accept: {
+        title: 'Images',
+        extensions: '*',
+        mimeTypes: 'image/*'
+    }
+});
+ /* 上传前判断 */
+    uploader.on('beforeFileQueued', function (file) {
+    	
+      progress = 0;
+      /* 图片 */
+      if ('gif,jpg,jpeg,bmp,png'.indexOf(file.ext.toLowerCase()) == -1) {
+       alert('请上传图片文件');
+        return false;
+      }else{
+      	/* makeThumb方法生成缩略图获取图片base64 */
+        uploader.makeThumb(file, function(error, src){
+          if (error) {
+            alert('图片错误');
+            return;
+          }
+//        this.$refs.cropImg.changeImg(src, this.width, this.height, this.dataId);
+        }, 1, 1); /* 缩略图尺寸，大于1为px，0-1之间为百分比 */
+      }
+      /* 视频 */
+      if (this.type == 'video') {
+        if ('mp4,webm,m3u8,ogg'.indexOf(file.ext.toLowerCase()) == -1) {
+         alert('请上传支持的视频文件');
+          return false;
+        }
+      }
+      if (file.size > (3 * 1e8)) {
+       alert('文件大小不可超过300M');
+        return false;
+      }
+      /* 裁剪 */
+//    if (this.crop) {
+//      /* makeThumb方法生成缩略图获取图片base64 */
+//      this.uploader.makeThumb(file, (error, src) => {
+//        if (error) {
+//          this.$message('图片错误');
+//          return;
+//        }
+//        this.$refs.cropImg.changeImg(src, this.width, this.height, this.dataId);
+//      }, 1, 1); /* 缩略图尺寸，大于1为px，0-1之间为百分比 */
+//      return false;
+//    }
+//    this.loading = true;
+	  
+      return true;
+
+    })
+// 当有文件添加进来的时候
+uploader.on( 'uploadSuccess', function( file ,response) {
+		if(classImgLists.split("|").length>9){//超过之后的判断
+			uploader.stop();
+			ui.showToast("限制9张,已满！");
+			return false;
+		}
+		try{
+			classImgLists+=response.Data[0].f_url+"|";
+		}catch(e){
+			//TODO handle the exception
+		}
+
+if(classImgLists.split("|").length>3){
+	$(".pre").show();
+	$(".next").show();
+}
+if(classImgLists.split("|").length>9){
+	$('#modelImg').hide();
+}
+var $li;
+try{
+			$li= $(
+            '<div class="swiper-slide file-item thumbnail"  ontouchstart="gtouchstart(this)" ontouchmove="gtouchmove(this)" ontouchend="gtouchend(this)" style="background-image: url('+response.Data[0].f_url+');">' +
+//              '<img  src="'+response.Data[0].f_url+'"/>' +
+            '</div>'
+            ),
+        $img = $li.find('img');
+		}catch(e){
+			//TODO handle the exception
+		}
+		
+    // $list为容器jQuery实例
+    $('.swiper-wrapper').append( $li );
+    mySwiper.update();
+});
+// 文件上传过程中创建进度条实时显示。
+uploader.on( 'uploadProgress', function( file, percentage ) {
+	
+    var $li = $( '#'+file.id ),
+        $percent = $li.find('.progress span');
+    // 避免重复创建
+    if ( !$percent.length ) {
+        $percent = $('<p class="progress"><span></span></p>')
+                .appendTo( $li )
+                .find('span');
+    }
+
+    $percent.css( 'width', percentage * 100 + '%' );
+    progress=parseInt(percentage* 100);
+});
+
+}
+//////////////////////////////////////////////------------------------------------
+var timeOutEvent=0;//定时器   
+//开始按   
+function gtouchstart(_this){  
+    timeOutEvent = setTimeout(function(){
+    	longPress(_this);
+    },1000);//这里设置定时器，定义长按500毫秒触发长按事件，时间可以自己改，个人感觉500毫秒非常合适
+    return false;   
+};   
+//手释放，如果在500毫秒内就释放，则取消长按事件，此时可以执行onclick应该执行的事件   
+function gtouchend(_this){   
+    clearTimeout(timeOutEvent);//清除定时器   
+    if(timeOutEvent!=0){   
+        //这里写要执行的内容（尤如onclick事件）   
+    }   
+    return false;   
+};   
+//如果手指有移动，则取消所有事件，此时说明用户只是要移动而不是长按   
+function gtouchmove(_this){   
+    clearTimeout(timeOutEvent);//清除定时器   
+    timeOutEvent = 0;   
+      
+};   
+   
+//真正长按后应该执行的内容   
+var splitStr="",re,result;
+function longPress(_this){   
+    timeOutEvent = 0;  
+   splitStr=$(_this).css("background-image").split('url("')[1].split('")')[0];
+   splitStr+="\\|";
+   
+    console.log(splitStr)
+    //执行长按要执行的内容，如弹出菜单   
+   ui.showAlert('是否确认删除该图片', function () {//确认
+               	$(_this).remove();
+                re =new RegExp(splitStr);
+               	classImgLists= classImgLists.replace(re,"");
+            },function(){//不是默认地址
+            	
+            	return false;
+            },"确定","取消","提示");
+}
+		function clearFloat(){
+			$('.float').hide();
+			$('.class_show').hide();
+			classImgLists="";
+			$("textarea").val(" ");
+			$(".swiper-wrapper").html('<div class="swiper-slide" id="modelImg"><img src="../../img/addImg.png"/></div>');
+			 mySwiper.update();
+			 uploaderInit();
+		}
+		showTime();
+		function showTime(){getAjax(hostAjax+"/api/tch/v1/getclasscourseinfo",{
+			curriculumid:location.href.split("?id=")[1].split("&")[0]
+		},function(data){
+			console.log(data)
+			if(data.Data.classcourse==undefined){
+					$(".my_course ul").html('<img src="img/noCource.png"/>');
+					$(".my_children").hide();
+				}else{
+					$(".my_course ul li").eq(0).find("span").text(data.Data.classcourse.subjecttype);
+					$(".my_course ul li").eq(1).find("span").text(data.Data.classcourse.classtime);
+					if(data.Data.classcourse.classname.indexOf("班")>0){
+						$(".my_course ul li").eq(2).find("span").text(data.Data.classcourse.classname);
+					}else{
+						$(".my_course ul li").eq(2).find("span").text(data.Data.classcourse.classname+"班");
+					}
+					
+					$(".my_course ul li").eq(3).find("span").text(data.Data.classcourse.subjectname);
+					curriculumid=data.Data.classcourse.id;//记录本节课的课程id
+					console.log(curriculumid)
+					var str="",registerStr="",registerClass="",jilustr="",quekelustr="",quekelustr1="";
+					try{
+						for(var i=0;i<data.Data.studentlist.length;i++){
+						if(data.Data.studentlist[i].qdstate==1||data.Data.studentlist[i].qdstate==3){//签到
+							registerStr="hadregister"; 
+							registerClass="已签到";
+						}else if(data.Data.studentlist[i].qdstate==2){
+							registerStr="noregister";
+							registerClass="缺课";
+						}else{
+							registerStr="";
+							registerClass="缺课";
+						}
+						if(data.Data.studentlist[i].typeclasshour<=8){
+							color= 'style="color:red;margin:0 0.1rem;font-size:0.3rem"';
+						}else{
+							color="";
+						}
+						if(data.Data.studentlist[i].typeclasshour<=0){
+							data.Data.studentlist[i].typeclasshour=0;
+						}
+						if(data.Data.studentlist[i].qdstate=="1"||(data.Data.studentlist[i].qdstate=="3"&&data.Data.studentlist[i].principalsevaluation.length>5)||data.Data.studentlist[i].principalsevaluation.length>5){
+							jilustr="已添加";
+							quekelustr="background-color:#eee;";
+							quekelustr1="";
+						}else if(data.Data.studentlist[i].qdstate=="2"){//缺课
+							quekelustr="background-color:#eee;";
+							quekelustr1="background-color:#eee;";
+							jilustr="添加表现";
+						}else{
+							quekelustr="";
+							quekelustr1="";
+							jilustr="添加表现";
+						}
+						
+						str+='<li>'+
+							'<ul class="ul" id="'+data.Data.studentlist[i].id+'">'+
+								'<li><img src="../../img/default_person.png" alt="" /><p>'+data.Data.studentlist[i].NAME+'</p></li>'+
+								'<li style="padding-bottom:0;"><button class="edit_button">查看表现</button><button class="register" style="'+quekelustr1+'">'+jilustr+'</button></li>'+
+								'<li><p style="margin-top:0.1rem;">剩余课时：<span  class="classhour" '+color+'>'+parseFloat(data.Data.studentlist[i].typeclasshour)+'</span></p><button class="queke" style="'+quekelustr+'">'+registerClass+'</button></li>'+
+							'<div class="clearfix"></div>'+
+							'</ul>'+
+						'</li>';
+					}
+					}catch(e){
+						$(".my_children").hide();
+						//TODO handle the exception
+					}
+					
+					$(".my_children ul").html(str);
+					$(".my_children img").click(function(){
+						location.href="../ditui/studentDetail.html?studentId="+$(this).parents("ul").attr("id");
+					})
+					$(".classhour").click(function(){
+						location.href="../ditui/studentDetail.html?studentId="+$(this).parents("ul").attr("id");
+					})
+					if((new Date()>(new Date(data.Data.classcourse.classtime.split("-")[0].replace(/日/,"").replace(/年/,"/").replace(/月/,"/")).getTime()+7*24*60*60*1000))){
+//	if(0>1){
+						$(".register").click(function(){//签到
+							ui.showToast( '时间已经过去一周了',3000);
+						})
+						$(".edit_button").click(function(){
+							$("textarea").val(" ");
+							//记录学生id
+							studentId=$(this).parents('.ul').attr('id');
+							console.log(studentId)
+							location.href="../../studyhistry.html?studentId="+studentId+"&&children";
+						})
+						$(".queke").click(function(){//缺课
+							ui.showToast( '时间已经过去一周了',3000);
+						})
+						return false;
+					}
+					if((new Date()-new Date(data.Data.classcourse.classtime.split("-")[0].replace(/日/,"").replace(/年/,"/").replace(/月/,"/"))>-600000)){
+						$(".edit_button").click(function(){
+							$("textarea").val(" ");
+							console.log(studentId)
+							//记录学生id
+							studentId=$(this).parents('.ul').attr('id');
+//							location.href="../../studyhistry.html?studentId="+studentId+"&curriculumid="+location.href.split("?id=")[1].split("&")[0];&&children
+location.href="../../studyhistry.html?studentId="+studentId+"&&children";
+						})
+						$(".register").click(function(){//签到
+							if($(this).css("background-color")=="rgb(238, 238, 238)"){
+								ui.showToast( "已缺课",2000);
+								return false;
+							}
+							studentId=$(this).parents('.ul').attr('id');
+							$('.float').show();
+							$("textarea").val(" ");
+							$('.class_show').css("left","0rem");
+							$('.class_show').show();
+						})
+						
+						
+						
+						$(".queke").click(function(){
+							var _this=this;
+							if($(this).css("background-color")=="rgb(238, 238, 238)"&&$(this).parents('.ul').find('.register').css("background-color")=="rgb(238, 238, 238)"){
+								ui.showToast( "已缺课",2000);
+								return false;
+							}else if($(this).css("background-color")=='rgb(251, 209, 91)'){
+								
+							ui.showAlert('请确认是否缺课', function () {
+		                //调取缺课按钮
+							getAjax(hostAjax+"/api/tch/v1/studentabsence",{
+								user_id:$(_this).parents('.ul').attr('id'),//学生ID
+								curriculumid:curriculumid,
+								teacherid:uid
+							},function(data){
+								if(data.Code==200){
+									ui.showToast( "操作成功",2000);
+									showTime();
+								}else{
+									ui.showToast( data.Msg,2000);
+									showTime();
+								}
+							})
+		            },null,"是的","取消","提示");
+							}else{
+								ui.showToast( "已签到",2000);
+								return false;
+							}
+							
+							
+						})
+					}else{
+						ui.showToast( '时间还没到');
+						$("button").click(function(){//缺课
+							ui.showToast( '时间还没到',3000);
+						})
+					}
+				}
+		})}
+		
+		console.log(curriculumid,studentId)
+			localStorage.setItem('studentId',studentId)
+		$(".submit").click(function(){//课堂评分
+			
+			console.log('00000')
+			
+			
+			
+			console.log($('textarea').val())
+			console.log(curriculumid,studentId)
+			localStorage.setItem('studentId',studentId)
+			if($('textarea').val().trim().length<=8){
+				ui.showToast( '课堂表现的评语不能少于八个字~',2000);
+				return false;
+			}
+			$.ajax({
+				type:"post",
+				url:hostAjax+"/api/stu/v1/addstudentclassgrade",
+				async:true,
+				data:{
+					"teacherid": uid,
+				  "user_id": studentId,
+				  "curriculumid": curriculumid,
+				  "principalsevaluation": $('#text').val(),
+				  "listencarefully": a1,
+				  "behaviorhabit": a2,
+				  "practicalability": a3,
+				  "expressivepower": a4,
+				  "aggressiveness": a5,
+				  "text": $('#text').val(),
+				  'imglist':classImgLists.substring(0,classImgLists.length - 1)
+				},
+				success:function(data){
+					console.log(data)
+					console.log(data.Data.principalsevaluation)
+				if(data.Code==200){
+					ui.showToast( '提交成功');
+					showTime();
+					clearFloat();
+					$("#"+studentId).find(".register").text("已添加");
+				}else{
+					ui.showToast( data.Msg);
+				}
+				}
+				})
+			
+//			poatAjax(hostAjax+"/api/stu/v1/addstudentclassgrade",{//添加学生的课堂表现
+//				"teacherid": uid,
+//				  "studentid": studentId,
+//				  "studentclassid": curriculumid,
+//				  "listencarefully": 0,
+//				  "behaviorhabit": 0,
+//				  "practicalability": 0,
+//				  "expressivepower": 0,
+//				  "aggressiveness": 0,
+//				  "text": $('textarea').val()
+				
+				
+				
+//				user_id:studentId,
+//				curriculumid:curriculumid,
+//				teacherid:uid,
+//				principalsevaluation:$('textarea').val(),
+//				imglist:classImgLists.substring(0,classImgLists.length - 1)
+//			},function(data){
+//				console.log(data)
+//				if(data.Code==200){
+//					ui.showToast( '提交成功');
+//					showTime();
+//					clearFloat();
+//					$("#"+studentId).find(".register").text("已添加");
+//				}else{
+//					ui.showToast( data.Msg);
+//				}
+//			})
+			
+			
+			
+			
+			
+		})
+		$(".next").click(function(){
+	mySwiper.slideNext();
+})
+$(".pre").click(function(){
+	mySwiper.slidePrev();
+})
+
+$('.float').click(function(){
+	
+	
+	clearFloat();
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+})
+
+</script>
+</html>

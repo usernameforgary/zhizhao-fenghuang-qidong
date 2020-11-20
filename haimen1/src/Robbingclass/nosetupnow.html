@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>立即报名</title>
+		<link rel="stylesheet" href="../../time/css/normalize3.0.2.min.css" />
+		<link rel="stylesheet" href="../../time/css/style.css?v=7" />
+		<link href="../../time/css/mobiscroll.css" rel="stylesheet" />
+		<link href="../../time/css/mobiscroll_date.css" rel="stylesheet" />
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			
+			body {
+				font-size: 12px;
+				font-family: "微软雅黑";
+				background: #fff;
+				height: 100vh;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			.setupnowaction li {
+				display: flex;
+				padding: 5% 5%;
+			}
+			
+			.setupnowaction li p {
+				font-size: 13px;
+				font-weight: 400;
+			}
+			
+			.setupnowaction li div {
+				margin: 0 5%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+			
+			.setupnowaction i,
+			.setupnowaction em {
+				font-style: normal;
+				color: #999999;
+			}
+			
+			.setupnowaction strong {
+				font-size: 12px;
+				font-weight: normal;
+				display: flex;
+				justify-content: space-between;
+			}
+			
+			h2 {
+				font-weight: normal;
+				display: flex;
+				height: 3rem;
+				line-height: 3rem;
+				margin: 0 5%;
+				font-size: 13px;
+				border-bottom: 1px solid #ccc;
+			}
+			
+			h2>input {
+				padding-left: 25%;
+				height: 100%;
+				width: 70%;
+				border: 0;
+			}
+			/*.writephone{
+				margin-top: 1rem;
+			}*/
+			
+			.nonews {
+				display: none;
+			}
+			
+			.havenews {
+				display: none;
+			}
+			
+			.nonews li,
+			.havenews li {
+				display: flex;
+				height: 3rem;
+				line-height: 3rem;
+				margin: 0 5%;
+				border-bottom: 1px solid #ccc;
+			}
+			
+			hr {
+				border: 0;
+				height: 0.8rem;
+				background: #f5f5f5;
+			}
+			
+			button {
+				background: #e60012;
+				border: 0;
+				width: 84%;
+				margin: 0 8%;
+				height: 2rem;
+				border-radius: 0.5rem;
+				margin-top: 2rem;
+				/*position: fixed;
+				bottom: 10%;*/
+				color: #fff;
+				font-size: 15px;
+			}
+			
+			i,
+			em {
+				font-style: normal;
+			}
+			
+			.nonews li i,
+			.nonews li em {
+				width: 40%;
+			}
+			
+			.writephone li strong {
+				width: 20%;
+				text-align: right;
+			}
+			
+			.havenews em {
+				margin-left: 30%;
+			}
+			
+			#backgr {
+				/*background: rgba(255,255,255,0.3);*/
+				background-color: rgba(255, 255, 255, 0.8);
+				width: 100%;
+				display: none;
+			}
+			
+			#backgr>div {
+				background: url(img/报名成功@3x.png) no-repeat;
+				width: 80%;
+				height: auto;
+				background-size: 100% 100%;
+				display: flex;
+				flex-direction: column;
+				position: fixed;
+				top: 25%;
+				left: 10%;
+			}
+			
+			#backgr>div>span {
+				margin-top: 80%;
+				margin-left: 30%;
+				margin-bottom: 10%;
+			}
+			
+			#backgr>div>p {
+				font-size: 14px;
+				width: 10rem;
+				border: 1px solid #FF0000;
+				height: 2rem;
+				line-height: 2rem;
+				text-align: center;
+				margin-bottom: 5%;
+				margin-left: 20%;
+				border-radius: 0.6rem;
+			}
+			
+			#backgr>img {
+				width: 50%;
+				position: fixed;
+				top: 23%;
+				z-index: 5;
+				right: 6%;
+			}
+			
+			#backgr1 {
+				/*background: rgba(255,255,255,0.3);*/
+				background-color: rgba(255, 255, 255, 0.8);
+				width: 100%;
+				display: none;
+			}
+			
+			#backgr1>div {
+				background: url(img/报名失败@3x.png) no-repeat;
+				width: 80%;
+				height: auto;
+				background-size: 100% 100%;
+				display: flex;
+				flex-direction: column;
+				position: fixed;
+				top: 25%;
+				left: 10%;
+			}
+			
+			#backgr1>div>span {
+				margin-top: 80%;
+				margin-left: 30%;
+				margin-bottom: 10%;
+			}
+			
+			#backgr1>div>p {
+				font-size: 14px;
+				width: 10rem;
+				border: 1px solid #FF0000;
+				height: 2rem;
+				line-height: 2rem;
+				text-align: center;
+				margin-bottom: 5%;
+				margin-left: 20%;
+				border-radius: 0.6rem;
+			}
+			
+			#backgr1>img {
+				width: 50%;
+				position: fixed;
+				top: 23%;
+				z-index: 5;
+				right: 6%;
+			}
+			
+			input {
+				border: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--报名成功开始-->
+		<div id="backgr">
+			<img src="img/叉@3x.png" style="width: 10%;" onclick="closess()" />
+			<div id="">
+				<span>恭喜您,报名成功!</span>
+				<p onclick="yes()">我知道了</p>
+				<!--<p onclick="window.location.href='agoaction.html'">我知道了</p>-->
+			</div>
+		</div>
+		<!--报名成功结束-->
+
+		<!--报名失败开始-->
+		<div id="backgr1">
+			<img src="img/叉@3x.png" style="width: 10%;" onclick="closess()" />
+			<div id="">
+				<span>手速慢了,下次早点来</span>
+				<p onclick="no()">我知道了</p>
+				<!--<p onclick="window.location.href='agoaction.html'">我知道了</p>-->
+			</div>
+			<!--报名失败结束-->
+
+		</div>
+		<!--立即报名活动--活动--开始-->
+		<ul class="setupnowaction">
+			<li>
+				<img src="img/活动1@3x.png" style="width: 30%;height: 30%;" />
+				<div class="">
+					<p>【亲自活动】植树节亲自活动特别活动</p>
+					<strong>
+						<i>3月2日(周日) 13:30</i>
+						<em></em>
+					</strong>
+				</div>
+			</li>
+		</ul>
+		<!--立即报名活动--活动--结束-->
+		<hr />
+
+		<!--立即报名活动--手机号输入判断--开始-->
+		<h2>
+			<i>手机号&nbsp;&nbsp;:</i>
+			<input type="text" name="phone" id="phone" value="" placeholder="请输入正确的手机号"/>
+			<!--<input type="text" name="phone" id="phone" value="" onchange="myFunction()"/>-->
+			<strong></strong>
+		</h2>
+		<!--立即报名活动--手机号输入判断--结束-->
+
+		<!--立即报名活动--数据库没有学生信息--开始-->
+		<ul class="nonews">
+			<li>
+				<i>宝宝姓名:</i>
+				<input type="text" name="noname" id="noname" value="" />
+				<strong></strong>
+			</li>
+			<li>
+				<label for="six">学员性别：</label><br />
+				<select style="width: 60%;margin-left: 18%;border: 0;background: #fff;" name="six" id="nosix">
+					<option value="男">男</option>
+					<option value="女">女</option>
+				</select>
+			</li>
+			<li>
+				<label for="birthday">学员生日：</label><br /><input style="width: 60%;margin-left: 18%;border: 0;background: url(img/jiantou..gif) no-repeat 97%;background-size: 3.4% 13%;" readonly="readonly" type="text" name="birthday" id="birthday" value="" />
+			</li>
+			<li>
+				<i>宝宝学校:&nbsp;&nbsp;&nbsp;</i>
+				<input type="text" name="noschool" id="noschool" value="" />
+			</li>
+			<li>
+				<i>宝宝班级:&nbsp;&nbsp;&nbsp;</i>
+				<input type="text" name="nolcass" id="nolcass" value="" />
+			</li>
+		</ul>
+		<!--立即报名活动--数据库没有学生信息--结束-->
+
+		<!--立即报名活动--数据库有学生信息--开始-->
+		<ul class="havenews">
+			<li>
+				<img src="img/头像1@3x.png" style="width: 10%;height: 70%;margin-top: 2%;" />
+				<em>宝宝姓名: &nbsp;&nbsp;&nbsp;&nbsp;王一一</em>
+			</li>
+			<li>
+				<img src="img/头像1@3x.png" style="width: 10%;height: 70%;margin-top: 2%" />
+				<em>宝宝姓名: &nbsp;&nbsp;&nbsp;&nbsp;王一一</em>
+			</li>
+		</ul>
+		<!--立即报名活动--数据库有学生信息--结束-->
+
+		<!--立即提交按钮开始-->
+		<button>立即提交</button>
+		<!--立即提交按钮结束-->
+
+	</body>
+	<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript">
+		var url = location.search; //获取url中"?"符后的字串 ('?modFlag=business&role=1')  
+		var theRequest = new Object();
+		if(url.indexOf("?") != -1) {
+			var str = url.substr(1); //substr()方法返回从参数值开始到结束的字符串；  
+			var strs = str.split("&");
+			for(var i = 0; i < strs.length; i++) {
+				theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+			}
+//			console.log(theRequest.ids);
+		}
+
+		//时间控件开始
+		var calendar = new datePicker();
+		calendar.init({
+			'trigger': '#birthday',
+			/*按钮选择器，用于触发弹出插件*/
+			'type': 'date',
+			/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+			'minDate': '1900-1-1',
+			/*最小日期*/
+			'maxDate': '2100-12-31',
+			/*最大日期*/
+			'onSubmit': function() { /*确认时触发事件*/
+				//			var theSelectData=calendar.value;
+			},
+			'onClose': function() { /*取消时触发事件*/ }
+		});
+		//时间控件结束
+
+		//		var myFunction = function() {
+		//			console.log($('#phone').val())
+		//			if($('#phone').val() == 110) {
+		//				$('.havenews').show();
+		//				$('.nonews').hide();
+		//				$('button').click(function() {
+		//					$.ajax({
+		//						type: "get",
+		//						url: "",
+		//						async: false,
+		//						data: {
+		//							phone: $('#phone').val(),
+		//							name: $('#noname').val(),
+		//							six: $('#nosix').val(),
+		//							birthday: $('#birthday').val(),
+		//							school: $('#noschool').val(),
+		//							classroom: $('#nolcass').val()
+		//						},
+		//						success: function(data) {
+		//							console.log(
+		//								$('#phone').val(),
+		//								$('#noname').val(),
+		//								$('#nosix').val(),
+		//								$('#birthday').val(),
+		//								$('#noschool').val(),
+		//								$('#nolcass').val()
+		//							)
+		//							if(1 > 0) {
+		//								$('#backgr').show();
+		//								$('body').css('background-color', 'rgba(0,0,0,0.2')
+		//								$('h2>input').css('background-color', 'rgba(0,0,0,0.1')
+		//							}
+		//						}
+		//					});
+		//
+		//				})
+		//			}
+		//
+		//			if($('#phone').val() != 110) {
+		//				$('.nonews').show();
+		//				$('.havenews').hide();
+		//				$('button').click(function() {
+		//					if($('#nolname').val() == '' || $('#nosix').val() == '' || $('#birthday').val() == '') {
+		//						alert('请您完善个人必填信息')
+		//					} else {
+		//						$.ajax({
+		//							type: "get",
+		//							url: "",
+		//							async: false,
+		//							data: {
+		//								phone: $('#phone').val(),
+		//								name: $('#noname').val(),
+		//								six: $('#nosix').val(),
+		//								birthday: $('#birthday').val(),
+		//								school: $('#noschool').val(),
+		//								classroom: $('#nolcass').val()
+		//							},
+		//							success: function(data) {
+		//								console.log(
+		//									$('#phone').val(),
+		//									$('#noname').val(),
+		//									$('#nosix').val(),
+		//									$('#birthday').val(),
+		//									$('#noschool').val(),
+		//									$('#nolcass').val()
+		//								)
+		//								if(1 > 0) {
+		//									$('#backgr').show();
+		//									$('body').css('background-color', 'rgba(0,0,0,0.2')
+		//									$('h2>input').css('background-color', 'rgba(0,0,0,0.1')
+		//								}
+		//							}
+		//						});
+		//					}
+		//
+		//				})
+		//			}
+		//		}
+
+		//获取活动剩余组数情况--开始
+		var groups = '';
+		$.ajax({
+			type: "get",
+			url: "http://139.224.133.133:8012/api/act/v1/registrationinformationnum",
+			async: false,
+			data: {
+				id: theRequest.ids
+			},
+			success: function(data) {
+//				console.log(data)
+				if(data.Code == 200) {
+					for(i in data.Data) {
+//						console.log(data.Data.group)
+						groups = data.Data.group;
+//						console.log(groups);
+					}
+				}
+			}
+		});
+		//获取活动剩余组数情况--结束
+
+		var listnews = '';
+		$('#phone').on('input', function() {
+			var regs = /^((13[0-9])|(17[0-1,6-8])|(15[^4,\\D])|(18[0-9]))\d{8}$/; //正则验证手机号格式
+			if(regs.test($('#phone').val())) {
+//				alert('手机号码格式不正确！')
+//				$('.nonews').hide();
+//				$('.havenews').hide();
+				
+				
+				
+				$.ajax({
+					type: "get",
+					url: "http://139.224.133.133:8012/api/act/v1/getphoneactivityinformation",
+					async: false,
+					data: {
+						id: theRequest.ids,
+						phone: $('#phone').val()
+					},
+					success: function(data) {
+						console.log(data);
+						if(data.Code == 200) { //已有该手机号的信息
+							for(i in data.Data.list) {
+								listnews += `<li><img src="img/头像1@3x.png" style="width: 10%;height: 70%;margin-top: 2%;" /><em>宝宝姓名: &nbsp;&nbsp;&nbsp;&nbsp;${data.Data.list[i].name}</em></li>`
+								$('.havenews').html(listnews);
+								$('.havenews').show();
+								$('.nonews').hide();
+							}
+							console.log('222')
+							setTimeout(function() {
+								$('button').click(function() {
+									console.log(data.Data.list[i].birthday)
+									//									alert('重复注册失败')
+
+									$.ajax({
+										type: "post",
+										url: "http://139.224.133.133:8012/api/act/v1/addparticipateinregactivities",
+										async: false,
+										data: {
+											Registrationactivitiesid: theRequest.ids,
+											phone: $('#phone').val(),
+											name: $('#noname').val(),
+											sex: $('#nosix').val(),
+											birthday: data.Data.list[i].birthday,
+											nowschool: $('#noschool').val(),
+											nowgrade: $('#nolcass').val()
+										},
+										success: function(data) {
+											console.log($('#birthday').val())
+											console.log(data)
+											if(data.Code == 200) {
+												if(groups > 0) { //报名成功
+													$('#backgr').show();
+													$('body').css('background-color', '#F1F1F1');
+													$('input').css('background-color', '#F1F1F1');
+												} else { //报名失败
+													$('#backgr1').show();
+													$('body').css('background-color', '#F1F1F1');
+													$('input').css('background-color', '#F1F1F1');
+												}
+
+											};
+											if(data.Code==401){
+												alert('此手机号已报名参加此活动了，不用重复报名')
+											}
+										}
+									});
+
+								});
+							}, 2000)
+						} else{
+							if(data.Code == 1000) { //未有该手机号的信息
+								console.log(data.Code)
+								$('.nonews').show();
+								$('.havenews').hide();
+								$('button').click(function() {
+									if($('#nolname').val() == '' || $('#nosix').val() == '' || $('#birthday').val() == '') {
+										alert('请您完善个人必填信息')
+									} else {
+										$.ajax({
+											type: "post",
+											url: "http://139.224.133.133:8012/api/act/v1/addparticipateinregactivities",
+											async: false,
+											data: {
+												Registrationactivitiesid: theRequest.ids,
+												phone: $('#phone').val(),
+												name: $('#noname').val(),
+												sex: $('#nosix').val(),
+												birthday: $('#birthday').val(),
+												nowschool: $('#noschool').val(),
+												nowgrade: $('#nolcass').val()
+											},
+											success: function(data) {
+												console.log(data)
+												if(data.Code == 200) {
+													if(groups > 0) { //报名成功
+														$('#backgr').show();
+														$('body').css('background-color', '#F1F1F1');
+														$('input').css('background-color', '#F1F1F1');
+													} else { //报名失败
+														$('#backgr1').show();
+														$('body').css('background-color', '#F1F1F1');
+														$('input').css('background-color', '#F1F1F1');
+													}
+
+												}
+											}
+										});
+									}
+
+								})
+
+							}
+						}
+					}
+				});
+			
+				
+				
+				
+				return false;
+			} else {
+				if($('#phone').val().length==11)
+				alert('请输入正确手机号码')
+			}
+
+		})
+
+		var yes = function() {
+			window.history.go(-2);
+			$('body').css('background-color', '#fff');
+			$('input').css('background-color', '#fff');
+			//	window.location.reload()
+		}
+		var no = function() {
+			window.history.go(0);
+			$('body').css('background-color', '#fff');
+			$('input').css('background-color', '#fff');
+		}
+		var closess = function() {
+			window.history.go(0);
+			$('body').css('background-color', '#fff');
+			$('input').css('background-color', 'fff');
+		}
+		//		var listnews='';
+		//		$.ajax({
+		//			type:"get",
+		//			url:"http://139.224.133.133:8088/api/act/v1/getphoneactivityinformation",
+		//			async:false,
+		//			data:{
+		//				id:theRequest.ids,
+		//				phone:$('#phone').val()
+		//			},
+		//			success:function(data){
+		//				console.log(data);
+		//				if(data.Code==200){
+		//					for(i in data.Data.list){
+		//						listnews+=`<li><img src="img/头像1@3x.png" style="width: 10%;height: 70%;margin-top: 2%;" /><em>宝宝姓名: &nbsp;&nbsp;&nbsp;&nbsp;${data.Data.list[i].name}</em></li>`
+		//						$('.havenews').html(listnews);
+		//					}
+		//				}
+		//			}
+		//		});
+	</script>
+
+</html>

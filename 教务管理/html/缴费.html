@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>缴费</title>
+    <link rel="stylesheet" href="../css/conmosui.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/jf.css">
+  </head>
+  <body>
+    <div class="warp">
+      <div class="background">
+        <div class="nav-warp">
+          <div class="nav-hiade " style=" border-bottom: 1px solid #861420; color: #861420">待审核</div>
+          <div class="nav-hiade brim">已缴费</div>
+          <div class="nav-hiade">未缴费</div>
+        </div>
+        <div class="header">
+          <div class="search">
+            <img src="../img/search@3x.png">
+            <input type="text" name="search" id="search" value="" placeholder="输入学员姓名">
+          </div>
+        </div>
+        <div class="content">
+          <!-- 待审核 -->
+          <div class="text" style="display: block"></div>
+          <!-- 已缴费 -->
+          <div class="text"></div>
+          <!-- 未缴费 -->
+          <div class="text"></div>
+        </div>
+        <div class="popup transfer">
+          <div class="warp-poput">
+            <div class="sp-warp">
+              <p class="sp-size">是否同意审批</p>
+              <span class="r-font">X</span>
+            </div>
+            <div class="play">
+              <div class="shenghe">
+                <span class="audit">审核</span>
+                <span class="check-sign active" style="margin-left: .5rem" data-id="1">已缴费</span>
+                <span class="check-sign" data-id="2">未缴费</span>
+              </div>
+              <div class="zf">
+                <span class="audit payment">支付方式</span>
+                <select name="selectAge" class="selectAge" id="pay-method">
+                  <option value="1">微信</option>
+                  <option value="2">现金</option>
+                  <option value="3">支付宝</option>
+                  <option value="4">转账</option>
+                  <option value="5">刷卡</option>
+                  <option value="6">其他</option>
+                </select>
+              </div>
+              <div class="sum">
+                <span class="audit payment">待缴金额</span>
+                <input type="number" class="selectAge wif" id="pay">
+              </div>
+              </textarea>
+              <div class="nav-button">
+                <span class="bohui agree">同意</span>
+                <span class="bohui reject">取消</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="popup update">
+          <div class="warp-poput">
+            <div class="sp-warp">
+              <p class="sp-size">修改信息</p>
+              <span class="update-x">X</span>
+            </div>
+            <div class="play">
+              <div class="shenghe">
+                <span class="audit">合同编号</span>
+                <input type="text" class="wif" id="contractnumber">
+              </div>
+              <div class="zf">
+                <span class="audit">购买课时</span>
+                <input type="text" class="selectAge wif" id="classhour">
+              </div>
+              <div class="sum">
+                <span class="audit payment">待缴金额</span>
+                <input type="number" class="selectAge wif" id="e_price">
+              </div>
+              </textarea>
+              <div class="nav-button">
+                <span class="bohui submit">确定</span>
+                <span class="bohui abort">取消</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../js/rem.js"></script>
+  <script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../js/conmosui.js"></script>
+  <script src="../js/long.js"></script>
+  <script>
+    var target, dataList, targetData;
+
+    function cleanArray(actual) {
+      const newArray = []
+      for (let i = 0; i < actual.length; i++) {
+        if (actual[i]) {
+          newArray.push(actual[i])
+        }
+      }
+      return newArray
+    }
+
+    function json2param(json) {
+      if (!json) return ''
+      return cleanArray(Object.keys(json).map(key => {
+        if (json[key] === undefined) return ''
+        return encodeURIComponent(key) + '=' +
+          encodeURIComponent(json[key])
+      })).join('&')
+    }
+
+    $('.nav-hiade').click(function () {
+      $('.text').eq($(this).index()).css({
+        display: 'block'
+      }).siblings().css({
+        display: 'none'
+      });
+      $(this).css({
+        borderBottom: '1px solid #861420',
+        color: '#861420'
+      }).siblings().css({
+        borderBottom: '1px solid #fff',
+        color: '#fff',
+      });
+    })
+
+    $('.check-sign').click(function () {
+      $('.check-sign').removeClass('active');
+      $(this).addClass('active');
+    });
+
+    $('.reject').click(function () {
+      $('.transfer').css({ display: 'none' });
+    })
+    $('.r-font').click(function () {
+      $('.transfer').css({ display: 'none' })
+    })
+
+    $('.update-x').click(function () {
+      $('.update').css({ display: 'none' })
+    })
+    $('.abort').click(function () {
+      $('.update').css({ display: 'none' })
+    })
+
+    $('.agree').click(function () {
+      ui.showLoading();
+      postAjax(
+        hostAjax + `/api/overpipe/v1/examinepaycord?id=${target}&userid=${localStorage.zhizhao_uid}&types=${$('.check-sign.active').attr('data-id')}&ddlpaymentmethod=${$('#pay-method').val()}${$('#pay').val() ? `&txtamounttobepaid=${$('#pay').val()}` : ''}`,
+        {},
+        function (data) {
+          $('#commonUILoading').remove();
+          if (data.Success) {
+            fetchData();
+            $('.transfer').css({ display: 'none' });
+          } else {
+            alert(data.Msg);
+          }
+        }
+      )
+    });
+
+    $('.submit').click(function () {
+      ui.showLoading();
+      postAjax(
+        hostAjax + `/api/overpipe/v1/editpaycord`,
+        JSON.stringify({
+          id: +targetData.id,
+          userid: +localStorage.zhizhao_uid,
+          studentid: +targetData.studentid,
+          teacherid: +targetData.teacherid,
+          contractnumber: $('#contractnumber').val(),
+          classhour: +$('#classhour').val(),
+          e_price: +$('#e_price').val(),
+          remark: '',
+        }),
+        function (data) {
+          $('#commonUILoading').remove();
+          if (data.Success) {
+            fetchData();
+            $('.update').css({ display: 'none' });
+          } else {
+            alert(data.Msg);
+          }
+        }
+      )
+    });
+
+    function fetchData() {
+      ui.showLoading();
+      getAjax(
+        hostAjax + '/api/overpipe/v1/getpaycord',
+        {
+          userid: +localStorage.zhizhao_uid,
+          studentname: $('#search').val() || undefined,
+          pagesize: 1000000,
+        },
+        function (data) {
+          if (data.Success) {
+            dataList = data.Data.list;
+            $('.text').eq(0).html(data.Data.list.filter(x => x.state === '待处理').map(x => `
+            <div class="box-list">
+              <div>
+                <span class="classandgrade">学生姓名:</span>
+                <span class="mind">${x.studentname}</span>
+                <span class="classandgrade tite">合同编号:</span>
+                <span class="mind">${x.contractnumber}</span>
+              </div>
+              <div>
+                <span class="classandgrade">电话:</span>
+                <span class="mind">${x.studentphone}</span>
+                <span class="classandgrade tite pl">缴费类型:</span>
+                <span class="mind">${x.typename}</span>
+              </div>
+              <div>
+                <strong class="classandgrade zt-color">缴费日期:</strong>
+                <span class="mind zt-color">${x.createdAt}</span>
+              </div>
+              <div>
+                <strong class="classandgrade zt-color">购买课时:</strong>
+                <span class="mind zt-color">${x.classhour}课时</span>
+              </div>
+              <div>
+                <strong class="classandgrade zt-color">缴费金额:</strong>
+                <span class="mind">${x.e_price}元</span>
+              </div>
+              <div data-id="${x.id}">
+                <strong class="classandgrade zt-color">收费老师:</strong>
+                <span class="mind zt-color">${x.teachername}</span>
+                <span class="button m-lrft">修改</span>
+                <span class="button nav-but">审核</span>
+              </div>
+            </div>`).join(''))
+              .next().html(data.Data.list.filter(x => x.state === '已缴费').map(x => `
+            <div class="box-list">
+               <div>
+                <span class="classandgrade">学生姓名:</span>
+                <span class="mind">${x.studentname}</span>
+                <span class="classandgrade tite">合同编号:</span>
+                <span class="mind">${x.contractnumber}</span>
+              </div>
+              <div>
+                <span class="classandgrade">电话:</span>
+                <span class="mind">${x.studentphone}</span>
+                <span class="classandgrade tite pl">缴费类型:</span>
+                <span class="mind">${x.typename}</span>
+              </div>
+              <div>
+                <strong class="classandgrade zt-color">缴费日期:</strong>
+                <span class="mind zt-color">${x.createdAt}</span>
+              </div>
+              <div>
+                <strong class="classandgrade zt-color">购买课时:</strong>
+                <span class="mind zt-color">${x.classhour}课时</span>
+                <span class="classandgrade tite ">待缴金额:</span>
+                <span class="mind" style="color: red;">${x.amounttobepaid}元</span>
+              </div>
+              <div>
+                <strong class="classandgrade zt-color">缴费金额:</strong>
+                <span class="mind zt-color">${x.e_price}元</span>
+                <span class="classandgrade tite cl">缴费方式:</span>
+                <span class="mind">${x.paymentmethod}</span>
+              </div>
+              <div data-id="${x.id}">
+                <strong class="classandgrade zt-color">收费老师:</strong>
+                <span class="mind zt-color">${x.teachername}</span>
+                <span class="button m-lrft">修改</span>
+                <span class="button nav-but">审核</span>
+              </div>
+            </div>`).join('')).next().html(data.Data.list.filter(x => x.state === '未缴费').map(x => `
+            <div class="box-list">
+               <div>
+                <span class="classandgrade">学生姓名:</span>
+                <span class="mind">${x.studentname}</span>
+                <span class="classandgrade tite">合同编号:</span>
+                <span class="mind">${x.contractnumber}</span>
+              </div>
+              <div>
+                <span class="classandgrade">电话:</span>
+                <span class="mind">${x.studentphone}</span>
+                <span class="classandgrade tite pl">缴费类型:</span>
+                <span class="mind">${x.typename}</span>
+              </div>
+              <div>
+                <strong class="classandgrade zt-color">缴费日期:</strong>
+                <span class="mind zt-color">${x.createdAt}</span>
+              </div>
+              <div>
+                <strong class="classandgrade zt-color">购买课时:</strong>
+                <span class="mind zt-color">${x.classhour}课时</span>
+              </div>
+              <div>
+                <strong class="classandgrade zt-color">缴费金额:</strong>
+                <span class="mind">${x.e_price}元</span>
+              </div>
+              <div data-id="${x.id}">
+                <strong class="classandgrade zt-color">收费老师:</strong>
+                <span class="mind zt-color">${x.teachername}</span>
+                <span class="button m-lrft">修改</span>
+                <span class="button nav-but">审核</span>
+              </div>
+            </div>`).join(''));
+            $('#commonUILoading').remove();
+            $('.nav-but').click(function () {
+              target = +$(this).parent().attr('data-id');
+              $('.transfer').css({ display: 'block' })
+            });
+            $('.m-lrft').click(function () {
+              var id = +$(this).parent().attr('data-id');
+              targetData = dataList.find(x => +x.id === id);
+              $('.update').css({ display: 'block' });
+              $('#contractnumber').val(targetData.contractnumber);
+              $('#classhour').val(targetData.classhour);
+              $('#e_price').val(targetData.e_price);
+            });
+          }
+        }
+      )
+    }
+
+    fetchData();
+
+    $('#search').change(fetchData);
+
+  </script>
+</html>

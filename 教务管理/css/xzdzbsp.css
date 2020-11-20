@@ -1,0 +1,166 @@
+.warp {
+  width: 7.5rem;
+  margin: 0 auto;
+}
+
+.background {
+  width: 7.5rem;
+  height: 100vh;
+  background-image: url(../img/校长端转班审批已同意.jpg);
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-warp {
+  display: flex;
+
+}
+
+.nav-hiade {
+  color: #fff;
+  font-size: 0.26rem;
+  width: 33.33%;
+  height: 0.65rem;
+  text-align: center;
+  line-height: 0.65rem;
+  border-bottom: 1px solid #fff;
+}
+
+.brim {
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+}
+
+.box-list {
+  width: 6.9rem;
+  /* height: 1.62rem; */
+  margin: 0 auto;
+  line-height: 0.5rem;
+  border-radius: 0.20rem;
+  padding: 0 0 0 0.42rem;
+  /* box-shadow: 2px 2px 8px #aaa, -2px 2px 8px #aaa; */
+  background: #fff;
+  margin-top: 0.35rem;
+}
+
+.classandgrade {
+  font-size: 0.2rem;
+  font-weight: 400;
+  color: #519fdd;
+}
+
+.mind {
+  font-size: 0.2rem;
+  color: #8cbbe6;
+}
+
+.tite {
+  margin-left: 1rem;
+}
+
+.button {
+  width: 1.09rem;
+  height: 0.35rem;
+  display: inline-block;
+  background: #519fdd;
+  margin-left: 0.5rem;
+  border-radius: 0.2rem;
+  text-align: center;
+  line-height: 0.35rem;
+  color: #fff;
+  font-size: 0.20rem;
+}
+
+.text {
+  display: none;
+}
+
+.zt-color {
+  color: #04457d;
+  font-weight: 600;
+}
+
+.m-left {
+  margin-left: 1.6rem;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.warp-poput {
+  width: 5.3rem;
+  height: 3.2rem;
+  position: absolute;
+  top: 35%;
+  left: 15%;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.sp-warp {
+  display: flex;
+  border-bottom: 1px solid #000;
+  padding: 0 0.3rem;
+
+}
+
+.sp-size {
+  font-size: 0.22rem;
+  width: 5.3rem;
+  height: 0.52rem;
+  line-height: 0.52rem;
+
+}
+
+.r-font {
+  font-size: 0.22rem;
+  line-height: 0.52rem;
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.52rem;
+  text-align: center;
+
+}
+
+.wenben {
+  width: 5.3rem;
+  height: 2rem;
+  border: none;
+  outline: none;
+  padding: 10px;
+  /* text-indent:2em; */
+}
+
+.bohui {
+  width: 0.7rem;
+  height: 0.35rem;
+  display: inline-block;
+  text-align: center;
+  line-height: 0.35rem;
+  font-size: 0.2rem;
+}
+
+.nav-button {
+  text-align: right;
+}
+
+.agree {
+  background: #62a7e4;
+  color: #fff;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.reject {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-right: 0.2rem;
+}

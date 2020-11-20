@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>签到异常</title>
+    <link rel="stylesheet" href="../css/conmosui.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/xzycqd.css">
+    <style>
+      .date {
+        box-shadow: none;
+        padding: 0;
+        background: transparent;
+      }
+
+      .date span {
+        line-height: initial;
+        font-size: .2rem;
+        display: inline-block;
+        color: #519fdd;
+        background: #ddd;
+        padding: .05rem .1rem;
+        border-radius: .2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="warp">
+      <div class="background">
+        <div class="hide-nav">
+          <span class="time-size">开始时间:</span>
+          <span class="time-size time" id="starttime"></span>
+          <span class="time-size over-time">结束时间:</span>
+          <span class="time-size time" id="endtime"></span>
+          <span class="query">查询</span>
+        </div>
+        <div class="box-warp"></div>
+      </div>
+    </div>
+  </body>
+  <script src="../js/rem.js"></script>
+  <script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../js/time.js"></script>
+  <script src="../js/conmosui.js"></script>
+  <script src="../js/long.js"></script>
+  <script>
+    $('#starttime').text(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`);
+    $('#endtime').text(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`);
+
+    function checkDate() {
+      if (+new Date($('#starttime').text().replace(/-/g, '/')) > +new Date($('#endtime').text().replace(/-/g, '/'))) {
+        var starttime = $('#starttime').text();
+        $('#starttime').text($('#endtime').text());
+        $('#endtime').text(starttime);
+      }
+    }
+
+    var starttimePicker = new datePicker();
+    starttimePicker.init({
+      'trigger': '#starttime', /*按钮选择器，用于触发弹出插件*/
+      'type': 'date',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+      'onSubmit':function(){/*确认时触发事件*/
+        var theSelectData=starttimePicker.value;
+        $("#starttime").text(theSelectData);
+        checkDate();
+      },
+    });
+
+    var endtimePicker = new datePicker();
+    endtimePicker.init({
+      'trigger': '#endtime', /*按钮选择器，用于触发弹出插件*/
+      'type': 'date',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+      'onSubmit':function(){/*确认时触发事件*/
+        var theSelectData=endtimePicker.value;
+        $("#endtime").text(theSelectData);
+        checkDate();
+      },
+    });
+
+    function fetchData() {
+      ui.showLoading();
+      getAjax(
+        hostAjax + '/api/overpipe/v1/selectabnormallisttime',
+        {
+          userid: +localStorage.zhizhao_uid,
+          starttime: $('#starttime').text(),
+          endtime: $('#endtime').text(),
+        },
+        function (data) {
+          if (data.Code === 1000) {
+            ui.showToast('无更多信息').css({ position: 'fixed', width: '100%', marginTop: '100px' });
+          } else {
+            $('.box-warp').html(data.Data.list.map((x, i) => `
+            ${!i || data.Data.list[i - 1].dateweek !== x.dateweek ? `<div class="box-list date"><span>${x.dateweek.split(' ')[0]}</span></div>` : ''}
+            <div class="box-list">
+              <div>
+                <span class="classandgrade">班级名称:</span>
+                <span class="mind">${x.classname}</span>
+              </div>
+              <div>
+                <span class="classandgrade">学生姓名:</span>
+                <span class="mind">${x.name}</span>
+                <span class="classandgrade tite">上课老师:</span>
+                <span class="mind">${x.teachername}</span>
+              </div>
+              <div>
+              <span class="classandgrade">课程顾问:</span>
+              <span class="mind">${x.ccname}</span>
+            </div>
+              <div>
+                <span class="classandgrade">异常原因:</span>
+                <span class="mind">${x.abnormalreason}</span>
+                <span class="button sendMsg" data-id="${x.curriculumid} ${x.teacherid}">提醒老师</span>
+              </div>
+            </div>
+          `).join(''));
+            $('.sendMsg').click(function () {
+              var id = $(this).attr('data-id').split(' ');
+              getAjax(
+                hostAjax + '/api/overpipe/v1/smsremindteachers',
+                {
+                  curriculumid: +id[0],
+                  teacherid: +id[1],
+                  userid: +localStorage.zhizhao_uid
+                },
+                function (data) {
+                  alert(data.Msg);
+                }
+              )
+            })
+          }
+          $('#commonUILoading').remove();
+        },
+      )
+    }
+
+    fetchData();
+
+    $('.query').click(fetchData);
+  </script>
+</html>

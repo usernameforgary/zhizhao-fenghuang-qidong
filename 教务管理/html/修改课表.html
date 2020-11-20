@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/xgkb.css">
+</head>
+<body>
+    <div class="warp">
+            <div class="bag-box">
+                <div style='width:100%; height:0.4rem'> </div>
+                <div class="cont-box">
+                        <div class="tp-bgant">
+                            <span class="class-name">班级名称:</span>
+                            <select name="" id="" class="select">
+                                <option value="">星期日二阶试听课 16：00—17：00</option>
+                                <option value="">1</option>
+                                <option value="">1</option>
+                            </select>
+                        </div>
+                        <div class="tp-bgant gap">
+                                <span class="class-name left-class">上课时间:</span>
+                                        <div class="search">
+                                            <img src="../img/日历.png">
+                                            <input class="tim-data" class="birthday" readonly="readonly" type="text" name="birthday" id="birthday" value="" />
+                                        </div>
+                                        <img src="../img/对号2.png" alt="" class="correct">
+                                        
+                        </div>
+                        <div class="tp-bgant gap">
+                                <span class="class-name  course">教室:</span>
+                                <select name="" id="" class="select">
+                                    <option value="">星期日二阶试听课</option>
+                                    <option value="">1</option>
+                                    <option value="">1</option>
+                                </select>
+                            </div>
+                        <div class="tp-bgant gap">
+                                <span class="class-name course">课程:</span>
+                                <select name="" id="" class="select">
+                                    <option value="">星期日二阶试听课</option>
+                                    <option value="">1</option>
+                                    <option value="">1</option>
+                                </select>
+                            </div>
+                            <div class="tp-bgant gap">
+                                    <span class="class-name left-class">开始时间:</span>
+                                            <div class="search">
+                                                <img src="../img/日历.png">
+                                                <input class="calendar"   type="text"  value="" />
+                                            </div>
+                                            <img src="../img/对号2.png" alt="" class="correct1">
+                            </div>
+                            <div class="tp-bgant gap">
+                                    <span class="class-name left-class">结束时间:</span>
+                                            <div class="search">
+                                                <img src="../img/日历.png">
+                                                <input class="over-time"  type="text"  value="" />
+                                            </div>
+                                            <img src="../img/对号2.png" alt="" class="correct2">
+                            </div>
+                            <div class="tp-bgant gap">
+                                    <span class="class-name">上课老师:</span>
+                                    <select name="" id="" class="select">
+                                        <option value="">河马老师</option>
+                                        <option value="">1</option>
+                                        <option value="">1</option>
+                                    </select>
+                                </div>
+                            <div class="tp-bgant gap">
+                                    <span class="class-name">助教老师:</span>
+                                    <select name="" id="" class="select">
+                                        <option value="">一一老师</option>
+                                        <option value="">1</option>
+                                        <option value="">1</option>
+                                    </select>
+                                </div>
+                            <div class="tp-bgant gap">
+                                    <span class="class-name">单次课耗:</span>
+                                    <select name="" id="" class="select plt">
+                                        <option value="">1.5</option>
+                                        <option value="">1</option>
+                                        <option value="">1</option>
+                                    </select>
+                                </div>
+                </div>
+            </div>
+    </div>
+
+</body>
+<script src="../js/rem.js"></script>
+<script src="../js/time.js"></script>
+<script src="../js/jquery-3.3.1.min.js"></script>
+
+<script>
+var calendar = new datePicker();
+	calendar.init({
+		'trigger': '#birthday', /*按钮选择器，用于触发弹出插件*/
+		'type': 'date',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+		'minDate':'1900-1-1',/*最小日期*/
+		'maxDate':'2100-12-31',/*最大日期*/
+		'onSubmit':function(){/*确认时触发事件*/
+//			var theSelectData=calendar.value;
+		},
+		'onClose':function(){/*取消时触发事件*/
+		}
+    });
+    $('.tim-data').blur(function(){
+        if($('.tim-data').val()==''){
+            console.log(666)
+            $('.correct').css('display','block')
+            $('.correct').attr("src", "../img/叉号.png");
+        }else{
+            $('.correct').css('display','block')
+            $('.correct').attr("src", "../img/对号2.png");
+            console.log(888)
+        }
+      
+    })
+    $('.calendar').blur(function(){
+        if($('.calendar').val()==''){
+            console.log(666)
+            $('.correct1').css('display','block')
+            $('.correct1').attr("src", "../img/叉号.png");
+        }else{
+            $('.correct1').css('display','block')
+            $('.correct1').attr("src", "../img/对号2.png");
+            console.log(888)
+        }
+      
+    })
+    $('.over-time').blur(function(){
+        if($('.over-time').val()==''){
+            console.log(666)
+            $('.correct2').css('display','block')
+            $('.correct2').attr("src", "../img/叉号.png");
+        }else{
+            $('.correct2').css('display','block')
+            $('.correct2').attr("src", "../img/对号2.png");
+            console.log(888)
+        }
+      
+    })
+</script>
+</html>

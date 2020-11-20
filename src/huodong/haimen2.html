@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>课程预约</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/swiper-3.4.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/animate.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="../../css/index1.css"/>-->
+    <link rel="stylesheet" type="text/css" href="../../css/webuploader/webuploader.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	.up-page-wrapper{
+    		background-color: #43C3F0;
+    		background-image: url(img/online_bg.png);
+    		background-size: 100% 100%;
+    		background-repeat: no-repeat;
+    		display: flex;align-items:center;
+    		justify-content: center;
+    	}
+    	.main{
+    		background-color: #fff;
+    		/*margin: 1.7rem 0.5rem 0 0.5rem;*/
+    		width: 6.5rem;
+    		/*margin: auto;*/
+    		display: flex;align-items:center;
+    		border-radius: 0.3rem;
+    		padding: 0.3rem;
+    		position: relative;
+    		top: 0.2rem;
+    		z-index: 0;
+    	}
+    	input{
+    		font-size: 0.28rem;
+    		border: 0;
+    		padding-left: 0.2rem;
+    		outline: none;
+    		border-radius: 0.1rem;
+    		width: 100%;
+    		padding-top: 0.2rem;
+    		padding-bottom: 0.2rem;
+    		box-sizing: border-box;
+    		background-color: #F5F5F5;
+    		margin-top: 0.3rem;
+    		color: black;
+    	}
+    	input::-webkit-input-placeholder{
+    		color: black;/*#646464*/
+    		opacity: 0.8;
+    	}
+    	.lists>button{
+    		background-color: #E60012;
+    		font-size: 0.3rem;
+    		width: 100%;
+    		border-radius: 0.2rem;
+    		color: white;
+    		height: .9rem;
+    		margin-top: 0.2rem;
+    	}
+    	@media only screen and (min-width: 500px) {
+    		.main{
+    			margin-top: 1.2rem!important;
+    		}
+    	}
+    	button{
+    		font-size: 0.3rem;
+    	}
+    </style>
+</head>
+<body class="up-page">
+	<div class="up-page-wrapper" style="">
+		<div class="header" style="position: absolute;z-index: 2;top: 2%;width: 100%;display: flex;justify-content: space-around;">
+			<div style="display: flex; align-items:center;">
+				<img class="LOGO" style="width:3.3rem;position: relative;left: 0.4rem;bottom: 0rem;" src="img/haimen2small.png"/>
+			</div>
+			<div style="display: flex; align-items:flex-end">
+				<img  style="width:2.2rem;margin-top: 0.2rem;" src="img/online_top.png"/>
+			</div>
+			
+		</div>
+		<div class="main" style="display: ;">
+			<div >
+				<div class="" style="text-align: center;">
+				<img style="width:1.7rem;" src="img/online_show.png"/>
+			</div>
+			<div class="lists">
+				<input type="text" name="" id="bname" value=""  placeholder="宝宝姓名" onkeyup="this.value=this.value.replace(/\s+/g,'')"/>
+				<input readonly="readonly" type="text" name="" id="bbirthday" value=""  placeholder="宝宝生日"/>
+				<select class="sex" style="width: 100%;height: 0.8rem;background: #f5f5f5;border: 1px solid #F5F5F5;margin-top: 0.3rem;padding-left: 0.2rem;font-size: 0.28rem;border-radius: 0.1rem;" name="six">
+					<option value="男" style="background: #f5f5f5">男</option><option value="女" style="background: #f5f5f5">女</option>
+				</select>
+				<input type="tel" name="" id="btel" value=""  placeholder="联系方式" onkeyup="this.value=this.value.replace(/\s+/g,'')"/>
+				<div class="">
+					<input type="text" name="yanzhengma" id="yanzhengma" value="" style="width: 3.5rem;" placeholder="输入验证码"/><button style="border: 0;width: 1.9rem;height: 0.8rem;margin-left: 0.5rem;border: 1px solid #43c3f0;border-radius: 0.2rem;color: #43c3f0;background: #fff;font-size: 0.3rem;" class="getyanzhengma">立即获取</button>
+				</div>
+				<!--<input type="text" name="" id="byaoqingma" value=""  placeholder="邀请码（选填）" onkeyup="this.value=this.value.replace(/\s+/g,'')"/>-->
+				<!--<div class="" style="display: flex;">
+					<div id="bschool"   placeholder="所在学校" style="width: 4.8rem;height: 0.8rem;background: #f5f5f5;margin-top: 0.3rem;border-top-right-radius: 0;border-bottom-right-radius: 0;line-height: 0.8rem;padding-left: 0.2rem;font-size: 0.3rem;">
+						所在学校
+					</div>
+					<button style="background: url(img/下拉@3x.png) #f5f5f5 no-repeat 0.2rem 0.3rem;width: 0.9rem;height: 0.8rem;background-size: 0.3rem;border: 0;margin-top: 0.3rem;border-top-right-radius: 0.1rem;border-bottom-right-radius: 0.1rem;cursor: pointer;" class="getbtn_btn"></button>
+				</div>-->
+				<input type="text" name="" id="byaoqingma" value=""  placeholder="邀请码（选填）" onkeyup="this.value=this.value.replace(/\s+/g,'')"/>
+				<input type="text" name="" id="bschool" value=""  placeholder="所在学校（选填）"/>
+				<input type="text" name="" id="bclass" value=""  placeholder="所在班级（选填）"/>
+				<!--选择学校--开始-->
+				<!--学校名称--开始-->
+				<div class="schoolxiala" style="display: none;">
+					<input type="text" readonly="readonly" name="" id="" value="实验小学" style="width: 50%;margin-left: 50%;"/>
+					<input type="text" readonly="readonly" name="" id="" value="实验幼儿园" style="width: 50%;margin-left: 50%;"/>
+					<input type="text" readonly="readonly" name="" id="" value="和平幼儿园" style="width: 50%;margin-left: 50%;"/>
+					<!--<input type="text" name="" id="" value="" placeholder="其他" style="width: 50%;margin-left: 50%;" class="shuru"/>-->
+				</div>
+				
+				<!--学校名称--结束-->
+			
+	<!--选择学校--结束-->
+				<!--<input type="text" name="" id="bclass" value=""  placeholder="所在班级（选填）"/>-->
+				<button id="lijibtn">
+					立即报名，获得免费试听机会
+				</button>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div class="f " style="position: fixed;top: 0;bottom: 0;left: 0;right: 0;display: none;z-index: 111;">
+		<div class="float" style="display: block;"></div>
+	    <div class="animated zoomIn" style="position: absolute;z-index: 11111;padding-top: 75%;text-align: center;width: 100%;box-sizing: border-box;left: 0;">
+	    	<div class="close" style="position: absolute;right: 0.5rem;top: 60%;z-index: 11111;">
+	    		<img width="30px" src="img/fb3cb29cd35ec72e82e3351a36b7b5f.png"/>
+	    	</div>
+	    	<img style="width: 6.5rem;margin-left: 0.5rem;top: 30%;position: absolute;left: 0;" src="img/success-float.png"/>
+	    	<p style="text-align: center;color: white;position: relative;z-index: 22222;font-size: 0.3rem;">您已预约成功，我们的<br />
+	    老师会尽快与您联系</p>
+	    </div>
+	</div>
+</body>
+<script src="../../js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../css/webuploader/webuploader.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	//信息框选择所在学校开始
+	var schval='';
+	$('.getbtn_btn').click(function(){
+//		$('.main').hide();
+		$('.schoolxiala').fadeToggle()
+//		$('.shuru').on('input',function(){
+//						$('#bschool').html($('.shuru').val())
+//					})
+		
+			$('.schoolxiala>input').each(function(i){
+				$(this).click(function(){
+//					$('.schoolxiala').fadeOut();
+//					console.log($(this).val())
+					schval=$(this).val()
+					$("#bschool").html(schval)
+//					$('#xuancstex').html(schval);
+					console.log(schval)
+					$('.schoolxiala').hide()
+				})
+			})
+	})
+	//信息框所在学校结束
+	//选择学校开始
+	$('.xuanschool').click(function(){
+		$('.schoolxiala').fadeToggle();
+		var scoll='';
+		$('.queren').click(function(){
+//			$('#xuancstex').html(schval);
+			console.log($('#xuancstex').html())
+			scoll=$('#xuancstex').html();
+			console.log(scoll)
+			$('.main').show();
+			$('.chooseschool').hide()
+			$('#bschool').val(scoll)
+		})
+	})
+	//选择学校结束
+//获取验证码开始
+	$('.getyanzhengma').click(function(){
+//		console.log(0)
+		$.ajax({
+		type:"post",
+		url:"http://139.224.133.133:8013/api/user/v1/sms",
+		async:true,
+		data:{
+			type:3,
+			account:$("#btel").val()
+		},
+		success:function(data){
+			console.log(data)
+		}
+	});
+	})
+	//获取验证码结束
+//	AJAX\n
+if(location.href.indexOf("invite=")>=0){
+	$("#byaoqingma").val(location.href.split("invite=")[1].split("&")[0]);
+}
+	var curriculumid,studentId,classImgLists="",stanby=false;//课程ID/学生id
+//ui.showToast( '报名预留页面',10000);
+	var calendar = new datePicker();
+	calendar.init({
+		'trigger': '#bbirthday', /*按钮选择器，用于触发弹出插件*/
+		'type': 'date',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+		'minDate':'1900-1-1',/*最小日期*/
+		'maxDate':'2100-12-31',/*最大日期*/
+		'onSubmit':function(){/*确认时触发事件*/
+//			var theSelectData=calendar.value;
+		},
+		'onClose':function(){/*取消时触发事件*/
+		}
+	});
+	$(".close").click(function(){
+		$(".f").hide();
+		location.reload();
+	})
+	window.onload=function(){
+		$(".LOGO").css("bottom",($(".header").height()-$(".main")[0].offsetTop)/2>=0?($(".header").height()-$(".main")[0].offsetTop)/2:0);
+	}
+	
+	$("#lijibtn").click(function(){
+		console.log($("#bschool").val(),$('.sex').val())
+		if($("#bname").val()==""){
+			ui.showToast( '请填写姓名',1500);
+			return false;
+		}
+		if($('#bbirthday').val()==""){
+			ui.showToast( '请填宝宝生日',1500);
+			return false;
+		}
+		if($("#btel").val()==""){
+			ui.showToast( '请填写联系方式',1500);
+			return false;
+		}
+		if($("#yanzhengma").val()==""){
+			ui.showToast( '请输入验证码',1500);
+			return false;
+		}
+		stanby=true;
+		console.log()
+		var birthDay= $("#bbirthday").val();
+		if(birthDay==""){
+			birthDay="未填写";
+		}
+		var ajaxData=JSON.stringify({
+			  "invitationcode":$("#byaoqingma").val(),
+			  "name":$("#bname").val(),
+			  "sex": $('.sex').val(),
+			  "birthday":$('#bbirthday').val(),
+			  "phone":$("#btel").val(),
+			  "nowschool":$("#bschool").val(),
+			  "nowgrade":$("#bclass").val(),
+			  "code": $('#yanzhengma').val(),
+			  "type":"2"
+//			  "remark":"线上报名"
+			})
+			
+			postAjax("http://139.224.133.133:8013/api/tch/v1/summerclassactivities",ajaxData,function(data){
+				if(data.Code==200){
+					stanby=true;
+					$(".f").show();
+					sessionStorage.setItem("baoming",1);
+				}else{
+					stanby=false;
+					ui.showToast( data.Msg,1500);
+				}
+			})
+			
+	})
+</script>
+</html>

@@ -1,0 +1,550 @@
+.QuebukeBox {
+  .searchBox {
+    width: 6.5rem;
+    height: 0.58rem;
+    background: rgba(240, 240, 240, 1);
+    border-radius: 10px;
+    margin: 0.25rem auto;
+    display: flex;
+    align-items: center;
+    img {
+      display: block;
+      width: 0.4rem;
+      height: 0.4rem;
+      margin: 0 0.19rem 0 0.22rem;
+    }
+    input {
+      display: block;
+      font-size: 0.28rem;
+      font-family: PingFang;
+      font-weight: 500;
+      color: rgba(35, 35, 35, 1);
+      border: none;
+      background-color: rgba(0, 0, 0, 0);
+      outline: none;
+    }
+  }
+  .BoxList {
+    padding-top: 0.25rem;
+    & > .top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.48rem;
+      & > div {
+        font-size: 0.28rem;
+        line-height: 0.32rem;
+        font-family: PingFang;
+        font-weight: 500;
+        color: rgba(35, 35, 35, 1);
+        padding: 0 0.14rem 0.26rem 0.14rem;
+        position: relative;
+        box-sizing: border-box;
+        height: 0.58rem;
+        &:first-child {
+          margin-right: 0.53rem;
+        }
+        &:last-child {
+          margin-left: 0.53rem;
+        }
+        &.active {
+          color: rgba(239, 181, 17, 1);
+          border-bottom: 0.06rem solid rgba(239, 181, 17, 1);
+          // &::after {
+          //   content: '';
+          //   display: block;
+          //   width: 0.82rem;
+          //   height: 0.06rem;
+          //   background-color: rgba(239, 181, 17, 1);
+          // }
+        }
+      }
+    }
+    & > .bottom {
+      & > div {
+        &.isQueke {
+          .date_time {
+            height: 0.48rem;
+            line-height: 0.48rem;
+            font-size: 0.24rem;
+            font-family: PingFang;
+            font-weight: 500;
+            color: rgba(136, 136, 136, 1);
+            padding: 0 0.62rem;
+            background-color: #efefef;
+          }
+          .item {
+            display: flex;
+            align-items: center;
+            height: 1.54rem;
+            padding: 0 0.62rem;
+            border-bottom: 1px solid rgba(229, 229, 229, 1);
+            .left {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              align-items: flex-start;
+              flex: 1;
+              & > div {
+                &:nth-child(1) {
+                  height: 0.3rem;
+                  line-height: 0.3rem;
+                  font-size: 0.3rem;
+                  font-family: PingFang;
+                  font-weight: 500;
+                  color: rgba(35, 35, 35, 1);
+                }
+                &:nth-child(2) {
+                  height: 0.24rem;
+                  line-height: 0.24rem;
+                  font-size: 0.24rem;
+                  font-family: PingFang;
+                  font-weight: 500;
+                  color: rgba(51, 51, 51, 1);
+                  margin-top: 0.2rem;
+                  margin-bottom: 0.18rem;
+                }
+                &:nth-child(3) {
+                  display: flex;
+                  align-items: center;
+                  img {
+                    display: block;
+                    width: 0.24rem;
+                    height: 0.24rem;
+                    margin-right: 0.14rem;
+                  }
+                  div {
+                    font-size: 0.24rem;
+                    font-family: PingFang;
+                    font-weight: 500;
+                    color: rgba(51, 51, 51, 1);
+                    &.time {
+                      margin-right: 0.64rem;
+                    }
+                  }
+                }
+              }
+            }
+            .right {
+              height: 0.36rem;
+              background: rgba(239, 181, 17, 1);
+              border-radius: 0.18rem;
+              font-size: 0.22rem;
+              font-family: PingFang;
+              font-weight: 500;
+              color: rgba(255, 255, 255, 1);
+              text-align: center;
+              padding: 0 0.17rem;
+              &.active {
+                background: #5d8c5d;
+              }
+            }
+          }
+        }
+        &.isChaban {
+          .date_time {
+            height: 0.48rem;
+            line-height: 0.48rem;
+            font-size: 0.24rem;
+            font-family: PingFang;
+            font-weight: 500;
+            color: rgba(136, 136, 136, 1);
+            padding: 0 0.62rem;
+            background-color: #efefef;
+          }
+          .item {
+            display: flex;
+            align-items: center;
+            height: 1.54rem;
+            padding: 0 0.62rem;
+            border-bottom: 1px solid rgba(229, 229, 229, 1);
+            .left {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              align-items: flex-start;
+              flex: 1;
+              & > div {
+                &:nth-child(1) {
+                  display: flex;
+                  align-items: center;
+                  & > div {
+                    height: 0.4rem;
+                    line-height: 0.4rem;
+                    &:not(.ybkeshi) {
+                      height: 0.4rem;
+                      line-height: 0.4rem;
+                      font-size: 0.3rem;
+                      font-family: PingFang;
+                      font-weight: 500;
+                      color: rgba(35, 35, 35, 1);
+                    }
+                  }
+                  .ybkeshi {
+                    height: 0.3rem;
+                    line-height: 0.3rem;
+                    font-size: 0.2rem;
+                    background: #5d8c5d;
+                    border-radius: 0.04rem;
+                    padding: 0 0.12rem;
+                    color: #fff;
+                    margin-left: 0.2rem;
+                  }
+                }
+                &:nth-child(2) {
+                  height: 0.24rem;
+                  line-height: 0.24rem;
+                  font-size: 0.24rem;
+                  font-family: PingFang;
+                  font-weight: 500;
+                  color: rgba(51, 51, 51, 1);
+                  margin-top: 0.2rem;
+                  margin-bottom: 0.18rem;
+                }
+                &:nth-child(3) {
+                  display: flex;
+                  align-items: center;
+                  img {
+                    display: block;
+                    width: 0.24rem;
+                    height: 0.24rem;
+                    margin-right: 0.14rem;
+                  }
+                  div {
+                    font-size: 0.24rem;
+                    font-family: PingFang;
+                    font-weight: 500;
+                    color: rgba(51, 51, 51, 1);
+                    &.time {
+                      margin-right: 0.64rem;
+                    }
+                  }
+                }
+              }
+            }
+            .right {
+              height: 0.36rem;
+              background: rgba(239, 181, 17, 1);
+              border-radius: 0.18rem;
+              font-size: 0.22rem;
+              font-family: PingFang;
+              font-weight: 500;
+              color: rgba(255, 255, 255, 1);
+              text-align: center;
+              padding: 0 0.17rem;
+              &.active {
+                background: #5d8c5d;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  div.floatBox {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1111;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    align-items: center;
+    display: none;
+
+    .wrap {
+      padding: 0.25rem;
+      width: 6.5rem;
+      background-color: #fff;
+      border-radius: 0.3rem;
+      top: 3.8rem;
+      left: 0.5rem;
+      z-index: 2222 !important;
+      line-height: 0.5rem;
+      padding-bottom: 1rem;
+      border: 1px solid #eee;
+      flex-direction: column;
+      display: flex;
+      height: 6.8rem;
+      overflow-y: auto;
+      input {
+        height: 0.6rem;
+        width: 100%;
+        margin: 0.1rem 0;
+        border: 1px solid #aaa;
+        padding-left: 0.26rem;
+        box-sizing: border-box;
+      }
+      .addIcon {
+        text-align: center;
+        margin-top: 0.2rem;
+        .iconfont {
+          font-size: 0.5rem;
+          color: #888;
+          border: 1px solid #888;
+          width: 0.6rem;
+          height: 0.6rem;
+          border-radius: 0.6rem;
+        }
+      }
+      & > p {
+        text-align: center;
+        & > .submit {
+          width: 5.6rem;
+          height: 0.6rem;
+          border-radius: 0.6rem;
+          color: white;
+          background: linear-gradient(to bottom, #ffcc3c, #f0b715);
+          position: relative;
+          top: 0.4rem;
+          border: 0;
+          font-size: 0.26rem;
+        }
+      }
+    }
+  }
+  .simple-pagination ul {
+    margin: 0 0.2rem;
+    margin-top: 0.57rem;
+    margin-bottom: 0.57rem;
+    justify-content: center;
+  }
+  .tup-name {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 0.78rem;
+    color: #232323;
+    & > p:last-child {
+      color: #b2b2b2;
+    }
+  }
+  .fill-plue {
+    border: none;
+    outline: none;
+    text-align: right;
+  }
+  .sj-time {
+    width: 100%;
+    height: 0.5rem;
+    background: #f0f0f0;
+    line-height: 0.5rem;
+    padding-left: 0.8rem;
+  }
+  .swiper-slide {
+    /* border: 1px solid #eee; */
+    height: auto !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .pre,
+  .swiper-container .next {
+    display: none;
+  }
+  .swiper-container img {
+    width: 100%;
+  }
+  .pre img {
+    width: 0.4rem !important;
+    position: absolute;
+    top: 0.45rem;
+    left: 0.2rem;
+    z-index: 222;
+  }
+  .swiper-container {
+    margin: 0.5rem 0.45rem;
+  }
+  .swiper-container .next img {
+    z-index: 222;
+    width: 0.4rem;
+    position: absolute;
+    top: 0.45rem;
+    right: 0.2rem !important;
+  }
+  .webuploader-pick {
+    display: block;
+  }
+  .swiper-container img {
+    display: block;
+    width: 100%;
+  }
+  .button {
+    height: 0.88rem !important;
+    line-height: 0.88rem !important;
+    width: 5.8rem !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+    margin-top: 1.06rem !important;
+    margin-bottom: 1rem !important;
+  }
+  #text {
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(178, 178, 178, 1);
+    border-radius: 0.1rem;
+    margin: 0.36rem 0.56rem 0 0.56rem;
+    width: calc(100% - 1.12rem) !important;
+    height: 2rem;
+    box-sizing: border-box;
+    padding: 0.22rem;
+  }
+  .class_show {
+    display: none;
+    height: 100vh;
+    padding: 0 !important;
+    overflow-y: auto;
+    font-size: 0.28rem;
+    line-height: 0.42rem;
+    font-family: PingFang;
+    font-weight: 500;
+    color: rgba(178, 178, 178, 1);
+  }
+}
+.commonUI-toastd {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  .commonUI-toast-wrapper span {
+    top: -1rem;
+  }
+}
+.editDetailsBox {
+}
+.detailsBox {
+  .input {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #eee;
+    padding: 0.2rem;
+    padding-top: 0.3rem;
+    input {
+      font-size: 0.3rem;
+      width: 5.5rem;
+      background-color: #eee;
+      border: 0;
+      padding-left: 0.16rem;
+      outline: none;
+      border-bottom: 1px solid #51c332;
+      padding-bottom: 0.05rem;
+      &::-webkit-input-placeholder {
+        color: #a4a4a4;
+      }
+    }
+    button {
+      background-color: #eee;
+      border: 1px solid #a4a4a4;
+      color: #a4a4a4;
+      float: right;
+      font-size: 0.3rem;
+      padding: 0.05rem 0.1rem;
+      &.on {
+        background-color: #51c332;
+        border: 1px solid #51c332;
+        color: white;
+      }
+    }
+  }
+  & > .list > .item {
+    border-bottom: 1px solid rgba(229, 229, 229, 1);
+    padding: 0.4rem 0.66rem 0.54rem 0.33rem;
+    &:last-child {
+      border-bottom: none;
+    }
+    ._header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.32rem;
+      .headpicbox {
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 0.2rem;
+        img {
+          display: block;
+          width: 100%;
+        }
+      }
+      .right {
+        .name {
+          height: 0.28rem;
+          line-height: 0.28rem;
+          font-size: 0.28rem;
+          font-family: PingFang;
+          font-weight: 500;
+          color: rgba(35, 35, 35, 1);
+        }
+        .time {
+          height: 0.24rem;
+          line-height: 0.24rem;
+          font-size: 0.24rem;
+          font-family: PingFang;
+          font-weight: 500;
+          color: rgba(102, 102, 102, 1);
+          margin-top: 0.16rem;
+        }
+      }
+    }
+    ._content {
+      margin-left: 0.73rem;
+      .text {
+        line-height: 0.48rem;
+        margin-bottom: 0.12rem;
+        font-size: 0.28rem;
+        font-family: PingFang;
+        font-weight: 500;
+        color: rgba(35, 35, 35, 1);
+      }
+      .imgbox {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 0.32rem;
+        & > div {
+          width: 31%;
+          margin-right: 3%;
+          img {
+            display: block;
+            width: 100%;
+          }
+          &:nth-child(3n) {
+            margin-right: 0;
+          }
+        }
+      }
+      .discuss {
+        .item {
+          background-color: #f0f0f0;
+          border-bottom: 1px solid #fff;
+          padding: 0.2rem;
+          .name {
+            color: #000;
+            font-size: 0.24rem;
+            line-height: 0.24rem;
+            height: 0.24rem;
+            margin-bottom: 0.24rem;
+            font-weight: bold;
+          }
+          // #333333
+          .text {
+            color: #333;
+            font-size: 0.24rem;
+            line-height: 0.42rem;
+            margin-bottom: 0.1rem;
+            span {
+              color: #2200d1;
+            }
+          }
+        }
+        .pinglun_box {
+          &.active {
+            background-color: #ddd;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>修改信息</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+ 
+    	.header,.main,.yes,.no{
+    		font-size: 0.26rem;
+    	}
+    	.title{
+    		width: 4.47rem;
+    		height: 0.75rem;
+    		line-height: 0.75rem;
+    		background-size: 100%;
+    		text-align: center;
+    		color: white;
+    		background-repeat: no-repeat;
+    		margin: 0.5rem auto ;
+    	}
+    	.header ul,.yes ul,.no ul{
+    		padding:0.2rem  0.5rem;
+    	}
+    	select{
+    		background-color: #fff;
+    	}
+    	.header input,.yes input,.no input,.header select,.yes select,.no select,.main select{
+    		height: 0.6rem;
+    		font-size: 0.26rem;
+    		margin: 0.26rem 0;
+    		padding-left: 0.16rem;
+    		border: 1px solid #aaa;
+    		box-sizing: border-box;
+    	}
+    	.main{
+    		padding:0.2rem 0.5rem;
+    		padding-bottom: 0;
+    	}
+    	.haseBaoming {
+    		margin-top: 0.2rem;
+    	}
+    	.haseBaoming ul{
+    		display: flex;
+    		justify-content: space-between;
+    	}
+    	.haseBaoming ul li{
+    		float: left;
+    		width: 1.3rem;
+    		height: 0.6rem;
+    		line-height: 0.6rem;
+    		text-align: center;
+    		border: 1px solid #000;
+    	}
+    	.haseBaoming ul li.on{
+    		border: 1px solid #EEB40F;
+    		color: #EEB40F;
+    	}
+    	.haseBaoming ul li input{
+    		margin-right: 0.26rem;
+    		margin-top: 0.26rem;
+    		margin-left: 0;
+    		font-size: 0.3rem;
+    		width: 0.26rem!important;
+    		height: 0.26rem!important;
+    	}
+    	.up-page-wrapper button{
+    		width: 6.5rem;
+    		display: block;
+    		margin: 0 auto 1rem auto;
+    		height: 0.6rem;
+    		line-height: 0.6rem;
+    		background-color: #EFB511;
+    		border-radius: 0.6rem;
+    		border: 0;
+    		box-shadow: 2px 5px 2px #aaa;
+    		color: white;
+    		font-size: 0.26rem;
+    	}
+    	.register{
+    		background-color: #fff;
+    	}
+    	.register button{
+    		background-color: #EDB41C;
+    		width: 5.6rem;
+    		height: 0.87rem;
+    		line-height: 0.87rem;
+    		border-radius: 0.87rem;
+    		border: 0;
+    		box-shadow: 2px 2px  6px #eee;
+    		display: block;
+    		margin:0.3rem auto 0.5rem auto;
+    		color: white;
+    		background: linear-gradient(#EDB41C,#FFCC3C);
+    	}
+		.register .list{
+			width: 5.6rem;
+			height: 0.88rem;
+			line-height: 0.88rem;
+			margin-left: auto;
+			margin-right: auto;
+			overflow: hidden;
+			position: relative;
+		}
+		.register .list i{
+			color: #F0BA21;
+			font-size: 0.45rem;
+		}
+		.register .left{
+			width: 0.88rem;
+			float: left;
+			text-align: center;
+		}
+        .background-img{
+    width: 100%;
+    height: 4rem;
+    background-image: url(../../img/ditui@3x.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+    </style>
+</head>
+<body class="up-page">
+	<div class="up-page-wrapper" >
+        <div style="height:0.2rem;"></div>
+		<div class="header">
+			
+			<ul>
+				<li style="float: left;margin-right: 0.9rem;"><label for="cname">学员姓名：</label><br /><input class="stname" style="width: 2.75rem;" type="text" name="cname" id="cname" value="" /></li>
+				<li><label for="six">学员性别：</label><br /><select style="width: 2.75rem;" name="six" class="sex">
+					<option value="男">男</option><option value="女">女</option>
+				</select></li>
+				<li><label for="birthday">学员生日：</label><br /><input class="birthday" style="width: 100%;" readonly="readonly" type="text" name="birthday" id="birthday" value="" /></li>
+				<li style="float: left;width: 60%;"><label for="school">所在学校：</label><br /><input class="school" style="width: 3.75rem;" type="text" name="school" id="school" value="" /></li>
+				<li style="float: right;"><label for="nowClass">就读班级：</label><br /><input class="classroom" style="width: 1.75rem;" type="text" name="nowClass" id="nowClass" value="" /></li>
+				<div class="clearfix">
+					
+				</div>
+				<li><label for="tel">家长联系方式：</label><br /><input class="phone" style="width: 100%;" type="tel" name="tel" id="tel" value="" /></li>
+			</ul>
+		</div>
+
+		<button id="submit">提交</button>
+	</div>
+	<div class=" register" style="padding-top: 0.5rem;position: fixed;top: 0;left: 0;bottom: 0;right: 0;display: none;">
+		<div class="main">
+			<div class="lists">
+				<div class="list">
+					<div class="left">
+						<i class="iconfont icon-tubiaolunkuo-"></i>
+					</div>
+					账号：<span class="zhanghao"></span>
+				</div>
+				<div class="list">
+					<div class="left">
+						<i class="iconfont icon-mima"></i>
+					</div>
+					密码：123456
+				</div>
+			</div>
+		</div>
+		<button onclick="history.back();">确定</button>
+		<p style="color: #888;padding-left: 1.4rem;font-size: 0.24rem;">默认密码可在登录后修改</p>
+    </div>
+    <div class="background-img"></div>
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<!-- <script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	console.log(localStorage.getItem('snm1'))
+$('#cname').val(localStorage.getItem('snm1'))
+$('#birthday').val(localStorage.getItem('nut1'))
+$('#nowClass').val(localStorage.getItem('clm1'))
+$('#school').val(localStorage.getItem('sch1'))
+$('#tel').val(localStorage.getItem('phop1'))
+	var ui = window.CUMS.UI,stanby=false,addStr="";
+
+	var calendar = new datePicker();
+	calendar.init({
+		'trigger': '#birthday', /*按钮选择器，用于触发弹出插件*/
+		'type': 'date',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+		'minDate':'1900-1-1',/*最小日期*/
+		'maxDate':'2100-12-31',/*最大日期*/
+		'onSubmit':function(){/*确认时触发事件*/
+//			var theSelectData=calendar.value;
+		},
+		'onClose':function(){/*取消时触发事件*/
+		}
+	});
+
+
+	$("#submit").click(function(){
+	  var sname= $('.stname').val()
+	  var sexn= $('.sex').val()
+	  var day= $('.birthday').val()
+	  var school= $('.school').val()
+	  var room= $('.classroom').val()
+	  var phonet= $('.phone').val()
+	  location.href="../ditui/history.html"
+	  console.log(localStorage.getItem('idt1'))
+	  var stuid=localStorage.getItem('idt1')
+	//   console.log(sname)
+        $.ajax({
+			type: "post",
+			url: "http://139.224.133.133:8088/api/stu/v1/updatestudent",
+			        dataType:"json", 
+			data: {
+				id:stuid,
+              name: sname,
+              sex: sexn,
+              birthday:day,
+              nowschool: school,
+              nowgrade: room,
+              phone: phonet,
+			},
+			success: function (data) {
+				console.log(data)
+			}
+		});
+		
+			
+	})
+</script>
+</html>

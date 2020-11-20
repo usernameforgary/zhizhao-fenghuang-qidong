@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>学习历史</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/swiper-3.4.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet prefetch" href="../../css/photoswipe.css">
+	<link rel="stylesheet prefetch" href="../../css/default-skin/default-skin.css">
+	<script src="../../js/photoswipe.js"></script>
+	<script src="../../js/photoswipe-ui-default.js"></script>
+	<style type="text/css">
+		body{
+			background-color: #fff;
+			
+		}
+		.new_icon{
+			margin:0.1rem 0 0.2rem 0;
+		}
+		.new_icon i{
+			font-size: 0.35rem;
+			float: right;
+			margin-right: 0.5rem;
+			font-weight: bolder;
+		}
+		.text{
+			background-color: #eee;
+			margin-right: 0.5rem;
+		}
+		.text .list{
+			border-bottom: 1px solid #fff;
+			padding: 0.2rem;
+		}
+		.text .list p{
+			margin-top: 0.1rem;
+			line-height: 0.37rem;
+			/*text-indent: 2em;*/
+		}
+		.text .blue{
+			color: #2200D1;
+		}
+		.input{
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			background-color: #eee;
+			padding: 0.2rem;
+			padding-top: 0.3rem;
+		}
+		.text p:hover{
+			background-color: #ddd;
+		}
+		.input input{
+			font-size: 0.3rem;
+			width: 5.5rem;
+			background-color: #eee;
+			border: 0;
+			padding-left: 0.16rem;
+			outline: none;
+			border-bottom: 1px solid #51C332;
+			padding-bottom: 0.05rem;
+		}
+		.input button{
+			background-color: #eee;
+			border: 1px solid  #A4A4A4;
+			color: #A4A4A4;
+			float: right;
+			font-size: 0.3rem;
+			padding:0.05rem 0.1rem;
+		}
+		.input button.on{
+			background-color:  #51C332;
+			border: 1px solid  #51C332;
+			color: white;
+		}
+		input::-webkit-input-placeholder {
+       
+         color: #A4A4A4;
+       
+     }
+     .warp{
+         margin-top: 0.5rem;
+              }
+              .zwsj{
+                  display: none;
+                  font-size: 0.5rem;
+              }
+	</style>
+</head>
+<body class="up-page student_history">
+        <h1 class="zwsj" style="color: #ccc; text-align: center;">暂无数据</h1>
+<div class="warp">
+    
+
+</div>
+
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+console.log(localStorage.getItem('id'))
+var id =localStorage.getItem('id')
+// if(f)
+		        $.ajax({
+                    type: "GET",
+			url: "http://139.224.133.133:8088/api/stu/v1/getstudetnclassroominfos",
+			//         dataType:"json", 
+			data: {
+                user_id:id,
+           
+            },
+            success: function (data) {
+                console.log(data.Data)
+                if(data.Data.length==0){
+                    $('.zwsj').css({display:"block"})
+                }else{
+                        html='';
+                for(i=0;i<data.Data.length;i++){
+                        html+=` <div class="share" id="${data.Data[i].id}" index="19" studentid="undefined"><header><img src="http://139.224.133.133:8088/upload/201812/07/faa7d70e-2538-4ed5-a65a-ca091312db21.png" alt=""><div class="name">${data.Data[i].teachername}</div><time>${data.Data[i].dateweek}-${data.Data[i].endtime}</time></header><p style="word-wrap:break-word">${data.Data[i].principalsevaluation}</p><div class="imgLists"><div class="wrap" index="0" style="background-image: url(${data.Data[i].imgurllist});"><img class="item" src="" style=""><span class="w">1200</span><span class="h">1600</span></div></div><div class="new_icon"><div class="clearfix"></div></div><div class="text"></div></div>`
+                      
+                }
+                
+              $('.warp').append( html );
+                }
+            
+            
+             
+            }
+                })
+       
+</script>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>  
+<html lang="zh-CN">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+<title>摄像监控页</title>  
+<link rel="stylesheet" type="text/css" href="css/commonUI.css"/>
+<script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+</head>  
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+		border: 0;
+		box-sizing: border-box;
+	}
+</style>
+<link href="css/video-js.min.css" rel="stylesheet">
+<body>  
+	
+<!--<video id="video" autoplay><ideo>-->  
+	<!--<video id="video" autoplay="autoplay" class="player" width="100%" height="233" poster="" controls="controls" object-fit="inherit" src="https://vshare.ys7.com:4443/hcnp/789064833_1_2_2_0_cas.ys7.com_6500.m3u8?usruuid=7ffc64abe7004eddb00456991679dd3a&amp;shuuid=58c62838ed1e4f37a0d7c346a3f6987e" style="visibility: visible;"></video>-->
+	<div class="m" style="width: 7.5rem">
+      
+      
+      <script type="text/javascript">
+//			var myPlayer = videojs('my-video');
+//			videojs("my-video").ready(function(){
+//				var myPlayer = this;
+//				myPlayer.play();
+//			});
+			  
+		</script> 
+    </div>
+</body>  
+<script type="text/javascript">
+	var videoArr=["https://vshare.ys7.com:4443/hcnp/789064833_1_2_2_0_cas.ys7.com_6500.m3u8?usruuid=7ffc64abe7004eddb00456991679dd3a&amp;shuuid=58c62838ed1e4f37a0d7c346a3f6987e",
+	"https://vshare.ys7.com:4443/hcnp/789064833_2_2_2_0_cas.ys7.com_6500.m3u8?usruuid=f66edcf8613b45b59003dbcd1f1c3a54&shuuid=24a9767265ff407eb7c9d001ed659c8a",
+	"https://vshare.ys7.com:4443/hcnp/789064833_3_2_2_0_cas.ys7.com_6500.m3u8?usruuid=c640bfb732764cd6932ab18c21596ac2&shuuid=f50f28c0ffb64f2bab8687a234d778b7",
+	"https://vshare.ys7.com:4443/hcnp/789064833_4_2_2_0_cas.ys7.com_6500.m3u8?usruuid=1fede1661271488ea1e770e0b19a4b2b&shuuid=7c93feb64b1e41ec8c697a5160361b5d",
+	"https://vshare.ys7.com:4443/hcnp/789064833_5_2_2_0_cas.ys7.com_6500.m3u8?usruuid=ddf0bc56641449e8bf87f3793a11f232&shuuid=f2634eda61384846a74a732342140512"
+	];//10是4号教室
+	var roomArr=[7,8,9,10,11];
+	var index=roomArr.indexOf(parseInt(location.href.split('?classRoomId=')[1].split('&')[0]));
+//	$(".url").attr("src",videoArr[index]);
+//var getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);   
+//getUserMedia.call(navigator, {   
+//video: true,   
+//audio: true   
+//}, function(localMediaStream) {   
+//var video = document.getElementById('video');   
+//video.src = window.URL.createObjectURL(localMediaStream);   
+//video.onloadedmetadata = function(e) {   
+//console.log("Label: " + localMediaStream.label);   
+//console.log("AudioTracks" , localMediaStream.getAudioTracks());   
+//console.log("VideoTracks" , localMediaStream.getVideoTracks());   
+//};   
+//}, function(e) {   
+//console.log('Reeeejected!', e);   
+//});   
+</script>  
+<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/video.min.js"></script> 
+      <script src="http://vjs.zencdn.net/5.19/lang/zh-CN.js"></script>
+<script type="text/javascript">
+	var body_height=document.documentElement?document.documentElement.clientHeight:document.body.clientHeight;
+//	$("iframe").css("height",body_height);
+$(".m").html('<video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" style="width: 7.5rem;" height="233"'+
+		 ' poster="" data-setup="{}">'+
+      ' <source class="url" src="'+videoArr[index]+'" type="video/mp4">'+
+       ' <p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p>'+
+     ' </video>')
+	if(localStorage.getItem("zhizhao_uid")){
+		
+		
+//			alert($("video source").attr("src"))
+	}else{
+//		$("video").hide();
+		ui.showToast( '抱歉，不支持分享',10000);
+	}
+	clear();
+	setInterval(function(){
+		clear();
+	},60000);
+	function clear(){
+		if(new Date().getTime()>sessionStorage.getItem("endTime")&&sessionStorage.getItem("endTime")){
+			ui.showToast( '抱歉，观看时间结束',2000);
+			setTimeout(function(){
+				sessionStorage.setItem("ifReload",1);
+				history.back();
+			},2000)
+		}
+	}
+//	alert(location.href.split('?classRoomId=')[1].split('&')[0])
+</script>
+<script type="text/javascript">
+	var myPlayer = videojs('my-video');
+			videojs("my-video").ready(function(){
+				var myPlayer = this;
+				myPlayer.play();
+			});
+</script>
+<html>  

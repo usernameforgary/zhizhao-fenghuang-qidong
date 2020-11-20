@@ -1,0 +1,184 @@
+.warp {
+  width: 7.5rem;
+  margin: 0 auto;
+}
+
+.backg-box {
+  width: 7.5rem;
+  height: 100vh;
+  background-image: url('../img/dbjt.png');
+  background-size: 100% 100%;
+  overflow-y: auto;
+}
+
+.class-name {
+  color: #fff;
+  line-height: 0.56rem;
+}
+
+.select {
+  width: 1.5rem;
+  height: 0.56rem;
+  outline: none;
+  border: 1px solid #549cdb;
+  color: #549cdb;
+}
+
+.box-warp {
+  display: flex;
+  justify-content: space-around;
+}
+
+.gap {
+  padding: 0.1rem;
+}
+
+.search {
+  width: 2.5rem;
+  height: 0.5rem;
+  background-color: #eee;
+  position: relative;
+  border-radius: 0.1rem;
+  margin: 0.1rem;
+  padding-right: 0.5rem;
+}
+
+.search img {
+  width: 0.3rem;
+  position: absolute;
+  top: 0.075rem;
+  right: 0.2rem;
+}
+
+.search input {
+  float: right;
+  height: 0.5rem;
+  padding: 0;
+  box-sizing: border-box;
+  width: 2rem;
+  border: 0;
+  background-color: #eee;
+  border-radius: 0.1rem;
+  font-size: 0.26rem;
+}
+
+.search1 {
+  display: flex;
+}
+
+.class-name1 {
+  color: #fff;
+  line-height: 0.7rem;
+  margin-left: 0.7rem;
+}
+
+.box-list {
+  width: 6.9rem;
+  height: 1.62rem;
+  margin: 0 auto;
+  line-height: 0.5rem;
+  border-radius: 0.20rem;
+  padding: 0 0 0 0.42rem;
+  background: #fff;
+  margin-top: 0.2rem;
+  overflow: hidden;
+}
+
+.classandgrade {
+  font-size: 0.2rem;
+  font-weight: 400;
+  color: #519fdd;
+}
+
+.mind {
+  font-size: 0.2rem;
+  color: #8cbbe6;
+}
+
+.button {
+  width: 1.09rem;
+  height: 0.35rem;
+  display: inline-block;
+  margin-left: 3rem;
+  border-radius: 0.2rem;
+  text-align: center;
+  line-height: 0.35rem;
+  color: #519fdd;
+  border: 1px;
+  font-size: 0.20rem;
+  border-radius: 10px;
+  border: 1px solid #519fdd;
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+}
+
+.sq {
+  width: 1.09rem;
+  height: 0.35rem;
+  display: inline-block;
+  margin-left: 3rem;
+  border-radius: 0.2rem;
+  text-align: center;
+  line-height: 0.35rem;
+  color: #519fdd;
+  border: 1px;
+  font-size: 0.20rem;
+  border-radius: 10px;
+  border: 1px solid #519fdd;
+  position: absolute;
+  bottom: -0.5rem;
+  right: 10px;
+}
+
+.pl {
+  position: relative;
+
+}
+
+.ove {
+  margin-left: 1rem;
+}
+
+.btn-bat {
+  display: inline-block;
+  width: 1.09rem;
+  height: 0.35rem;
+  font-size: 0.20rem;
+  background: #519fdd;
+  color: #fff;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 0.35rem;
+}
+
+.buttons {
+  margin-left: 1.5rem;
+}
+
+.timerange {
+  flex: 1;
+  padding-left: 0.7rem;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+#starttime, #endtime {
+  width: 2rem;
+  height: 0.5rem;
+  background-color: #eee;
+  position: relative;
+  border-radius: 0.1rem;
+  margin: 0.1rem;
+  display: inline-block;
+  text-align: center;
+  line-height: .5rem;
+}
+
+.diwei img {
+  position: fixed;
+  top: 2.3rem;
+  right: 3%;
+  width: 1rem;
+}

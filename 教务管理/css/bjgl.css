@@ -1,0 +1,130 @@
+.warp {
+  width: 7.5rem;
+  margin: 0 auto;
+}
+
+.bg-box {
+  width: 7.5rem;
+  height: 100vh;
+  background-image: url(../img/校长端转班审批已同意.jpg);
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding-top: 20px
+}
+
+.search {
+  width: 6.5rem;
+  height: 0.6rem;
+  background-color: #eee;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 0.1rem;
+}
+
+.search img {
+  width: 0.45rem;
+  position: absolute;
+  top: 0.075rem;
+  right: 0.2rem;
+}
+
+.search input {
+  /* float: right; */
+  height: 0.6rem;
+  padding: 0;
+  box-sizing: border-box;
+  width: 5.6rem;
+  border: 0;
+  background-color: #eee;
+  border-radius: 0.1rem;
+  font-size: 0.26rem;
+}
+
+.opening {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0.3rem 0;
+  font-size: 0.3rem;
+  text-align: center;
+}
+
+.opclass {
+  width: 1.1rem;
+  border-bottom: 2px solid #000;
+}
+
+.box-list {
+  width: 6.9rem;
+  /* height: 1.62rem; */
+  margin: 0 auto;
+  line-height: 0.5rem;
+  border-radius: 0.20rem;
+  padding: 0 0 0 0.42rem;
+  /* box-shadow: 2px 2px 8px #aaa, -2px 2px 8px #aaa; */
+  background: #fff;
+  margin-top: 0.2rem;
+}
+
+.classandgrade {
+  font-size: 0.2rem;
+  font-weight: 400;
+  color: #519fdd;
+}
+
+.mind {
+  font-size: 0.2rem;
+  color: #8cbbe6;
+}
+
+.tite {
+  margin-left: 1rem;
+}
+
+.button1 {
+  margin-left: 4rem;
+  margin-bottom: 0.2rem;
+}
+
+.button {
+  width: 1.09rem;
+  height: 0.35rem;
+  display: inline-block;
+  background: #519fdd;
+  /* margin-left: 1rem; */
+  border-radius: 0.2rem;
+  text-align: center;
+  line-height: 0.35rem;
+  color: #fff;
+  font-size: 0.20rem;
+}
+
+.non {
+  display: none;
+}
+
+.cor {
+  width: 1.1rem;
+  border-bottom: 2px solid #000;
+
+}
+
+.diwei img {
+  position: fixed;
+  top: 1.6rem;
+  right: 3%;
+  width: 1rem;
+}
+
+.cont {
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.tab-text {
+  height: 100%;
+  overflow-y: auto;
+}

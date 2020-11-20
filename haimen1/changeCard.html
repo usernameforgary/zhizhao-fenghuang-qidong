@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>更改卡片</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index1.css"/>
+    <script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	.main{
+    		text-align: center;
+    	}
+    	.main img{
+    		width: 6.5rem;
+    		margin-bottom: 0.3rem;
+    	}
+    	.main img.on{
+    		border-radius: 0.48rem;
+    		box-shadow: 0px 0px 8px 6px #FFD31C;
+    	}
+    	button{
+    		position: fixed;
+    		bottom: 0.5rem;
+    		left: 0.75rem;
+    		background-color: #EDB41C;
+    		width: 6rem;
+    		height: 0.65rem;
+    		line-height: 0.65rem;
+    		border-radius: 0.65rem;
+    		border: 0;
+    		box-shadow: 2px 2px  6px #aaa;
+    		display: block;
+    		/*margin:0.3rem auto 0.5rem auto;*/
+    		color: white;
+    	}
+    </style>
+</head>
+<body class="up-page">
+	<div class="up-page-wrapper" style="padding-top: 0.5rem;">
+		<div class="main img_children">
+			<img index="card6" src="img/cardBg/card6@3x.png"/>
+			<img index="card7" src="img/cardBg/card7@3x.png"/>
+			<img index="card8" src="img/cardBg/card8@3x.png"/>
+			<img index="card9" src="img/cardBg/card9@3x.png"/>
+			<img index="card10" src="img/cardBg/card10@3x.png"/>
+		</div>
+		<div class="main img_teacher">
+			<img index="card1" src="img/cardBg/card1@3x.png"/>
+			<img index="card2" src="img/cardBg/card2@3x.png"/>
+			<img index="card3" src="img/cardBg/card3@3x.png"/>
+			<img index="card4" src="img/cardBg/card4@3x.png"/>
+			<img index="card5" src="img/cardBg/card5@3x.png"/>
+		</div>
+		<button>提交</button>
+	</div>
+</body>
+<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI;
+//	ui.showToast( '板块正在开发！');
+if(location.href.indexOf("type=1")>0){
+	$(".img_children").hide();
+}else{
+	$(".img_teacher").hide();
+}
+	$(".main img").click(function(){
+		$(".on").removeClass("on");
+		$(this).addClass("on");
+//		localStorage.setItem("cardClass",$(this).attr('index'));
+//		history.back()
+	})
+	$(".main img").click(function(){
+//		localStorage.setItem("cardClass",$('.on').attr('index'));
+//		history.back()
+	})
+	$("button").click(function(){
+		localStorage.setItem("cardClass",$('.on').attr('index'));
+		history.back()
+	})
+</script>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+		<title>今日收费</title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			html{
+				font-size: 12px;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			body {
+				font-family: "微软雅黑";
+				background: ;
+				width: 100%;
+				height: 100%;
+			}
+			#baoming,#xufei{
+				width: 90%;
+				height: auto;
+				margin: 0 5%;
+			}
+			#baoming>li,#xufei>li{
+				box-shadow: 0px 3px 10px #ccc;
+				padding-bottom: 5%;
+				border-radius: 1rem;
+				margin: 5% 0;
+			}
+			#baoming>li h1,#xufei>li h1{
+				font-weight: normal;
+				height: 5.5rem;
+				line-height: 5.5rem;
+				background: #f3f3f3;
+				font-size: 16px;
+				display: flex;
+				color: #333;
+				border-top-left-radius: 1rem;
+				border-top-right-radius: 1rem;
+			}
+			#baoming>li h1 span:first-child,#xufei>li h1 span:first-child{
+				padding-left: 18%;
+				height: 6.8rem;
+				width: 20%;
+				background: url(img/学生@3x.png) no-repeat 20% 40%;
+				background-size: 2rem;
+			}
+			#baoming>li h1 span:nth-child(2),#xufei>li h1 span:nth-child(2){
+				padding-left: 12%;
+				height: 6.8rem;
+				width: 28%;
+				background: url(img/课程顾问@3x.png) no-repeat 0% 40%;
+				background-size: 2rem;
+			}
+			#baoming>li h1 span:last-child,#xufei>li h1 span:last-child{
+				color: #e60012;
+			}
+			#baoming>li ul,#xufei>li ul{
+				margin-top: 2rem;
+				line-height: 3.5rem;
+				display: flex;
+				justify-content: space-around;
+				text-align: center;
+				padding: 0 8%;
+				font-size: 15px;
+				color: #999;
+			}
+			#baoming>li ul,#xufei>li ul{
+				color: #333;
+			}
+			#baoming>li ul li p,#xufei>li ul li p{
+				margin-top: 0;
+				line-height: 2rem;
+			}
+			h4{
+				height: 2rem;
+				/*background: #F0B715;*/
+				font-size: 20px;
+				font-weight: normal;
+				padding: 0 8%;
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="" style="margin-top: 1rem;">
+			<h4 id="baomingtitle">报名</h4>
+			<ul id="baoming">
+				<!--<li>
+					<h1>
+						<span>王一一</span>
+						<span>于娜娜</span>
+						<span>2000.00</span>
+					</h1>
+					<ul>
+						<li style="background: url(img/常规课@3x.png) no-repeat 50% 0%;background-size: 2.5rem;padding-top: 8%;">
+							<span>常规课</span>
+							<p>30</p>
+						</li>
+						<li style="background: url(img/试听课@3x.png) no-repeat 50% 0%;background-size: 2.5rem;padding-top: 8%;">
+							<span>试听课</span>
+							<p>30</p>
+						</li>
+						<li style="background: url(img/活动课@3x.png) no-repeat 50% 0%;background-size: 2.5rem;padding-top: 8%;">
+							<span>活动课</span>
+							<p>30</p>
+						</li>
+						<li style="background: url(img/专项课@3x.png) no-repeat 50% 0%;background-size: 2.5rem;padding-top: 8%;">
+							<span>专项课</span>
+							<p>30</p>
+						</li>
+					</ul>
+				</li>-->
+			</ul>
+		</div>
+		
+		
+		
+		
+		<!--报名、续费分割线-------------------------------------------------------------------------->
+		
+		
+		<div id="">
+			<h4 id="xufeititle">续费</h4>
+			<ul id="xufei">
+				
+			</ul>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		<!--信息提示框开始-->
+		<div class="newalert" style="width: 50%;height: 5rem;border-radius: 1rem;position: fixed;top: 20%;left: 25%;z-index: 5;text-align: center;line-height: 5rem;font-size: 18px;box-shadow: -3px 2px 5px 1px #333;display: none;">
+			
+		</div>
+		<!--信息提示框结束-->
+	</body>
+	<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var userid = localStorage.getItem('zhizhao_uid');
+		//跳转至另一个页面当，另一个页面中获取上一个页面通过跳转传来的值
+		var url = location.search; //获取url中"?"符后的字串 ('?modFlag=business&role=1')  
+		var theRequest = new Object();
+		if(url.indexOf("?") != -1) {
+			var str = url.substr(1); //substr()方法返回从参数值开始到结束的字符串；  
+			var strs = str.split("&");
+			for(var i = 0; i < strs.length; i++) {
+				theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+			}
+			console.log(theRequest);
+		}
+		
+		var starttime=theRequest.ti1;
+		var endtime=theRequest.ti2;
+		var str='';
+		$.ajax({
+			type:"get",
+			url:"http://139.224.133.133:8012/api/overpipe/v1/getcharge",
+			async:false,
+			data:{
+				user_id: userid,
+				starttime: starttime,
+				endtime: endtime,
+			},
+			success:function(data){
+				console.log(data)
+				if(data.Code==1000){
+					$('.newalert').html(data.Msg)
+//					$('body').css('background','#f1f1f1')
+					$('.newalert').fadeIn(1500);
+				}
+				if(data.Code==200){
+					$('#baomingtitle').show();
+					$('#xufeititle').show();
+					for(i in data.Data.list){
+						var strr=data.Data.list[i].remark;
+						var reg=strr.replace(/,/g, "");
+//						console.log(reg)
+						var a=reg.indexOf("常规课");
+						var b=reg.indexOf('试听课');
+						var c=reg.indexOf('活动课');
+						var d=reg.indexOf('专项课');
+						var changgui=0,shiting=0,huodong=0,zhuanxiang =0;
+						if(a>=0){
+							if(reg.substring(a+4,a+7)==Number(reg.substring(a+4,a+7))){
+//								console.log('常规课课时为三位数');
+								changgui=reg.substring(a+4,a+7);
+							}else if(reg.substring(a+4,a+6)==Number(reg.substring(a+4,a+6))){
+//								console.log('常规课课时为两位数')
+								changgui=reg.substring(a+4,a+6);
+							}else if(reg.substring(a+4,a+5)>0||reg.substring(a+4,a+5)<=9){
+								changgui=reg.substring(a+4,a+5);
+								
+							}else if(reg.substring(a+4,a+5)==0){
+//								
+							}
+							
+							
+						}
+						if(b>=0){
+							if(reg.substring(b+4,b+7)==Number(reg.substring(b+4,b+7))){
+//								console.log('试听课课时为三位数');
+								shiting=reg.substring(b+4,b+7);
+							}else if(reg.substring(b+4,b+6)==Number(reg.substring(b+4,b+6))){
+//								console.log('试听课课时为两位数')
+								shiting=reg.substring(b+4,b+6);
+							}else if(reg.substring(b+4,b+5)>0||reg.substring(b+4,b+5)<=9){
+								shiting=reg.substring(b+4,b+5);
+								
+							}else if(reg.substring(b+4,b+5)==0){
+//								
+							}
+						}
+						if(c>=0){
+							if(reg.substring(c+4,c+7)==Number(reg.substring(c+4,c+7))){
+//								console.log('活动课课时为三位数');
+								huodong=reg.substring(c+4,c+7);
+							}else if(reg.substring(c+4,c+6)==Number(reg.substring(c+4,c+6))){
+//								console.log('活动课课时为两位数')
+								huodong=reg.substring(c+4,c+6);
+							}else if(reg.substring(c+4,c+5)>0||reg.substring(c+4,c+5)<=9){
+								huodong=reg.substring(c+4,c+5);
+								
+							}else if(reg.substring(c+4,c+5)==0){
+//								
+							}
+						}
+						if(d>=0){
+							if(reg.substring(d+4,d+7)==Number(reg.substring(d+4,d+7))){
+//								console.log('专项课课时为三位数');
+								zhuanxiang=reg.substring(d+4,d+7);
+							}else if(reg.substring(d+4,d+6)==Number(reg.substring(d+4,d+6))){
+//								console.log('专项课课时为两位数')
+								zhuanxiang=reg.substring(d+4,d+6);
+							}else if(reg.substring(d+4,d+5)>0||reg.substring(d+4,d+5)<=9){
+								zhuanxiang=reg.substring(d+4,d+5);
+								
+							}else if(reg.substring(d+4,d+5)==0){
+								
+							}
+						}
+						
+						
+						
+						
+						str+=`<li>
+					<h1>
+						<span>${data.Data.list[i].studentname}</span>
+						<span>${data.Data.list[i].cc}</span>
+						<span>${data.Data.list[i].price}</span>
+					</h1>
+					<ul>
+						<li style="background: url(img/常规课@3x.png) no-repeat 50% 0%;background-size: 2.5rem;padding-top: 8%;">
+							<span>常规课</span>
+							<p>${changgui}</p>
+						</li>
+						<li style="background: url(img/试听课@3x.png) no-repeat 50% 0%;background-size: 2.5rem;padding-top: 8%;">
+							<span>试听课</span>
+							<p>${shiting}</p>
+						</li>
+						<li style="background: url(img/活动课@3x.png) no-repeat 50% 0%;background-size: 2.5rem;padding-top: 8%;">
+							<span>活动课</span>
+							<p>${huodong}</p>
+						</li>
+						<li style="background: url(img/专项课@3x.png) no-repeat 50% 0%;background-size: 2.5rem;padding-top: 8%;">
+							<span>专项课</span>
+							<p>${zhuanxiang}</p>
+						</li>
+					</ul>
+				</li>`
+				if(data.Data.list[i].typename=='报名'){
+					$('#baoming').html(str);
+				}
+				if(data.Data.list[i].typename=='续费'){
+					$('#xufei').html(str);
+				}
+			}
+					
+				}
+			}
+		});
+		
+		
+		
+		
+		
+	</script>
+
+</html>

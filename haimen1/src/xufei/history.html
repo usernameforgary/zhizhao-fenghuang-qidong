@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>历史记录</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	body{
+    		background-color: #fff;
+    		background-image: url(../../img/bodyBg/xufei@3x.jpg);
+    		background-size: 100%;
+    		background-repeat: no-repeat;
+    		background-position: bottom;
+    	}
+    	.search{
+    		width: 6.5rem;
+    		height: 0.6rem;
+    		background-color: #eee;
+    		margin:0.25rem auto;
+    		position: relative;
+    		border-radius:0.1rem;
+    	}
+    	.search img{
+    		width: 0.45rem;
+    		position: absolute;
+    		top: 0.075rem;
+    		left: 0.2rem;
+    		
+    	}
+    	.search input{
+    		float: right;
+    		height: 0.6rem;
+    		padding: 0;
+    		box-sizing: border-box;
+    		width: 5.6rem;
+    		border: 0;
+    		background-color: #eee;border-radius:0.1rem;
+    		font-size: 0.26rem;
+    	}
+    	input::-webkit-input-placeholder{
+    		color: black;
+    	}
+    	.main,.othermain{
+    		font-size: 0.26rem;
+    	}
+    	.main ul li,.othermain ul li{
+    		line-height: 0.86rem;
+    		border-bottom: 1px solid #eee;
+    		padding: 0 0.5rem;
+    		margin-top: 0.01rem;
+    	}
+    	.main ul li span,.othermain ul li span{
+    		float: right;
+    	}
+    	.main li i,.othermain li i{
+    		display: inline-block;
+    		font-size: .26rem;
+    		margin-left: 0.15rem;
+    		transform:rotate(90deg);
+			-ms-transform:rotate(90deg); 	/* IE 9 */
+			-moz-transform:rotate(90deg); 	/* Firefox */
+			-webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+			-o-transform:rotate(90deg); 
+    	}
+    	.main li b,.othermain li b{
+    		font-weight: normal;
+    	}
+    	.main p span,.othermain p span{
+    		float: right;
+    	}
+    	.main p span i,.othermain p span i{
+    		transform:rotate(-90deg);
+			-ms-transform:rotate(-90deg); 	/* IE 9 */
+			-moz-transform:rotate(-90deg); 	/* Firefox */
+			-webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
+			-o-transform:rotate(-90deg); 
+    	}
+    </style>
+</head>
+<body class="up-page">
+	<div class="up-page-wrapper" >
+		<div class="header">
+			<div class="search">
+				<img src="../../img/bodyBg/search@3x.png"/>
+				<input type="text" name="search" id="search" value="" placeholder="输入学员姓名"/>
+			</div>
+			
+		</div>
+		<div class="teacher">
+		</div>
+		<div class="main">
+			<ul>
+				<!--<li>我是名字<span><b>剩余60课时</b><i class="iconfont icon-you"></i></span>
+					
+					<div class="content" style="display:none ;">
+						
+						<p>生日：2000年1月1日</p>
+						<p>性别：男</p>
+						<p>电话：12949279479</p>
+						<p>学校：**小学</p>
+						<p>班级：101班</p>
+						<p>报名课时：30课时</p>
+						<p>报名时间：2018年10月31日</p>
+						<p>第一次续费课时：30课时</p>
+						<p>第一次续费时间：2018年6月1日</p>
+						<p>第二次续费课时：30课时</p>
+						<p>第二次续费时间：2018年6月1日</p>
+						<p>已报名总课时：90课时</p>
+						<p>已消耗课时：60课时</p>
+						<p>剩余课时：30课时</p>
+						<p style="position: relative;bottom: 0.6rem;"><span>收起<i class="iconfont icon-you"></i></span><div class="clearfix"></div></p>
+						
+					</div>
+				</li>-->
+				<!--<li>王一一<span><b>剩余60课时</b><i class="iconfont icon-you"></i></span></li><li>王一一<span><b>剩余60课时</b><i class="iconfont icon-you"></i></span></li><li>王一一<span><b>剩余60课时</b><i class="iconfont icon-you"></i></span></li>-->
+			</ul>
+		</div>
+	</div>
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI;
+//	ui.showToast( '板块正在开发！');
+	//性别选择
+	$(".main li i").click(function(){
+//		ui.showToast( '展开信息！');
+		if($(this).parents('li').find('.content').css("display")=="block"){
+			$(this).parents('li').find('.content').hide();
+			$(this).parents('li').find('b').show();
+			return false;
+		}
+		$('.content').hide();
+		$('b').show();
+		$(this).parents('li').find('.content').show();
+		$(this).parents('li').find('b').hide();
+		
+	})
+	$(".othermain li i").click(function(){
+//		ui.showToast( '展开信息！');
+		if($(this).parents('li').find('.content').css("display")=="block"){
+			$(this).parents('li').find('.content').hide();
+			$(this).parents('li').find('b').show();
+			return false;
+		}
+		$('.content').hide();
+		$('b').show();
+		$(this).parents('li').find('.content').show();
+		$(this).parents('li').find('b').hide();
+		
+	})
+	$(".main input").click(function(){
+		if($(this).val()==1){
+			$(".yes").show();
+			$(".no").hide();
+		}else if($(this).val()==2){
+			$(".yes").hide();
+			$(".no").show();
+		}
+	})
+	$('.teacher .tab li').click(function(){
+		$('.content').hide();
+		$('b').show();
+		$('.teacher .tab li.active').removeClass('active');
+		$(this).addClass('active');
+		//下面需要修改 扇形表的数据
+		if($(this).text()=="已签单"){
+			$(".main").show();
+			$(".othermain").hide();
+		}else{
+			$(".main").hide();
+			$(".othermain").show();
+		}
+	})
+</script>
+</html>

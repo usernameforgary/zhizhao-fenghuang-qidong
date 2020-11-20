@@ -1,0 +1,922 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
+    />
+    <title>我的学员</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css" />
+    <link rel="stylesheet" href="../../css/weui.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../css/simplePagination.css"
+    />
+    <link rel="stylesheet" href="../../css/History.min.css" />
+    <script
+      src="../../js/const.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script><script
+      src="../../js/resize.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <style>
+      .filter-warp {
+        position: relative;
+        margin-right: .3rem;
+        width: 50%;
+      }
+
+      #filter1, #filter2 {
+        border: none;
+        width: 100%;
+      }
+
+      .filter-warp:before {
+        position: absolute;
+        right: 0.25rem;
+        opacity: 0.8;
+        top: 50%;
+        content: '';
+        /* background: url(../../img/right.png) no-repeat top center; */
+        background-size: contain;
+        width: 0.14rem;
+        height: 0.26rem;
+        margin-top: -0.13rem;
+        transform: rotateZ(90deg);
+      }
+    </style>
+  </head>
+
+  <body class="up-page">
+    <div class="zhuanzhengFloat" style="display:none;">
+      <div class="float" style="display: block;"></div>
+      <div class="zhuanbanWrap" style="overflow: auto;">
+
+        <!-- <div class="main">
+          <header style="margin-bottom: 0.2rem;">学员类型：</header>
+          <select class="ifSign" name="" style="width: 2.75rem;">
+            <option value="0">请选择</option>
+            <option value="2">学员</option>
+            <option value="1">非学员</option>
+          </select>
+          <input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="1"  checked="checked"/>	<label for="">非学员</label>	&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+          <input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="2" />		<label for="">学员</label>
+    
+        </div> -->
+
+        <div style="display: flex;">
+
+          <div class="main">
+            <header style="margin-bottom: 0.2rem;">报名课程体系：</header>
+            <!-- <input style="width: 2.75rem;" type="tel" name="totleTime2" class="totleTime" value=""> -->
+            <select class="ifSign1" name="" style="width: 2.75rem;">
+              <!-- <option value="0">请选择</option> -->
+            </select>
+            <!--<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="1"  checked="checked"/>	<label for="">非学员</label>	&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+            <input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="2" />		<label for="">学员</label>-->
+    
+          </div>
+          <div class="main" style="margin-left: 0.45rem;">
+            <header style="margin-bottom: 0.2rem;">课程名称：</header>
+            <!-- <input style="width: 2.75rem;" type="tel" name="totleTime2" class="totleTime" value=""> -->
+    
+            <select class="ifSign2" name="" style="width: 2.75rem;">
+          <!-- <option value="">请选择</option> -->
+            </select>
+    
+            <!--<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="1"  checked="checked"/>	<label for="">非学员</label>	&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+            <input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="2" />		<label for="">学员</label>-->
+    
+          </div>
+    
+        </div>
+    
+        <div style="display: flex;">
+
+          <div class="main">
+            <header style="margin-bottom: 0.2rem;">购买课时：</header>
+            <input style="width: 2.75rem;" type="tel" name="totleTi" class="totleT" value="" disabled="disabled">
+            <!-- <input style="width: 2.75rem;" type="tel" name="totleTim" class="totleTime" value="" disabled="disabled"> -->
+            <!--<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="1"  checked="checked"/>	<label for="">非学员</label>	&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+          <input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="2" />		<label for="">学员</label>-->
+    
+          </div>
+          <div class="main" style="margin-left: 0.45rem;">
+            <header style="margin-bottom: 0.2rem;">优惠金额：</header>
+            <input style="width: 2.75rem;" type="tel" name="totleTi" class="totleTim" value="" >
+            <!--<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="1"  checked="checked"/>	<label for="">非学员</label>	&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+          <input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="2" />		<label for="">学员</label>-->
+    
+          </div>
+    
+        </div>
+        <div style="display: flex;">
+
+          <div class="main">
+            <header style="margin-bottom: 0.2rem;">合计金额：</header>
+            <input style="width: 2.75rem;" type="tel" name="totleTi" class="totleTimu" value="" disabled="disabled">
+            <!-- <input style="width: 2.75rem;" type="tel" name="totleTim" class="totleTime" value="" disabled="disabled"> -->
+            <!--<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="1"  checked="checked"/>	<label for="">非学员</label>	&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+          <input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="2" />		<label for="">学员</label>-->
+    
+          </div>
+          <div class="main">
+            <!-- <header style="margin-bottom: 0.2rem;">优惠金额：</header> -->
+            <!-- <input style="width: 2.75rem;" type="tel" name="totleTi" class="totleTim" value="" disabled="disabled"> -->
+            <!--<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="1"  checked="checked"/>	<label for="">非学员</label>	&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+          <input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="2" />		<label for="">学员</label>-->
+    
+          </div>
+    
+        </div>
+        <div style="display: flex;">
+
+          <div class="main">
+            <header style="margin-bottom: 0.2rem;">赠送课时类型：</header>
+            <!-- <input style="width: 2.75rem;" type="tel" name="totleTi" class="totleT" value="" disabled="disabled"> -->
+            <select class="courseType1" name=""style="width: 2.75rem;">
+              <option value="1">活动课时</option>
+              <option value="2">专项课时</option>
+            </select>
+            <!-- <input style="width: 2.75rem;" type="tel" name="totleTim" class="totleTime" value="" disabled="disabled"> -->
+            <!--<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="1"  checked="checked"/>	<label for="">非学员</label>	&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+          <input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="2" />		<label for="">学员</label>-->
+    
+          </div>
+          <div class="main" style="margin-left: 0.45rem;">
+            <header style="margin-bottom: 0.1rem;">赠送课时：</header>
+            <input style="width: 2.75rem;" type="tel" name="totleTime2" id="totleval" value="" />
+            <!--<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="1"  checked="checked"/>	<label for="">非学员</label>	&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+          <input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="2" />		<label for="">学员</label>-->
+    
+          </div>
+    
+        </div>
+        <!-- <div class="changgui">
+          <div class="addCourseType secondShow">
+            <li style="float: left;margin-right: 0.9rem;"><label for="money">赠送课时类型：</label><br /><select class="courseType1" name=""style="width: 2.75rem;">
+        <option value="1">活动课时</option>
+        <option value="2">专项课时</option>
+      </select></li>
+      <li><label for="totleTime2">赠送课时：</label><br /><input style="width: 2.75rem;" type="tel" name="totleTime2" id="totleval" value="" /></li>
+
+          </div>
+        </div> -->
+        <!-- <label for="a"><b>收费金额：</b></label
+        ><br />
+        <input type="tel" name="a" id="a" value="" /><br /> -->
+        <ul>
+          <div class="changguike"></div>
+          <p style="clear: both;"></p>
+          <div class="addCourseType"></div>
+          <div class="addIcon" style="text-align: center;margin-top: 0.2rem;">
+            <i
+              class="iconfont icon-plus-add"
+              style="font-size: 0.5rem;color: #888; border: 1px solid #888;width: 0.6rem;height: 0.6rem;border-radius: 0.6rem;"
+            ></i>
+          </div>
+        </ul>
+ <label for="c"><b>备注：</b></label
+            ><br />
+            <input type="text" name="c" id="bz" value="" />
+        <label for="c"><b>收据编号：</b></label
+        ><br />
+        <input type="tel" name="c" id="c" value="" />
+        <p style="text-align: center;">
+          <button class="submit">提交</button>
+        </p>
+      </div>
+    </div>
+    <div class="genjin_box">
+      <div class="_bottom">
+        <div class="content">
+          <textarea name="" id="text" cols="30" rows="10"></textarea>
+          <div class="btn">
+            <div style="font-size: 0.26rem" class="hidegenjin_box">取 &nbsp;&nbsp;消</div>
+            <div style="font-size: 0.26rem" class="addgenjin">确 &nbsp;&nbsp;定</div>
+          </div>
+          <div class="appointmentrecord_content" style="display: block;">
+            <div class="genjinstitle">
+              邀约记录：
+            </div>
+            <div class="clearFix"></div>
+            <div class="list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="up-page-wrapper HistoryBox">
+      <div style="display: flex; align-items: center; padding: 0 .3rem;">
+        <div class="filter-warp">
+          <select class="searchBox" id="filter1">
+            <option value="">学员排序</option>
+            <option value="0">剩余课时排序</option>
+            <option value="1">报名时间排序</option>
+            <option value="2">课程等级排序</option>
+            <option value="3">年龄排序</option>
+            <option value="4">姓名排序</option>
+          </select>
+          <select class="searchBox" style="display: none" id="filter2">
+            <option value="">非学员排序</option>
+            <option value="1">录入时间排序</option>
+            <option value="2">约见时间排序</option>
+            <option value="3">年龄排序</option>
+            <option value="4">姓名排序</option>
+          </select>
+        </div>
+        <div class="searchBox">
+          <img src="../../img/bodyBg/search@3x.png" alt="" />
+          <input style="padding-left: 0.2rem"  type="text" placeholder="输入学员姓名" id="search_input" />
+        </div>
+      </div>
+      <div class="floatBox">
+        <div class="wrap">
+          <label for="a"><b>收费金额：</b></label
+          ><br />
+          <input type="tel" name="a" id="a" value="" /><br />
+          <ul>
+            <div class="changguike"></div>
+            <p style="clear: both;"></p>
+            <div class="addCourseType"></div>
+            <div class="addIcon" style="text-align: center;margin-top: 0.2rem;">
+              <i
+                class="iconfont icon-plus-add"
+                style="font-size: 0.5rem;color: #888; border: 1px solid #888;width: 0.6rem;height: 0.6rem;border-radius: 0.6rem;"
+              ></i>
+            </div>
+          </ul>
+        
+          <!-- <label for="c"><b>备注：</b></label
+            ><br />
+            <input type="text" name="c" id="bz" value="" /> -->
+          <label for="c"><b>收据编号：</b></label
+          ><br />
+          <input type="text" name="c" id="c" value="" />
+        
+          <p style="text-align: center;">
+            <button class="submit">提交</button>
+          </p>
+        </div>
+      </div>
+      <div class="BoxList">
+        <div class="top">
+          <div class="active">学员</div>
+          <div>非学员</div>
+        </div>
+        <div class="bottom">
+          <div class="isStudent "></div>
+          <div class="isntStudent"></div>
+        </div>
+      </div>
+      <div id="light-pagination1"></div>
+    </div>
+  </body>
+
+  <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+  <script
+    src="../../js/jquery-3.3.1.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/jquery.simplePagination.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/commonUI.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/utils.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/mobileSelect.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/datePicker.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script src="../../js/jquery-weui.min.js"></script>
+  <script>
+
+
+
+$(function () {
+		// $('.ifSign1').change(function () {
+			$.ajax({
+				// type:'get',
+				url: FenghuangConst.hostAjax + '/api/tch/v1/getgoodslist',
+				data: {
+					subjectid: 0 //课程系列
+				},
+				success: function (data) {
+					console.log(data)
+					htm = ''
+					for (var i = 0; i < data.Data.length; i++) {
+					
+						htm += `
+						
+  <option class="dxval" value="${data.Data[i].id}">${data.Data[i].NAME}</option>
+
+		`
+					}
+					// $('.ifSign1').html(htm)
+					$(".ifSign1").prepend("<option value='0'>请选择</option>"+htm);
+					$('.ifSign1').change(function(){
+						var pok =$(this).val()
+						localStorage.setItem('poi',$(this).val())
+						// console.log($(this).val())
+
+                     	$.ajax({
+		// type:'get',
+		url: FenghuangConst.hostAjax + '/api/tch/v1/getgoodslist',
+		data:{
+	        subjectid:pok//课程名称
+		},
+		success:function(data){
+		
+			htm=''
+		for(var i = 0; i<data.Data.length; i++){
+	      htm+=`
+	
+     	<option value="${data.Data[i].id}">${data.Data[i].NAME}</option>
+
+
+			`
+		}
+		// $('.ifSign2').html(htm)
+		$(".ifSign2").prepend("<option value='0'>请选择</option>"+htm);
+$('.ifSign2').change(function(){
+	console.log($(this).val())
+
+	$.ajax({
+									url: FenghuangConst.hostAjax + '/api/tch/v1/getgoodslist',
+						data: {
+							subjectid: pok ,//课程名称
+							coursefeesid:$(this).val()
+						},
+						success:function(data){
+							//    console.log(data.Data[0].num)
+							   localStorage.setItem('yunum',data.Data[0].num)
+							   localStorage.setItem('yhnum',data.Data[0].totalprice)
+							   console.log(data.Data[0].totalprice)
+							// console.log(localStorage.getItem('yhnum') - $('.totleTim1').val())
+							   $('.totleT').val(data.Data[0].num)
+							   $('.totleTimu').val(data.Data[0].totalprice)
+$('.totleTim').change(function(){
+	// console.log(111)
+	$('.totleTimu').val(data.Data[0].totalprice - $('.totleTim').val())
+})
+
+							  
+						}
+								  })
+
+
+
+	localStorage.setItem('poit',$(this).val())
+})
+			}
+	})
+
+					})
+				}
+			})
+		// })
+		// console.log(11)
+	})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var _this,
+      pageindex = 1,
+      pagesize = 10
+    var studentid = ''
+    $('.HistoryBox').click(function (e) {
+      if ($(e.target).hasClass('showgenjin')) {
+        studentid = $(e.target).attr('data-id')
+        getRecord($(e.target).attr('data-id'))
+        $('.genjin_box').show()
+      }
+    })
+    $('.addgenjin').click(function (e) {
+      if (
+        $('#text')
+          .val()
+          .trim().length < 8
+      ) {
+        ui.showToast('跟进内容不能少于8个字！', 2000)
+        return false
+      }
+      $.showLoading()
+      let params = {
+        userid: uid,
+        studentid: studentid,
+        content: $('#text').val(),
+        type: '1',
+        remark: ''
+      }
+      postAjax(
+        FenghuangConst.hostAjax + '/api/tch/v1/addappointmentcord',
+        JSON.stringify(params),
+        function (data) {
+          hideLoading()
+          if (data.Code === 200) {
+            $('.genjin_box').hide()
+            $('#text').val('')
+            studentid = ''
+          } else {
+            ui.showToast(data.Msg)
+          }
+        }
+      )
+    })
+    $('.hidegenjin_box').click(function (params) {
+      studentid = ''
+      $('#text').val('')
+      $('.genjin_box').hide()
+    })
+    $('.searchBox>img').click(function () {
+      pageindex = 1 //回车执行查询
+      initData()
+    })
+    $('#search_input').bind('keyup', function (event) {
+      if (event.keyCode == 13) {
+        pageindex = 1 //回车执行查询
+        initData()
+      }
+    })
+    $('.float').click(function (params) {
+      $('.zhuanzhengFloat').hide()
+      $('#a').val('')
+      $('#c').val('')
+    })
+    $('.isntStudent').click(function (event) {
+      if ($(event.target).hasClass('zhaunzheng')) {
+        window.event
+          ? (window.event.cancelBubble = true)
+          : event.stopPropagation()
+        studentid = $(event.target).attr('data-id')
+        $('.zhuanzhengFloat textarea').val('')
+        $('.zhuanzhengFloat').show()
+        getAjax(FenghuangConst.hostAjax + '/api/course/v1/getsubjecttype', {}, function (data) {
+          //插入转正表中的课程类型
+          var str = ''
+          // for (var s = 0; s < data.Data.length; s++) {
+            // if (data.Data[s].id != 2)
+              str +=
+              `<option value="1">活动课时</option>
+					<option value="2">专项课时</option>`;
+          // }
+          addStr =
+            '<li style="float: left;"><label for="money">赠送课时类型：</label><br /><select class="courseType" name=""style="width: 2.75rem;margin: 0.1rem 0;"><option value="0">请选择</option>' +
+            str +
+            '</select></li>' +
+            '<li style="float: right;"><label for="">赠送课时：</label><br /><input style="width: 2.75rem;" type="tel" name="totleTime2" class="totleTime" value="" /></li><p style="clear: both;"></p>'
+          // $('.changguike').html(
+          //   '<li style="float: left;"><header >报名课程类型：</header>' +
+          //   '<select class="courseType" name=""style="width: 2.75rem;margin: 0.1rem 0;"><option value="0">请选择</option><option value="2">常规课</option>' +
+          //   str +
+          //   '</select></li>' +
+          //   '<li style="float: right;"><label for="" >报名课时：</label><br /><input style="width: 2.75rem;" type="tel" name="totleTime2" class="totleTime" value="" /></li>'
+          // )
+          // $('.addCourseType').html(addStr)
+
+          $('.addIcon i').click(function () {
+            $('.addCourseType').append(addStr)
+          })
+        })
+        return false
+      }
+    })
+
+    $('.zhuanzhengFloat .submit').click(function () {
+      // if ($('#a').val() == '') {
+      //   ui.showToast('请填写收费金额')
+      //   return false
+      // }
+      // if ($('#b').val() == '') {
+      //   ui.showToast('请填写购买课时')
+      //   return false
+      // }
+      if ($('#c').val() == '') {
+        ui.showToast('请填写收据编号')
+        return false
+      }
+      var classhourtype = ''
+      $('.totleTime').each(function (i) {
+        //courseType
+        if ($(this).val() != '') {
+          classhourtype +=
+            $('.courseType')
+              .eq(i)
+              .val() +
+            '|' +
+            $('.totleTime')
+              .eq(i)
+              .val() +
+            ','
+        } else if (
+          $('.courseType')
+            .eq(i)
+            .val() == 4
+        ) {
+          classhourtype +=
+            $('.courseType')
+              .eq(i)
+              .val() +
+            '|' +
+            0 +
+            ','
+        }
+      })
+      classhourtype = classhourtype.substring(0, classhourtype.length - 1)
+      var ajaxData = JSON.stringify({
+        //续费接口
+        userid: uid,
+        studenid: studentid,
+        // price: 0,
+        // classhourtype: classhourtype,
+        contractno:$('#c').val(),
+        remark: $('#bz').val(),
+        preferentialamount:parseInt($('.totleTim').val())   ,
+        classhour: parseInt( localStorage.getItem('yunum')) ,
+        matchhour: parseInt($('#totleval').val()) ,
+  activityhour:  parseInt($('#totleval').val()) ,
+  subjectid:  parseInt(localStorage.getItem('poi')) ,
+  coursefeesid:parseInt(localStorage.getItem('poit')),
+      })
+      ui.showAlert(
+        '是否确认',
+        function () {
+          postAjax(FenghuangConst.hostAjax + '/api/tch/v1/atranslator', ajaxData, function (
+            data
+          ) {
+            if (data.Code == 200) {
+              ui.showToast('成功！')
+              setTimeout(function () {
+                location.reload()
+              })
+              $('#a').val('')
+              $('#b').val('')
+              $('#c').val('')
+              $('.zhuanzhengFloat').hide()
+              studentid = ''
+            } else {
+              ui.showToast(data.Msg)
+            }
+          })
+        },
+        null,
+        '确认',
+        '取消',
+        '提示'
+      )
+
+      $('.zhuanbanFloat').hide()
+    })
+    // tab点击
+    $('.BoxList .top div').click(function () {
+      $('#search_input').val('')
+      $('.BoxList .top div.active').removeClass('active')
+      $(this).addClass('active')
+      pageindex = 1
+      //下面需要修改 扇形表的数据
+      if ($(this).text() == '学员') {
+        $('.isStudent').fadeIn()
+        $('.isntStudent').css('display', 'none')
+        $('#filter1').show().next().hide()
+        yiqiandan()
+      } else if ($(this).text() == '非学员') {
+        $('.isntStudent').fadeIn()
+        $('.isStudent').css('display', 'none')
+        $('#filter2').show().prev().hide()
+        weiqiandan()
+      }
+    })
+
+    //初始化
+    function initData() {
+      if ($('.BoxList .top div.active').index() === 0) {
+        yiqiandan($('#search_input').val())
+      } else if ($('.BoxList .top div.active').index() === 1) {
+        weiqiandan($('#search_input').val())
+      }
+    }
+
+    initData()
+
+    function toPage(params) {
+      window.location.href = params
+    }
+
+    $('#filter1').change(() => yiqiandan($('#search_input').val()));
+    $('#filter2').change(() => weiqiandan($('#search_input').val()));
+
+    function yiqiandan(nameStr) {
+      $.showLoading()
+      $('.isStudent').html('')
+      getAjax(
+        FenghuangConst.hostAjax + '/api/tch/v1/signedbilllist',
+        {
+          //已签单
+          user_id: uid,
+          student_name: nameStr,
+          pageindex: pageindex,
+          pagesize: pagesize,
+          orderby: +$('#filter1').val(),
+        },
+        function (data) {
+          hideLoading()
+          if (data.Data != '') {
+            if (pageindex == 1) {
+              $('#light-pagination1').pagination({
+                //分页
+                pages: Math.ceil(
+                  data.Data.record / pagesize > 1
+                    ? data.Data.record / pagesize
+                    : 1
+                ),
+                cssStyle: 'light-theme',
+                onPageClick: changePage
+              })
+            }
+            let html = ''
+            for (let i = 0; i < data.Data.list.length; i++) {
+              const element = data.Data.list[i]
+              html += `
+              <div class="item"  onclick="toPage('./formalStudent.html?id=${
+                element.id
+              }')" data-url="./formalStudent.html?id=${element.id}">
+                <div class="headpic_box">
+                  <img
+                    class="headpic"
+                    src="../../img/default_person.png"
+                    alt=""
+                    srcset=""
+                  />
+                </div>
+                <div class="center">
+                  <div>
+                    <span>${element.name}</span
+                    ><img src="${
+                element.sex === '男'
+                  ? '../../img/man.png'
+                  : '../../img/woman.png'
+              }" alt="" srcset="" />
+                    <a href="./editStudent.html?id=${
+                element.id
+              }&type=informal">编辑学员资料</a>
+                  </div>
+                  <div><a style="font-size:0.26rem" href="tel:${element.phone}">${element.phone}</a></div>
+                  <div>${element.classname}</div>
+                </div>
+                <div class="right">
+                  <div>
+                    <div>剩余<span style="color:red">${
+                element.classhour
+              }</span>课时</div>
+                    <img src="../../img/right.png" alt="" srcset="" />
+                  </div>
+                  <div>
+                    <a href="../paiban/tap.html?id=${element.id}">排班转班</a>
+                    <a href="../xufei/newStudentPro.html?id=${
+                element.id
+              }">续费</a>
+                  </div>
+                </div>
+              </div>
+              `
+            }
+            $('.isStudent').html(html)
+          }
+        }
+      )
+    }
+
+    function hideLoading() {
+      $('.weui-mask_transparent').remove()
+      $('.weui-toast.weui_loading_toast').remove()
+    }
+
+    function changePage(params) {
+      let page_index = $('#light-pagination1').pagination('getCurrentPage')
+      pageindex = page_index
+      initData()
+    }
+
+    function weiqiandan(nameStr) {
+      $.showLoading()
+      $('.isntStudent').html('')
+      getAjax(
+        FenghuangConst.hostAjax + '/api/tch/v1/notsignedlist',
+        {
+          //已签单
+          user_id: uid,
+          student_name: nameStr,
+          pageindex: pageindex,
+          pagesize: pagesize,
+          orderby: +$('#filter2').val(),
+        },
+        function (data) {
+          hideLoading()
+          if (data.Data != '') {
+            console.log(data.Data.list)
+            if (pageindex == 1) {
+              $('#light-pagination1').pagination({
+                //分页
+                pages: Math.ceil(
+                  data.Data.record / pagesize > 1
+                    ? data.Data.record / pagesize
+                    : 1
+                ),
+                cssStyle: 'light-theme',
+                onPageClick: changePage
+              })
+            }
+            let html = ''
+            for (let i = 0; i < data.Data.list.length; i++) {
+              const element = data.Data.list[i]
+              html += `
+              <div class="item" data-url="./informalStudent.html?id=${
+                element.id
+              }">
+                <div class="headpic_box">
+                  <img onclick="toPage('./informalStudent.html?id=${
+                element.id
+              }')"
+                    class="headpic"
+                    src="${
+                element.imgurl
+                  ? element.imgurl
+                  : '../../img/default_person.png'
+              }"
+                    alt=""
+                    srcset=""
+                  />
+                </div>
+                <div class="center" onclick="toPage('./informalStudent.html?id=${
+                element.id
+              }')">
+                  <div>
+                    <span>${element.name}</span
+                    ><img src="${
+                element.sex === '男'
+                  ? '../../img/man.png'
+                  : '../../img/woman.png'
+              }" alt="" srcset="" />
+                    <a  style="padding: 0.1rem; font-size: 0.26rem;"  onclick="toPage('${
+                element.followup === '已约课'
+                  ? '../Course/index1'
+                  : './informalStudent'
+              }.html?id=${element.id}')" class="status ${
+                element.followup === '待跟进'
+                  ? 'yellow'
+                  : element.followup === '跟进中'
+                  ? 'orange'
+                  : element.followup === '已约课'
+                    ? 'red'
+                    : element.followup === '已体验'
+                      ? 'blue'
+                      : 'gray'
+              }">${element.followup === '' ? '暂无进度' : element.followup}</a>
+                    <div style="display:${
+                element.auditionhour === '0' ? 'none' : 'block'
+              }" class="limit orange">剩余${
+                element.auditionhour
+              }课时</div>
+                  </div>
+                <div>
+                    <a class="underline" style="font-size:0.26rem" href="tel:${element.phone}">${
+                element.phone
+              }</a>
+                </div>
+                  <div style="display:${
+                element.intention === '' ? 'none' : 'block'
+              }">意向级别：${element.intention}</div>
+                </div>
+                <div class="right">
+                  <a href="./editStudent.html?id=${
+                element.id
+              }&type=informal">编辑学员资料</a>
+                  <div>
+                    <a class="showgenjin" data-id="${element.id}">跟进</a>
+                    <a href="../paiban/tap.html?id=${element.id}">排班转班</a>
+                    <span class="zhaunzheng" data-id="${
+                element.id
+              }">转为学员</span>
+                  </div>
+                </div>
+              </div>
+              `
+            }
+            $('.isntStudent').html(html)
+          }
+        }
+      )
+    }
+
+    function getRecord(id) {
+      $.showLoading()
+      let url = ''
+      let data = {}
+      url = '/api/tch/v1/getappointmentcordlist'
+      data = {
+        teacherid: '',
+        user_id: id
+      }
+
+      getAjax(FenghuangConst.hostAjax + url, data, function (data) {
+        $('.appointmentrecord_content .list').html('')
+        hideLoading()
+        if (data.Data != '') {
+          console.log(data.Data.list)
+          let html = ''
+          for (let i = 0; i < data.Data.list.length; i++) {
+            const element = data.Data.list[i]
+            html += `
+                  <div class="list-item">
+                      <div>
+                        <div class="left">
+                          <div class="header_pic_box">
+                            <img
+                              class="header_pic"
+                              src="${
+              element.imgurl
+                ? element.imgurl
+                : '../../../img/default_person.png'
+            }"
+                              alt=""
+                              srcset=""
+                            />
+                          </div>
+                          <div class="name">${element.teachername}</div>
+                          <div class="time">${element.time}</div>
+                        </div>
+                        <div class="right"><div></div></div>
+                      </div>
+
+                      <div>
+                        <div>
+                          <div>
+                            ${element.content}
+                          </div>
+                        </div>
+                      </div>
+                    </div>`
+          }
+          $('.appointmentrecord_content .list').html(html)
+        } else {
+          ui.showToast('暂无邀约记录', 2000)
+        }
+      })
+    }
+  </script>
+</html>

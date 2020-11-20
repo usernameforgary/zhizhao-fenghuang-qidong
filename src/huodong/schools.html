@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>课程预约</title><!--首页-->
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/swiper-3.4.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/animate.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="../../css/index1.css"/>-->
+    <link rel="stylesheet" type="text/css" href="../../css/webuploader/webuploader.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	.up-page-wrapper{
+    		background-color: #43C3F0;
+    		background-image: url(img/online_bg.png);
+    		background-size: 100% 100%;
+    		background-repeat: no-repeat;
+    		display: flex;align-items:center;
+    		justify-content: center;
+    	}
+    	.main{
+    		background-color: #fff;
+    		/*margin: 1.7rem 0.5rem 0 0.5rem;*/
+    		width: 6.5rem;
+    		/*margin: auto;*/
+    		display: flex;align-items:center;
+    		border-radius: 0.3rem;
+    		padding: 0.3rem;
+    		position: relative;
+    		top: 0.2rem;
+    		z-index: 0;
+    	}
+    	input{
+    		font-size: 0.28rem;
+    		border: 0;
+    		padding-left: 0.2rem;
+    		outline: none;
+    		border-radius: 0.1rem;
+    		width: 100%;
+    		padding-top: 0.2rem;
+    		padding-bottom: 0.2rem;
+    		box-sizing: border-box;
+    		background-color: #F5F5F5;
+    		margin-top: 0.3rem;
+    		color: black;
+    	}
+    	input::-webkit-input-placeholder{
+    		color: black;/*#646464*/
+    		opacity: 0.8;
+    	}
+    	.lists>button{
+    		background-color: #E60012;
+    		font-size: 0.3rem;
+    		width: 100%;
+    		border-radius: 0.2rem;
+    		color: white;
+    		height: .9rem;
+    		margin-top: 0.2rem;
+    	}
+    	@media only screen and (min-width: 500px) {
+    		.main{
+    			margin-top: 1.2rem!important;
+    		}
+    	}
+    	button{
+    		font-size: 0.3rem;
+    	}
+    </style>
+</head>
+<body class="up-page">
+	<div class="up-page-wrapper" style="">
+		<div class="header" style="position: absolute;z-index: 2;top: 0;width: 100%;display: flex;justify-content: space-around;">
+			<div style="display: flex; align-items:center;">
+				<img class="LOGO" style="width:3.3rem;position: relative;left: 0.4rem;bottom: 0rem;" src="img/LOGO@3x.png"/>
+			</div>
+			<div style="display: flex; align-items:flex-end">
+				<img  style="width:2.2rem;margin-top: 0.2rem;" src="img/online_top.png"/>
+			</div>
+			
+		</div>
+		<!--选择学校--开始-->
+	<div class="chooseschool" style="background:#fff;width: 84%;margin: 0 8%;border-radius: 0.3rem;position: fixed;top: 25%;left: 1%;">
+			<div>
+				<div class="" style="text-align: center;">
+				<img style="width:2rem;margin-top: 10%;" src="img/选择校区@3x.png" />
+			</div>
+			<div class="listss" style="width: 80%;margin:  0 10%;">
+				<div class="" style="display: flex;">
+					<div id="xuancstex" style="font-size: 0.3rem;width: 4.5rem;border-top-right-radius: 0;height: 0.8rem;background: #F5F5F5;border-bottom-right-radius: 0;margin-top: 0.3rem;line-height: 0.8rem;padding-left: 0.5rem;">
+						我的校区
+					</div>
+					
+					<button class="xuanschool" style="background: url(img/下拉@3x.png) #f5f5f5 no-repeat 0.2rem 0.3rem;width: 0.9rem;height: 0.8rem;background-size: 0.25rem;border: 0;margin-top: 0.3rem;border-top-right-radius: 0.1rem;border-bottom-right-radius: 0.1rem;cursor: pointer;"></button>
+				</div>
+				<!--学校名称--开始-->
+				<div class="schoolxiala" style="display: none;">
+					<input type="text" readonly="readonly" name="" id="" value="吕四校区" style="width: 50%;margin-left: 50%;"/>
+					<input type="text" readonly="readonly" name="" id="" value="启东校区" style="width: 50%;margin-left: 50%;"/>
+
+					<!--<input type="text" name="" id="" value="" placeholder="其他" style="width: 50%;margin-left: 50%;" class="shuru"/>-->
+				</div>
+				<div class="" style="color: #509EDD;font-size: 0.23rem;">
+					<div>地址：</div>
+					<div>吕四校区:启东市四港镇新车站北200米国隆大厦</div>
+					<div>启东校区:启东市汇龙镇华山中路588号公园道广场5幢3楼</div>
+				</div>
+				<!--学校名称--结束-->
+				<button style="background: #43c3f0;border: 0;width: 5rem;height: 0.8rem;border-radius: 0.2rem;margin-bottom: 0.5rem;margin-top: 8%;color: #fff;font-size: 0.3rem;" class="queren">
+					确认
+				</button>
+			</div>
+			
+		</div>
+		
+		
+		
+	</div>
+	<!--选择学校--结束-->
+	</div>
+	
+</body>
+<script src="../../js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../css/webuploader/webuploader.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	
+	
+	
+	//信息框选择所在学校开始
+	$('.getbtn_btn').click(function(){
+		$('.main').hide();
+		$('.chooseschool').show()
+	})
+	//信息框所在学校结束
+	
+	
+	
+	//选择学校开始
+	var schval='';
+	$('.xuanschool').click(function(){
+		$('.schoolxiala').fadeToggle();
+		$('.shuru').on('input',function(){
+						$('#xuancstex').html($('.shuru').val())
+					})
+		$('.schoolxiala>input').unbind()
+			$('.schoolxiala>input').each(function(i){
+				$(this).click(function(){
+//					$('.schoolxiala').fadeOut();
+//					console.log($(this).val())
+					schval=$(this).val()
+					$('#xuancstex').html(schval);
+					console.log(schval)
+					$('.schoolxiala').fadeToggle();
+					if(schval=='吕四校区'){
+						window.location.href = "index.html";
+					}
+					if(schval=='启东校区'){
+						window.location.href = "qdsummerindex.html";	
+					}
+					if(scoll=='海门一校区'){
+						window.location.href = "haimen1.html";	
+					}	
+					if(scoll=='海门校区'){
+						window.location.href = "haimen2.html";	
+					}
+				})
+				
+			})
+		var scoll='';
+		$('.queren').click(function(){
+//			$('#xuancstex').html(schval);
+			console.log($('#xuancstex').html())
+			scoll=$('#xuancstex').html();
+			console.log(scoll)
+//			$('.main').show();
+//			$('.chooseschool').hide()
+			$('#bschool').val(scoll)
+			if(scoll=='吕四校区'){
+				window.location.href = "index.html";
+			}
+			if(scoll=='启东校区'){
+				window.location.href = "qdsummerindex.html";	
+			}
+			if(scoll=='海门一校区'){
+				window.location.href = "haimen1.html";	
+			}	
+			if(scoll=='海门校区'){
+				window.location.href = "haimen2.html";	
+			}
+		})
+	})
+	//选择学校结束
+	
+	
+	
+	
+	
+	
+			
+</script>
+</html>

@@ -1,0 +1,331 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/xzbj.css">
+    <link rel="stylesheet" href="../css/layui.css">
+    <link rel="stylesheet" href="../css/conmosui.css">
+  </head>
+  <body>
+    <div class="warp">
+      <div class="back-tp">
+        <div style='width:100%; height:0.4rem'></div>
+        <div class="cont-box">
+          <div class="tp-bgant">
+            <span class="class-name">班级编号:</span>
+            <input type="text" class="number  number3" id="classnum">
+            <!-- <img src="../img/对号2.png" alt="" class="correct1" > -->
+          </div>
+          <div class="tp-bgant gap">
+            <span class="class-name">星期几:</span>
+            <select name="" id="week" class="select">
+              <option value="1">星期一</option>
+              <option value="2">星期二</option>
+              <option value="3">星期三</option>
+              <option value="4">星期四</option>
+              <option value="5">星期五</option>
+              <option value="6">星期六</option>
+              <option value="7">星期七</option>
+            </select>
+          </div>
+          <div class="tp-bgant gap">
+            <span class="class-name">课程体系:</span>
+            <select name="" id="kctx" class="select">
+              <option value="">请选择课程体系</option>
+            </select>
+
+          </div>
+          <div class="tp-bgant gap">
+            <span class="class-name left-class">开始时间:</span>
+            <div class="search">
+              <img src="../img/日历.png">
+              <span id="starttime"></span>
+            </div>
+            <img src="../img/对号2.png" alt="" class="correct2">
+          </div>
+          <div class="tp-bgant gap">
+            <span class="class-name left-class">结束时间:</span>
+            <div class="search">
+              <img src="../img/日历.png">
+              <span id="endtime"></span>
+            </div>
+            <img src="../img/对号2.png" alt="" class="correct3">
+          </div>
+          <div class="tp-bgant gap">
+            <span class="class-name">班级类型:</span>
+            <select name="" id="classtype" class="select">
+              <option value="">请选择班级类型</option>
+            </select>
+          </div>
+          <div class="tp-bgant gap">
+            <span class="class-name">班级名称:</span>
+            <input type="text" class="number number2" id="classname" style="width: 3rem">
+            <img src="../img/对号2.png" alt="" class="correct4">
+          </div>
+          <div class="tp-bgant gap">
+            <span class="class-name">老师:</span>
+            <select name="" id="teacher" class="select">
+              <option value="0" class='avl'>请选择老师</option>
+            </select>
+          </div>
+          <div class="tp-bgant gap">
+            <span class="class-name">班级上限人数:</span>
+            <input type="number" class="number number1" id="upper"> <span class="class-name">人</span>
+            <img src="../img/对号2.png" alt="" class="correct5">
+          </div>
+          <div class="tp-bgant gap">
+            <form class="layui-form" action="">
+              <div class="layui-form-item">
+                <span class="class-name">是否开班:</span>
+                <input id="kb" type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest"
+                       lay-text="是|否">
+              </div>
+            </form>
+          </div>
+          <div class="but">
+            <span class="btton submit">提交保存</span>
+            <span class="btton return">返回</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../js/rem.js"></script>
+  <script src="../js/layui.all.js"></script>
+  <script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../js/time.js"></script>
+  <script src="../js/conmosui.js"></script>
+  <script src="../js/long.js"></script>
+  <script>
+    function getQueryString(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+      var r = decodeURIComponent(window.location.search).substr(1).match(reg);
+      if (r != null) {
+        return unescape(r[2]);
+      }
+      return null;
+    }
+
+    function setClassName() {
+      var week = $('#week').val();
+      var kctx = $('#kctx').val();
+      var classtype = $('#classtype').val();
+      var starttime = $('#starttime').text();
+      var endtime = $('#endtime').text();
+      $('#classname').val(
+        week && kctx && classtype && starttime && endtime
+          ? [
+            $(`#week option[value=${week}]`).text(),
+            $(`#kctx option[value=${kctx}]`).text(),
+            $(`#classtype option[value=${classtype}]`).text(),
+            starttime,
+            '-',
+            endtime,
+          ].join('')
+          : '',
+      )
+    }
+
+    document.title = getQueryString('id') ? '编辑班级' : '新增班级';
+
+    $('.number3').blur(function () {
+      if ($('.number3').val() == '') {
+        $('.correct1').css('display', 'block')
+        $('.correct1').attr('src', '../img/叉号.png');
+      } else {
+        $('.correct1').css('display', 'block')
+        $('.correct1').attr('src', '../img/对号2.png');
+      }
+
+    })
+    $('.time').blur(function () {
+      if ($('.time').val() == '') {
+        $('.correct2').css('display', 'block')
+        $('.correct2').attr('src', '../img/叉号.png');
+      } else {
+        $('.correct2').css('display', 'block')
+        $('.correct2').attr('src', '../img/对号2.png');
+      }
+
+    })
+    $('.time1').blur(function () {
+      if ($('.time').val() == '') {
+        $('.correct3').css('display', 'block')
+        $('.correct3').attr('src', '../img/叉号.png');
+      } else {
+        $('.correct3').css('display', 'block')
+        $('.correct3').attr('src', '../img/对号2.png');
+      }
+
+    })
+    $('.number2').blur(function () {
+      if ($('.number2').val() == '') {
+        $('.correct4').css('display', 'block')
+        $('.correct4').attr('src', '../img/叉号.png');
+      } else {
+        $('.correct4').css('display', 'block')
+        $('.correct4').attr('src', '../img/对号2.png');
+      }
+
+    })
+    $('.number1').blur(function () {
+      if ($('.number1').val() == '') {
+        $('.correct5').css('display', 'block')
+        $('.correct5').attr('src', '../img/叉号.png');
+      } else {
+        $('.correct5').css('display', 'block')
+        $('.correct5').attr('src', '../img/对号2.png');
+      }
+    })
+
+    var starttimePicker = new datePicker();
+    starttimePicker.init({
+      'trigger': '#starttime', /*按钮选择器，用于触发弹出插件*/
+      'type': 'time',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+      'onSubmit': function () {/*确认时触发事件*/
+        var theSelectData = starttimePicker.value;
+        $('#starttime').text(theSelectData);
+        setClassName();
+      },
+    });
+
+    var endtimePicker = new datePicker();
+    endtimePicker.init({
+      'trigger': '#endtime', /*按钮选择器，用于触发弹出插件*/
+      'type': 'time',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+      'onSubmit': function () {/*确认时触发事件*/
+        var theSelectData = endtimePicker.value;
+        $('#endtime').text(theSelectData);
+        setClassName();
+      },
+    });
+
+    $('#week').change(setClassName);
+    $('#kctx').change(setClassName);
+    $('#classtype').change(setClassName);
+
+    new Promise((resolve => {
+      getAjax(
+        hostAjax + '/api/course/v1/gettagetype',
+        {},
+        function (data) {
+          if (data.Success) {
+            $('#kctx').html(`<option value="">请选择课程体系</option>` + data.Data.map(x => `
+            <option value="${x.id}">${x.name}</option>
+            `).join(''));
+            resolve();
+          }
+        }
+      )
+    })).then(() => new Promise(resolve => {
+        getAjax(
+          hostAjax + '/api/course/v1/getsubjecttype',
+          {},
+          function (data) {
+            if (data.Success) {
+              $('#classtype').html(`<option value="">请选择班级类型</option>` + data.Data.map(x => `
+            <option value="${x.id}">${x.typename}</option>
+            `).join(''));
+              resolve();
+            }
+          }
+        );
+      }
+    )).then(() => new Promise(resolve => {
+        getAjax(
+          hostAjax + '/api/overpipe/v1/selectteacherlist',
+          { userid: +localStorage.zhizhao_uid },
+          function (data) {
+            if (data.Success) {
+              $('#teacher').html(`<option value="0" class='avl'>请选择老师</option>` + data.Data.list.map(x => `
+            <option class='avl' value="${x.id}">${x.name}</option>
+            `).join(''));
+              resolve();
+            }
+           
+          }
+        );
+      }
+    )).then(() => {
+      var id = getQueryString('id');
+      if (id) {
+        getAjax(
+          hostAjax + '/api/overpipe/v1/getclassdetails',
+          {
+            userid: +localStorage.zhizhao_uid,
+            classid: id,
+          },
+          function (data) {
+            var clazz = data.Data.list[0];
+            $('#upper').val(clazz.stunums);
+            $('#classname').val(clazz.classname);
+            $('#classnum').val(clazz.classnum);
+            if (clazz.state === '1') {
+              $('#kb').prop('checked', true);
+              $('.layui-form-switch').addClass('layui-form-onswitch');
+            } else {
+              $('#kb').prop('checked', false);
+              $('.layui-form-switch').removeClass('layui-form-onswitch');
+            }
+            $('#week').val(clazz.week);
+            $('#kctx').val(clazz.agetype);
+            $('#starttime').text(clazz.starttime);
+            $('#endtime').text(clazz.endtime);
+            $('#classtype').val(clazz.classtype);
+            $('#teacher').val(clazz.techerid);
+          }
+        )
+      }
+    });
+
+    $('.return').click(function () {
+      window.history.back();
+    })
+      
+    $('.submit').click(function () {
+     if($('#teacher').val()==0 || $('#upper').val()==''){
+       alert('请选择老师和课时')
+     }else{
+      var id = getQueryString('id');
+      ui.showLoading();
+      postAjax(
+        hostAjax + `/api/overpipe/v1/${id ? 'updateclass' : 'addclass'}`,
+        JSON.stringify({
+          id: id || undefined,
+          userid: +localStorage.zhizhao_uid,
+          starttime: $('#starttime').text(),
+          endtime: $('#endtime').text(),
+          classnum: $('#classnum').val(),
+          classname: $('#classname').val(),
+          week: +$('#week').val(),
+          agetype: +$('#kctx').val(),
+          state: $('#kb').prop('checked') ? 1 : 2,
+          classtypeid: +$('#classtype').val(),
+          techerid: +$('#teacher').val(),
+          stunums: +$('#upper').val(),
+        }),
+        function (data) {
+   $('#commonUILoading').remove();
+          if (data.Success) {
+            if (getQueryString('from') === 'kb') {
+              window.location.href = `./新增课表.html?classid=${data.Data.id}`;
+            } else if (getQueryString('from') === 'pb') {
+            	 window.location.href = `./校长端快速排班.html?classid=${data.Data.id}`;
+            } else {
+              window.location.href = './校长端快速排班.html';
+              window.history.back(-1);
+            } 
+          } else {
+            alert(data.Msg);
+          }
+        }
+      )
+     }
+    })
+
+  </script>
+</html>

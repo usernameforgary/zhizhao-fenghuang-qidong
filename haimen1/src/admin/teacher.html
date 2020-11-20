@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>凤凰机器人吕四校区</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	body{
+    		background-color: #fff;
+    		background-image: url(../../img/bodyBg/xufei@3x.jpg);
+    		background-size: 100%;
+    		background-repeat: no-repeat;
+    		background-position: bottom;
+    	}
+    	.search{
+    		width: 6.5rem;
+    		height: 0.6rem;
+    		background-color: #eee;
+    		margin:0.25rem auto;
+    		position: relative;
+    		border-radius:0.1rem;
+    	}
+    	.search img{
+    		width: 0.45rem;
+    		position: absolute;
+    		top: 0.075rem;
+    		left: 0.2rem;
+    		
+    	}
+    	.search input{
+    		float: right;
+    		height: 0.6rem;
+    		padding: 0;
+    		box-sizing: border-box;
+    		width: 5.6rem;
+    		border: 0;
+    		background-color: #eee;border-radius:0.1rem;
+    		font-size: 0.26rem;
+    	}
+    	input::-webkit-input-placeholder{
+    		color: black;
+    	}
+    	.main{
+    		font-size: 0.26rem;
+    	}
+    	.main ul li{
+    		height: 1.4rem;
+    		line-height: 0.7rem;
+    		border-bottom: 1px solid #eee;
+    		padding: 0 0.5rem;
+    		margin-top: 0.05rem;
+    	}
+    	.main ul li span{
+    		float: right;
+    	}
+    	.main li i{
+    		font-size: .26rem;
+    		margin-left: 0.15rem;
+    	}
+    </style>
+</head>
+<body class="up-page">
+	<div class="up-page-wrapper" >
+		<div class="header">
+			<div class="search">
+				<img src="../../img/bodyBg/search@3x.png"/>
+				<input type="text" name="search" id="search" value="" placeholder="输入老师姓名"/>
+			</div>
+			
+		</div>
+		<div class="main">
+			<ul>
+				<!--<li id="1">我是名字()<span><i class="iconfont icon-you"></i></span>
+					<p>销售额：10000/20000</p>
+				</li>-->
+			</ul>
+		</div>
+	</div>
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI;
+//	ui.showToast( '板块正在开发！');
+	yiqiandan();
+	$('.search img').click(function(){
+		yiqiandan($("input").val());
+	})
+	$('#search').bind('keyup', function(event) {
+
+　　if (event.keyCode == "13") {
+
+　　　　//回车执行查询
+
+　　　$('.search img').click();
+
+　　}
+
+});
+	function yiqiandan(nameStr){getAjax(hostAjax+"/api/principal/v1/selectteacherlist",{//
+			user_id:uid,
+			student_name:nameStr
+		},function(data){
+			var str="",colorStr="";
+			console.log(data.Data)
+			if(data.Data!=""){
+				for (var i=0;i<data.Data.list.length;i++) {
+					if(data.Data.list[i].classhour<=8){
+						colorStr='style="color:red;margin:0 0.1rem;font-size:0.3rem;"';
+					}else{
+						colorStr="";
+					}
+					if(data.Data.list[i].nickname==""){
+						data.Data.list[i].nickname="昵称暂无";
+					}
+					if(data.Data.list[i].saleyiwancheng==""){
+						data.Data.list[i].saleyiwancheng="0";
+					}
+					
+					
+					str+='<li id="'+data.Data.list[i].id+'">'+data.Data.list[i].name+'('+data.Data.list[i].nickname+')<span><i class="iconfont icon-you"></i></span>'+
+					'<p>销售额：<b>'+data.Data.list[i].salesindex+'/'+data.Data.list[i].saleyiwancheng+'</b></p>'+
+					'</li>';
+				}
+				$(".main ul").html(str);
+				$(".main ul li").click(function(){
+					localStorage.setItem("zhizhao_uid",$(this).attr("id"));
+					location.href="../../Tindex.html";
+				})
+			}
+		})}
+</script>
+</html>

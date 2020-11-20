@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>消耗课时</title>
+		<link rel="stylesheet" type="text/css" href="css/calendar.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				
+			}
+		</script>
+		<style type="text/css">
+			*{
+				font-size: 0.26rem;
+			}
+			.header{
+				height: 2.2rem;
+				text-align: center;
+				background-color: #FBD15B;
+			}
+			.header li{
+				float: left;
+				width: 50%;
+				margin-top: 0.6rem;
+				line-height: 0.5rem;
+			}
+			.header li span {
+				font-weight: 900;
+			}
+			#c{
+				background-color: #fff;
+				position: relative;
+				bottom: 0.3rem;
+				width: 6.5rem!important;
+				margin: auto;
+				border-radius: 0.2rem;
+				padding: 0.3rem;
+				box-shadow: 2px 2px 10px #aaa,-2px 2px 10px #aaa;
+				padding-bottom: 1rem;
+			}
+			.forget{
+				border: 1px solid #000;
+				border-radius: 0.4rem;
+				background-color: #eee;
+			}
+			#calendarDaysContainer tr td span{
+				display: inline-block;
+				width: 0.4rem!important;
+				height: 0.4rem!important;
+				padding: 0;
+				line-height: 0.4rem;
+				
+			}
+			.main>button{
+				width: 5.5rem;
+				height: 0.8rem;
+				color: white;
+				background-color: #13A3FF;
+				border-radius: 0.8rem;
+				border: 0;
+				display: block;
+				margin: auto;
+				position: relative;
+				bottom: 1.5rem;
+			}
+		</style>
+	</head>
+	<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/calendar.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<div class="wrap">
+			<div class="header">
+				<ul>
+					<li style="border-right:1px solid #888;"><p>本月累计签到</p>
+						<span>2天</span>
+					</li>
+					<li><p>本月漏签签到</p>
+						<span>1天</span></li>
+					<div class="clearFix"></div>
+				</ul>
+			</div>
+			<!--下面是日历-->
+			<div class="main">
+				<div id="c"></div>
+				<button>我知道了</button>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var ifNext=true;
+		$("#span").hide();
+		var _sum=0;
+		for (var i=0;i<localStorage.length;i++) {
+			var str=localStorage.key(i);
+			if (Number(str)) {
+				var _json=localStorage.getItem(localStorage.key(i));
+				var _obj=JSON.parse(_json);
+				var _number=_obj.count;
+				_sum+=_number;
+			}		
+		}
+		if (_sum!=0) {
+			$("#span").html(_sum);
+			$("#span").show();
+		}
+		
+		
+		//点击返回按钮
+		$("#back").click(function(){
+			history.back();
+		})
+		
+		
+		
+		var cr = new Calendar("c");
+				cr.show({
+					
+				});
+				//给签到添加点击事件
+		$("h2").click(function(){
+			console.log("点击")
+			cr.clickDay();
+		})
+		
+		//数据储存---一开始就检测
+//		window.localStorage.setItem("sign","3|2016-10-30");
+//window.localStorage.removeItem("sign");
+init();
+function init(){	
+	if (localStorage.getItem("sign")) {
+		var sign=localStorage.getItem("sign");
+		//此时
+		// From the beginning day of the week
+		var beginDayOfWeek = new Date( cr.Year, cr.Month, 1).getDay();
+		// This month total days
+		var daysOfMonth = new Date( cr.Year, cr.Month + 1, 0).getDate();
+		//储存
+		// From the beginning day of the week
+		var localYear=parseInt(sign.split("|")[1].split("-")[0]);
+		var localMonth=parseInt(sign.split("-")[1]);
+		var localDay=parseInt(sign.split("-")[2]);
+		var _beginDayOfWeek = new Date( localYear, localMonth-1, 1).getDay();
+		var nextBeginDayOfWeek=new Date( localYear, localMonth, 1).getDay();
+		// This month total days
+		var _daysOfMonth = new Date( localYear,localMonth, 0).getDate();	
+		console.log("从"+sign.split("|")[1]+"到"+cr.currentIndex+"连续"+sign.split("|")[0]+"天");
+		for (var i=(localDay-1+_beginDayOfWeek);i<=(parseInt(localDay-1+_beginDayOfWeek)+parseInt(sign.split("|")[0])-1);i++) {
+			var currentSpan=cr.allSpans[i];
+			
+			if (currentSpan.innerHTML!="&nbsp;") {
+				currentSpan.className="thisDay";
+			}
+		}
+				
+			
+			
+		
+			//牵扯到下一个月--礼物
+			if ((localDay-1+_beginDayOfWeek)+6>beginDayOfWeek+daysOfMonth) {
+				
+				
+				
+				
+				
+				
+				
+				cr.thisIndex=(localDay+6-_daysOfMonth+nextBeginDayOfWeek-1);
+				console.log(localDay+"-----"+cr.thisIndex);
+				if (ifNext) {
+					
+				
+				if (cr.Month==localMonth) {
+					
+					console.log("对，就是下个月的！");
+					//这个月的thisDay的样式
+					//thisDay
+					if ((parseInt(sign.split("|")[0])+localDay-_daysOfMonth)>0) {
+						var a=(parseInt(sign.split("|")[0])+localDay-_daysOfMonth);
+						for (var i=nextBeginDayOfWeek;i<=nextBeginDayOfWeek+a-2;i++) {
+							var currentSpan=cr.allSpans[i];
+							currentSpan.className="thisDay";
+						}
+					}
+					
+					var giftSpan=cr.allSpans[cr.thisIndex];
+					if (giftSpan.innerHTML!="&nbsp;") {
+						giftSpan.className="giftDay";
+					}
+					
+				}
+				}
+			}else{
+				var giftSpan=cr.allSpans[cr.currentIndex+6];
+				if (giftSpan.innerHTML!="&nbsp;") {
+					giftSpan.className="giftDay";
+				}
+			}
+			
+		}
+}
+		
+			
+	</script>
+</html>

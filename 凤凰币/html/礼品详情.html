@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/lpxq.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/commonUI.css">
+    <script src="../js/rem.js"></script>
+</head>
+
+<body>
+    <div class="warp">
+        <div class="warp-ui">
+            <div class="tp-awrp">
+                <img src="../img/商品.png" alt="">
+            </div>
+            <div class="box-content">
+                <!-- <div class="product-name1">
+            <p class="product-name">Apple iPhone XS Max 256GB 金色 移动联通电信4G手机 </p>
+         
+            <div class="flax-box">
+                <div>
+                    <span class="props">8000</span>
+                    <span class="titi-pro">凤凰币</span>
+                </div>
+                <div>
+                    <p class="apply">报名即可享9折兑换</p>
+                </div>
+            </div>
+            <div class="flax-box">
+                <div>
+                    <span class="">可兑换数量</span>
+                    <span class="">60</span>
+                </div>
+                <div class="ydh">
+                    <span class="">已兑换</span>
+                    <span class="">6</span>
+                </div>
+            </div>
+            <div class="select-color">
+                <span>颜色选择:</span>
+                <span class="color">颜色一</span>
+                <span class="color">颜色二</span>
+                <span class="color">颜色三</span>
+
+            </div>
+            <div class="quantity">
+                数量:
+                <span class='jian tint' style="margin-left: 0.75rem;">-</span>
+                <input type="text" class="con" value="1">
+                <span class="jia tint">+</span>
+            </div>
+            </div> -->
+            </div>
+            <div style="width: 100%; height: 0.2rem; background: #f0f0f0;"></div>
+            <div class="introduce">
+                Apple iPhone XS Max (A2104) 256GB 金色 移动联通电信4G手机 双卡双待
+                Apple iPhone XS Max (A2104) 256GB 金色 移动联通电信4G手机 双卡双待
+            </div>
+            <div style="width: 100%; height: 0.2rem; background: #f0f0f0;"></div>
+            <div class="button">
+                <div class="button-le">
+                    <span>我的凤凰币</span>
+                    <span style="color: #f84d37;" class="olp">8000</span>
+                </div>
+                <div class="button-rg">
+                    <span class="okl">8000</span>
+                    <span>凤凰币兑换</span>
+                </div>
+            </div>
+            <div id="commonUIAlert" class="commonUI-mask" style="display: none;">
+                <div class="commonUI-alert">
+                    <div class="commonUI-alertTitle"></div>
+                    <div class="commonUI-alertTop" style="padding-top: 0.5rem;">
+                        <p class="contin" style="margin-left: -0.2rem;"></p>
+                        <p class="contino" >是否确定兑换</p>
+                    </div>
+                    <div class="commonUI-alertBottom">
+                        <div class="plui">
+                            <button class="commonUI-alertButton  qd" data-btn="Yes"
+                                style="display: inline-block;">确认</button>
+                            <button class="commonUI-alertButton  qx" data-btn="No" style="display: inline-block;"
+                                id="cancel">取消</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="colorAlert" class="commonUI-mask" style="display: none;">
+                <div class="commonUI-alert">
+                    <div class="commonUI-alertTitle"></div>
+                    <div class="commonUI-alertTop" style="padding-top: 0.5rem;">
+                        <p class="contin" style="margin-left: -0.2rem;"></p>
+                        <p class="contino" >您还未选择商品颜色，无法提交</p>
+                    </div>
+                    <div class="commonUI-alertBottom">
+                        <div class="plui">
+                            <button class="commonUI-alertButton  " data-btn="Yes"
+                                style="display: inline-block;" id="colorSure">确认</button>
+                            <button class="commonUI-alertButton  " data-btn="No" style="display: inline-block;" id="colorCancel"
+                               >取消</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- 兑换返回信息 -->
+            <div id="popAlert" class="commonUI-mask" style="display: none;">
+                <div class="commonUI-alert">
+                    <div class="commonUI-alertTitle">兑换成功</div>
+                    <div class="commonUI-alertTop" style="padding-top: 0.5rem;">
+                        <p class="contin" style="margin-left: -0.2rem;" id="popcontin">您的对换码为<span id="cdkey"></span></p>
+                        <p class="contino" >请凭此兑换码去校区领取商品</p>
+                    </div>
+                    <div class="commonUI-alertBottom">
+                        <div class="plui">
+                            <button class="commonUI-alertButton  " data-btn="Yes"
+                                style="display: inline-block;" id="popSure"><a href="../html/兑换记录.html" style="color: black;text-decoration: none;">去领取</a></button>
+                            <button class="commonUI-alertButton  " data-btn="No" style="display: inline-block;" id="popCancel"
+                               ><a href="../html/凤凰币兑换.html"  style="color: black;text-decoration: none;">返回</a></button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/long.js"></script>
+<script>
+    function pol() {
+        var jan = $('.jian');
+        var jia = $('.jia');
+        for (i = 0; i < jan.length; i++) {
+
+            jan[i].onclick = function () {
+                var val = parseInt(this.parentNode.children[1].value)
+                val -= 1;
+                if (val <= 1) {
+                    val = 1;
+                }
+                this.parentNode.children[1].value = val;
+
+            }
+
+            jia[i].onclick = function () {
+
+                this.index = i;
+                var val = parseInt(this.parentNode.children[1].value);
+                val += 1;
+                this.parentNode.children[1].value = val;
+                //数量加，价格加
+
+
+
+            }
+        }
+    }
+
+    $.ajax({
+        type: 'get',
+        url: 'http://139.224.133.133:8088/api/goods/v1/getgoodsdetail',
+        data: {
+            goods_id: localStorage.getItem("idp"),
+        },
+        success: function (data) {
+            console.log(data)
+
+            localStorage.setItem('pl', data.Data.id)
+            html = '';
+            html += ` <img src="${data.Data.imgurl}" alt="">`;
+            $('.tp-awrp').html(html)
+            html1 = '';
+            html1 += `  <div class="product-name1">
+            <p class="product-name">${data.Data.synopsis} </p>
+         
+            <div class="flax-box">
+                <div>
+                    <span class="props">${data.Data.integral}</span>
+                    <span class="titi-pro">凤凰币</span>
+                </div>
+                <div>
+                    <p class="apply">报名即可享9折兑换</p>
+                </div>
+            </div>
+            <div class="flax-box">
+                <div>
+                    <span class="">可兑换数量</span>
+                    <span class="">${data.Data.stocknum}</span>
+                    
+                </div>
+                <div class="ydh">
+                    <span class="">已兑换</span>
+                    <span class="">${data.Data.sellingtimes}</span>
+                </div>
+            </div>
+            <div class="select-color">
+                <span>颜色选择:</span>
+                <span class="color" value='true'>${data.Data.tastename[0].names}</span>
+                <span class="color" value='true'>${data.Data.tastename[1].names}</span>
+            </div>
+            <div class="quantity">
+                数量:
+                <span class='jian tint' style="margin-left: 0.75rem;">-</span>
+                <input type="text" class="con" value="1">
+                <span class="jia tint">+</span>
+            </div>
+            </div>`;
+            $('.box-content').html(html1)
+            $('.introduce').text(data.Data.whynot)
+            $('.okl').text(data.Data.integral)
+            // $('.qd').click(function () {
+                
+            //     $('.contin').text('您的对换码为')
+            //     $('.props1').text('123556')
+            //     $('.commonUI-alertTitle').html('兑换成功')
+            // })
+            $(".color").click(function () {
+                var value = $(this).attr("value");
+                console.log(value)
+                if (value == "true") {
+                    $(this).addClass("active").siblings().removeClass("active");
+                    $(".color").attr("value", "false");
+                } else {
+                    $(this).removeClass("active").siblings().removeClass("active");
+                    $(this).attr("value", 'true');
+                }
+
+            })
+
+            pol()
+        }
+    })
+
+
+
+
+
+    $('#cancel').click(function () {
+        $('#commonUIAlert').css({
+            'display': 'none'
+        })
+    })
+
+    $('.qd').click(function () {
+        $('#commonUIAlert').css({'display':'none'})
+        console.log('adafsdfaafds')
+        $.ajax({
+                url: 'http://139.224.133.133:8088/api/phoenixcoin/v1/exchangegoods',
+                type: 'get',
+                data: {
+                    studentid: uid,
+                    goodsid: localStorage.getItem('pl'),
+                    testid:1
+
+                },
+                success: function (data) {
+                    if(data.Success ===true){
+                        let cdkey = data.Msg.replace(/[^0-9]/ig,"")
+                        $('#cdkey').text(cdkey)
+                        $('#popAlert').show();
+
+                    }else{
+                        alert('兑换失败',data.Msg)
+                    }
+                   
+                    console.log(data)
+                
+                    // $('.commonUI-alertTop').html(data.Msg)
+                   
+
+                }
+
+            })
+           
+            })
+            //兑换信息框取消确定
+            $("#popSure").click(function(){
+    $("#popAlert").hide();
+})
+$("#popCancel").click(function(){
+    $("#popAlert").hide();
+})
+
+    // $('.button-rg').click(function () {
+       
+    //     var classaa = $(".color").attr("class");
+    //     console.log(classaa)
+
+    //     // if (classaa == "color active") {
+    //         // alert('已经选中')
+
+    //         $.ajax({
+    //             url: 'http://139.224.133.133:8088/api/phoenixcoin/v1/exchangegoods',
+    //             type: 'get',
+    //             data: {
+    //                 studentid: uid,
+    //                 goodsid: localStorage.getItem('pl'),
+    //                 testid:1
+
+    //             },
+    //             success: function (data) {
+    //                 console.log(data)
+    //                 // alert(data.Msg)
+    //                 $('.commonUI-alertTop').html(data.Msg)
+
+
+    //             }
+
+    //         })
+    //     // } else {
+    //     //     alert('请选择颜色')
+    //     // }
+        
+    //     // $('#commonUIAlert').css({'display':'block'})
+
+    //     fun()
+
+    // })
+
+
+// function  okl(){
+//     $.ajax({
+//                 url: 'http://139.224.133.133:8088/api/phoenixcoin/v1/exchangegoods',
+//                 type: 'get',
+//                 data: {
+//                     studentid: uid,
+//                     goodsid: localStorage.getItem('pl'),
+//                     testid:1
+
+//                 },
+//                 success: function (data) {
+//                     console.log(data)
+//                     // alert(data.Msg)
+//                     $('.commonUI-alertTop').html(data.Msg)
+
+
+//                 }
+
+//             })
+// }
+
+// 颜色拦截框判断
+$('.button-rg').click(function(){
+    // $(".color").click(function () {
+    //             var value = $(this).attr("value");
+    //             console.log(value)
+    //             })
+    if($(".select-color").children(".active").length ===0){
+        $("#colorAlert").show();
+    }else{
+        $('#commonUIAlert').css({'display':'block'})
+    }
+})
+
+
+//颜色拦截框确定取消
+$("#colorSure").click(function(){
+    $("#colorAlert").hide();
+})
+$("#colorCancel").click(function(){
+    $("#colorAlert").hide();
+})
+    console.log(localStorage.getItem('pl'))
+</script>
+
+</html>

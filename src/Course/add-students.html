@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css">
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+    <title>添加学员</title>
+    <style>
+      html {
+        height: 100%;
+      }
+
+      body {
+        padding: .4rem .6rem 1.05rem;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .detail-item {
+        display: flex;
+        font-size: .28rem;
+      }
+
+      .detail-item + .detail-item {
+        margin-top: .2rem;
+      }
+
+      .content {
+        flex: 1;
+        box-shadow: 0 0.04rem 0.1rem 0 rgba(1, 81, 145, 0.26);
+        border-radius: 0.2rem;
+        margin-top: .5rem;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .origin {
+        color: #efb511;
+      }
+
+      .content .title {
+        font-size: .25rem;
+        height: .55rem;
+        text-align: center;
+        line-height: .55rem;
+        border-bottom: solid 1px rgba(1, 81, 145, 0.1);
+      }
+
+      .filters {
+        display: flex;
+        padding: .15rem .2rem;
+        align-items: center;
+        color: #8b8b8b;
+        font-size: .25rem;
+        justify-content: space-between;
+      }
+
+      .ipt {
+        display: flex;
+        align-items: center;
+        width: 3.23rem;
+        height: 0.45rem;
+        background-color: #f0f0f0;
+        border-radius: 0.2rem;
+      }
+
+      .ipt input {
+        flex: 1;
+        height: 100%;
+        background-color: transparent;
+        border: none;
+        font-size: .217rem;
+        text-indent: .32rem;
+      }
+
+      .ipt input:focus {
+        outline: none;
+      }
+
+      .ipt img {
+        width: .23rem;
+        height: .23rem;
+        margin-right: .11rem;
+      }
+
+      .select-box-w {
+        flex: 1;
+        overflow-y: auto;
+      }
+
+      .select-box {
+        width: 100%;
+      }
+
+      .btns {
+        padding: .53rem .29rem .47rem;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .btns button {
+        height: 0.41rem;
+        border-radius: 0.175rem;
+        text-align: center;
+        line-height: .41rem;
+        font-size: 0.24rem;
+      }
+
+      #back {
+        border: solid 1px #aaaaaa;
+        background-color: white;
+      }
+
+      #save {
+        margin-left: .12rem;
+        border: none;
+        background-color: #fbd15b;
+        color: white;
+      }
+
+      .icon-p {
+        font-size: .24rem;
+        color: #ccc;
+        background: #ccc 90% center;
+      }
+
+      .icon-p[is-checked="1"] {
+        background-size: 80% 80%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: linear-gradient(45deg, red, red);
+      }
+
+      th {
+        border: none;
+        border-bottom: solid 1px rgba(1, 81, 145, 0.1);
+        padding: .16rem 0;
+      }
+
+      thead {
+        padding-bottom: .05rem;
+      }
+
+      td {
+        padding: .16rem 0;
+        border-bottom: solid 1px rgba(1, 81, 145, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="detail-item">
+        <label>课程类型：</label>
+        <div class="value origin"></div>
+      </div>
+      <div class="detail-item">
+        <label>上课时间：</label>
+        <div class="value"></div>
+      </div>
+      <div class="detail-item">
+        <label>所在班级：</label>
+        <div class="value"></div>
+      </div>
+      <div class="detail-item">
+        <label>课程主题：</label>
+        <div class="value"></div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="title origin">待添加学员列表</div>
+      <div class="filters">
+        <span>搜索条件：</span>
+        <div class="ipt">
+          <input type="text" placeholder="输入姓名/手机号" id="search">
+          <img src="../../img/bodyBg/search@3x.png">
+        </div>
+      </div>
+      <div class="select-box-w">
+        <table class="select-box origin" cellpadding="0" cellspacing="0">
+          <thead>
+            <tr>
+              <th>选择</th>
+              <th>姓名</th>
+              <th>手机号</th>
+              <th>课程顾问</th>
+            </tr>
+          </thead>
+          <tbody id="tbd"></tbody>
+        </table>
+      </div>
+      <div class="btns">
+        <button id="back">返回</button>
+        <button id="save">保存</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    var fixedcourseid;
+
+    function getQueryString(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) {
+        return unescape(r[2]);
+      }
+      return null;
+    }
+
+    function setStudentHtml(all, students) {
+      var searchText = $('#search').val() || '';
+      var ids = students.map(x => +x.id);
+      $('#tbd').html(
+        all.map(x => {
+          if (ids.indexOf(+x.id) === -1 && (x.name.indexOf(searchText) !== -1 || x.phone.indexOf(searchText) !== -1)) {
+            return `
+              <tr>
+                <td align="center">
+                  <a class="iconfont icon-p" is-checked="0" data-id="${x.id}" data-name="${x.name}"></a>
+                </td>
+                <td align="center">${x.name}</td>
+                <td align="center"><a class="origin" href="tel:${x.phone}">${x.phone}</a></td>
+                <td align="center">${x.ccname}老师</td>
+              </tr>
+            `;
+          } else {
+            return '';
+          }
+        }).join(''),
+      );
+      $('.icon-p').click(function () {
+        $(this).attr('is-checked', +!(+$(this).attr('is-checked')));
+      });
+      $('#commonUILoading').remove();
+    }
+
+    function addStudents(id) {
+      return new Promise((resolve => {
+        getAjax(
+          hostAjax + `/api/course/v1/addarrangeclass`,
+          {
+            studentid: id,
+            fixedcourseid: fixedcourseid,
+            teacherid: +localStorage.getItem('zhizhao_uid'),
+          },
+          function (data) {
+            if (data.Code === 200) {
+              resolve([id, 1]);
+            } else {
+              resolve([id, 0]);
+            }
+          },
+        );
+      }))
+    }
+
+    $(function () { // 点击星期
+      var id = getQueryString('id');
+      var students;
+      var allStudents;
+
+      $('#search').keyup(() => setStudentHtml(allStudents, students));
+      ui.showLoading();
+      getAjax(
+        hostAjax + `/api/tch/v1/getclasscourseinfo?curriculumid=${id}`,
+        {},
+        function (data) {
+          if (data.Code !== 200) {
+            ui.showToast('查询失败').css({ position: 'fixed', width: '100%', marginTop: '100px', marginLeft: '-.6rem' });
+          } else {
+            var course = data.Data.classcourse;
+            students = data.Data.studentlist || [];
+            $('.detail-item .value').eq(0).text(course.subjecttype);
+            $('.detail-item .value').eq(1).text(course.classtime);
+            $('.detail-item .value').eq(2).text(course.classname);
+            $('.detail-item .value').eq(3).text(course.subjectname);
+            fixedcourseid = course.id;
+            if (allStudents) setStudentHtml(allStudents, students);
+          }
+        },
+      );
+
+      getAjax(
+        hostAjax + `/api/overpipe/v1/selectstudentlist`,
+        {
+          user_id: +localStorage.getItem('zhizhao_uid'),
+          pagesize: 100000,
+        },
+        function (data) {
+          if (data.Code !== 200) {
+            ui.showToast('查询失败').css({ position: 'fixed', width: '100%', marginTop: '100px', marginLeft: '-.6rem' });
+          } else {
+            allStudents = data.Data.list || [];
+            if (students) setStudentHtml(allStudents, students);
+          }
+        },
+      );
+
+      $('#back').click(function () {
+        window.location.href = `detail.html?id=${id}`;
+      });
+      $('#save').click(function () {
+        var ids = $('.icon-p[is-checked="1"]').map((i, x) => +$(x).attr('data-id'));
+        if (!ids.length) return ui.showToast('请勾选学员').css({ position: 'fixed', width: '100%', marginTop: '100px', marginLeft: '-.6rem' });
+        ui.showLoading();
+        Promise.all(ids.map((i, x) => addStudents(x))).then(data => {
+          students = students.concat(data.filter(x => x[1]).map(x => ({ id: x[0] })));
+          setStudentHtml(allStudents, students);
+          var msg;
+          if (data.every(x => x[1])) {
+            msg = '添加成功';
+          } else if (data.every(x => !x[1])) {
+            console.log(data.map(x => $(`.icon-p[data-id="${x[0]}"]`).attr('is-checked', 1)));
+            msg = '该班级人数已达上限！';
+          } else {
+            msg = data.filter(x => !x[1]).map(x => {
+              return $(`.icon-p[data-id="${x[0]}"]`).attr('is-checked', 1).attr('data-name');
+            }).join('、') + '该班级人数已达上限！';
+          }
+          ui.showToast(msg, 2000).css({ position: 'fixed', width: '100%', marginTop: '100px', marginLeft: '-.6rem' });
+        }).finally(() => $('#commonUILoading').remove());
+        // window.history.back(-1)
+      });
+    })
+  </script>
+</html>

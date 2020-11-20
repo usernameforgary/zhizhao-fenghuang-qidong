@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>业务学习</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index1.css"/>
+    <link rel="stylesheet" type="text/css" href="css/webuploader/webuploader.css"/>
+    <script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	.left-hand-name{
+    		font-size: 0.16rem;
+    	}
+    	.my_course header,.my_children header{
+    		margin-top: 0.2rem;
+    		margin-bottom: 0.15rem;
+    		font-size: 0.28rem;
+    		font-weight: 900;
+    	}
+    	.ditui{
+    		position: relative;
+    		height: 1.8rem;
+    		border-radius: 0.2rem;
+    		overflow: hidden;
+    		box-shadow: 2px 2px 8px #aaa, -2px 2px 8px #aaa;
+    		margin-bottom: 0.5rem;
+    	}
+    	.ditui header{
+    		float: left;
+    		line-height: 1.8rem;
+    	}
+    	.ditui header img{
+    		width: 0.5rem;
+    		position: relative;
+    		top: 0.1rem;
+    		margin:0 0.5rem;
+    	}
+    	.ditui ul{
+    		background-color: #FBD15B;
+    		position: absolute;
+    		right: 0;
+    		height:1.8rem;
+    		color: white;
+    		/*border-bottom: 1px solid #eee;*/
+    	}
+    	.ditui ul li{
+    		
+    		line-height: 0.9rem;
+    		padding: 0 0.2rem;
+    	}
+    	.ditui ul li:first-child{
+    		border-bottom: 1px solid #eee;
+    	}
+    	.my_course i{
+    		float: right;
+    		font-weight: 100;
+    	}
+    	.my_course img{
+    		width: 4rem;
+    		display: block;
+    		margin: auto;
+    	}
+    	.my_course li{
+    		margin-top: 0.2rem;
+    	}
+    	.my_children{
+    		margin-bottom: 0.5rem;
+    	}
+    	.my_children ul ul{
+    		clear: both;
+    		position: relative;
+    		right: 0.5rem;
+    		border-bottom: 1px solid #eee;
+    	}
+    	.my_children ul ul li{
+    		text-align: center;
+    		float: left;
+    		width: 33.33%;
+    		padding-bottom: 0.15rem;
+    		padding-top: 0.2rem;
+    		
+    	}
+    	.my_children img{
+    		width: 0.61rem;
+    		height: 0.61rem;
+    		border-radius: 0.61rem;
+    		
+    	}
+    	.my_children button{
+    		margin-bottom: 0.15rem;
+    		width: 1.6rem;
+    		height: 0.55rem;
+    		border-radius: 0.55rem;
+    		background-color: #FBD15B;
+    		border: 0;
+    	}
+    	.pre,.swiper-container .next{
+    		display: none;
+    	}
+    	.pre img{
+    		width: 0.4rem;
+    		position: absolute;
+    		top: 0.45rem;
+    		left: 0.2rem;
+    		z-index: 222;
+    	}
+    	.swiper-container .next img{
+    		z-index: 222;
+    		width: 0.4rem;
+    		position: absolute;
+    		top: 0.45rem;
+    		right: 0.2rem!important;
+    	}
+    	.hadregister{
+    		background-color: #FDE8AD!important;
+    	}
+    	.noregister{
+    		background-color: #EAEAEA!important;
+    	}
+    	.t_card .more{
+    		display: block;
+		    position: absolute;
+		    width: 0.55rem;
+		    right: 0.2rem;
+		    bottom: 0.2rem;
+    	}
+    	.teacher .tab{
+			padding: 0 1.2rem;
+		}
+		.teacher .tab li{
+			width: 33.33%;
+			
+		}
+		.teacher .tab li span{
+			font-size: 0.3rem!important;
+		}
+		.circle_out{
+			width: 5.5rem;
+			height: 4.5rem;
+			margin: auto;
+			border-left: 0.277rem solid #809292;
+			border-bottom: 0.277rem solid #809292;
+			position: relative;
+		}
+		.circle1{
+			position: absolute;
+			height: 80%;
+			width: 1.34rem;
+			background-color: red;
+			left: 0.47rem;
+			bottom: 0;
+		}
+		.circle2{
+			position: absolute;
+			height: 0%;
+			width: 1.34rem;
+			background-color: #EFB511;
+			left: 2.8rem;
+			bottom: 0;
+		}
+		.t{
+			position: absolute;
+			top: -0.5rem;
+			width: 100%;
+			text-align: center;
+			color: red;
+			font-size: 0.35rem;
+			font-weight: bolder;
+		}
+		.b{
+			width: 1.9rem;
+			left: -0.2rem;
+			position: absolute;
+			bottom: -0.8rem;
+		}
+		.content{
+			padding-left: 1.5rem;
+			margin-top: 0.2rem;
+		}
+		.t_card a{
+    		position: absolute;
+    		bottom: 0.28rem;
+    		right: 1.2rem;
+    	}
+    </style>
+    <style type="text/css">
+    	 #coursesTable {
+            padding: 15px 10px;
+        }
+
+        .Courses-head {
+            background-color: #edffff;
+            /*left: 0px;*/
+            z-index: 22;
+        }
+
+        .Courses-head > div {
+            text-align: center;
+            font-size: 14px;
+            line-height: 28px;
+        }
+
+        .left-hand-TextDom, .Courses-head {
+            background-color: #f2f6f7;
+        }
+
+        .Courses-leftHand {
+            background-color: #f2f6f7;
+            font-size: 12px;
+        }
+
+        .Courses-leftHand .left-hand-index {
+            color: #9c9c9c;
+            margin-bottom: 4px !important;
+        }
+
+        .Courses-leftHand .left-hand-name {
+            color: #666;
+        }
+
+        .Courses-leftHand p {
+            text-align: center;
+            font-weight: 900;
+        }
+
+        .Courses-head > div {
+            border-left: none !important;
+        }
+
+        .Courses-leftHand > div {
+            padding-top: 5px;
+            border-bottom: 1px dashed rgb(219, 219, 219);
+        }
+
+        .Courses-leftHand > div:last-child {
+            border-bottom: none !important;
+        }
+
+        .left-hand-TextDom, .Courses-head {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .Courses-content > ul {
+            border-bottom: 1px dashed rgb(219, 219, 219);
+            box-sizing: border-box;
+        }
+
+        .Courses-content > ul:last-child {
+            border-bottom: none !important;
+        }
+
+        .highlight-week {
+            color: #02a9f5 !important;
+        }
+
+        .Courses-content li {
+            text-align: center;
+            color: #666666;
+            font-size: 14px;
+            line-height: 50px;
+        }
+
+        .Courses-content li span {
+            padding: 6px 2px;
+            box-sizing: border-box;
+            line-height: 18px;
+            border-radius: 4px;
+            white-space: normal;
+            word-break: break-all;
+            cursor: pointer;
+        }
+
+        .grid-active {
+            z-index: 9999;
+        }
+
+        .grid-active span {
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        ._news {
+		    position: absolute;
+		    top: 0;
+		    z-index: 22;
+		    right: -0.35rem;
+		}
+    </style>
+</head>
+<body class="up-page">
+	<div class="t_card animated card1 zoomIn" style="display: none;">
+		<div class="name"><p style="font-size: 0.5rem;"></p> <img src="img/bodyBg/defined.jpg" alt="" /><div class="yaoqingma">
+			
+		</div></div>
+		<div class="tName" style="margin-left: 0.6rem;"></div>
+		<div class="tel"></div>
+		<a href="person_edit/userInfo.html">修改头像</a>
+		<img class="more" onclick="goUrl('changeCard.html?type=1')" src="img/moreCards.png"/>
+	</div>
+	<div class="up-page-wrapper teacher">
+		<div class="main">
+			<div class="main_y" style="display: block;">
+				<ul style="margin-bottom: 0.25rem;">
+					<li>本月听课数量<p>20</p></li>
+					<li>本月试讲数量<p>10</p></li>
+					<div class="clearfix"></div>
+				</ul>
+				<div class="beike">
+					<header>备课笔记 <span onclick="goUrl('src/yewu/index.html')">更多<i class="iconfont icon-you"></i></span></header>
+					<div class="lists">
+					
+
+					</div>
+						<button onclick="goUrl('src/yewu/addbaike.html')">新增笔记</button>
+				   </div>
+				<div class="beike">
+					<header>听课笔记 <span onclick="goUrl('src/yewu/index2.html')">更多<i class="iconfont icon-you"></i></span></header>
+					<div class="lists">
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="float"></div>
+		<div class="class_show"  style="left: -7.5rem;">
+			<div class="text">
+				<textarea style="resize: none;height: 1.9rem;text-align: left;text-indent: 2em;border: 1px solid #eee;padding: 0.15rem;line-height: 0.45rem;box-sizing: border-box;" id="text" name="show" rows="" cols="">
+					
+				</textarea>
+				<div class="button submit">
+					提交
+				</div>
+				<div class="swiper-container">
+				  <div class="swiper-wrapper">
+				  	<div class="swiper-slide" id="modelImg"><img src="img/addImg.png"/></div>
+				    <!--<div class="swiper-slide">slider1</div>
+				    <div class="swiper-slide">slider2</div>
+				    <div class="swiper-slide">slider3</div>-->
+				  </div>
+				  <div class="pre">
+				  	<img src="img/left@3x.png"/>
+				  </div>
+				  <div class="next">
+				  	<img src="img/right@3x.png"/>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+ <script src="js/Timetables.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="css/webuploader/webuploader.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI;
+	var classImgLists="";
+//	ui.showToast( '板块正在开发！');
+var mySwiper = new Swiper('.swiper-container', {
+	autoplay: 5000,//可选选项，自动滑动
+	slidesPerView: 3,
+	spaceBetween: 10
+})
+$("textarea").text("");
+//设置自己的卡片背景
+	if(localStorage.getItem("cardClass")){
+		if(localStorage.getItem("cardClass").split("card")[1]<=5){
+			$(".t_card").addClass(localStorage.getItem("cardClass"));
+		}	
+	}
+//、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
+var BASE_URL= window.location.pathname;
+var uploader;
+uploaderInit();
+function uploaderInit(){
+uploader= WebUploader.create({
+    // 选完文件后，是否自动上传。
+    auto: true,
+    // swf文件路径
+    swf: BASE_URL + '/css/webuploader/Uploader.swf',
+    // 文件接收服务端。
+    server: hostAjax+'/api/other/v1/PostFile',
+    // 选择文件的按钮。可选。
+    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+    pick: {
+    	id:'#modelImg',
+    	multiple:true	
+    },
+    // 只允许选择图片文件。
+    accept: {
+        title: 'Images',
+        extensions: '*',
+        mimeTypes: 'image/*',
+    }
+});
+ /* 上传前判断 */
+    uploader.on('beforeFileQueued', function (file) {	
+      progress = 0;
+      /* 图片 */
+      if ('gif,jpg,jpeg,bmp,png'.indexOf(file.ext.toLowerCase()) == -1) {
+       alert('请上传图片文件');
+        return false;
+      }else{
+      	/* makeThumb方法生成缩略图获取图片base64 */
+        uploader.makeThumb(file, function(error, src){
+          if (error) {
+            alert('图片错误');
+            return;
+          }
+//        this.$refs.cropImg.changeImg(src, this.width, this.height, this.dataId);
+        }, 1, 1); /* 缩略图尺寸，大于1为px，0-1之间为百分比 */
+      }
+      /* 视频 */
+      if (this.type == 'video') {
+        if ('mp4,webm,m3u8,ogg'.indexOf(file.ext.toLowerCase()) == -1) {
+         alert('请上传支持的视频文件');
+          return false;
+        }
+      }
+      if (file.size > (3 * 1e8)) {
+       alert('文件大小不可超过300M');
+        return false;
+      }
+      /* 裁剪 */
+//    if (this.crop) {
+//      /* makeThumb方法生成缩略图获取图片base64 */
+//      this.uploader.makeThumb(file, (error, src) => {
+//        if (error) {
+//          this.$message('图片错误');
+//          return;
+//        }
+//        this.$refs.cropImg.changeImg(src, this.width, this.height, this.dataId);
+//      }, 1, 1); /* 缩略图尺寸，大于1为px，0-1之间为百分比 */
+//      return false;
+//    }
+//    this.loading = true;
+      return true;
+    })
+// 当有文件添加进来的时候
+uploader.on( 'uploadSuccess', function( file ,response) {
+		if(classImgLists.split("|").length>9){//超过之后的判断
+			uploader.stop();
+			ui.showToast("限制9张,已满！");
+			return false;
+		}
+classImgLists+=response.Data[0].f_url+"|";console.log(classImgLists);
+if(classImgLists.split("|").length>3){
+	$(".pre").show();
+	$(".next").show();
+}
+if(classImgLists.split("|").length>9){
+	$('#modelImg').hide();
+}
+var $li = $(
+            '<div class="swiper-slide file-item thumbnail"  ontouchstart="gtouchstart(this)" ontouchmove="gtouchmove(this)" ontouchend="gtouchend(this)" style="background-image: url('+response.Data[0].f_url+');">' +
+//              '<img  src="'+response.Data[0].f_url+'"/>' +
+            '</div>'
+            ),
+        $img = $li.find('img');
+    // $list为容器jQuery实例
+    $('.swiper-wrapper').append( $li );
+    mySwiper.update();
+});
+// 文件上传过程中创建进度条实时显示。
+uploader.on( 'uploadProgress', function( file, percentage ) {
+	
+    var $li = $( '#'+file.id ),
+        $percent = $li.find('.progress span');
+    // 避免重复创建
+    if ( !$percent.length ) {
+        $percent = $('<p class="progress"><span></span></p>')
+                .appendTo( $li )
+                .find('span');
+    }
+
+    $percent.css( 'width', percentage * 100 + '%' );
+    progress=parseInt(percentage* 100);
+});
+
+}
+//////////////////////////////////////////////------------------------------------
+var timeOutEvent=0;//定时器   
+//开始按   
+function gtouchstart(_this){  
+    timeOutEvent = setTimeout(function(){
+    	longPress(_this);
+    },1000);//这里设置定时器，定义长按500毫秒触发长按事件，时间可以自己改，个人感觉500毫秒非常合适
+    return false;   
+};   
+//手释放，如果在500毫秒内就释放，则取消长按事件，此时可以执行onclick应该执行的事件   
+function gtouchend(_this){   
+    clearTimeout(timeOutEvent);//清除定时器   
+    if(timeOutEvent!=0){   
+        //这里写要执行的内容（尤如onclick事件）   
+    }   
+    return false;   
+};   
+//如果手指有移动，则取消所有事件，此时说明用户只是要移动而不是长按   
+function gtouchmove(_this){   
+    clearTimeout(timeOutEvent);//清除定时器   
+    timeOutEvent = 0;   
+      
+};   
+   
+//真正长按后应该执行的内容   
+function longPress(_this){   
+    timeOutEvent = 0;   
+    //执行长按要执行的内容，如弹出菜单   
+   ui.showAlert('是否确认删除该图片', function () {//确认
+               $(_this).remove();
+                $(".imgs").css("width",$(".imgs img").length*170+"px");
+            },function(){//不是默认地址
+            	
+            	return false;
+            },"确定","取消","提示");
+} 
+$(".next").click(function(){
+	mySwiper.slideNext();
+})
+$(".pre").click(function(){
+	mySwiper.slidePrev();
+})
+
+$('.float').click(function(){
+	
+	
+	clearFloat();
+	
+	 
+})
+	function showTeacherCard(){
+		$(".float").show();
+		$(".t_card").show();
+	}
+	$(".float").click(function(){
+		$(this).fadeOut();
+		$(".t_card").fadeOut();
+	})
+</script>
+<script type="text/javascript">
+//	AJAX
+	var curriculumid,studentId;//课程ID/学生id
+	getAjax(hostAjax+"/api/stu/v1/getmessagelist",{//所有的消息
+		user_id:uid,
+		type:localStorage.getItem("zhizhao_typle")
+	},function(data){
+		if(data.Code==1000){
+			$(".ifHite").removeClass("hite");
+			return false;
+		}
+		
+	})
+		getAjax(hostAjax+"/api/tch/v1/teacherinfo",{//老师信息--昵称、名字、电话、头像
+			user_id:uid
+		},function(data){
+			if(data.Data!=""){
+				console.log(data);
+				$(".name p").text(data.Data.nickname);
+				if(data.Data.imgurl!=""){
+					$(".name img").attr("src",data.Data.imgurl);
+				}
+				$(".tName").text(data.Data.name);
+				$(".yaoqingma").text('邀请码：'+data.Data.Teacherid);
+				localStorage.setItem("zhizhao_Name",data.Data.nickname);
+				$(".tel").text(data.Data.phone);
+			}
+		})
+		$(".submit").click(function(){//
+			if($('textarea').val().trim().length<=8){
+				ui.showToast( '课堂表现的评语不能少于八个字',2000);
+				return false;
+			}
+			getAjax(hostAjax+"/api/tch/v1/addclassroomperformance",{//添加学生的课堂表现
+				user_id:studentId,
+				curriculumid:curriculumid,
+				teacherid:uid,
+				principalsevaluation:$('textarea').val(),
+				imglist:classImgLists.substring(0,classImgLists.length - 1)
+			},function(data){
+				if(data.Code==200){
+					ui.showToast( '提交成功');
+					clearFloat();
+					$("#"+studentId).find(".edit_button").text("已添加");
+				}
+			})
+		})
+		function clearFloat(){
+			$('.float').hide();
+			$('.class_show').hide();
+			classImgLists="";
+			$("textarea").val(" ");
+			$(".swiper-wrapper").html('<div class="swiper-slide" id="modelImg"><img src="img/addImg.png"/></div>');
+			 mySwiper.update();
+			 console.log(classImgLists.split('|').length)
+			 uploaderInit();
+		}
+//		main_y
+		getAjax(hostAjax+"/api/tch/v1/selectpreparelessonscount",{//业务学习板块
+			user_id:uid
+		},function(data){
+			if(data.Data!=""){
+				$(".main_y ul li").eq(0).find("p").text(data.Data.listenedlessonscount);
+				$(".main_y ul li").eq(1).find("p").text(data.Data.preparelessonscount);
+			}
+		})
+		getAjax(hostAjax+"/api/tch/v1/selectpreparelessonslist",{//备课列表
+			user_id:uid
+		},function(data){
+			var str="",haseCommite="";
+			if(data.Data!=""){
+				for (var i=0;i<data.Data.list.length&&i<3;i++) {
+					str+='<div class="list" id='+data.Data.list[i].id+'>'+
+						'<b>'+haseCommite+'课程主题：《'+data.Data.list[i].curriculumtheme+'》</b>'+
+						'<p>上课时间：'+data.Data.list[i].classtime.split(' ')[0]+'</p>'+
+						'<p>课程类型：'+data.Data.list[i].curriculumtypename+'</p>'+
+					'</div>';
+				}
+				$('.beike').eq(0).find(".lists").html(str);
+				$('.beike').eq(0).find('.list').click(function(){
+					location.href="src/yewu/beikeDetail.html?id="+$(this).attr('id');
+				})
+			}else{
+				$('.beike').eq(0).find('header span').hide();
+			}
+		})
+		getAjax(hostAjax+"/api/tch/v1/selectlistenedlessonslist",{//听课列表
+			user_id:uid
+		},function(data){
+			var str="",haseCommite="";
+			if(data.Data!=""){
+				for (var i=0;i<data.Data.list.length&&i<3;i++) {
+					if(data.Data.list[i].listenedname=="未评价"){
+						haseCommite="";
+					}else{
+						haseCommite='<span>【已评论】</span>';
+					}
+					str+='<div class="list" id='+data.Data.list[i].id+'>'+
+						'<b>'+haseCommite+'课程主题：《'+data.Data.list[i].curriculumtheme+'》</b>'+
+						'<p>上课时间：'+data.Data.list[i].classtime.split(' ')[0]+'</p>'+
+						'<p>课程类型：'+data.Data.list[i].curriculumtypename+'</p>'+
+						'<p>上课老师：'+data.Data.list[i].t_teachernickname+'</p>'+
+					'</div>';
+				}
+				$('.beike').eq(1).find(".lists").html(str);
+				$('.beike').eq(1).find('.list').click(function(){
+					location.href="src/yewu/tingikeDetail.html?id="+$(this).attr('id');
+				})
+			}else{
+				$('.beike').eq(1).find('header span').hide();
+			}
+		})
+</script>
+<script>
+$('.teacher .tab li').click(function(){
+	$('.teacher .tab li.active').removeClass('active');
+	$(this).addClass('active');
+	//下面需要修改 扇形表的数据
+	if($(this).text()=="教学记录"){
+		sessionStorage.setItem("teacherTab",0)
+		$(".main_t").show();
+		$(".main_y").hide();
+		$(".main_s").hide();
+	}else if($(this).text()=="销售记录"){
+		sessionStorage.setItem("teacherTab",1)
+		$(".main_t").hide();
+		$(".main_y").hide();
+		$(".main_s").show();
+	}else{
+		sessionStorage.setItem("teacherTab",2)
+		$(".main_t").hide();
+		$(".main_s").hide();
+		$(".main_y").show();
+	}
+})
+ 
+//courseList = [
+//  ['大学英语(Ⅳ)@10203', '大学英语(Ⅳ)@10203', '', '', '', '', '毛概@14208', '毛概@14208', '', '', '', '选修'],
+//  ['', '', '信号与系统@11302', '信号与系统@11302', '模拟电子技术基础@16204', '模拟电子技术基础@16204', '', '', '', '', '', ''],
+//  ['大学体育(Ⅳ)', '大学体育(Ⅳ)', '形势与政策(Ⅳ)@15208', '形势与政策(Ⅳ)@15208', '', '', '电路、信号与系统实验', '电路、信号与系统实验', '', '', '', ''],
+//  ['', '', '', '', '电装实习@11301', '电装实习@11301', '', '', '', '大学体育', '大学体育', ''],
+//  ['', '', '数据结构与算法分析', '数据结构与算法分析', '', '', '', '', '信号与系统', '信号与系统', '', ''],
+//];
+//var week = window.innerWidth > 360 ? ['周一', '周二', '周三', '周四', '周五', '周六', '周日'] :
+//  ['一', '二', '三', '四', '五','六','七'];
+ 	
+
+ 
+
+
+</script>
+</html>

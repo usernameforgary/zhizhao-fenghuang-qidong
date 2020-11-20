@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
+    />
+    <title>我的班级</title>
+    <link rel="stylesheet" href="../../css/simplePagination.css">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../css/swiper-3.4.2.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css" />
+    <link rel="stylesheet" href="../../css/weui.min.css" />
+    <link rel="stylesheet" href="./myclass.css" />
+   
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../css/webuploader/webuploader.css"
+    />
+    <link rel="stylesheet" href="../../css/quebuke.min.css" />
+    <script
+      src="../../js/resize.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+  </head>
+
+  <body class="up-page">
+    <div class="up-page-wrapper QuebukeBox teacher">
+      <div class="searchBox">
+        <img src="../../img/bodyBg/search@3x.png" alt="" />
+        <input type="text" placeholder="输入学员姓名" id="search_input" />
+      </div>
+      <h1 class="zwsj" style="color: #ccc; text-align: center;">暂无班级</h1>
+            <div  class="isStudent">
+            </div>
+            <div id="light-pagination" class="pagination" ></div>
+    </div>
+  </body>
+  <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+  <script
+    src="../../js/jquery-3.3.1.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script src="../../js/jquery.simplePagination.js"type="text/javascript" charset="utf-8"></script>
+  <script
+    src="../../js/commonUI.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/utils.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/mobileSelect.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../css/webuploader/webuploader.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/datePicker.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script src="../../js/jquery-weui.min.js"></script>
+  <script src="../../js/quebuke.js"></script>
+  <!-- <script src="../../js/jquery.simplePagination.js"></script> -->
+  <script>
+
+var	uid = localStorage.getItem("zhizhao_uid")
+
+
+
+$('.searchBox img').click(function(){
+		pageindex=1;
+		showTime();
+	})
+	$('#search_input').bind('keyup', function(event) {
+	　　if (event.keyCode == "13") {
+			pageindex=1;
+	　　　　//回车执行查询
+			showTime();
+	　　}
+	});
+var splitStr=pageindex=1;
+		showTime();
+		function showTime(){
+			$.ajax({
+				url:'http://139.224.133.133:8088/api/tch/v1/selectmyclass',
+				data:{
+          user_id:uid,
+				pageindex:pageindex,
+			      pagesize:10,
+            classname:$("#search_input").val()
+				},
+				success : function(data){
+					console.log(data)
+			if(data.Data){
+				if(pageindex==1&&data.Data.record/10>1){
+					$('#light-pagination').pagination({//分页
+
+						pages: Math.ceil(data.Data.record/10),
+						cssStyle: 'light-theme',
+					});
+				}	
+					try{
+						var html =""
+						for(var i=0;i<data.Data.list.length;i++){
+						
+              const element = data.Data.list[i]
+       html+=` <div class="bottom1" onclick="window.location.href='./particulars.html'" data-pl="${element.id}">
+        <div class="item1">
+          <div class="top1">
+            <img src="../../img/1.png" alt="" srcset="" />
+            <div class="title1">${element.classname}</div>
+            <div class="empty"></div>
+          </div>
+          <div class="bottom">
+              <div style="display: flex;">
+                  <div class="img1"></div>
+                  <span>上课学生</span>
+              </div>
+            <div class="top2">
+              <div class="item">
+                <div>${element.namelist.substring(0,3)}</div>
+              </div>
+              <div class="item">
+                <div>${element.namelist.substring(3,6)}</div>
+              </div>
+              <div class="item">
+                <div>${element.namelist.substring(7,11)}</div>
+              </div>
+            </div>
+            <div class="top2">
+              <div class="item">
+                <div class="img"></div>
+                <div>${element.namelist.substring(11,15)}</div>
+              </div>
+              <div class="item">
+                <div class="img"></div>
+                <div>${element.namelist.substring(15,19)}</div>
+              </div>
+              <div class="item">
+                <div class="img"></div>
+                <div>${element.namelist.substring(19,23)}</div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>`
+      if(!data.Data.list.length){
+            $('.zwsj').css({display:"block"})
+
+           }else{
+			$('.zwsj').css({display:"none"})
+		   }
+					}
+					}catch(e){
+					
+						//TODO handle the exception
+					}
+					$('.isStudent').html(html)
+          $('.bottom1').each(function(){
+        $(this).click(function(){
+            console.log($(this).attr('data-pl'))
+            console.log(localStorage.setItem('pltyu',$(this).attr('data-pl')))
+        })
+    })
+					
+				}else{
+					console.log( '没有缺课的小朋友',13000);
+				}
+				}
+			})
+		}
+   
+  </script>
+</html>

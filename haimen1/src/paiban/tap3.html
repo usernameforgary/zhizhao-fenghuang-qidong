@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>排班</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	.float .main{
+    		padding: 0.5rem;
+    	}
+    	.float .main header{
+    		margin-bottom: 0.2rem;
+    	}
+    	.float .t{
+    		width: 6.5rem;
+    		background-color: #FBD15B;
+    		color: white;
+    		line-height: 0.85rem;
+    		border-radius: 0.25rem;
+    		font-size: 0.28rem;
+    		padding-left: 0.3rem;
+    	}
+    	.float button{
+    		width: 6.5rem;
+    		height: 0.85rem;
+    		margin-top: 0rem;
+    		border-radius: 0.25rem;
+    		border: 0;
+    		background-image: url(../../img/bodyBg/paikeButton1@3x.png);
+    		background-size: 100%;
+    		color: white;
+    	}
+    	.float .header{
+    		padding: 0.5rem;
+    		line-height: 0.5rem;
+    		padding-bottom: 0;
+    	}
+    </style>
+</head>
+<body class="up-page">
+	<div class="float" style="display: block;background-color: white;">
+		<div class="header">
+			<p>学生姓名：王思思</p>
+			<p>班级：A101班</p>
+			<p>所报课程：<span>一阶</span></p>
+			<p>所报时间：<span>周六</span></p>
+			<p>教室：5号教室</p>
+			<p>课程时间：10：00-11：00</p>
+		</div>
+		<div class="teacher">
+		</div>
+		<div class="main">
+			<button onclick="location.go(-2);">我知道了</button>
+		</div>
+	</div>
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI;
+//	ui.showToast( '板块正在开发！');
+	//性别选择
+	$(".main li i").click(function(){
+//		ui.showToast( '展开信息！');
+		if($(this).parents('li').find('.content').css("display")=="block"){
+			$(this).parents('li').find('.content').hide();
+			$(this).parents('li').find('b').show();
+			return false;
+		}
+		$('.content').hide();
+		$('b').show();
+		$(this).parents('li').find('.content').show();
+		$(this).parents('li').find('b').hide();
+		
+	})
+	$(".t").click(function(){
+		if($(this).parent("div").find("ul").css("display")=="none"){
+			$("ul").hide();
+			$(this).parent("div").find("ul").show();
+		}else{
+			$("ul").hide();
+			$(this).parent("div").find("ul").hide();	
+		}
+	})
+	$("li").click(function(){
+		$(this).parents(".aaaa").find("span").text($(this).text())
+		if($(this).parent("div").find("ul").css("display")=="none"){
+			$("ul").hide();
+			$(this).parent("div").find("ul").show();
+		}else{
+			$("ul").hide();
+			$(this).parent("div").find("ul").hide();	
+		}
+	})
+	$("button").click(function(){
+		location.href="tap2.html";
+	})
+</script>
+</html>

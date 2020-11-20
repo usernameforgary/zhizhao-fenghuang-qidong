@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
+    />
+    <title>异常考勤记录</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../css/swiper-3.4.2.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../css/simplePagination.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../css/webuploader/webuploader.css"
+    />
+    <script
+      src="../../js/resize.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <link rel="stylesheet" href="../../css/weui.min.css" />
+    <!-- <link rel="stylesheet" href="mobile/css/jquery-weui.min.css"> -->
+    <!-- <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script> -->
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <!-- <script type="text/javascript" src="mobile/js/jquery-weui.min.js"></script> -->
+    <script type="text/javascript" src="../../js/jquery-weui.min.js"></script>
+    <!-- <script type="text/javascript" src="mobile/jquery-3.3.1.min.js"></script> -->
+    <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
+    <style type="text/css">
+      body {
+        background-color: #fff;
+      }
+
+      .my_course header,
+      .my_children header,
+      .ditui header {
+        margin-top: 0.2rem;
+        margin-bottom: 0.15rem;
+        font-size: 0.28rem;
+        font-weight: 900;
+      }
+      .main_b.weui-cells {
+        margin-top: 0;
+      }
+      .main_b.weui-cells li a.weui-cell {
+        padding: 0;
+        width: 100%;
+        color: #000;
+      }
+      .but-an {
+        border: none;
+        border-radius: 0.55rem;
+        background-color: #fbd15b;
+        padding: 0.1rem 0.3rem;
+      }
+      .min_head img {
+        width: 2.2em;
+        height: 2.2em;
+      }
+
+      .min_head {
+        margin-right: 0.2em;
+        border-radius: 3em;
+      }
+      .ditui li {
+        height: 0.9rem;
+        line-height: 0.9rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      .ditui li i {
+        float: right;
+        font-size: 0.3rem;
+      }
+
+      .my_course i {
+        float: right;
+        font-weight: 100;
+      }
+
+      .my_course img {
+        width: 4rem;
+        display: block;
+        margin: auto;
+      }
+
+      .my_course li {
+        margin-top: 0.2rem;
+      }
+
+      .my_children {
+        margin-bottom: 0.5rem;
+      }
+
+      .my_children ul ul {
+        clear: both;
+        position: relative;
+        /*right: 0.5rem;*/
+        width: 7.5rem;
+        border-bottom: 1px solid #eee;
+        padding: 0 0.2rem;
+      }
+
+      .my_children ul ul li {
+        text-align: center;
+        float: left;
+        width: 33.33%;
+        padding-bottom: 0.15rem;
+        padding-top: 0.2rem;
+      }
+
+      .my_children img {
+        width: 0.61rem;
+        height: 0.61rem;
+        border-radius: 0.61rem;
+      }
+
+      .my_children button {
+        margin-bottom: 0.15rem;
+        width: 1.6rem;
+        height: 0.55rem;
+        border-radius: 0.55rem;
+        background-color: #fbd15b;
+        border: 0;
+      }
+
+      .pre img {
+        width: 0.4rem;
+        position: absolute;
+        top: 0.45rem;
+        left: 0.2rem;
+        z-index: 222;
+      }
+      .pre,
+      .swiper-container .next {
+        display: none;
+      }
+
+      .swiper-container .next img {
+        z-index: 222;
+        width: 0.4rem;
+        position: absolute;
+        top: 0.45rem;
+        right: 0.2rem !important;
+      }
+
+      .hadregister {
+        background-color: #fde8ad !important;
+      }
+
+      .noregister {
+        background-color: #eaeaea !important;
+      }
+
+      .t_card .more {
+        display: block;
+        position: absolute;
+        width: 0.55rem;
+        right: 0.2rem;
+        bottom: 0.2rem;
+      }
+
+      .teacher .tab {
+        padding: 0 1.2rem;
+      }
+
+      .teacher .tab li {
+        width: 50%;
+      }
+
+      .circle_out {
+        width: 5.5rem;
+        height: 4.5rem;
+        margin: auto;
+        border-left: 0.277rem solid #809292;
+        border-bottom: 0.277rem solid #809292;
+        position: relative;
+      }
+
+      .circle1 {
+        position: absolute;
+        height: 80%;
+        width: 1.34rem;
+        background-color: red;
+        left: 0.47rem;
+        bottom: 0;
+      }
+
+      .circle2 {
+        position: absolute;
+        height: 60%;
+        width: 1.34rem;
+        background-color: #efb511;
+        left: 2.8rem;
+        bottom: 0;
+      }
+
+      .t {
+        position: absolute;
+        top: -0.4rem;
+        width: 100%;
+        text-align: center;
+        color: red;
+      }
+
+      .b {
+        width: 1.9rem;
+        left: -0.2rem;
+        position: absolute;
+        bottom: -0.8rem;
+      }
+
+      .content {
+        padding-left: 1.5rem;
+        margin-top: 0.2rem;
+      }
+
+      .queke {
+        margin-top: 0.2rem;
+        margin-bottom: 0 !important;
+      }
+
+      .teacher .main {
+        padding: 0;
+      }
+
+      .main_b {
+        display: none;
+      }
+      .tup-name{
+        display: flex;
+    justify-content: space-between;
+    padding: 0.2rem  0.5rem;
+      }
+      .fill-plue{
+        border: none;
+    outline: none;
+    text-align: right;
+      }
+      .sj-time{
+        width: 100%;
+    height: 0.5rem;
+    background: #f0f0f0;
+    line-height: 0.5rem;
+    padding-left: 0.8rem;
+      }
+    </style>
+  </head>
+
+  <body class="up-page quekele">
+    <div class="t_card animated card1 zoomIn" style="display: none;">
+      <div class="name">
+        <p style="font-size: 0.5rem;"></p>
+        <img src="../../img/bodyBg/defined.jpg" alt="" />
+      </div>
+      <div class="tName" style="margin-left: 0.6rem;"></div>
+      <div class="tel"></div>
+      <img
+        class="more"
+        onclick="goUrl('changeCard.html?type=1')"
+        src="../../img/moreCards.png"
+      />
+    </div>
+    <div class="up-page-wrapper teacher">
+      <div class="header">
+        <div class="search">
+          <img src="../../img/bodyBg/search@3x.png" />
+          <input
+            type="text"
+            name="search"
+            id="search"
+            value=""
+            placeholder="输入学员姓名"
+          />
+        </div>
+        <div class="tab">
+          <ul style="margin-bottom:.25rem;">
+            <li class="active"><span> 缺课补课</span></li>
+            <li><span>插班补课</span></li>
+            <div class="clearfix"></div>
+          </ul>
+          <!-- <p style="text-align: center;margin-top: 0.5rem;color: #EFB511;"></p> -->
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <!-- <div class="main">
+        <div class="main_q">
+          <div class="my_children">
+            <ul></ul>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <ul class="weui-cells two_list  main_b"></ul>
+      </div> -->
+      <div class="float"></div>
+      <div class="class_show" style="left: 0rem;">
+        <div class="text">
+           <div class="tup-name">
+             <p>姓名</p>
+             <p class='name-tu'>王一一</p>
+           </div>
+           <div style="border-bottom: 1px solid #efefef; "></div>
+           <div class="tup-name">
+             <p>课程名称</p>
+             <p class="regular">一阶常规课</p>
+           </div>
+           <div style="border-bottom: 5px solid #efefef;"></div>
+           <div class="tup-name">
+             <p>上课日期</p>
+             <p class="skdata-class">2019-10-14</p>
+           </div>
+           <div style="border-bottom: 1px solid #efefef; "></div>
+           <div class="tup-name">
+             <p>上课时间</p>
+             <p class="time-sj">10：00-11：00</p>
+           </div>
+           <div style="border-bottom: 1px solid #efefef; "></div>
+           <div class="tup-name">
+             <p>上课老师</p>
+             <input type="text" class="fill-plue" placeholder="请填写">
+           </div>
+           <div class="tup-name">
+             <p>上课教室</p>
+             <input type="text" class="fill-plue" placeholder="教室1">
+           </div>
+            <div style="border-bottom: 5px solid #efefef;"></div>
+          <textarea
+            style="resize: none;height: 1.9rem;text-align: left;text-indent: 2em;border: 1px solid #eee;padding: 0.15rem;line-height: 0.45rem;box-sizing: border-box;"
+            id="text"
+            name="show"
+            rows=""
+            cols=""
+          >
+          </textarea>
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" id="modelImg">
+                <img src="../../img/addImg.png" />
+              </div>
+              <!--<div class="swiper-slide">slider1</div>
+				    <div class="swiper-slide">slider2</div>
+				    <div class="swiper-slide">slider3</div>-->
+            </div>
+            <div class="pre">
+              <img src="../../img/left@3x.png" />
+            </div>
+            <div class="next">
+              <img src="../../img/right@3x.png" />
+            </div>
+          </div>
+        </div>
+        <div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+            <span>认真听讲</span>
+            <div id="" style="display: flex;justify-content: flex-end;">
+              <img class="xing" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+              <img class="xing" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+              <img class="xing" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+              <img class="xing" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+              <img class="xing" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+            </div>
+          </div>
+          <div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+              <span>动手能力</span>
+              <div id="" style="display: flex;justify-content: flex-end;">
+                <img class="xing2" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+                <img class="xing2" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+                <img class="xing2" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+                <img class="xing2" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+                <img class="xing2" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+              </div>
+            </div>
+            <div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+              <span>表达能力</span>
+              <div id="" style="display: flex;justify-content: flex-end;">
+                <img class="xing3" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+                <img class="xing3" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+                <img class="xing3" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+                <img class="xing3" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+                <img class="xing3" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+              </div>
+      
+            </div>
+      
+            <div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+              <span>积极主动</span>
+              <div id="" style="display: flex;justify-content: flex-end;">
+                <img class="xing4" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+                <img class="xing4" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+                <img class="xing4" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+                <img class="xing4" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+                <img class="xing4" src="../../img/未评分.png" style="width: 10%;height: 100%;" />
+              </div>
+            </div>
+           
+            <div class="button submit">
+                提交
+              </div>
+      </div>
+      <div id="light-pagination" class="pagination"></div>
+    </div>
+  </body>
+  <script
+    src="../../js/jquery-1.7.2.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/jquery.simplePagination.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/swiper-3.4.2.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/commonUI.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/utils.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../css/webuploader/webuploader.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script type="text/javascript">
+  // 评分
+  var imgs = document.getElementsByClassName("xing");
+	var imgs1 = document.getElementsByClassName("xing1");
+	var imgs2 = document.getElementsByClassName("xing2");
+	var imgs3 = document.getElementsByClassName("xing3");
+	var imgs4 = document.getElementsByClassName("xing4");
+	for (var i = 0; i < imgs.length; i++) {
+		imgs[i].setAttribute("score", i + 1); //设置分数
+		imgs[i].onclick = function () { //点击时调用方法
+			var srcEl = event.srcElement; //通过event来获取原元素
+			var score = srcEl.getAttribute("score"); //获取分数
+			for (var j = 0; j < score; j++) {
+				imgs[j].src = "../../img/已评分.png";
+			}
+			for (var j = score; j < imgs.length; j++) {
+				imgs[j].src = "../../img/未评分.png";
+			}
+		}
+	};
+	for (var i = 0; i < imgs1.length; i++) {
+		imgs1[i].setAttribute("score", i + 1); //设置分数
+		imgs1[i].onclick = function () { //点击时调用方法
+			var srcEl = event.srcElement; //通过event来获取原元素
+			var score = srcEl.getAttribute("score"); //获取分数
+			for (var j = 0; j < score; j++) {
+				imgs1[j].src = "../../img/已评分.png";
+			}
+			for (var j = score; j < imgs1.length; j++) {
+				imgs1[j].src = "../../img/未评分.png";
+			}
+		}
+	};
+	for (var i = 0; i < imgs2.length; i++) {
+		imgs2[i].setAttribute("score", i + 1); //设置分数
+		imgs2[i].onclick = function () { //点击时调用方法
+			var srcEl = event.srcElement; //通过event来获取原元素
+			var score = srcEl.getAttribute("score"); //获取分数
+			for (var j = 0; j < score; j++) {
+				imgs2[j].src = "../../img/已评分.png";
+			}
+			for (var j = score; j < imgs2.length; j++) {
+				imgs2[j].src = "../../img/未评分.png";
+			}
+		}
+	};
+	for (var i = 0; i < imgs3.length; i++) {
+		imgs3[i].setAttribute("score", i + 1); //设置分数
+		imgs3[i].onclick = function () { //点击时调用方法
+
+			var srcEl = event.srcElement; //通过event来获取原元素
+
+			var score = srcEl.getAttribute("score"); //获取分数
+			for (var j = 0; j < score; j++) {
+				imgs3[j].src = "../../img/已评分.png";
+			}
+			for (var j = score; j < imgs3.length; j++) {
+				imgs3[j].src = "../../img/未评分.png";
+			}
+		}
+	};
+	for (var i = 0; i < imgs4.length; i++) {
+		imgs4[i].setAttribute("score", i + 1); //设置分数
+		imgs4[i].onclick = function () { //点击时调用方法
+
+			var srcEl = event.srcElement; //通过event来获取原元素
+
+			var score = srcEl.getAttribute("score"); //获取分数
+			for (var j = 0; j < score; j++) {
+				imgs4[j].src = "../../img/已评分.png";
+			}
+			for (var j = score; j < imgs4.length; j++) {
+				imgs4[j].src = "../../img/未评分.png";
+			}
+		}
+	};
+    $('.teacher .tab li').click(function() {
+      $('.teacher .tab li.active').removeClass('active')
+      $(this).addClass('active')
+      //下面需要修改 扇形表的数据
+      if ($(this).text() == '待补课') {
+        $('.main_q').show()
+        $('#light-pagination').show()
+        $('.main_b').hide()
+        showQuekeTime()
+      } else {
+        $('.main_b').show()
+        $('.main_q').hide()
+        $('#light-pagination').hide()
+        showBukeTime()
+      }
+    })
+    $('.search img').click(function() {
+      pageindex = 1
+      showTime()
+    })
+    $('#search').bind('keyup', function(event) {
+      if (event.keyCode == '13') {
+        pageindex = 1
+        //回车执行查询
+        showTime()
+      }
+    })
+    //	AJAX
+    var curriculumid,
+      studentId,
+      classImgLists = '' //课程ID/学生id
+    //、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
+    var mySwiper = new Swiper('.swiper-container', {
+      autoplay: 5000, //可选选项，自动滑动
+      slidesPerView: 3,
+      spaceBetween: 10
+    })
+    var BASE_URL = window.location.pathname
+    var uploader
+    uploaderInit()
+    function uploaderInit() {
+      uploader = WebUploader.create({
+        // 选完文件后，是否自动上传。
+        auto: true,
+
+        // swf文件路径
+        swf: BASE_URL + '/css/webuploader/Uploader.swf',
+
+        // 文件接收服务端。
+        server: hostAjax + '/api/other/v1/PostFile',
+
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: {
+          id: '#modelImg',
+          multiple: true
+        },
+        // 只允许选择图片文件。
+        accept: {
+          title: 'Images',
+          extensions: '*',
+          mimeTypes: 'image/*'
+        }
+      })
+      /* 上传前判断 */
+      uploader.on('beforeFileQueued', function(file) {
+        progress = 0
+        /* 图片 */
+        if ('gif,jpg,jpeg,bmp,png'.indexOf(file.ext.toLowerCase()) == -1) {
+          alert('请上传图片文件')
+          return false
+        } else {
+          /* makeThumb方法生成缩略图获取图片base64 */
+          uploader.makeThumb(
+            file,
+            function(error, src) {
+              if (error) {
+                alert('图片错误')
+                return
+              }
+              //        this.$refs.cropImg.changeImg(src, this.width, this.height, this.dataId);
+            },
+            1,
+            1
+          ) /* 缩略图尺寸，大于1为px，0-1之间为百分比 */
+        }
+        /* 视频 */
+        if (this.type == 'video') {
+          if ('mp4,webm,m3u8,ogg'.indexOf(file.ext.toLowerCase()) == -1) {
+            alert('请上传支持的视频文件')
+            return false
+          }
+        }
+        if (file.size > 3 * 1e8) {
+          alert('文件大小不可超过300M')
+          return false
+        }
+        /* 裁剪 */
+        //    if (this.crop) {
+        //      /* makeThumb方法生成缩略图获取图片base64 */
+        //      this.uploader.makeThumb(file, (error, src) => {
+        //        if (error) {
+        //          this.$message('图片错误');
+        //          return;
+        //        }
+        //        this.$refs.cropImg.changeImg(src, this.width, this.height, this.dataId);
+        //      }, 1, 1); /* 缩略图尺寸，大于1为px，0-1之间为百分比 */
+        //      return false;
+        //    }
+        //    this.loading = true;
+
+        return true
+      })
+      // 当有文件添加进来的时候
+      uploader.on('uploadSuccess', function(file, response) {
+        if (classImgLists.split('|').length > 9) {
+          //超过之后的判断
+          uploader.stop()
+          ui.showToast('限制9张,已满！')
+          return false
+        }
+        try {
+          classImgLists += response.Data[0].f_url + '|'
+        } catch (e) {
+          //TODO handle the exception
+        }
+
+        if (classImgLists.split('|').length > 3) {
+          $('.pre').show()
+          $('.next').show()
+        }
+        if (classImgLists.split('|').length > 9) {
+          $('#modelImg').hide()
+        }
+        var $li
+        try {
+          ;($li = $(
+            '<div class="swiper-slide file-item thumbnail"  ontouchstart="gtouchstart(this)" ontouchmove="gtouchmove(this)" ontouchend="gtouchend(this)" style="background-image: url(' +
+              response.Data[0].f_url +
+              ');">' +
+              //              '<img  src="'+response.Data[0].f_url+'"/>' +
+              '</div>'
+          )),
+            ($img = $li.find('img'))
+        } catch (e) {
+          //TODO handle the exception
+        }
+
+        // $list为容器jQuery实例
+        $('.swiper-wrapper').append($li)
+        mySwiper.update()
+      })
+      // 文件上传过程中创建进度条实时显示。
+      uploader.on('uploadProgress', function(file, percentage) {
+        var $li = $('#' + file.id),
+          $percent = $li.find('.progress span')
+        // 避免重复创建
+        if (!$percent.length) {
+          $percent = $('<p class="progress"><span></span></p>')
+            .appendTo($li)
+            .find('span')
+        }
+
+        $percent.css('width', percentage * 100 + '%')
+        progress = parseInt(percentage * 100)
+      })
+    }
+    //////////////////////////////////////////////------------------------------------
+    var timeOutEvent = 0 //定时器
+    //开始按
+    function gtouchstart(_this) {
+      timeOutEvent = setTimeout(function() {
+        longPress(_this)
+      }, 1000) //这里设置定时器，定义长按500毫秒触发长按事件，时间可以自己改，个人感觉500毫秒非常合适
+      return false
+    }
+    //手释放，如果在500毫秒内就释放，则取消长按事件，此时可以执行onclick应该执行的事件
+    function gtouchend(_this) {
+      clearTimeout(timeOutEvent) //清除定时器
+      if (timeOutEvent != 0) {
+        //这里写要执行的内容（尤如onclick事件）
+      }
+      return false
+    }
+    //如果手指有移动，则取消所有事件，此时说明用户只是要移动而不是长按
+    function gtouchmove(_this) {
+      clearTimeout(timeOutEvent) //清除定时器
+      timeOutEvent = 0
+    }
+
+    //真正长按后应该执行的内容
+    var splitStr = '',
+      re,
+      result,
+      pageindex = 1
+    function longPress(_this) {
+      timeOutEvent = 0
+      splitStr = $(_this)
+        .css('background-image')
+        .split('url("')[1]
+        .split('")')[0]
+      splitStr += '\\|'
+
+      console.log(splitStr)
+      //执行长按要执行的内容，如弹出菜单
+      ui.showAlert(
+        '是否确认删除该图片',
+        function() {
+          //确认
+          $(_this).remove()
+          re = new RegExp(splitStr)
+          classImgLists = classImgLists.replace(re, '')
+        },
+        function() {
+          //不是默认地址
+
+          return false
+        },
+        '确定',
+        '取消',
+        '提示'
+      )
+    }
+    function clearFloat() {
+      $('.float').hide()
+      $('.class_show').hide()
+      classImgLists = ''
+      $('textarea').val(' ')
+      $('.swiper-wrapper').html(
+        '<div class="swiper-slide" id="modelImg"><img src="../../img/addImg.png"/></div>'
+      )
+      mySwiper.update()
+      uploaderInit()
+    }
+    showTime()
+    function showTime() {
+      showQuekeTime()
+      showBukeTime()
+    }
+    function showQuekeTime() {
+      getAjax(
+        hostAjax + '/api/tch/v1/getabsencerecordlist',
+        {
+          user_id:
+            location.href.indexOf('?uid=') > 0
+              ? location.href.split('?uid=')[1].split('&')[0]
+              : uid,
+          pageindex: pageindex,
+          pagesize: 10,
+          student_name: $('#search').val()
+        },
+        function(data) {
+          console.log(data)
+          if (data.Data) {
+            if (pageindex == 1 && data.Data.record / 10 > 1) {
+              $('#light-pagination').pagination({
+                //分页
+                pages: Math.ceil(data.Data.record / 10),
+                cssStyle: 'light-theme'
+              })
+            }
+
+            var str = '',
+              registerStr = '',
+              registerClass = '',
+              jilustr = '',
+              quekelustr = '',
+              quekelustr1 = ''
+            try {
+              for (var i = 0; i < data.Data.list.length; i++) {
+                if (data.Data.list[i].makeuplessons == 0) {
+                  //未补课
+                  registerStr =
+                    '<button class="register" id="' +
+                    data.Data.list[i].studentid +
+                    '" index="' +
+                    data.Data.list[i].curriculumid +
+                    '">补课</button>'
+                } else {
+                  registerStr =
+                    '<button style="background-color:#eee;" >已补课</button>'
+                }
+                str +=
+                '<div class="sj-time">'+data.Data.list[i].dateweek+'</div>' +
+                  '<li class="cte" nateiu="'+data.Data.list[i].name+'" namt-class="'+data.Data.list[i].classname+'"    data-sktime="'+data.Data.list[i].dateweek+'"   time-sjk="'+data.Data.list[i].starttime.split(" ")[1]+"-"+data.Data.list[i].endtime.split(" ")[1]+'">' +
+                  '<ul class="ul" id="">' +
+                  
+                  '<li style="width: 10%;" ><img index="' +
+                  data.Data.list[i].id +
+                  '" src="" alt="" /></li>' +
+                 
+                  '<li style="padding-bottom:0;width: 66.66%;text-align: left;">' +
+                  data.Data.list[i].name +
+                  '<p>'+data.Data.list[i].classname+'</p> <div style="display: flex;"> <div><img src="../../img/biao.png" alt="" style="width:0.23rem; height:0.23rem"><span>'+data.Data.list[i].starttime.split(" ")[1]+"-"+data.Data.list[i].endtime.split(" ")[1]+'</span></div><div><img src="../../img/shu.png" alt="" style="width:0.23rem; height:0.23rem; margin-left:0.2rem"><span>'+data.Data.list[i].classhour+'</span><span>课时<span></div></div></li>' +
+                  '<li style="width: 23.33%;">' +
+                  registerStr +
+                  '</li>' +
+                  '<div class="clearfix"></div>' +
+                  '</ul>' +
+                  '</li>'
+                  
+              }
+            } catch (e) {
+              $('.main_q .my_children').hide()
+              //TODO handle the exception
+            }
+            $('.main_q .my_children ul').html(str)
+          } else {
+            ui.showToast('没有缺课的小朋友', 13000)
+          }
+          $('.register').click(function() {
+            //点击补课按钮
+            studentId = $(this).attr('id')
+            curriculumid = $(this).attr('index')
+            $('.float').show()
+            $('textarea').val(' ')
+            $('.class_show').css('left', '0rem')
+            $('.class_show').show()
+            $('.cte').each(function(){
+             $(this).click(function(){
+              console.log($(this).attr('nateiu'))
+              console.log($(this).attr('data-sktime'))
+              console.log( localStorage.setItem('natepl', $(this).attr('nateiu')))
+              console.log( localStorage.setItem('nateplte', $(this).attr('namt-class')))
+              console.log( localStorage.setItem('nateplvr', $(this).attr('data-sktime')))
+              console.log( localStorage.setItem('natepltm', $(this).attr('time-sjk')))
+             })
+            })
+          })
+        }
+      )
+    }
+   var ntuil= localStorage.getItem('natepl')
+   var nttlpl= localStorage.getItem('nateplte')
+   var nttlplvr= localStorage.getItem('nateplvr')
+   console.log(localStorage.getItem('nateplvr'))
+   var nttlpltm= localStorage.getItem('natepltm')
+   console.log(nttlpl)
+   $('.name-tu').text(ntuil)
+   $('.regular').text(nttlpl)
+   $('.skdata-class').text(nttlplvr)
+   $('.time-sj').text(nttlpltm)
+    function showBukeTime() {
+      var teacher = localStorage.getItem('zhizhao_uid')
+      $.ajax({
+        url: 'http://139.224.133.133:8088/api/tch/v1/newgetmakeulist',
+        data: {
+          user_id: teacher,
+          state: 0,
+          // student_name:name,
+          orderby: 0,
+          pageindex: 1,
+          pagesize: 10
+        },
+        dataType: 'json',
+        type: 'get',
+        success: function(res) {
+          console.log(res.Data)
+          var html = ''
+          for (var i = 0; i < res.Data.list.length; i++) {
+            html += `<li data-real_name="${res.Data.list[i].name}" class="weui-cell weui-cell_access list_one">
+          <a class="weui-cell" href="#">
+            <div class="weui-cell__hd min_head" >
+              <img src="" class="min_head"  alt=""/>
+            </div>
+            <div class="weui-cell__bd">
+              <p>${res.Data.list[i].name}</p>
+              <p>${res.Data.list[i].phone}</p>
+            </div>
+            <div class="weui-cell__ft"><button  onclick="goUrl('../../pingfen.html')" id="butt" class="but-an" data-id=${res.Data.list[i].id}  data-te=${res.Data.list[i].studentid}  data-n=${res.Data.list[i].name} class="register" id="1524"  index="64565">待补课</button></div>
+          </a>
+		</li>`
+            if (!res.Data.list.length) {
+              $('.zwsj').css({ display: 'block' })
+            } else {
+              $('.zwsj').css({ display: 'none' })
+            }
+          }
+          $('.main_b').html(html)
+          $('.but-an').each(function(index, value) {
+            //    console.log(index,value)
+            $(this).click(function() {
+              console.log($(this).attr('data-id'))
+              console.log($(this).attr('data-te'))
+              console.log($(this).attr('data-n'))
+              // console.log(res.Data.list[i].name)
+              console.log(localStorage.getItem('zhizhao_uid'))
+              var teacher = localStorage.getItem('zhizhao_uid')
+              // var name=$(this).attr('data-name')
+              // showTime();
+              localStorage.setItem('id', $(this).attr('data-id'))
+              localStorage.setItem('te', $(this).attr('data-te'))
+              localStorage.setItem('na', $(this).attr('data-n'))
+            })
+          })
+        }
+      })
+
+    }
+    $('.submit').click(function() {
+      //
+      // if (
+      //   $('textarea')
+      //     .val()
+      //     .trim().length <= 8
+      // ) {
+      //   ui.showToast('课堂表现的评语不能少于八个字~', 2000)
+      //   return false
+      // }
+      ui.showAlert(
+        '请确认该学员已补课，提交后将扣除该学员对应课时',
+        function() {
+          getAjax(
+            hostAjax + '/api/tch/v1/addabsencerecords',
+            {
+              //添加学生的课堂表现
+              user_id:1340,
+              curriculumid: 66399,
+              teacherid:35,
+              principalsevaluation: '111111',
+            //   imglist: classImgLists.substring(0, classImgLists.length - 1)
+            },
+            function(data) {
+              console.log(data)
+              if (data.Code == 200) {
+                ui.showToast('提交成功')
+                showTime()
+                clearFloat()
+                $('#' + studentId)
+                  .find('.register')
+                  .text('已表扬')
+              } else {
+                ui.showToast(data.Msg)
+              }
+            }
+          )
+        },
+        null,
+        '是的',
+        '取消',
+        '提示'
+      )
+    })
+    $('.next').click(function() {
+      mySwiper.slideNext()
+    })
+    $('.pre').click(function() {
+      mySwiper.slidePrev()
+    })
+
+    $('.float').click(function() {
+      clearFloat()
+    })
+  </script>
+</html>

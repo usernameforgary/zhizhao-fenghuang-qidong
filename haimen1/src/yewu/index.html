@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>业务学习-更多备课笔记</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	body{
+    		background-color: #fff;
+    		/*background-image: url(../../img/bodyBg/ditui@3x.jpg);*/
+    		background-size: 100%;
+    		background-repeat: no-repeat;
+    		background-position: bottom;
+    	}
+    	
+    	
+    </style>
+</head>
+<body class="up-page">
+	<div class="zhuanbanFloat" style="display: none;">
+		<div class="float" style="display: block;"></div>
+		<div class="zhuanbanWrap">
+			<p>申请人：鲨鱼老师</p>
+			<p>申请转班对象：王思思</p>
+			<p>专班理由：
+				<textarea></textarea>
+			</p>
+			<p style="text-align: center;"><button class="submit">提交</button></p>
+		</div>
+	</div>
+	<div class="up-page-wrapper beikeliebiao">
+		<div class="header">
+			<div class="search">
+				<img src="../../img/bodyBg/search@3x.png"/>
+				<input type="text" name="search" id="search" value="" placeholder="输入课程主题"/>
+			</div>
+		</div>
+		<div class="main_y" style="padding:0 0.5rem;">
+			<div class="beike">
+			<div class="lists">
+				<!--<div class="list">
+					<b>课程主题：《小小机器人》</b>
+					<p>上课时间：2018/11/3</p>
+					<p>课程类型：二阶</p>
+				</div>
+				<div class="list">
+					<b>课程主题：《小小机器人》</b>
+					<p>上课时间：2018/11/3</p>
+					<p>课程类型：二阶</p>
+				</div>-->
+			</div>
+		</div>
+		</div>
+	</div>
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI,pageindex=1,pagesize=8,if_lists_model=true;
+//	ui.showToast( '板块正在开发！');
+	go();
+	$('.search img').click(function(){
+		go();
+	})
+	function go(){
+		getAjax(hostAjax+"/api/tch/v1/selectpreparelessonslist",{//备课列表
+			user_id:uid,
+			curriculumtheme:$("input").val()
+		},function(data){
+			var str="",haseCommite="";
+			if(data.Data!=""){
+				if(data.Data.list.length>(pageindex)*pagesize){
+						if_lists_model=true;
+					}else{
+							if_lists_model=false;
+						}
+				for (var i=0;i<((pageindex)*pagesize)&&i<data.Data.list.length;i++) {
+					str+='<div class="list" id='+data.Data.list[i].id+'>'+
+						'<b>'+haseCommite+'课程主题：《'+data.Data.list[i].curriculumtheme+'》</b>'+
+						'<p>上课时间：'+data.Data.list[i].classtime.split(' ')[0]+'</p>'+
+						'<p>课程类型：'+data.Data.list[i].curriculumtypename+'</p>'+
+					'</div>';
+				}
+				$('.lists').html(str);
+				if(data.Data.list.length<=(pageindex)*pagesize&&data.Data.list.length>8){
+					$(".lists").append("<p style='    margin: 0.2rem 0;text-align: center;'>到底了哦</p>");
+				}
+				$('.list').click(function(){
+					location.href="beikeDetail.html?id="+$(this).attr('id');
+				})
+			}
+		})
+	}
+		
+	
+		
+</script>
+</html>

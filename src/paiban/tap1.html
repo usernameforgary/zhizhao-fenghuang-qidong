@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>排班转班</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	body{
+    		background-color: #fff;
+    		/*background-image: url(../../img/bodyBg/xufei@3x.jpg);*/
+    		background-size: 100%;
+    		background-repeat: no-repeat;
+    		background-position: bottom;
+    		
+    	}
+    	.main{
+    		padding: 0.5rem;
+    		min-height: 10rem;
+    		padding-bottom: 5rem;
+    	}
+    	.main header{
+    		margin-bottom: 0.2rem;
+    	}
+    	.t{
+    		width: 6.5rem;
+    		background-color: #FBD15B;
+    		color: white;
+    		line-height: 0.85rem;
+    		border-radius: 0.25rem;
+    		font-size: 0.28rem;
+    		padding-left: 0.3rem;
+    	}
+    	.t i{
+    		float: right;
+    		font-size: 0.35rem;
+    		margin-right: 0.3rem;
+    		transform: rotate(90deg);
+    		-webkit-transform: rotate(90deg);
+    	}
+    	.main ul{
+    		border: 1px solid #eee;
+    		border-radius: 0.3rem;
+    		overflow: hidden;
+    		box-shadow: 2px 2px 5px #eee, -2px 2px 5px #eee;
+    		position: absolute;
+    		background-color: #fff;
+    		display: none;
+    	}
+    	.main li{
+    		width: 6.5rem;
+    		line-height: 0.85rem;
+    		padding-left: 0.5rem;
+    	}
+    	.main li:hover{
+    		background-color: #EEEEEE;
+    	}
+    	button{
+    		width: 6.5rem;
+    		height: 0.85rem;
+    		margin-top: 1rem;
+    		border-radius: 0.25rem;
+    		border: 0;
+    		background-image: url(../../img/bodyBg/paikeButton1@3x.png);
+    		background-size: 100%;
+    		color: white;
+    	}
+    </style>
+</head>
+<body class="up-page">
+	<div class="up-page-wrapper" >
+		<div class="header">
+			
+		</div>
+		<div class="teacher">
+		</div>
+		<div class="main">
+			<div class="aaaa class" style="display: none;">
+				<header>原班级：</header>
+				<div class="t"><span>请选择</span><i class="iconfont icon-you"></i></div>
+				<ul>
+					
+				</ul>
+			</div>
+			<div class="aaaa course" style="margin-top: 0.5rem;">
+				<header>所报课程：</header>
+				<div class="t"><span>请选择</span><i class="iconfont icon-you"></i></div>
+				<ul>
+					<li>一阶</li>
+					<li>二阶</li>
+					<li>三阶</li>
+					<li>慧鱼</li>
+					<li>EQ-duino</li>
+				</ul>
+			</div>
+			<div class="aaaa time" style="margin-top: 0.5rem;">
+				<header>所报时间：</header>
+				<div class="t"><span>请选择</span><i class="iconfont icon-you"></i></div>
+				<ul>
+					<li>周一</li>
+					<li>周二</li>
+					<li>周三</li>
+					<li>周四</li>
+					<li>周五</li>
+					<li>周六</li>
+					<li>周日</li>
+				</ul>
+			</div>
+			<button>下一步</button>
+		
+			
+		</div>
+	</div>
+		<div class="" style="position: fixed;bottom: 0.5rem;width: 100%;text-align: center;"><a class="jilu" href="history.html" style="color: #666;display: none;font-size: 0.32rem;">历史记录</a></div>
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI,str="",str1="",str2="",courseId,weekId,classId;
+	//性别选择
+	if(sessionStorage.getItem("zhuanban")){
+		$(".class").show();
+		//学生班级的
+		getAjax(hostAjax+"/api/tch/v1/getstudentsinginfo",{//获取班级
+			  user_id:localStorage.getItem('zhizhao_uid'),
+			studentid:location.href.split("?id=")[1].split("&")[0]
+	},function(data){
+		if(data.Data.list[0].classid.length!=0){
+			for (var j=0;j<data.Data.list[0].classid.length;j++) {
+				str2+='<li id="'+data.Data.list[0].classid[j].classid+'">'+data.Data.list[0].classid[j].classname+'班</li>';
+			}
+			$(".class ul").html(str2);
+			$("li").click(function(){
+				$(this).parents(".aaaa").find("span").text($(this).text())
+				if($(this).parents(".aaaa").attr('class').indexOf("time")>=0){
+					weekId=$(this).attr("id");
+					
+				}else if($(this).parents(".aaaa").attr('class').indexOf("course")>=0){
+					courseId=$(this).attr("id");
+				}else{
+					classId=$(this).attr("id");
+				}
+				if($(this).parent("div").find("ul").css("display")=="none"){
+					$("ul").hide();
+					$(this).parent("div").find("ul").show();
+				}else{
+					$("ul").hide();
+					$(this).parent("div").find("ul").hide();	
+				}
+			})
+		}else{
+			ui.showToast( '现没有班级不能转班！',3000);
+		}
+	})
+	}
+	$(".main li i").click(function(){
+//		ui.showToast( '展开信息！');
+		if($(this).parents('li').find('.content').css("display")=="block"){
+			$(this).parents('li').find('.content').hide();
+			$(this).parents('li').find('b').show();
+			return false;
+		}
+		$('.content').hide();
+		$('b').show();
+		$(this).parents('li').find('.content').show();
+		$(this).parents('li').find('b').hide();
+		
+	})
+	if(sessionStorage.getItem("zhuanban")){
+		$(".jilu").show();
+	}
+	$(".t").click(function(){
+		if($(this).parent("div").find("ul").css("display")=="none"){
+			$("ul").hide();
+			$(this).parent("div").find("ul").show();
+		}else{
+			$("ul").hide();
+			$(this).parent("div").find("ul").hide();	
+		}
+	})
+	
+	$("button").click(function(){
+		if($(".course .t span").text()=="请选择"){
+			ui.showToast( '请选择课程！');
+			return false;
+		}
+		if($(".time .t span").text()=="请选择"){
+			ui.showToast( '请选择时间！');
+			return false;
+		}
+		
+		if(classId){
+			sessionStorage.setItem("zhuanban",classId);
+			location.href="tap2.html?course="+encodeURI($(".course .t span").text())+"&time="+encodeURI($(".time .t span").text())+"&stuId="+location.href.split("id=")[1].split("&")[0]+"&courseId="+courseId+"&weekId="+weekId+"&classId="+classId;
+		}else{
+			location.href="tap2.html?course="+encodeURI($(".course .t span").text())+"&time="+encodeURI($(".time .t span").text())+"&stuId="+location.href.split("id=")[1].split("&")[0]+"&courseId="+courseId+"&weekId="+weekId;
+		}
+		
+	})
+	getAjax(hostAjax+"/api/course/v1/gettagetype",{//获取所报棵习
+	},function(data){
+		str1="";
+		if(data.Data!=""){
+			for (var j=0;j<data.Data.length;j++) {
+				str1+='<li id="'+data.Data[j].id+'">'+data.Data[j].name+'</li>';
+			}
+			$(".course ul").html(str1);
+			$("li").click(function(){
+				$(this).parents(".aaaa").find("span").text($(this).text())
+				if($(this).parents(".aaaa").attr('class').indexOf("time")>=0){
+					weekId=$(this).attr("id");
+				}else if($(this).parents(".aaaa").attr('class').indexOf("course")>=0){
+					courseId=$(this).attr("id");
+				}else{
+					classId=$(this).attr("id");
+				}
+				if($(this).parent("div").find("ul").css("display")=="none"){
+					$("ul").hide();
+					$(this).parent("div").find("ul").show();
+				}else{
+					$("ul").hide();
+					$(this).parent("div").find("ul").hide();	
+				}
+			})
+		}
+	})
+	getAjax(hostAjax+"/api/course/v1/getregistertimes",{//获取所报时间
+	},function(data){
+		str="";
+		if(data.Data!=""){
+			for (var j=0;j<data.Data.length;j++) {
+				str+='<li id="'+data.Data[j].week+'">'+data.Data[j].weeksname+'</li>';
+			}
+			$(".time ul").html(str);
+			$("li").click(function(){
+		$(this).parents(".aaaa").find("span").text($(this).text())
+		if($(this).parents(".aaaa").attr('class').indexOf("time")>=0){
+			weekId=$(this).attr("id");
+		}else if($(this).parents(".aaaa").attr('class').indexOf("course")>=0){
+					courseId=$(this).attr("id");
+				}else{
+					classId=$(this).attr("id");
+				}
+		if($(this).parent("div").find("ul").css("display")=="none"){
+			$("ul").hide();
+			$(this).parent("div").find("ul").show();
+		}else{
+			$("ul").hide();
+			$(this).parent("div").find("ul").hide();	
+		}
+	})
+		}
+	})
+</script>
+</html>

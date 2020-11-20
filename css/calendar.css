@@ -1,0 +1,241 @@
+#calendarTopContainer{
+	position: relative;
+	padding-bottom: 0.4rem;
+	border-bottom: 1px solid #eee;
+}
+#calendarTopContainer tr td{
+	
+	vertical-align: top;
+}
+#popCalendarContainer{
+	opacity: 0.88;
+	filter: alpha(opacity=88);
+}
+#calendarContainer{
+	font: normal 12px arial, helvetica, sans-serif;
+	/*border: #1D99C9 1px solid;*/
+	width: 100%;
+	/*border: 1px solid #000;*/
+	height: 430px;
+	/*display: block;*/
+}
+/* top */
+
+#calendarTopContainer a{
+	/*border: 1px solid #000;*/
+	text-decoration: none;
+	color: #000000;
+	
+}
+#calendarTodayView{
+	/*border: 1px solid #000;*/
+	display: none;
+	font: bold 46px arial, helvetica, sans-serif;
+	color: #FFF;
+	/*width: 60px;*/
+	/*height: 36px;*/
+	text-align: center;
+	cursor: pointer;
+}
+
+
+#toPrevMonth,
+#toNextMonth{
+	/*float: left;*/
+	display: block;
+	width: 20px;
+	height: 20px;
+	
+}
+/*#toPrevMonth{
+	position: absolute;
+	left:50%;
+	margin-left: -60px;
+}
+#toNextMonth{
+	position: absolute;
+	left:50%;
+	margin-left: 36px;
+}*/
+/*#calendarWeekView,*/
+#calendarYearMonthContainer{
+	padding-top: 5px;
+	font: normal 20px arial, helvetica, sans-serif;
+	height: 18px;
+	line-height: 18px;
+	/*display: block;*/
+	/*margin: auto;*/
+	position: absolute;
+	left: 50%;
+	margin-left: -40px;
+}
+#calendarQuickContainer{
+	/*border: 1px solid #000;*/
+	height: 20px;
+	margin-top: 4px;
+	float: right;
+}
+#calendarWeekView{
+	display: none;
+	/*width: 100px;*/
+	/*height: 14px;*/
+	padding-top: 4px;
+	text-indent: 3px;
+	height: 18px;
+	padding-top: 5px;
+}
+#linkQuickYear{
+	float: right;
+}
+#linkQuickMonth{
+	float: left;
+}
+
+
+
+/*#calendarCloseContainer,
+calendarQuickContainer{
+	height: 18px;
+}*/
+td{
+	/*border: 1px solid #000;*/
+	/*width: 33.3%;*/
+}
+
+
+
+
+#toPrevMonth{
+	width: 0.4rem;
+	height: 0.4rem;
+	z-index: 111;
+	position: absolute;
+	left: 0.25rem;
+	background-image: url(../img/left@3x.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
+}
+#toNextMonth{
+	position: absolute;
+	right: 0.25rem;
+	width: 0.4rem;
+	height: 0.4rem;
+	background-size: 100%;
+	background-image: url(../img/right@3x.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+#backToday{
+	border: 1px solid #000;
+	display: none;
+	height: 20px;
+	margin: 3px 8px 0 8px;
+	background: #fff;
+}
+#toPrevMonth:hover,
+#toNextMonth:hover{
+	color: #D9E4F2;
+}
+#backToday:hover{
+	background-color: #D9E4F2;
+}
+
+/* Main */
+#calendarMainContainer{
+	/*border: 1px solid #000;*/
+	/*width:80%;*/
+	margin: auto;
+	/*font-size: 13px;*/
+	height: 300px;
+	background-color: #FFF;
+	padding-top: 20px;
+}
+#calendarWeeksContainer{
+	/*display: none;*/
+	padding-bottom: 0.2rem;
+}
+#calendarWeeksContainer span{
+	width: 14.28%;
+	display: inline-block;
+	text-align: center;
+}
+#calendarDaysContainer{
+	/*border: 1px solid #000;*/
+	width: 100%;
+	height: 95%;
+	
+}
+#calendarDaysContainer tr td{
+	/*width: 30px;
+	height: 20px;*/
+	text-align: center;
+	
+	cursor: text;
+	font: normal 12px arial, helvetica, sans-serif;
+	overflow: hidden;
+}
+#calendarDaysContainer tr td span{
+	/*border: 1px solid #000;*/
+	cursor: pointer;
+	color: #AC3032;
+	font-size: 16px;
+	display: block;
+}
+td{
+	/*border: 1px solid #000;*/
+}
+#calendarDaysContainer span{
+	height: 100%;
+	/*line-height: 80px;*/
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.normal{
+	/*background-image: url(../img/every-circle.png),url(../img/line.png) ;*/
+	background-size: 15px 15px,100% 5px;
+	background-repeat: no-repeat;
+	background-position: 50% 5px,0 10px;
+	/*border: 1px solid #000;*/
+}
+.calendarCurrentDay{
+	/*border: 1px solid #000;*/
+}
+.thisDay{
+	background-image: url(../img/circle-selected.png),url(../img/line.png) ;
+	background-size: 20px 20px,100% 5px;
+	background-repeat: no-repeat;
+	background-position: 50% 2px,0 10px;
+	border: 1px solid #000;
+}
+.changeDay{
+	background-image: url(../img/end-circle.png),url(../img/line.png) ;
+	background-size: 20px 20px,100% 5px;
+	background-repeat: no-repeat;
+	background-position: 50% 2px,0 10px;
+	/*border: 1px solid #000;*/
+}
+.changeDayR{
+	background-image: url(../img/end-circle.png);
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	background-position: 50% 2px;
+	/*border: 1px solid #000;*/
+}
+.changeDayR img{
+	position: absolute;
+	width: 20px;
+	height: 50px;
+}
+._start{
+	background-image: url(../img/every-circle.png),url(../img/line.png) ;
+	background-size: 15px 15px,50% 5px;
+	background-repeat: no-repeat;
+	background-position: 50% 5px,100% 10px;
+}
+.giftDay{
+	background-image: url(../img/gift.png),url(../img/end-circle.png),url(../img/line.png);
+	background-size: 13px 13px,20px 20px,100% 5px;
+	background-repeat: no-repeat;
+	background-position: 50% 40px,50% 2px,0 10px;
+}

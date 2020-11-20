@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+		<title>学习历史</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css" />
+		<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/commonUI.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/index1.css" />
+		<script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet prefetch" href="css/photoswipe.css">
+		<link rel="stylesheet prefetch" href="css/default-skin/default-skin.css">
+		<script src="js/photoswipe.js"></script>
+		<script src="js/photoswipe-ui-default.js"></script>
+		<style type="text/css">
+			body {
+				background-color: #fff;
+			}
+			
+			.new_icon {
+				margin: 0.1rem 0 0.2rem 0;
+			}
+			
+			.new_icon i {
+				font-size: 0.35rem;
+				float: right;
+				margin-right: 0.5rem;
+				font-weight: bolder;
+			}
+			
+			.text {
+				background-color: #eee;
+				margin-right: 0.5rem;
+			}
+			
+			.text .list {
+				border-bottom: 1px solid #fff;
+				padding: 0.2rem;
+			}
+			
+			.text .list p {
+				margin-top: 0.1rem;
+				line-height: 0.37rem;
+				/*text-indent: 2em;*/
+			}
+			
+			.text .blue {
+				color: #2200D1;
+			}
+			
+			.input {
+				position: fixed;
+				bottom: 0;
+				width: 100%;
+				background-color: #eee;
+				padding: 0.2rem;
+				padding-top: 0.3rem;
+			}
+			
+			.text p:hover {
+				background-color: #ddd;
+			}
+			
+			.input input {
+				font-size: 0.3rem;
+				width: 5.5rem;
+				background-color: #eee;
+				border: 0;
+				padding-left: 0.16rem;
+				outline: none;
+				border-bottom: 1px solid #51C332;
+				padding-bottom: 0.05rem;
+			}
+			
+			.input button {
+				background-color: #eee;
+				border: 1px solid #A4A4A4;
+				color: #A4A4A4;
+				float: right;
+				font-size: 0.3rem;
+				padding: 0.05rem 0.1rem;
+			}
+			
+			.input button.on {
+				background-color: #51C332;
+				border: 1px solid #51C332;
+				color: white;
+			}
+			
+			input::-webkit-input-placeholder {
+				/* placeholder颜色  */
+				color: #A4A4A4;
+				/* placeholder字体大小  */
+				/*font-size: 12px;
+         /* placeholder位置  */
+				/*text-align: right;*/
+				*/
+			}
+			#newss p{
+				margin-right: 30%;
+			}
+			.namess{
+				display: flex;
+				justify-content: space-between;
+				
+			}
+			.more_icon{
+				position: relative;
+			}
+		</style>
+	</head>
+
+	<body class="up-page student_history">
+		<div class="float" style="display: ;opacity: 0;"></div>
+		<div class="input" style="z-index: 1111;position: fixed;display: none;">
+
+			<input type="text" name="" id="" value="" placeholder="评论" /><button class="">发送</button>
+		</div>
+		<div class="up-page-wrapper" style="margin-top: 0.5rem;padding-bottom: 1rem;">
+
+			<!--<div class="share">
+			<header><img src="img/bodyBg/defined.jpg" alt="" /><div class="name">鲨鱼老师</div><time>10.29 12:00</time></header>
+			<p>王文文上课很认真，进步很大。王文文上课很认真，进步很大。王文文上课很认真，进步很大。</p>
+			<div class="imgLists">
+				<div style="background-image: url(img/01.png);"></div>
+				<div style="background-image: url(img/01.png);"></div>
+				<div style="background-image: url(img/01.png);"></div>
+				<div style="background-image: url(img/01.png);"></div>
+				<div style="background-image: url(img/01.png);"></div>
+				<div style="background-image: url(img/01.png);"></div>
+				<div style="background-image: url(img/01.png);"></div>
+				<div style="background-image: url(img/01.png);"></div>
+				<div style="background-image: url(img/bodyBg/classbg@3x.jpg);"></div>
+			</div>
+			<div class="new_icon">
+				<i class="iconfont icon-xiaoxi"></i>
+				<div class="clearfix"></div>
+			</div>
+			<div class="text">
+				<div class="list">可乐老师
+					<p>王文小朋友在课上比上节课进步了很多，要加油继续努力啊！！</p>
+				</div>
+				<div class="list">王文
+					<p>回复<span class="blue">可乐老师：</span>王文小朋友在课上比上节课进步了很多，要加油继续努力啊！！</p>
+				</div>
+				<div class="list">鲨鱼老师
+					<p>回复<span class="blue">王文：</span>谢谢家长小朋友学的很认真！</p>
+				</div>
+			</div>
+		</div>-->
+
+		</div>
+
+		<!-- Root element of PhotoSwipe. Must have class pswp. -->
+		<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+			<!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+			<div class="pswp__bg"></div>
+
+			<!-- Slides wrapper with overflow:hidden. -->
+			<div class="pswp__scroll-wrap">
+
+				<!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+				<div class="pswp__container">
+					<div class="pswp__item"></div>
+					<div class="pswp__item"></div>
+					<div class="pswp__item"></div>
+				</div>
+
+				<!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+				<div class="pswp__ui pswp__ui--hidden">
+
+					<div class="pswp__top-bar">
+
+						<!--  Controls are self-explanatory. Order can be changed. -->
+
+						<div class="pswp__counter"></div>
+
+						<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+						<!--<button class="pswp__button pswp__button--share" title="Share"></button>-->
+
+						<!--<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>-->
+
+						<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+						<!-- element will get class pswp__preloader--active when preloader is running -->
+						<div class="pswp__preloader">
+							<div class="pswp__preloader__icn">
+								<div class="pswp__preloader__cut">
+									<div class="pswp__preloader__donut"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+						<div class="pswp__share-tooltip"></div>
+					</div>
+
+					<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+					<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+					<div class="pswp__caption">
+						<div class="pswp__caption__center"></div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div id="newss" style="width: 70%;height: 25vh;background:url(img/矩形10@3x.png) no-repeat;background-size: 100% 100%;margin: 0 15%;z-index: 2222;display:none ;position: fixed;top: 20%;">
+			<div class="listen" style="display: flex;padding: 0 10%;margin: 0.1rem 0;margin-top: 0.4rem;">
+				
+			</div>
+			<div class="xingwei" style="display: flex;padding: 0 10%;margin: 0.1rem 0;">
+				
+			</div>
+			<div class="dongshou" style="display: flex;padding: 0 10%;margin: 0.1rem 0;">
+				
+			</div>
+			<div class="biaoda" style="display: flex;padding: 0 10%;margin: 0.1rem 0;">
+				
+			</div>
+			<div class="zhudong" style="display: flex;padding: 0 10%;margin: 0.1rem 0;">
+				
+			</div>
+			
+		</div>
+		
+		
+		<div class="morebtn" style="width: 3rem;height: 0.7rem;background:url(img/底框1@3x.png) no-repeat #F1F1F1;position: fixed;top: 3.6rem;left: 2.4rem;background-size: 100% 100%;display: none;">
+			<img style="width: 0.55rem;float: left;margin-left: 0.2rem;" src="img/news.png" class="new_icon"/>
+			<img style="width: 0.3rem;margin-top:0.15rem;float: left;margin-left: 0.5rem;" src="img/评分@3x.png" class="pingfens_icon"/>
+			<img src="img/成绩@3x.png"style="width: 0.35rem;float: right;margin-right: 0.5rem;margin-top: 0.13rem;" src="img/news.png" class="chengji_icon"/>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<!--家长给老师评分--开始-->
+    <div class="xingping" style="width: 100%;height: 5rem;background: #f1f1f1;position:fixed ;bottom: 0;display: none;">
+    	<h6 style="display: flex;justify-content: space-between;padding: 0 10%;height: 0.8rem;line-height: 0.8rem;border-bottom: 1px solid #F1F1F1;">
+    		<span>家长评分</span>
+    		<span id="xingpingbtn" style="color: #0077DF;">提交</span>
+    	</h6>
+    	
+    	
+    	
+    		<!--星星评分--开始-->
+			<div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+				<span style="width: 30%;">教学亲切</span>
+				<div id="" style="display: flex;justify-content: flex-end;">
+					<img class="xing" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<label id="lab"></label>
+				</div>
+
+			</div>
+
+			<div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+				<span style="width: 30%;">教学生动</span>
+				<div id="" style="display: flex;justify-content: flex-end;">
+					<img class="xing1" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing1" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing1" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing1" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing1" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<label id="lab1"></label>
+				</div>
+
+			</div>
+
+			<div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+				<span style="width: 30%;">课后辅导</span>
+				<div id="" style="display: flex;justify-content: flex-end;">
+					<img class="xing2" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing2" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing2" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing2" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing2" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<label id="lab2"></label>
+				</div>
+
+			</div>
+
+			<div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+				<span style="width: 30%;">家校沟通</span>
+				<div id="" style="display: flex;justify-content: flex-end;">
+					<img class="xing3" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing3" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing3" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing3" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing3" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<label id="lab3"></label>
+				</div>
+
+			</div>
+
+			<div id="renzhen" style="display: flex;width: 80%;margin: 3% 10%;justify-content: space-between;">
+				<span style="width: 30%;">教学效果</span>
+				<div id="" style="display: flex;justify-content: flex-end;">
+					<img class="xing4" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing4" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing4" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing4" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<img class="xing4" src="img/未评分.png" style="width: 10%;height: 100%;" />
+					<label id="lab4"></label>
+				</div>
+
+			</div>
+			<!--星星评分--结束-->	
+    	<p style="text-decoration: underline;text-align: center;margin-top: 0.5rem;" class="biaozhunbtn">查看评分标准</p>
+    	
+    	
+    	
+    </div>
+    <!--家长给老师评分--结束-->
+		
+	<!--评分标准--开始-->
+	<div class="biaozhuntex" style="width: 6rem;height: 10rem;background: 	#fff;margin: 0 auto;position: fixed;top: 1.8rem;left: 0.75rem;display: none;border-radius: 0.3rem;">
+		<h5 style="height: 0.8rem;line-height: 0.8rem;text-align: center;">评分标准</h5>
+		<ul>
+			<li style="background: url(img/教态亲切@3x.png) no-repeat 0.3rem 0;background-size:0.5rem 0.5rem ;height: auto;">
+				<h4 style="padding-left: 1rem;line-height: ;">教态亲切</h4>
+				<p style="padding-left:1rem ;padding-right:0.5rem;margin-top: 0.2rem;">整洁得体的服装，轻松愉快的表情，洒脱自如的举止，和蔼亲切的眼神，遇乱不急，受挫不惊，精神饱满，情绪稳定</p>
+			</li>
+			<li style="background: url(img/教学生动@3x.png) no-repeat 0.3rem 0;background-size:0.5rem 0.5rem ;height: auto;margin-top: 0.2rem;">
+				<h4 style="padding-left: 1rem;line-height: ;">教态亲切</h4>
+				<p style="padding-left:1rem ;padding-right:0.5rem;margin-top: 0.2rem;">整洁得体的服装，轻松愉快的表情，洒脱自如的举止，和蔼亲切的眼神，遇乱不急，受挫不惊，精神饱满，情绪稳定</p>
+			</li>
+			<li style="background: url(img/课后辅导@3x.png) no-repeat 0.3rem 0;background-size:0.5rem 0.5rem ;height: auto;margin-top: 0.2rem;">
+				<h4 style="padding-left: 1rem;line-height: ;">教态亲切</h4>
+				<p style="padding-left:1rem ;padding-right:0.5rem;margin-top: 0.2rem;">整洁得体的服装，轻松愉快的表情，洒脱自如的举止，和蔼亲切的眼神，遇乱不急，受挫不惊，精神饱满，情绪稳定</p>
+			</li>
+			<li style="background: url(img/家校沟通@3x.png) no-repeat 0.3rem 0;background-size:0.5rem 0.5rem ;height: auto;margin-top: 0.2rem;">
+				<h4 style="padding-left: 1rem;line-height: ;">教态亲切</h4>
+				<p style="padding-left:1rem ;padding-right:0.5rem;margin-top: 0.2rem;">整洁得体的服装，轻松愉快的表情，洒脱自如的举止，和蔼亲切的眼神，遇乱不急，受挫不惊，精神饱满，情绪稳定</p>
+			</li>
+			<li style="background: url(img/教学效果@3x.png) no-repeat 0.3rem 0;background-size:0.5rem 0.5rem ;height: auto;margin-top: 0.2rem;">
+				<h4 style="padding-left: 1rem;line-height: ;">教态亲切</h4>
+				<p style="padding-left:1rem ;padding-right:0.5rem;margin-top: 0.2rem;">整洁得体的服装，轻松愉快的表情，洒脱自如的举止，和蔼亲切的眼神，遇乱不急，受挫不惊，精神饱满，情绪稳定</p>
+			</li>
+		</ul>
+	</div>		
+		
+		<!--评分成功-->
+		<div class="yess" style="width: 4rem;height: 5rem;background: #fff;position: fixed;top: 30%;left: 23%;display: none;">
+			<img src="img/机器人@3x.png" style="width: 4rem;"/>
+			<p style="text-align: center;margin-top: 0.8rem;">感谢您的评价!</p>
+			<p style="text-align: center;margin-top: 0.3rem;">我们会更努力的提升自己</p>
+			<button class="iknow" style="height: 0.8rem;border: 0;width: 100%;border-top: 1px solid #F1F1F1;margin-top: 1rem;color: #F0B715;background: #fff;">我知道了</button>
+		</div>
+		
+		
+	</body>
+	<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('.biaozhunbtn').click(function(){
+			$('.biaozhuntex').show()
+			$('body').css('background','#ccc')
+			if($('.biaozhuntex').show()){
+				$('.biaozhuntex').click(function(){
+					$('.biaozhuntex').hide()
+					$('body').css('background','#fff')
+				})
+			}
+		})
+		
+		
+		
+		
+		
+		
+		$('.iknow').click(function(){
+			location.reload();
+		})
+		
+		
+		
+		
+		
+		
+	//星星评分开始
+	var imgs = document.getElementsByClassName("xing");
+		var imgs1 = document.getElementsByClassName("xing1");
+		var imgs2 = document.getElementsByClassName("xing2");
+		var imgs3 = document.getElementsByClassName("xing3");
+		var imgs4 = document.getElementsByClassName("xing4");
+		var a1='';
+		for(var i = 0; i < imgs.length; i++) {
+			imgs[i].setAttribute("score", i + 1); //设置分数
+			imgs[i].onclick = function() { //点击时调用方法
+
+				var srcEl = event.srcElement; //通过event来获取原元素
+
+				var score = srcEl.getAttribute("score"); //获取分数
+				for(var j = 0; j < score; j++) {
+					imgs[j].src = "img/已评分.png";
+				}
+				for(var j = score; j < imgs.length; j++) {
+					imgs[j].src = "img/未评分.png";
+				}
+				a1=srcEl.getAttribute("score")
+				console.log(a1)
+			}
+		};
+		var a2='';
+		for(var i = 0; i < imgs1.length; i++) {
+			imgs1[i].setAttribute("score", i + 1); //设置分数
+			imgs1[i].onclick = function() { //点击时调用方法
+
+				var srcEl = event.srcElement; //通过event来获取原元素
+
+				var score = srcEl.getAttribute("score"); //获取分数
+				for(var j = 0; j < score; j++) {
+					imgs1[j].src = "img/已评分.png";
+				}
+				for(var j = score; j < imgs1.length; j++) {
+					imgs1[j].src = "img/未评分.png";
+				}
+				a2=srcEl.getAttribute("score")
+				console.log(a2)
+			}
+		};
+		var a3='';
+		for(var i = 0; i < imgs2.length; i++) {
+			imgs2[i].setAttribute("score", i + 1); //设置分数
+			imgs2[i].onclick = function() { //点击时调用方法
+
+				var srcEl = event.srcElement; //通过event来获取原元素
+
+				var score = srcEl.getAttribute("score"); //获取分数
+				for(var j = 0; j < score; j++) {
+					imgs2[j].src = "img/已评分.png";
+				}
+				for(var j = score; j < imgs2.length; j++) {
+					imgs2[j].src = "img/未评分.png";
+				}
+				a3=srcEl.getAttribute("score")
+				console.log(a3)
+			}
+		};
+		var a4='';
+		for(var i = 0; i < imgs3.length; i++) {
+			imgs3[i].setAttribute("score", i + 1); //设置分数
+			imgs3[i].onclick = function() { //点击时调用方法
+
+				var srcEl = event.srcElement; //通过event来获取原元素
+
+				var score = srcEl.getAttribute("score"); //获取分数
+				for(var j = 0; j < score; j++) {
+					imgs3[j].src = "img/已评分.png";
+				}
+				for(var j = score; j < imgs3.length; j++) {
+					imgs3[j].src = "img/未评分.png";
+				}
+				a4=srcEl.getAttribute("score")
+				console.log(a4)
+			}
+		};
+		var a5='';
+		for(var i = 0; i < imgs4.length; i++) {
+			imgs4[i].setAttribute("score", i + 1); //设置分数
+			imgs4[i].onclick = function() { //点击时调用方法
+
+				var srcEl = event.srcElement; //通过event来获取原元素
+
+				var score = srcEl.getAttribute("score"); //获取分数
+				for(var j = 0; j < score; j++) {
+					imgs4[j].src = "img/已评分.png";
+				}
+				for(var j = score; j < imgs4.length; j++) {
+					imgs4[j].src = "img/未评分.png";
+				}
+				a5=srcEl.getAttribute("score")
+				console.log(a5)
+			}
+		};
+	//星星评分结束
+
+
+
+
+//家长给老师评分开始
+	$('.pingfen_icon').click(function(){
+		
+	})
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//发布评论的参数
+		var studentclassid = 0 /*学生上课记录表id*/ ,
+			userid /*评论人*/ , content /*评价内容*/ , type /*1为老师 2为学生*/ , parent = 0,
+			huiparentid = 0 /*父级id,为0则是评论  否则为回复*/ ,
+			if_lists_model = true;
+		//	$(".imgLists img").eq(0)[0].onload=function(){
+		//			console.log($(".imgLists img").eq(0).css("width")+"---"+$(".imgLists img").eq(0).css("height"))
+		//			if(parseInt($(".imgLists img").eq(0).css("width"))>parseInt($(".imgLists img").eq(0).css("height"))){
+		////				alert(2)
+		//			}
+		//	}
+		$(".input input").on("input propertychange", function() {
+			if($(this).val() != "") {
+				$(".input button").addClass("on");
+			} else {
+				$(".input button").attr("class", "");
+			}
+		})
+		$(".float").click(function() {
+			$(".input").hide();
+			$(this).hide();
+		})
+		$(".input button").click(function() {
+			if($(".input input").val() != "") {
+				//提交评论
+				postAjax(hostAjax + "/api/stu/v1/setmodelcomment", JSON.stringify({
+					userid: uid,
+					studentclassid: studentclassid,
+					content: $(".input input").val(),
+					type: localStorage.getItem("zhizhao_typle"),
+					parent: parent,
+					huiparentid: huiparentid
+				}), function(data) {
+					if(data.Code == 0) {
+						ui.showToast('提交成功', 500);
+						$(".input input").val("");
+						$(".float").click();
+						huiparentid = 0;
+						go();
+					} else {
+						ui.showToast(data.Msg, 500);
+					}
+				})
+			}
+		})
+		var items = [],
+			pswpElement, options = {},
+			gallery = undefined,
+			ajaxdata;
+		var ui = window.CUMS.UI,
+			str = "",
+			imgurllist = "",
+			imgStr = "",
+			textStr = "",
+			returnStr = "",
+			pageindex = 1,
+			pagesize = 8,
+			urlAjax = "";
+		//	ui.showToast( '板块正在开发！');
+		if(location.href.indexOf("children") > 0) { //
+			ajaxdata = {
+				user_id: location.href.split('?studentId=')[1].split('&')[0]
+			}
+			urlAjax = "/api/stu/v1/getstudetnclassroominfos";
+			go();
+			
+		} else if(location.href.indexOf("studentclassid") > 0) {
+			ajaxdata = {
+				studentclassid: location.href.split('?studentclassid=')[1].split('&')[0] //课程id
+			}
+			urlAjax = "/api/stu/v1/getmessagestudetnclass";
+			go();
+			
+		} else{
+			//	//一个学习历史
+			urlAjax = "/api/stu/v1/getstudetnclassroominfos";
+			ajaxdata = {
+				user_id: location.href.split('?studentId=')[1].split('&')[0],
+				curriculumid: location.href.split('&curriculumid=')[1].split('&')[0] //课程id
+			}
+			go();
+		}
+
+		function go() {
+			str = ""
+			getAjax(hostAjax + urlAjax, ajaxdata, function(data) {
+				var teacherImg = "img/bodyBg/defined.jpg";
+				console.log(data)
+				if(data.Data != "") {
+					if(data.Data.length > (pageindex) * pagesize) {
+						if_lists_model = true;
+					} else {
+						if_lists_model = false;
+					}
+					for(var i = 0; i < ((pageindex) * pagesize) && i < data.Data.length; i++) {
+						if(data.Data[i].state == "4" && data.Data[i].principalsevaluation == "") {
+							continue;
+						}
+						imgurllist = data.Data[i].imgurllist.split("|");
+						imgStr = "";
+						textStr = "", quekeStr = "";
+						for(var j = 0; j < imgurllist.length; j++) {
+							imgStr += '<div class="wrap" index=' + j + ' style="background-image: url(' + imgurllist[j] + ');"><img class="item" src="' + imgurllist[j] + '"/><span class="w"></span><span class="h"></span></div>';
+						}
+						for(var t = 0; t < data.Data[i]["pinglun_" + data.Data[i].id].length; t++) {
+							textStr += '<div class="list"><p id="' + data.Data[i]["pinglun_" + data.Data[i].id][t].id + '"><span style="color:#00309e">' + data.Data[i]["pinglun_" + data.Data[i].id][t].username + '</span>：' + data.Data[i]["pinglun_" + data.Data[i].id][t].content + '</p>' + '</div>';
+							var huifu = data.Data[i]["pinglun_" + data.Data[i].id][t]["huifu_" + data.Data[i]["pinglun_" + data.Data[i].id][t].id]; //对象-----目前只有一个回复的
+
+							if(huifu.length != 0) {
+								for(var j = 0; j < huifu.length; j++) {
+									textStr += '<div class="list"><p id="' + data.Data[i]["pinglun_" + data.Data[i].id][t].id + '" index="' + huifu[j].id + '"><span style="color:#00309e">' + huifu[j].username + '</span>回复<span class="blue">' + huifu[j].whouserusername + '：</span>' + huifu[j].content + '</p>' + '</div>';
+								}
+							}
+						}
+						if(data.Data[i].imgurllist == "") {
+							imgStr = "";
+						}
+						if(data.Data[i].teacherimg == "") {
+							data.Data[i].teacherimg = teacherImg;
+						}
+						if(data.Data[i].state == "2") { //缺课
+							if(data.Data[i].principalsevaluation) {
+								data.Data[i].principalsevaluation = data.Data[i].principalsevaluation + '<span style="color:#51C332;">【已补课】</span>';
+								quekeStr = "<a href='http://www.91taojiao.cn/fenghuangceshi/studyhistry.html?studentId=" + location.href.split('?studentId=')[1].split('&')[0] + '&curriculumid=' + data.Data[i].curriculumid + "' style='text-decoration: underline;color:#005DD1;margin-left:0.2rem'>已补课</a>";
+							} else {
+								quekeStr = "";
+							}
+							if(location.href.indexOf("curriculumid") > 0) {
+								quekeStr = "";
+							} else {
+								data.Data[i].principalsevaluation = "<img style='width: 2rem;' src='img/bodyBg/queke.png' alt='' /><p style='padding-left: 0.7rem;' >缺课</p>";
+								imgStr = "";
+
+							}
+
+						}
+						str += '<div class="share" id="' + data.Data[i].id + '">' +
+							'<header><img src="' + data.Data[i].teacherimg + '" alt="" /><div class="namess"><div class="name">' + data.Data[i].teachername + quekeStr + '</div></div><time>' + data.Data[i].dateweek.split(" ")[0] + "  " + data.Data[i].starttime + "-" + data.Data[i].endtime + '</time></header>' +
+							'<p style="word-wrap:break-word">' + data.Data[i].principalsevaluation + '</p>' +
+							'<div class="imgLists">' +
+							imgStr +
+							'</div>' +
+							'<div class="newsss">' +
+							//				'<i class="iconfont icon-xiaoxi"></i>'+
+							'<img style="width: 0.55rem;float: right;margin-right: 0.5rem;" src="img/news.png" class="new_icon"/>' + '<img style="width: 0.3rem;margin-top:0.15rem;float: right;margin-right: 0.5rem;" src="img/评分@3x.png" class="pingfen_icon"/>' +
+							'<div class="clearfix"></div>' +
+							'</div>' +
+							'<div class="text">' +
+							textStr +
+							'</div>' +
+							'</div>';
+					}
+					$(".up-page-wrapper").html(str);
+					$(".new_icon").click(function() {
+						parent = 0;
+						$(".input").show();
+						$(".float").show();
+						studentclassid = $(this).parents(".share").attr("id");
+						$(".input input").focus();
+					})
+
+					
+					
+					if(localStorage.getItem("zhizhao_typle")==2){
+						$('.newsss').html('')
+						$('.newsss').css('margin-bottom','0.5rem')
+						$('.newsss').append('<img style="width: 0.55rem;margin-top: ;float: right;margin-right: 0.5rem;" src="img/news.png" class="more_icon"/>')
+						
+						
+						
+//						
+//						$('.schoolxiala>input').each(function(i){
+//						$(this).click(function(){
+//		//					$('.schoolxiala').fadeOut();
+//		//					console.log($(this).val())
+//							schval=$(this).val()
+//							$('#xuancstex').html(schval);
+//							console.log(schval)
+//						})
+//					})
+//						
+//						
+//						
+						
+						
+						
+						
+						for(i in data.Data){
+							
+						$('.newsss').click(function(){
+							$('.morebtn').show();
+							console.log(data.Data)
+//							console.log(data)
+								console.log($(this).index())
+							if($(".morebtn").show()){
+							$('.morebtn').click(function(){
+								$(".morebtn").hide();
+								$('body').css('background','#fff')
+							})
+						}
+						})
+						}
+						
+						
+						
+						
+						$('.pingfens_icon').click(function(){
+							$('.xingping').show()
+//							if($('.xingping').show()){
+//								$('.morebtn').click(function(){
+//									$('.xingping').hide()
+//								})
+//							}
+							//家长给老师评分结束
+							
+var studentId=localStorage.getItem('studentId')
+$('#xingpingbtn').click(function(){
+	$.ajax({
+				type:"post",
+				url:hostAjax+"/api/stu/v1/addteacherclassgrade",
+				async:false,
+				data:{
+					"teacherid": uid,
+				  "studentid": studentId,
+				  "studentclassid": 1017,
+				  "teachingkindness": a1,//善良的
+				  "vividteaching": a2,//生动的
+				  "afterschoolcounselling": a3,//辅导
+				  "homeschoolcommunicationwer	": a4,//沟通
+				  "teachingeffectiveness": a5,//效果
+				  "text":'',
+				},
+				success:function(data){
+					console.log(data)
+//					alert('00000')
+				if(data.Code==200){
+					ui.showToast( '提交成功');
+//					showTime();
+//					clearFloat();
+					$('.yess').show();
+					$('body').css('background','#ccc')
+				}else{
+					ui.showToast( data.Msg);
+				}
+			}
+		})
+})
+							
+							
+							
+							
+						})
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						//星星评分开始
+					var zhizhao_uid=localStorage.getItem('zhizhao_uid')
+					var studentId=localStorage.getItem('studentId')
+					var xinga='',xingb='',xingc='',xingd='';
+					$(".chengji_icon").click(function() {
+						$.ajax({
+							type:"get",
+							url:hostAjax+"/api/stu/v1/studentclassgradelist",
+							async:true,
+							data:{
+								teacherid:zhizhao_uid,
+								studentid:studentId,
+//								type: localStorage.getItem("zhizhao_typle"),
+							},
+							success:function(data){
+								console.log(localStorage.getItem("zhizhao_typle"))
+								for(i in data.Data.list){
+									xinga=data.Data.list[0].aggressiveness;
+									xingb=data.Data.list[0].behaviorhabit;
+									xingc=data.Data.list[0].expressivepower;
+									xingd=data.Data.list[0].listencarefully;
+									xinge=data.Data.list[0].practicalability ;
+									var lista='',listb='',listc='',listd='',liste='';
+//									console.log(xinga,xingb,xingc,xingd);
+									for(var a=6-xingd;a<6;a++){
+										lista+=`<img src="img/已评分.png" style="width: 8%;height: 8%;">`
+//										console.log('000')
+										$('.listen').html('<p>认真听讲</p>'+lista)
+									}
+									for(var b=6-xingb;b<6;b++){
+										listb+=`<img src="img/已评分.png" style="width: 8%;height: 8%;">`
+//										console.log('000')
+										$('.xingwei').html('<p>行为习惯</p>'+listb)
+									}
+									for(var c=6-xingc;c<6;c++){
+										listc+=`<img src="img/已评分.png" style="width: 8%;height: 8%;">`
+//										console.log('000')
+										$('.biaoda').html('<p>动手能力</p>'+listc)
+									}
+									for(var d=6-xingd;d<6;d++){
+										listd+=`<img src="img/已评分.png" style="width: 8%;height: 8%;">`
+//										console.log('000')
+										$('.zhudong').html('<p>表达能力</p>'+listd)
+									}
+									for(var e=6-xinge;e<6;e++){
+										liste+=`<img src="img/已评分.png" style="width: 8%;height: 8%;">`
+//										console.log('000')
+										$('.dongshou').html('<p>积极主动</p>'+liste)
+									}
+									
+								}
+								}
+								
+							
+							
+							
+							
+						})
+//						parent = 0;
+						$("#newss").show();
+						$('body').css('background','#F1F1F1')
+						
+						
+						
+//						$(".pingfen_icon").click(function(){
+//							$("#newss").hide();
+//							$('body').css('background','#fff')
+//						})
+//						$(hi".float").show();
+//						studentclassid = $(this).parents(".share").attr("id");
+//						$(".input input").focus();
+					if($("#newss").show()){
+						$('#newss').click(function(){
+							$("#newss").hide();
+							$('body').css('background','#fff')
+						})
+					}
+					})
+					//星星评分结束
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					}
+					
+					
+					
+					
+					
+					
+					
+					
+				console.log(studentclassid)	
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					$(".text p").click(function() {
+						if($(this).parent(".list").text().indexOf(localStorage.getItem("zhizhao_Name")) == 0) {
+
+							return false;
+						}
+						parent = $(this).attr("id");
+						huiparentid = $(this).attr("index");
+						studentclassid = $(this).parents(".share").attr("id");
+						$(".input").show();
+						$(".float").show();
+						$(".input input").focus();
+					})
+					$(".item").each(function(i) {
+						var _this = this;
+						$(this)[0].onload = function() {
+							$(_this).parent("div").find('.w').text(parseInt($(this).css("width")));
+							$(_this).parent("div").find('.h').text(parseInt($(this).css("height")));
+						}
+					})
+					pswpElement = document.querySelectorAll('.pswp')[0];
+					options = {
+						index: 0 // start at first slide
+					};
+					gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+					$(".imgLists>div").click(function() {
+
+						items = [];
+						var _this = this;
+
+						for(var z = 0; z < $(_this).parent(".imgLists").find(".wrap").length; z++) {
+							items.push({
+								src: $($(_this).parent(".imgLists").find(".wrap")[z]).find("img").attr("src"),
+								w: parseInt($($(_this).parent(".imgLists").find(".wrap")[z]).find(".w").text()),
+								h: parseInt($($(_this).parent(".imgLists").find(".wrap")[z]).find(".h").text())
+							})
+						}
+						console.log(items)
+						options = {
+							index: parseInt($(this).attr("index")) // start at first slide
+						};
+						gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+						gallery.init();
+					})
+				} else {
+					ui.showToast('暂时没有信息展示哦~');
+				}
+			})
+		}
+	</script>
+	<script type="text/javascript">
+		function aaa() {
+			var pswpElement = document.querySelectorAll('.pswp')[0];
+
+			// build items array
+			var items = [{
+					src: 'https://placekitten.com/600/400',
+					w: 600,
+					h: 400
+				},
+				{
+					src: 'https://placekitten.com/1200/900',
+					w: 1200,
+					h: 900
+				}
+			];
+			console.log(items)
+			// define options (if needed)
+			var options = {
+				// optionName: 'option value'
+				// for example:
+				index: 0 // start at first slide
+			};
+
+			// Initializes and opens PhotoSwipe
+			var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+			gallery.init();
+		}
+	</script>
+
+</html>
+<!--/// <summary>
+    /// 发布课堂表现评论
+    /// </summary>
+    public class addcomment
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public int studentclassid { get; set; }
+        /// <summary>
+        /
+        /// </summary>
+        public int userid { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string content { get; set; }
+        /// <summary>
+        /// 类型 1为老师 2为学生
+        /// </summary>
+        public int type { get; set; }
+        /// <summary>
+        /// 父级id,为0则是评论  否则为回复
+        /// </summary>
+        public int parent { get; set; }
+    }-->

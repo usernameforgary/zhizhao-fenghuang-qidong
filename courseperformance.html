@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
+    />
+    <title>课堂表现</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css" />
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="css/commonUI.css" />
+    <link rel="stylesheet" type="text/css" href="css/animate.css" />
+    <link rel="stylesheet" href="./css/weui.min.css" />
+    <script src="js/const.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="./js/jquery-weuiv1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/index1.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/webuploader/webuploader.css"
+    />
+    <link rel="stylesheet" href="./css/Course.min.css" />
+    <script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/moment-2.424.min.js" type="text/javascript" charset="utf-8"></script>
+  </head>
+  <body class="up-page">
+    <div class="up-page-wrapper CourseBox">
+      <div class="top">
+        <div class="month">
+          <div>
+            <div class="big">10</div>
+            <div>
+              月/
+              <div class="year">2019年</div>
+            </div>
+          </div>
+          <div onclick="goBackTody()">
+            回到今天
+          </div>
+        </div>
+        <div class="dayList-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><div class="dayList"></div></div>
+            <div class="swiper-slide"><div class="dayList"></div></div>
+            <!-- <div class="swiper-slide"><div class="dayList"></div></div> -->
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="item">
+          <div class="top">
+            <img src="./img/1.png" alt="" srcset="" />
+            <div class="title">星期二一阶常规课16:30-17:30</div>
+            <div class="empty"></div>
+            <div class="right">未添加 ></div>
+          </div>
+          <div class="bottom">
+            <div class="top">
+              <div class="item">
+                <div class="img"></div>
+                <div>上课老师</div>
+              </div>
+              <div class="item">
+                <div class="img"></div>
+                <div>助教老师</div>
+              </div>
+              <div class="item">
+                <div class="img"></div>
+                <div>上课教室</div>
+              </div>
+            </div>
+            <div class="bottom">
+              <div>牛牛老师</div>
+              <div>小兔老师</div>
+              <div>教室1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script
+    src="js/swiper-5.2.0.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script src="js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    var time = new Date().getTime()
+    //显示周的今天
+    var timeShow =
+      new Date().getFullYear() +
+      '-' +
+      (new Date().getMonth() + 1) +
+      '-' +
+      new Date().getDate()
+    $('.CourseBox .top .month .big').html(buZero(timeShow.split('-')[1]))
+    $('.CourseBox .top .month .year').html(timeShow.split('-')[0] + '年')
+    var predateTime = ''
+    var downdateTime = ''
+    var prevTime = 0
+    var nextTime = 0
+    var weekList = []
+    var prevList = []
+    var nextList = []
+    var swiper = null
+    initSwiper()
+    function initSwiper() {
+      swiper = new Swiper('.dayList-container', {
+        initialSlide: 1,
+        init: false,
+        observer: true,
+        on: {
+          slidePrevTransitionEnd: async function() {
+            prevTime++;
+            nextTime--;
+            let currentWeekDate = moment().add((nextTime - 1) * 7, 'days').format("YYYY-MM-DD")
+            let res = await getnoclassroomperformance(currentWeekDate)
+            var prevList1 = getWeekList(
+              time -
+                ((new Date(time).getDay() === 0 ? 7 : new Date(time).getDay()) -
+                  1 +
+                  (prevTime + 1) * 7) *
+                  24 *
+                  60 *
+                  60 *
+                  1000
+            )
+            $('.CourseBox .top .month .big').html(prevList1[0].month)
+            $('.CourseBox .top .month .year').html(prevList1[0].year + '年')
+            if (swiper.activeIndex === 0) {
+              var Time =
+                time -
+                ((new Date(time).getDay() === 0 ? 7 : new Date(time).getDay()) -
+                  1 +
+                  (prevTime + 2) * 7) *
+                  24 *
+                  60 *
+                  60 *
+                  1000
+              prevList = getWeekList(Time)
+              if (res !== false) {
+                fillDayListHtml(prevList, '', 'prev', res.Data.list)
+              }
+            }
+          },
+          slideNextTransitionStart: async function() {
+            nextTime++
+            prevTime--
+            let currentWeekDate = moment().add((nextTime - 1) * 7, 'days').format("YYYY-MM-DD")
+            let res = await getnoclassroomperformance(currentWeekDate)
+            if (
+              nextTime === 1 &&
+              $('.swiper-wrapper .swiper-slide').length === 2
+            ) {
+              $.showLoading()
+              let arr = $('.swiper-wrapper .swiper-slide')
+                .eq(1)
+                .find('.dayList .item')
+              for (let i = 0; i < arr.length; i++) {
+                const element = arr.eq(i)
+                let year = element.find('.shadow').attr('year')
+                let month = element.find('.shadow').attr('month')
+                let day = element.find('.value ').html()
+                let date = year + '-' + month + '-' + day
+                if(res.Data && res.Data.list) {
+                    for (let j = 0; j < res.Data.list.length; j++) {
+                        const elementj = res.Data.list[j]
+                        if (elementj.dateweek === date) {
+                            element.find('.dian').addClass('active')
+                        }
+                    }
+                }
+              }
+              $.hideLoading()
+              fillDayListHtml(prevList, 0, 'init', res.Data.list)
+            }
+            var nextList1 = getWeekList(
+              time +
+                (7 -
+                  (new Date(time).getDay() === 0
+                    ? 7
+                    : new Date(time).getDay()) +
+                  nextTime * 7) *
+                  24 *
+                  60 *
+                  60 *
+                  1000
+            )
+            $('.CourseBox .top .month .big').html(nextList1[0].month)
+            $('.CourseBox .top .month .year').html(nextList1[0].year + '年')
+            if ($('.swiper-slide').length - 1 == swiper.activeIndex) {
+              var Time =
+                time +
+                (7 -
+                  (new Date(time).getDay() === 0
+                    ? 7
+                    : new Date(time).getDay()) +
+                  nextTime * 7) *
+                  24 *
+                  60 *
+                  60 *
+                  1000
+              nextList = getWeekList(Time)
+              if (res !== false) {
+                fillDayListHtml(nextList, '', 'next', res.Data.list)
+              }
+            }
+          }
+        }
+      })
+    }
+    function goBackTody() {
+      $('.dayList-container .swiper-wrapper').html('')
+      $('.dayList-container .swiper-wrapper')
+        .html(`<div class="swiper-slide"><div class="dayList"></div></div>
+            <div class="swiper-slide"><div class="dayList"></div></div>`)
+      prevTime = 0
+      nextTime = 0
+      $('.CourseBox .top .month .big').html(buZero(timeShow.split('-')[1]))
+      $('.CourseBox .top .month .year').html(timeShow.split('-')[0] + '年')
+      if(swiper) {
+          swiper.destroy();
+      }
+      initSwiper();
+      initPage(new Date().getTime())
+    }
+    // var
+    initPage(time)
+
+    // 获取三个WeekList
+    function getWeekList(Time) {
+      var List = []
+      predateTime = ''
+      downdateTime = ''
+      var predate =
+        Time -
+        ((new Date(Time).getDay() === 0 ? 7 : new Date(Time).getDay()) - 1) *
+          24 *
+          60 *
+          60 *
+          1000
+      var downdate =
+        Time +
+        (7 - (new Date(Time).getDay() === 0 ? 7 : new Date(Time).getDay())) *
+          24 *
+          60 *
+          60 *
+          1000
+      predateTime =
+        new Date(predate).getFullYear() +
+        '-' +
+        (new Date(predate).getMonth() + 1) +
+        '-' +
+        new Date(predate).getDate()
+      downdateTime =
+        new Date(downdate).getFullYear() +
+        '-' +
+        (new Date(downdate).getMonth() + 1) +
+        '-' +
+        new Date(downdate).getDate()
+      for (let i = 0; i < 7; i++) {
+        let day = predate + i * 24 * 60 * 60 * 1000
+        let dayTime =
+          new Date(day).getFullYear() +
+          '-' +
+          (new Date(day).getMonth() + 1) +
+          '-' +
+          new Date(day).getDate()
+        let DaY = ''
+        switch (i) {
+          case 0:
+            DaY = '周一'
+            break
+          case 1:
+            DaY = '周二'
+            break
+          case 2:
+            DaY = '周三'
+            break
+          case 3:
+            DaY = '周四'
+            break
+          case 4:
+            DaY = '周五'
+            break
+          case 5:
+            DaY = '周六'
+            break
+          default:
+            DaY = '周日'
+            break
+        }
+        List.push({
+          title: DaY,
+          year: dayTime.split('-')[0],
+          month: buZero(dayTime.split('-')[1]),
+          value: buZero(dayTime.split('-')[2])
+        })
+      }
+      return List
+      // fillDayListHtml(weekList)
+    }
+    // 初始化页面
+    async function initPage(Time) {
+      // 初始化三个数组
+      weekList = getWeekList(Time)
+      var predate =
+        Time -
+        ((new Date(Time).getDay() === 0 ? 7 : new Date(Time).getDay()) -
+          1 +
+          7) *
+          24 *
+          60 *
+          60 *
+          1000
+      var downdate =
+        Time +
+        (7 -
+          (new Date(Time).getDay() === 0 ? 7 : new Date(Time).getDay()) +
+          7) *
+          24 *
+          60 *
+          60 *
+          1000
+      prevList = getWeekList(predate)
+      // nextList = getWeekList(downdate)
+      // 初始化swiper
+      swiper.init()
+      fillDayListHtml(weekList, 1)
+      // fillDayListHtml(prevList, 0);
+     
+      $('.CourseBox>.bottom').html('')
+    //   let res = await getclassroomperformance(
+    //     `${timeShow.split('-')[0]}-${buZero(timeShow.split('-')[1])}-${buZero(
+    //       timeShow.split('-')[2]
+    //     )}`
+    //   )
+    //   if (res !== false) {
+    //     fillContent(res.Data.list)
+    //   } else {
+    //     $('.CourseBox>.bottom').html(
+    //       '<span style="display: block;margin-top: 20vh;text-align:center;">暂无数据</span>'
+    //     )
+    //   }
+      // fillDayListHtml(nextList, 2)
+    }
+    // 填充slider
+    async function fillDayListHtml(
+      list,
+      index = '',
+      type = 'init',
+      dataList = []
+    ) {
+      // if (type == "init") {
+      //   $.showLoading();
+      //   let res = await getnoclassroomperformance();
+      //   console.log(res);
+      // }
+      let str = ''
+      for (let i = 0; i < list.length; i++) {
+        const element = list[i]
+        str += `
+          <div class="item">
+            <div class="title">${element.title}</div>
+            <div class="value ${
+              buZero(timeShow.split('-')[2]) === element.value &&
+              buZero(timeShow.split('-')[1]) === element.month
+                ? 'active'
+                : ''
+            }">${element.value}</div>`
+        if (dataList.length !== 0) {
+          str += `
+            <div class="dian`
+          for (let j = 0; j < dataList.length; j++) {
+            const elementj = dataList[j].dateweek
+            const arr = elementj.split('-')
+            if (
+              arr[0] == element.year &&
+              arr[1] == element.month &&
+              arr[2] == element.value
+            ) {
+              str += ` active`
+            }
+          }
+
+          str += `"></div>`
+        } else {
+          str += `
+            <div class="dian"></div>`
+        }
+
+        str += `
+            <div class="shadow" month="${element.month}" year="${element.year}"></div>
+          </div>
+        `
+      }
+      if (type == 'init') {
+        $('.swiper-wrapper .swiper-slide')
+          .eq(index)
+          .find('.dayList')
+          .html(str)
+      }
+      if (type == 'next') {
+        Str = `<div class="swiper-slide"><div class="dayList">${str}</div></div>`
+        swiper.appendSlide(Str)
+      }
+      if (type == 'prev') {
+        Str = `<div class="swiper-slide"><div class="dayList">${str}</div></div>`
+        // $('.dayList-container .swiper-wrapper').prepend(Str)
+        swiper.prependSlide(Str)
+      }
+      swiper.update()
+    }
+    // 点击事件
+    $('.swiper-wrapper').click(async function(e) {
+      if ($(e.target).hasClass('shadow')) {
+        let res = await getclassroomperformance(
+          `${$(e.target).attr('year')}-${$(e.target).attr('month')}-${$(
+            e.target
+          )
+            .siblings('.value')
+            .html()}`
+        )
+        if (res !== false) {
+          fillContent(res.Data.list)
+        } else {
+          $('.CourseBox>.bottom').html(
+            '<span style="display: block;margin-top: 20vh;text-align:center;">暂无数据</span>'
+          )
+        }
+        $('.CourseBox .top .month .big').html($(e.target).attr('month'))
+        $('.CourseBox .top .month .year').html($(e.target).attr('year') + '年')
+        $(e.target)
+          .siblings('.value')
+          .addClass('active')
+        $(e.target)
+          .parents('.item')
+          .siblings('.item')
+          .find('.value')
+          .removeClass('active')
+        $(e.target)
+          .parents('.swiper-slide')
+          .siblings('.swiper-slide')
+          .find('.value')
+          .removeClass('active')
+      }
+    })
+    function fillContent(List) {
+      let str = ''
+      for (let i = 0; i < List.length; i++) {
+        const element = List[i]
+        str += `
+            <div class="item" ${element.steta === '暂无学员' ? '' : `onclick="window.location.href='src/Course/index.html?id=${
+              element.id
+            }'"`}>
+            <div class="top">
+              <img src="./img/1.png" alt="" srcset="" />
+              <div class="title">${element.classname}</div>
+              <div class="empty"></div>
+              <div class="right ${
+                (element.steta === '已添加' || element.steta === '暂无学员') ? 'active' : ''
+              }">${element.steta} ></div>
+            </div>
+            <div class="bottom">
+              <div class="top">
+                <div class="item">
+                  <div class="img"></div>
+                  <div>上课老师</div>
+                </div>
+                <div class="item">
+                  <div class="img"></div>
+                  <div>助教老师</div>
+                </div>
+                <div class="item">
+                  <div class="img"></div>
+                  <div>上课教室</div>
+                </div>
+              </div>
+              <div class="bottom">
+                <div>${element.t_teachernickname}</div>
+                <div>${element.assistantteachernickname}</div>
+                <div>${element.roomname}</div>
+              </div>
+            </div>
+          </div>
+           `
+      }
+      $('.CourseBox>.bottom').html(str)
+    }
+    // 补零
+    function buZero(num) {
+      if (parseInt(num) < 10) {
+        return '0' + num
+      } else {
+        return num
+      }
+    }
+    function getnoclassroomperformance(nowdate) {
+      $.showLoading()
+      return new Promise((resolve, reject) => {
+        try {
+          getAjax(
+            FenghuangConst.hostAjax +
+              '/api/tch/v1/getnoclassroomperformance',
+            {
+              //老师信息--昵称、名字、电话、头像
+              userid: uid,
+              nowdate: nowdate
+            },
+            function(data) {
+              $.hideLoading()
+              //如果后端返回未查询到数据，赋值list为空
+              if (data.Data == '') {
+                data.Data = { list: []}
+              }            
+              resolve(data)
+            }
+          )
+        } catch (error) {
+          $.hideLoading()
+          reject(err)
+        }
+      })
+    }
+    function getclassroomperformance(Time) {
+      $.showLoading()
+      return new Promise((resolve, reject) => {
+        try {
+          getAjax(
+            FenghuangConst.hostAjax +
+              '/api/tch/v1/getclassroomperformance',
+            {
+              //老师信息--昵称、名字、电话、头像
+              userid: uid,
+              nowdate: Time
+            },
+            function(data) {
+              $.hideLoading()
+              if (data.Data != '') {
+                resolve(data)
+              } else {
+                resolve(false)
+              }
+            }
+          )
+        } catch (error) {
+          $.hideLoading()
+          reject(err)
+        }
+      })
+    }
+  </script>
+</html>

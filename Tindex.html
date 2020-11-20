@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
+    />
+    <title>老师端主页</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css" />
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="css/commonUI.css" />
+    <link rel="stylesheet" type="text/css" href="css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/index1.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/webuploader/webuploader.css"
+    />
+    <link rel="stylesheet" href="./css/Tindex.min.css" />
+    <script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/const.js" type="text/javascript" charset="utf-8"></script>
+  </head>
+  <body class="up-page">
+
+    <div class="up-page-wrapper TindexBox">
+      <img src="./img/TindexBG.png" class="TindexBG" alt="" srcset="" />
+      <div class="TindexTopBox">
+        <div class="top">
+          <img class="headPic" src="./img/tx1.png" alt="" srcset="" />
+          <div class="username"></div>
+          <div></div>
+          <img
+            onclick="goUrl('news.html')"
+            class="t-notice"
+            src="./img/t-notice.png"
+          />
+        </div>
+        <div class="bottom">
+          <div>
+            <div class="top keshi">0</div>
+            <div class="bottom">本月累积课时</div>
+          </div>
+          <div>
+            <div class="top renshu">0.00</div>
+            <div class="bottom">本月上课人数</div>
+          </div>
+          <div>
+            <div class="top jine">0.00</div>
+            <div class="bottom">本月累积金额</div>
+          </div>
+
+        </div>
+      </div>
+      <div class="TindexBottomBox">
+        <!-- <div onclick="goUrl('src/banji/myclass.html')">
+          <img src="./img/menuImg1.png" alt="" srcset="" />
+          <div class="title">我的班级</div>
+        </div> -->
+        <div onclick="goUrl('src/Course/example.html')">
+          <img src="./img/menuImg2.png" alt="" srcset="" />
+          <div class="title">我的课表</div>
+        </div>
+        <div onclick="goUrl('courseperformance.html')">
+          <img src="./img/menuImg3.png" alt="" srcset="" />
+          <div class="title">课堂表现</div>
+        </div>
+        <!-- <div onclick="goUrl('src/Course/quebuke.html')">
+          <img src="./img/menuImg4.png" alt="" srcset="" />
+          <div class="title">缺课补课</div>
+        </div> -->
+        <!-- <div onclick="goUrl('vocatestudy.html')">
+          <img src="./img/menuImg5.png" alt="" srcset="" />
+          <div class="title">业务学习</div>
+        </div> -->
+        <div  onclick="goUrl('src/ditui/history.html')">
+          <img src="./img/menuImg6.png" alt="" srcset="" />
+          <div class="title">我的学员</div>
+        </div>
+        <!-- <div onclick="goUrl('salesrecord.html')">
+          <img src="./img/menuImg7.png" alt="" srcset="" />
+          <div class="title">销售统计</div>
+        </div> -->
+        <div onclick="goUrl('src/ditui/newStudent.html')">
+          <img src="./img/menuImg8.png" alt="" srcset="" />
+          <div class="title">添加学员</div>
+        </div>
+          <!-- <div onclick="goUrl('教务管理/html/登录页面.html')">
+          <img src="./img/menuImg9.png" alt="" srcset="" />
+          <div class="title">教务管理</div>
+        </div>
+        <div onclick="goUrl('src/Course/example-overview.html')">
+          <img src="./img/menuImg10.png" alt="" srcset="" />
+          <div class="title">课表总览</div>
+        </div> -->
+      </div>
+    </div>
+  </body>
+  <script
+    src="js/jquery-1.7.2.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="js/Timetables.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="js/swiper-3.4.2.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script src="js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+  <script
+    src="css/webuploader/webuploader.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script>
+    getAjax(
+        FenghuangConst.hostAjax + '/api/tch/v1/teacherinfo',
+      {
+        //老师信息--昵称、名字、电话、头像
+        user_id: uid
+      },
+      function(data) {
+        if (data.Data != '') {
+          $('.TindexTopBox .username').text(data.Data.nickname)
+          if (data.Data.imgurl != '') {
+            $('.TindexTopBox .headPic').attr('src', data.Data.imgurl)
+          }
+          // $('.tName').text(data.Data.name)
+          // $('.yaoqingma').text('邀请码：' + data.Data.Teacherid)
+          // localStorage.setItem('zhizhao_Name', data.Data.nickname)
+          // $('.tel').text(data.Data.phone)
+        }
+      }
+    )
+    // 获取课时等...
+    getAjax(
+        FenghuangConst.hostAjax + '/api/tch/v1/getteacherhomepage',
+      {
+        userid: uid
+      },
+      function(data) {
+        console.log(data)
+        if (data.Data != '') {
+          $('.TindexTopBox .bottom .keshi').html(data.Data.classhours)
+          $('.TindexTopBox .bottom .renshu').html(
+            '' + data.Data.classattendance
+          )
+          $('.TindexTopBox .bottom .jine').html(data.Data.sumprice)
+          // $('.tName').text(data.Data.name)
+          // $('.yaoqingma').text('邀请码：' + data.Data.Teacherid)
+          // localStorage.setItem('zhizhao_Name', data.Data.nickname)
+          // $('.tel').text(data.Data.phone)
+        }
+      }
+    )
+  </script>
+</html>

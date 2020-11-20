@@ -1,0 +1,301 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>立即报名</title>
+		 <link rel="stylesheet" href="../../time/css/normalize3.0.2.min.css" />
+		<link rel="stylesheet" href="../../time/css/style.css?v=7" />
+		<link href="../../time/css/mobiscroll.css" rel="stylesheet" />
+		<link href="../../time/css/mobiscroll_date.css" rel="stylesheet" />
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			body{
+				font-size: 12px;
+				font-family: "微软雅黑";
+				background: #fff;
+				height: 100vh;
+			}
+			li{
+				list-style: none;
+			}
+			.setupnowaction li{
+				display: flex;
+				padding: 5% 5%;
+			}
+			.setupnowaction li p{
+				font-size: 13px;
+				font-weight: 400;
+			}
+			.setupnowaction li div{
+				margin: 0 5%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+			.setupnowaction i,.setupnowaction em{
+				font-style: normal;
+				color: #999999;
+			}
+			.setupnowaction strong{
+				font-size: 12px;
+				font-weight: normal;
+				display: flex;
+				justify-content: space-between;
+			}
+			h2{
+				font-weight: normal;
+				display: flex;
+				padding: 0 30% 0 5%;
+				font-size: 14px;
+				justify-content: space-between;
+				height: 2.5rem;
+				line-height: 2.5rem;
+			}
+			/*.writephone{
+				margin-top: 1rem;
+			}*/
+			.writephone li{
+				display: flex;
+				height: 3rem;
+				line-height: 3rem;
+				margin: 0 5%;
+				border-bottom: 1px solid #ccc;
+				justify-content: space-between;
+			}
+			.writephone img{
+				width: 50%;
+			}
+			hr{
+				border: 0;
+				height: 0.8rem;
+				background: #f5f5f5;
+			}
+			button{
+				background: #e60012;
+				border: 0;
+				width: 84%;
+				margin: 0 8%;
+				height: 2rem;
+				border-radius: 0.5rem;
+				margin-top: 2rem;
+				position: fixed;
+				bottom: 10%;
+				color: #fff;
+				font-size: 15px;
+			}
+			i,em{
+				font-style: normal;
+			}
+			.writephone li em{
+				width: 64%;
+			}
+			#sexshow{
+				position: fixed;
+				top: 40%;
+				height: 100%;
+				display: none;
+				}
+				#backgr{
+					/*background: rgba(255,255,255,0.3);*/
+					background-color:rgba(255,255,255,0.8);
+					width: 100%;
+						display: none;
+				}
+			#backgr>div{
+				background: url(img/报名成功@3x.png) no-repeat;
+				width: 80%;
+				height: auto;
+				background-size: 100% 100%;
+				display: flex;
+				flex-direction: column;
+				position: fixed;
+				top: 25%;
+				left: 10%;
+			}
+			#backgr>div>span{
+				margin-top: 80%;
+				margin-left: 30%;
+				margin-bottom: 10%;
+			}
+			#backgr>div>p{
+				font-size: 14px;
+				width: 10rem;
+				border: 1px solid #FF0000;
+				height: 2rem;
+				line-height: 2rem;
+				text-align: center;
+				margin-bottom: 5%;
+				margin-left: 20%;
+				border-radius: 0.6rem;
+			}
+			#backgr>img{
+				width: 50%;
+				position: fixed;
+				top: 23%;
+				z-index: 5;
+				right: 6%;
+			}
+			
+			
+			
+			
+			
+			
+			#backgr1{
+					/*background: rgba(255,255,255,0.3);*/
+					background-color:rgba(255,255,255,0.8);
+					width: 100%;
+						display: none;
+				}
+			#backgr1>div{
+				background: url(img/报名失败@3x.png) no-repeat;
+				width: 80%;
+				height: auto;
+				background-size: 100% 100%;
+				display: flex;
+				flex-direction: column;
+				position: fixed;
+				top: 25%;
+				left: 10%;
+			}
+			#backgr1>div>span{
+				margin-top: 80%;
+				margin-left: 30%;
+				margin-bottom: 10%;
+			}
+			#backgr1>div>p{
+				font-size: 14px;
+				width: 10rem;
+				border: 1px solid #FF0000;
+				height: 2rem;
+				line-height: 2rem;
+				text-align: center;
+				margin-bottom: 5%;
+				margin-left: 20%;
+				border-radius: 0.6rem;
+			}
+			#backgr1>img{
+				width: 50%;
+				position: fixed;
+				top: 23%;
+				z-index: 5;
+				right: 6%;
+			}
+		</style>
+	</head>
+	<body>
+		<!--报名成功开始-->
+		<div id="backgr">
+			<img src="img/叉@3x.png" style="width: 10%;" onclick="closess()"/>
+			<div id="" >
+				<span>恭喜您,报名成功!</span>
+				<p onclick="closess()">我知道了</p>
+			</div>
+		</div>
+		<!--报名成功结束-->
+		
+		<!--报名失败开始-->
+		<div id="backgr1">
+			<img src="img/叉@3x.png" style="width: 10%;" onclick="closess()"/>
+			<div id="" >
+				<span>手速慢了,下次早点来</span>
+				<p onclick="closess()">我知道了</p>
+			</div>
+		<!--报名失败结束-->
+			
+		</div>
+		<!--立即报名活动--活动--开始-->
+		<ul class="setupnowaction">
+			<li>
+				<img src="img/活动1@3x.png" style="width: 30%;height: 30%;"/>
+				<div class="">
+					<p>【亲自活动】植树节亲自活动特别活动</p>
+					<strong>
+						<i>3月2日(周日) 13:30</i>
+						<em></em>
+					</strong>
+				</div>
+			</li>
+		</ul>
+		<!--立即报名活动--活动--结束-->
+		<hr />
+		<!--立即报名活动--手机号--开始-->
+		
+		<ul class="writephone">
+			<li>
+				<p>手机号</p>
+				<em>123123123</em>
+			</li>
+			<li>
+				<img src="img/头像1@3x.png" style="width: 10%;height: 70%;margin-top: 2%;"/>
+				<em>宝宝姓名: &nbsp;&nbsp;&nbsp;&nbsp;王一一</em>
+			</li>
+			<li>
+				<img src="img/头像1@3x.png" style="width: 10%;height: 70%;margin-top: 2%"/>
+				<em>宝宝姓名: &nbsp;&nbsp;&nbsp;&nbsp;王一一</em>
+			</li>
+		</ul>
+		<!--立即报名活动--手机号--结束-->
+		
+		
+		
+		<!--性别弹出框开始-->
+		<!--性别弹出框结束-->
+		
+		<!--立即提交按钮开始-->
+		<strong onclick="shibai()" style="display:block; width: 50%; line-height: 2rem;text-align: center;height: 2rem;border: 1px solid #002A80;">报名失败</strong>
+		<button>立即提交</button>
+		<!--立即提交按钮结束-->
+	</body>
+	<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../time/js/mobiscroll_date.js" charset="gb2312"></script>
+	<script src="../../time/js/mobiscroll.js"></script>
+	<script type="text/javascript">
+		var currYear = (new Date()).getFullYear();
+			var opt = {};
+			opt.date = {
+				preset: 'date'
+			};
+			opt.datetime = {
+				preset: 'datetime'
+			};
+			opt.time = {
+				preset: 'time'
+			};
+			opt.default = {
+				theme: 'android-ics light', //皮肤样式
+				display: 'modal', //显示方式 
+				mode: 'scroller', //日期选择模式
+				dateFormat: 'yyyy-mm-dd',
+				lang: 'zh',
+				showNow: true,
+				nowText: "今天",
+				startYear: currYear - 50, //开始年份
+				endYear: currYear + 10 //结束年份
+			};
+
+			$("#USER_AGE").mobiscroll($.extend(opt['date'], opt['default']));
+			
+			
+			
+			
+			$('button').click(function(){
+				$('#backgr').show();
+				$('body').css('background-color','rgba(0,0,0,0.2')
+			})
+			var closess=function(){
+				$('#backgr').hide();
+				$('#backgr1').hide();
+				$('body').css('background-color','rgba(255,255,255,0')
+			}
+			var shibai=function(){
+				$('#backgr1').show();
+				$('body').css('background-color','rgba(0,0,0,0.2')
+			}
+	</script>
+
+</html>

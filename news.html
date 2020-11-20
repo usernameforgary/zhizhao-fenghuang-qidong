@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>凤凰机器人吕四校区</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index1.css"/>
+    <script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet prefetch" href="css/photoswipe.css">
+	<link rel="stylesheet prefetch" href="css/default-skin/default-skin.css">
+	<script src="js/photoswipe.js"></script>
+	<script src="js/photoswipe-ui-default.js"></script>
+	<style type="text/css">
+		.t time{
+			float: right;
+			
+		}
+		.list{
+			position: relative;
+			padding: 0.2rem 0.5rem;
+			display: flex;
+			align-items:center;
+			border-bottom: 1px solid #eee;
+		}
+		.list img{
+			display: block;
+			width: 0.65rem!important;
+			/*height: 0.65rem!important;*/
+			border-radius: 0.65rem;
+		}
+		.content{
+			margin-left: 0.6rem;
+			flex-grow:2;
+		}
+		.content .t{
+			margin-bottom: 0.2rem;
+			width: 100%;
+		}
+		._news {
+		    position: absolute;
+		    top: 0.3rem;
+		    z-index: 22;
+		    margin-left: -0.3rem;
+		}
+	</style>
+</head>
+<body class="up-page">
+	<div class="up-page-wrapper" style="margin-top: 0.5rem;">
+		<!--<div class="list">
+			<img src="img/02@3x.png"/>
+			<div class="content">
+				<div class="t">
+					<div class="_news"><div class="ifHite hite"></div></div>
+					王一一
+					<time>2018年11月20日 14：00</time>
+				</div>
+				<p>谢谢老师！</p>
+			</div>
+		</div>
+		<div class="list">
+			<img src="img/02@3x.png"/>
+			<div class="content">
+				<div class="t">
+					<div class="_news"><div class="ifHite hite"></div></div>
+					王一一
+					<time>2018年11月20日 14：00</time>
+				</div>
+				<p>谢谢老师！</p>
+			</div>
+		</div>
+		<div class="list">
+			<img src="img/default_person.png"/>
+			<div class="content">
+				<div class="t">
+					<div class="_news"><div class="ifHite hite"></div></div>
+					王一一
+					<time>2018年11月20日 14：00</time>
+				</div>
+				<p>谢谢老师！</p>
+			</div>
+		</div>-->
+	</div>
+</body>
+<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//	$(".imgLists img").eq(0)[0].onload=function(){
+//			console.log($(".imgLists img").eq(0).css("width")+"---"+$(".imgLists img").eq(0).css("height"))
+//			if(parseInt($(".imgLists img").eq(0).css("width"))>parseInt($(".imgLists img").eq(0).css("height"))){
+////				alert(2)
+//			}
+//	}
+var items=[],pswpElement,options={},gallery=undefined;
+	var ui = window.CUMS.UI,str="",imgurllist="",imgStr="";
+//	ui.showToast( '板块正在开发！');
+	getAjax(hostAjax+"/api/stu/v1/getmessagelist",{//所有的消息
+		user_id:uid,
+		type:localStorage.getItem("zhizhao_typle")
+	},function(data){
+		if(data.Code==1000){
+			ui.showToast( '暂时没有消息');
+			return false;
+		}
+		var teacherImg="img/default_person.png",hiteStr='<div class="_news"><div class="ifHite hite"></div></div>';
+		if(data.Data!=""){
+			for (var i=0;i<data.Data.list.length;i++) {
+				if(data.Data.list[i].Ifread==0){
+					hiteStr='<div class="_news"><div class="ifHite hite"></div></div>';
+				}else{
+					hiteStr='';
+				}
+				if(data.Data.list[i].whoimgurl!=""){
+					teacherImg=data.Data.list[i].whoimgurl;
+				}else{
+					teacherImg="img/default_person.png";
+				}
+		str+='<div class="list" id="'+data.Data.list[i].curriculumid+'" index="'+data.Data.list[i].whouserid+'"  _id="'+data.Data.list[i].studentclassid+'" _id1="'+data.Data.list[i].id+'">'+
+			'<img src="'+teacherImg+'"/>'+
+			'<div class="content">'+
+				'<div class="t">'+
+					hiteStr+
+					(data.Data.list[i].whoname==""?"凤凰机器人":data.Data.list[i].whoname)+
+					'<time>'+data.Data.list[i].createdat+'</time>'+
+				'</div>'+
+				'<p>'+data.Data.list[i].content+'</p>'+
+			'</div>'+
+		'</div>';
+			
+			}
+			$(".up-page-wrapper").html(str);
+			$(".list").click(function(){
+				var _this=this;
+				
+				
+				//修改消息的状态
+				if($(this).find(".t").text().indexOf("凤凰机器人")>=0){//是凤凰
+					getAjax(hostAjax+"/api/stu/v1/updatemessagestate",{
+						id:$(this).attr("_id1")
+					},function(data){
+						if(data.Code==0||data.Code==200){
+							if($(this).find(".t").text().indexOf("凤凰机器人")>=0){
+								$(this).find(".ifHite").removeClass("hite");
+								return false;
+							}
+							
+						}
+					})
+				}else{
+					getAjax(hostAjax+"/api/stu/v1/updatemessagestate",{
+						id:$(this).attr("_id"),
+						state:1
+					},function(data){
+						if(data.Code==0||data.Code==200){
+							if($(this).find(".t").text().indexOf("凤凰机器人")>=0){
+								$(this).find(".ifHite").removeClass("hite");
+								return false;
+							}
+							if(localStorage.getItem("zhizhao_typle")==2){//学生端
+								location.href="studyhistry.html?studentId="+uid+"&curriculumid="+$(_this).attr("id");
+							}else{//老师端
+								location.href="studyhistry.html?studentclassid="+$(_this).attr("_id");
+							}
+							
+							return false;
+						}
+					})
+				}
+				
+				
+			})
+//			location.href="studyhistry.html?studentId="+studentId+"&curriculumid="+location.href.split("?id=")[1].split("&")[0];
+		}
+	})
+
+</script>
+</html>

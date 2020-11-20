@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/Timetables.min.js"></script>
+    <title>我的课表</title>
+    <style>
+    	body{
+    		padding-bottom: 1rem;
+    	}
+        #coursesTable {
+            padding: 15px 10px;
+        }
+		.Courses-content{
+			/*padding-top: 30px;*/
+		}
+        .Courses-head {
+            background-color: #edffff;
+            /*position: fixed;*/
+            /*width: 100%;*/
+            left: 50px;
+            z-index: 22;
+            /*padding-left: 60px;
+            padding-right: 10px;*/
+        }
+
+        .Courses-head > div {
+            text-align: center;
+            font-size: 14px;
+            line-height: 28px;
+        }
+
+        .left-hand-TextDom, .Courses-head {
+            background-color: #f2f6f7;
+        }
+
+        .Courses-leftHand {
+            background-color: #f2f6f7;
+            font-size: 12px;
+        }
+
+        .Courses-leftHand .left-hand-index {
+            color: #9c9c9c;
+            margin-bottom: 4px !important;
+        }
+
+        .Courses-leftHand .left-hand-name {
+            color: #666;
+        }
+
+        .Courses-leftHand p {
+            text-align: center;
+            font-weight: 900;
+        }
+
+        .Courses-head > div {
+            border-left: none !important;
+        }
+
+        .Courses-leftHand > div {
+            padding-top: 5px;
+            border-bottom: 1px dashed rgb(219, 219, 219);
+        }
+
+        .Courses-leftHand > div:last-child {
+            border-bottom: none !important;
+        }
+
+        .left-hand-TextDom, .Courses-head {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .Courses-content > ul {
+            border-bottom: 1px dashed rgb(219, 219, 219);
+            box-sizing: border-box;
+        }
+
+        .Courses-content > ul:last-child {
+            border-bottom: none !important;
+        }
+
+        .highlight-week {
+            color: #02a9f5 !important;
+        }
+
+        .Courses-content li {
+            text-align: center;
+            color: #666666;
+            font-size: 14px;
+            line-height: 50px;
+        }
+
+        .Courses-content li span {
+            padding: 6px 2px;
+            box-sizing: border-box;
+            line-height: 18px;
+            border-radius: 4px;
+            white-space: normal;
+            word-break: break-all;
+            cursor: pointer;
+        }
+
+        .grid-active {
+            z-index: 9999;
+        }
+
+        .grid-active span {
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        button{
+        	width: 1.8rem;
+    		height: 0.6rem;
+    		border-radius: 0.6rem;
+    		color: white;
+    		background: linear-gradient(to bottom,#FF9C3D,#EF4C12);
+    		position: relative;
+    		top: 0.2rem;
+    		border: 0;
+    		font-size: 0.26rem;
+    		margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+	<div class="title" style="text-align: center;font-size: 0.3rem;margin-top: 30px;"></div>
+<div id="coursesTable"></div>
+<!--<button onclick="onChange()"
+        style="background-color: #00a2ae; color: #fff; padding: 5px 10px; border-radius: 4px;border: none">
+    切换课表
+</button>-->
+
+<div class="" style="display: flex;justify-content: space-around;">
+	<button class="pre">上一周</button>
+<button class="next">下一周</button>
+</div>
+
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+	var time=new Date().getTime();
+	var timeShow=new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate();
+	$(".pre").click(function(){
+		time-=7*24*60*60*1000;
+		timeShow=new Date(time).getFullYear()+"-"+(new Date(time).getMonth()+1)+"-"+new Date(time).getDate();
+		 goSearch();
+	})
+	$(".next").click(function(){
+		if(typeof time=="number"){
+			time+=7*24*60*60*1000;
+		}else{
+			time=Date.parse(time)+7*24*60*60*1000;
+		}
+		timeShow=new Date(time).getFullYear()+"-"+(new Date(time).getMonth()+1)+"-"+new Date(time).getDate();
+		 goSearch();
+	})
+ 	if(sessionStorage.getItem("thisWeek")){
+		timeShow=sessionStorage.getItem("thisWeek");
+		time=new Date(timeShow).getTime();
+	}
+//	var ui = window.CUMS.UI;
+	 var courseList=[],courseType=[];
+	 var arr1=[],arr2=[],arr3=[],arr4=[],arr5=[],arr6=[],arr7=[];
+	  goSearch();
+	 
+function goSearch(){getAjax(hostAjax+"/api/course/v1/gettingtimetable",{
+	teacherid:uid,
+	nowdate:timeShow
+},function(data){
+	if(data.Code==1000){
+		ui.showToast( '抱歉，你这周没课！',3000);
+		return false;
+	}
+//	if(typeof time=="number"||typeof time=="string"){
+//		alert(time)
+//		time=new Date(time).getFullYear()+"-"+(new Date(time).getMonth()+1)+"-"+new Date(time).getDate();
+//		console.log(time);
+//	}else{
+//		time=new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate();
+//	}
+	
+	sessionStorage.setItem("thisWeek",timeShow);
+	if(new Date(time).getDay()==1){
+		data.Data.predate=new Date(time).getFullYear()+"-"+(new Date(time).getMonth()+1)+"-"+new Date(time).getDate();
+		data.Data.downdate=new Date(time+6*24*60*60*1000).getFullYear()+"-"+(new Date(time+6*24*60*60*1000).getMonth()+1)+"-"+new Date(time+6*24*60*60*1000).getDate();
+	}else if(new Date(time).getDay()==2){
+		data.Data.predate=new Date(time-1*24*60*60*1000).getFullYear()+"-"+(new Date(time-1*24*60*60*1000).getMonth()+1)+"-"+new Date(time-1*24*60*60*1000).getDate();
+		data.Data.downdate=new Date(time+5*24*60*60*1000).getFullYear()+"-"+(new Date(time+5*24*60*60*1000).getMonth()+1)+"-"+new Date(time+5*24*60*60*1000).getDate();
+		
+	}else if(new Date(time).getDay()==3){
+		data.Data.predate=new Date(time-2*24*60*60*1000).getFullYear()+"-"+(new Date(time-2*24*60*60*1000).getMonth()+1)+"-"+new Date(time-2*24*60*60*1000).getDate();
+		data.Data.downdate=new Date(time+4*24*60*60*1000).getFullYear()+"-"+(new Date(time+4*24*60*60*1000).getMonth()+1)+"-"+new Date(time+4*24*60*60*1000).getDate();
+	}else if(new Date(time).getDay()==4){
+		data.Data.predate=new Date(time-3*24*60*60*1000).getFullYear()+"-"+(new Date(time-3*24*60*60*1000).getMonth()+1)+"-"+new Date(time-3*24*60*60*1000).getDate();
+		data.Data.downdate=new Date(time+3*24*60*60*1000).getFullYear()+"-"+(new Date(time+3*24*60*60*1000).getMonth()+1)+"-"+new Date(time+3*24*60*60*1000).getDate();
+	}else if(new Date(time).getDay()==5){
+		data.Data.predate=new Date(time-4*24*60*60*1000).getFullYear()+"-"+(new Date(time-4*24*60*60*1000).getMonth()+1)+"-"+new Date(time-4*24*60*60*1000).getDate();
+		data.Data.downdate=new Date(time+2*24*60*60*1000).getFullYear()+"-"+(new Date(time+2*24*60*60*1000).getMonth()+1)+"-"+new Date(time+2*24*60*60*1000).getDate();
+	}else if(new Date(time).getDay()==6){
+		data.Data.predate=new Date(time-5*24*60*60*1000).getFullYear()+"-"+(new Date(time-5*24*60*60*1000).getMonth()+1)+"-"+new Date(time-5*24*60*60*1000).getDate();
+		data.Data.downdate=new Date(time+1*24*60*60*1000).getFullYear()+"-"+(new Date(time+1*24*60*60*1000).getMonth()+1)+"-"+new Date(time+1*24*60*60*1000).getDate();
+	}else {
+		data.Data.predate=new Date(time-6*24*60*60*1000).getFullYear()+"-"+(new Date(time-6*24*60*60*1000).getMonth()+1)+"-"+new Date(time-6*24*60*60*1000).getDate();
+		
+		data.Data.downdate=new Date(time).getFullYear()+"-"+(new Date(time).getMonth()+1)+"-"+new Date(time).getDate();
+	}
+	document.title=data.Data.predate+'至'+data.Data.downdate+"课表";
+	$(".title").text(data.Data.predate+'至'+data.Data.downdate+"课表");
+	ui.showToast( '查询成功！',1000);
+	$("#coursesTable").html("")
+	arr1=[],arr2=[],arr3=[],arr4=[],arr5=[],arr6=[],arr7=[];
+	courseList=[],courseType=[];
+	//循环遍历
+	for (var i=0;i<data.Data.list.length;i++) {
+		courseType.push([{index: (i+1), name: data.Data.list[i].nums.split('-')[0]}, 1]);
+		courseType.push([{index: (i+1), name: data.Data.list[i].nums.split('-')[1]}, 1]);
+		if(data.Data.list[i].day1!=""){
+			arr1.push(data.Data.list[i].day1.split('/')[1]+" "+data.Data.list[i].day1.split('/')[3]+"&"+data.Data.list[i].day1.split('/')[0]);
+			arr1.push(data.Data.list[i].day1.split('/')[1]+" "+data.Data.list[i].day1.split('/')[3]+"&"+data.Data.list[i].day1.split('/')[0]);
+		}else{
+			arr1.push("");arr1.push("");
+		}
+		if(data.Data.list[i].day2!=""){
+			arr2.push(data.Data.list[i].day2.split('/')[1]+" "+data.Data.list[i].day2.split('/')[3]+"&"+data.Data.list[i].day2.split('/')[0]);
+			arr2.push(data.Data.list[i].day2.split('/')[1]+" "+data.Data.list[i].day2.split('/')[3]+"&"+data.Data.list[i].day2.split('/')[0]);
+		}else{
+			arr2.push("");arr2.push("");
+		}
+		if(data.Data.list[i].day3!=""){
+			arr3.push(data.Data.list[i].day3.split('/')[1]+" "+data.Data.list[i].day3.split('/')[3]+"&"+data.Data.list[i].day3.split('/')[0]);
+			arr3.push(data.Data.list[i].day3.split('/')[1]+" "+data.Data.list[i].day3.split('/')[3]+"&"+data.Data.list[i].day3.split('/')[0]);
+		}else{
+			arr3.push("");arr3.push("");
+		}
+		if(data.Data.list[i].day4!=""){
+			arr4.push(data.Data.list[i].day4.split('/')[1]+" "+data.Data.list[i].day4.split('/')[3]+"&"+data.Data.list[i].day4.split('/')[0]);
+			arr4.push(data.Data.list[i].day4.split('/')[1]+" "+data.Data.list[i].day4.split('/')[3]+"&"+data.Data.list[i].day4.split('/')[0]);
+		}else{
+			arr4.push("");arr4.push("");
+		}
+		if(data.Data.list[i].day5!=""){
+			arr5.push(data.Data.list[i].day5.split('/')[1]+" "+data.Data.list[i].day5.split('/')[3]+"&"+data.Data.list[i].day5.split('/')[0]);
+			arr5.push(data.Data.list[i].day5.split('/')[1]+" "+data.Data.list[i].day5.split('/')[3]+"&"+data.Data.list[i].day5.split('/')[0]);
+		}else{
+			arr5.push("");arr5.push("");
+		}
+		if(data.Data.list[i].day6!=""){
+			arr6.push(data.Data.list[i].day6.split('/')[1]+" "+data.Data.list[i].day6.split('/')[3]+"&"+data.Data.list[i].day6.split('/')[0]);
+			arr6.push(data.Data.list[i].day6.split('/')[1]+" "+data.Data.list[i].day6.split('/')[3]+"&"+data.Data.list[i].day6.split('/')[0]);
+		}else{
+			arr6.push("");arr6.push("");
+		}
+		if(data.Data.list[i].day7!=""){
+			arr7.push(data.Data.list[i].day7.split('/')[1]+" "+data.Data.list[i].day7.split('/')[3]+"&"+data.Data.list[i].day7.split('/')[0]);
+			arr7.push(data.Data.list[i].day7.split('/')[1]+" "+data.Data.list[i].day7.split('/')[3]+"&"+data.Data.list[i].day7.split('/')[0]);
+		}else{
+			arr7.push("");arr7.push("");
+		}
+		
+		
+		
+		
+		
+		
+//		console.log(arr1);
+	}
+	courseList.push(arr1);
+	courseList.push(arr2);
+	courseList.push(arr3);
+	courseList.push(arr4);
+	courseList.push(arr5);
+	courseList.push(arr6);
+	courseList.push(arr7);
+//	console.log(arr1);
+	var week =['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+  	var day = new Date().getDay();
+  
+  // 实例化(初始化课表)
+  var Timetable = new Timetables({
+    el: '#coursesTable',
+    timetables: courseList,
+    week: week,
+    timetableType: courseType,
+    highlightWeek: day,
+    gridOnClick: function (e) {
+      console.log(e.id);
+      if(e.id){
+      	 location.href="index.html?id="+e.id;
+      }
+     
+    },
+    styles: {
+      Gheight: 50
+    }
+  });
+  $(".Courses-head").css("width",(document.body.clientWidth-60)+"px");
+})}
+//courseList = [
+//  ['大学英语(Ⅳ)@10203', '大学英语(Ⅳ)@10203', '', '', '', '', '毛概@14208', '毛概@14208', '', '', '', '选修'],
+//  ['', '', '信号与系统@11302', '信号与系统@11302', '模拟电子技术基础@16204', '模拟电子技术基础@16204', '', '', '', '', '', ''],
+//  ['大学体育(Ⅳ)', '大学体育(Ⅳ)', '形势与政策(Ⅳ)@15208', '形势与政策(Ⅳ)@15208', '', '', '电路、信号与系统实验', '电路、信号与系统实验', '', '', '', ''],
+//  ['', '', '', '', '电装实习@11301', '电装实习@11301', '', '', '', '大学体育', '大学体育', ''],
+//  ['', '', '数据结构与算法分析', '数据结构与算法分析', '', '', '', '', '信号与系统', '信号与系统', '', ''],
+//];
+//var week = window.innerWidth > 360 ? ['周一', '周二', '周三', '周四', '周五', '周六', '周日'] :
+//  ['一', '二', '三', '四', '五','六','七'];
+	window.onscroll=function(){
+		if($("#coursesTable")[0].offsetTop-document.documentElement.scrollTop+15<=0){
+			$(".Courses-head").css({"position":"fixed","top":0});
+			
+			$(".Courses-content").css("padding-top","30px");
+		}else{
+			$(".Courses-head").css({"position":"static","top":0});
+			$(".Courses-content").css("padding-top","0px");
+		}
+	}
+</script>
+</body>
+</html>

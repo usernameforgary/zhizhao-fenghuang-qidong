@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
+    />
+    <title>非学员详情</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css" />
+    <link rel="stylesheet" href="../../css/weui.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../css/simplePagination.css"
+    />
+    <link rel="stylesheet" href="../../css/History.min.css" />
+    <script
+      src="../../js/resize.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+  </head>
+
+  <body class="up-page">
+    <div class="zhuanzhengFloat" style="display:none;">
+      <div class="float" style="display: block;"></div>
+      <div class="zhuanbanWrap" style="overflow: auto;">
+        <label for="a"><b>收费金额：</b></label
+        ><br />
+        <input type="tel" name="a" id="a" value="" /><br />
+        <ul>
+          <div class="changguike"></div>
+          <p style="clear: both;"></p>
+          <div class="addCourseType"></div>
+          <div class="addIcon" style="text-align: center;margin-top: 0.2rem;">
+            <i
+              class="iconfont icon-plus-add"
+              style="font-size: 0.5rem;color: #888; border: 1px solid #888;width: 0.6rem;height: 0.6rem;border-radius: 0.6rem;"
+            ></i>
+          </div>
+        </ul>
+
+        <label for="c"><b>收据编号：</b></label
+        ><br />
+        <input type="tel" name="c" id="c" value="" />
+        <p style="text-align: center;"><button class="submit">提交</button></p>
+      </div>
+    </div>
+    <div class="genjin_box">
+      <div class="_bottom">
+        <div class="content">
+          <textarea name="" id="text" cols="30" rows="10"></textarea>
+          <div class="btn">
+            <div class="hidegenjin_box">取 &nbsp;&nbsp;消</div>
+            <div class="addgenjin">确 &nbsp;&nbsp;定</div>
+          </div>
+          <div class="appointmentrecord_content" style="display: block;">
+            <div class="genjinstitle">
+              邀约记录：
+            </div>
+            <div class="clearFix"></div>
+            <div class="list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="up-page-wrapper informalStudentBox">
+      <div class="_top">
+        <div class="leftBox">
+          <img src="../../img/default_person.png" alt="" srcset="" />
+          <div>
+            <div id="student_name">
+              <span>xxx</span>
+              <img id="sex" src="../../img/man.png" alt="" srcset="" />
+            </div>
+            <div id="sign">...</div>
+            <div id="sign1">...</div>
+          </div>
+        </div>
+        <div class="rightBox">
+          <a
+            href="./editStudent.html?id=46&type=informalStudent"
+            id="editStudent"
+            >编辑学员资料</a
+          >
+          <div class="clearFix"></div>
+          <div class="opration">
+            <a id="paiban" href="">
+              排班转班
+            </a>
+            <a id="zhuanzheng">
+              转为学员
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="_center"></div>
+      <div class="_bottom">
+        <div class="content">
+          <div class="appointmentrecord_content" style="display: block;">
+            <div class="clearFix"></div>
+            <div class="list"></div>
+          </div>
+        </div>
+      </div>
+      <div class="zhuanrang1" style="display:none"></div>
+    </div>
+  </body>
+  <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+  <script
+    src="../../js/jquery-3.3.1.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/jquery.simplePagination.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/commonUI.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/utils.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/mobileSelect.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/datePicker.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script src="../../js/jquery-weui.min.js"></script>
+  <script>
+    var weekdayArr = [],
+      teacherId = [],
+      chooseId = 0
+    var Select = undefined
+    getAjax(
+      hostAjax + '/api/principal/v1/selectteacherlist',
+      {
+        //查看所有老师
+        user_id: uid
+      },
+      function(data) {
+        var str = '',
+          haseCommite = '',
+          imgUrl
+        if (data.Data != '') {
+          for (var i = 0; i < data.Data.list.length; i++) {
+            weekdayArr.push(data.Data.list[i].nickname)
+            teacherId.push(data.Data.list[i].id)
+          }
+        }
+      }
+    )
+    $('.addgenjin').click(function(e) {
+      if (
+        $('#text')
+          .val()
+          .trim().length < 8
+      ) {
+        ui.showToast('跟进内容不能少于8个字！', 2000)
+        return false
+      }
+      $.showLoading()
+      let params = {
+        userid: uid,
+        studentid: GetQueryString('id'),
+        content: $('#text').val(),
+        type: '1',
+        remark: ''
+      }
+      postAjax(
+        hostAjax + '/api/tch/v1/addappointmentcord',
+        JSON.stringify(params),
+        function(data) {
+          hideLoading()
+          if (data.Code === 200) {
+            $('.genjin_box').hide()
+            $('#text').val('')
+            getRecord()
+          } else {
+            ui.showToast(data.Msg)
+          }
+        }
+      )
+    })
+    $('.hidegenjin_box').click(function(params) {
+      $('#text').val('')
+      $('.genjin_box').hide()
+    })
+    $('#editStudent').attr(
+      'href',
+      `./editStudent.html?id=${GetQueryString('id')}&type=informalStudent`
+    )
+    $('#paiban').attr('href', `../paiban/tap.html?id=${GetQueryString('id')}`)
+    // $('#xufei').attr(
+    //   'href',
+    //   `../xufei/newStudentPro.html?id=${GetQueryString('id')}`
+    // )\
+    $('.float').click(function(params) {
+      $('.zhuanzhengFloat').hide()
+      $('#a').val('')
+      $('#c').val('')
+    })
+    $('#zhuanzheng').click(function() {
+      $('.zhuanzhengFloat textarea').val('')
+      $('.zhuanzhengFloat').show()
+      getAjax(hostAjax + '/api/course/v1/getsubjecttype', {}, function(data) {
+        //插入转正表中的课程类型
+        var str = ''
+        for (var s = 0; s < data.Data.length; s++) {
+          if (data.Data[s].id != 2)
+            str +=
+              '<option value="' +
+              data.Data[s].id +
+              '">' +
+              data.Data[s].typename +
+              '</option>'
+        }
+        addStr =
+          '<li style="float: left;"><label for="money">赠送课时类型：</label><br /><select class="courseType" name=""style="width: 2.75rem;margin: 0.1rem 0;"><option value="0">请选择</option>' +
+          str +
+          '</select></li>' +
+          '<li style="float: right;"><label for="">赠送课时：</label><br /><input style="width: 2.75rem;" type="tel" name="totleTime2" class="totleTime" value="" /></li><p style="clear: both;"></p>'
+        $('.changguike').html(
+          '<li style="float: left;"><header >报名课程类型：</header>' +
+            '<select class="courseType" name=""style="width: 2.75rem;margin: 0.1rem 0;"><option value="0">请选择</option><option value="2">常规课</option>' +
+            str +
+            '</select></li>' +
+            '<li style="float: right;"><label for="" >报名课时：</label><br /><input style="width: 2.75rem;" type="tel" name="totleTime2" class="totleTime" value="" /></li>'
+        )
+        $('.addCourseType').html(addStr)
+
+        $('.addIcon i').click(function() {
+          $('.addCourseType').append(addStr)
+        })
+      })
+      //								stop()
+    })
+
+    $('.informalStudentBox').click(function(e) {
+      if ($(e.target).hasClass('zhuanrang')) {
+        if (Select !== undefined) {
+          Select.show()
+          $('.mobileSelect .content').show()
+        } else {
+          Select = new MobileSelect({
+            trigger: '.zhuanrang1',
+            title: '选择老师',
+            wheels: [{ data: weekdayArr }],
+            position: [2], //初始化定位 打开时默认选中的哪个 如果不填默认为0
+            transitionEnd: function(indexArr, data) {},
+            callback: function(indexArr, data) {
+              chooseId = teacherId[indexArr]
+              ui.showAlert(
+                '是否确认转让给' + data[0],
+                function() {
+                  //调取转让接口
+                  getAjax(
+                    hostAjax + '/api/tch/v1/transferstudent',
+                    {
+                      //老师电话邀约之后的备注
+                      user_id: parseInt(uid),
+                      teacherid: parseInt(chooseId),
+                      studentid: GetQueryString('id')
+                    },
+                    function(data) {
+                      if (data.Code == 200) {
+                        ui.showToast('成功！')
+                      } else {
+                        ui.showToast(data.Msg)
+                      }
+                    }
+                  )
+                },
+                null,
+                '确认',
+                '取消',
+                '提示'
+              )
+            }
+          })
+          Select.show()
+        }
+      }
+    })
+    $('.zhuanzhengFloat .submit').click(function() {
+      if ($('#a').val() == '') {
+        ui.showToast('请填写收费金额')
+        return false
+      }
+      if ($('#b').val() == '') {
+        ui.showToast('请填写购买课时')
+        return false
+      }
+      if ($('#c').val() == '') {
+        ui.showToast('请填写收据编号')
+        return false
+      }
+      var classhourtype = ''
+      $('.totleTime').each(function(i) {
+        //courseType
+        if ($(this).val() != '') {
+          classhourtype +=
+            $('.courseType')
+              .eq(i)
+              .val() +
+            '|' +
+            $('.totleTime')
+              .eq(i)
+              .val() +
+            ','
+        } else if (
+          $('.courseType')
+            .eq(i)
+            .val() == 4
+        ) {
+          classhourtype +=
+            $('.courseType')
+              .eq(i)
+              .val() +
+            '|' +
+            0 +
+            ','
+        }
+      })
+      classhourtype = classhourtype.substring(0, classhourtype.length - 1)
+      var ajaxData = JSON.stringify({
+        //续费接口
+        userid: uid,
+        studentid: GetQueryString('id'),
+        price: $('#a').val(),
+        classhourtype: classhourtype,
+        contractno: $('#c').val(),
+        remark: ''
+      })
+      ui.showAlert(
+        '是否确认',
+        function() {
+          postAjax(hostAjax + '/api/tch/v1/atranslator', ajaxData, function(
+            data
+          ) {
+            if (data.Code == 200) {
+              ui.showToast('成功！')
+              setTimeout(function() {
+                location.reload()
+              })
+              $('#a').val('')
+              $('#b').val('')
+              $('#c').val('')
+              $('.zhuanzhengFloat').hide()
+            } else {
+              ui.showToast(data.Msg)
+            }
+          })
+        },
+        null,
+        '确认',
+        '取消',
+        '提示'
+      )
+
+      $('.zhuanbanFloat').hide()
+    })
+    function hideLoading() {
+      $('.weui-mask_transparent').remove()
+      $('.weui-toast.weui_loading_toast').remove()
+    }
+    function GetQueryString(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+      var r = window.location.search.substr(1).match(reg)
+      if (r != null) return unescape(r[2])
+      return null
+    }
+
+    // 获取学员信息
+    function getStudent() {
+      $.showLoading()
+      $('.isStudent').html('')
+      getAjax(
+        hostAjax + '/api/tch/v1/getstudentsinglist',
+        {
+          //已签单
+          user_id: uid,
+          studentid: GetQueryString('id')
+        },
+        function(data) {
+          hideLoading()
+          if (data.Data != '') {
+            let { Data } = data
+            let { list } = Data
+            $('#student_name span').html(list[0].NAME)
+            if (list[0].sex === '男') {
+              $('#sex').attr('src', '../../img/man.png')
+            } else {
+              $('#sex').attr('src', '../../img/woman.png')
+            }
+            $('#sign').html(list[0].followup)
+            let signClass = ''
+            if (list[0].followup === '待跟进') {
+              signClass = ''
+            } else if (list[0].followup === '跟进中') {
+              signClass = 'orange'
+            } else if (list[0].followup === '已约课') {
+              signClass = 'red'
+            } else if (list[0].followup === '已失效') {
+              signClass = 'gray'
+            }
+            $('#sign').addClass(signClass)
+            $('#sign1').html(list[0].Intention)
+            $('#paiban').attr('src', '../paiban/tap.html?id=' + list[0])
+            let html = ''
+            html += `
+                <div class="item">
+                  <div>
+                    出生日期：${list[0].birthday}
+                  </div>
+                </div>
+                <div class="item">
+                  <div>
+                    就读学校：${list[0].nowschool}
+                  </div>
+                </div>
+                <div class="item"><div>当前年级：${list[0].nowgrade}</div></div>
+                <div class="item"><div>
+                    妈妈手机：<a class="underline" href="tel:${
+                      list[0].phone
+                    }">${list[0].phone}</a>
+                  </div></div>
+                <div class="item">
+                  <div>学员来源：${list[0].source}</div>
+                </div>
+                <div class="item">
+                  <div>跟进人：${
+                    list[0].followupperson
+                  } <span class="sign zhuanrang">学员转让</span></div>
+                </div>
+                <div class="item">
+                  <div>
+                    上次邀约时间：${list[0].appointmentcordtime}
+                  </div>
+                </div>
+                <div class="item">
+                  <div>
+                    最近试听记录：...<a class="sign" href="../../studyhistry.html?studentId=${GetQueryString(
+                      'id'
+                    )}&&children" style="text-decoration: none;">课堂表现</a>
+                  </div>
+                </div>
+                <div class="item">
+                  <div>
+                    标签：${list[0].studentlable}
+                  </div>
+                </div>
+                <div class="item s">
+                  <div>
+                    邀约记录：<span class="sign showgenjin add">添加跟进记录</span>
+                  </div>
+                </div>
+            `
+            $('.informalStudentBox ._center').html(html)
+          }
+        }
+      )
+    }
+    $('.informalStudentBox').click(function(e) {
+      if ($(e.target).hasClass('showgenjin')) {
+        $('.genjin_box').show()
+      }
+    })
+    function initData() {
+      //初始化学员信息
+      getStudent()
+      //初始化记录
+      getRecord()
+    }
+    initData()
+    // 获取记录
+    function getRecord(type) {
+      $.showLoading()
+      let url = ''
+      let data = {}
+      url = '/api/tch/v1/getappointmentcordlist'
+      data = {
+        teacherid: '',
+        user_id: GetQueryString('id')
+      }
+
+      getAjax(hostAjax + url, data, function(data) {
+        hideLoading()
+        if (data.Data != '') {
+          console.log(data.Data.list)
+          let html = ''
+          for (let i = 0; i < data.Data.list.length; i++) {
+            const element = data.Data.list[i]
+            html += `
+                  <div class="list-item">
+                      <div>
+                        <div class="left">
+                          <div class="header_pic_box">
+                            <img
+                              class="header_pic"
+                              src="${
+                                element.imgurl
+                                  ? element.imgurl
+                                  : '../../../img/default_person.png'
+                              }"
+                              alt=""
+                              srcset=""
+                            />
+                          </div>
+                          <div class="name">${element.teachername}</div>
+                          <div class="time">${element.time}</div>
+                        </div>
+                        <div class="right"><div></div></div>
+                      </div>
+
+                      <div>
+                        <div>
+                          <div>
+                            ${element.content}
+                          </div>
+                        </div>
+                      </div>
+                    </div>`
+          }
+          $('.appointmentrecord_content .list').html(html)
+        } else {
+          ui.showToast('暂无邀约记录', 2000)
+        }
+      })
+    }
+  </script>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>已报课时</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css"/>
+    <script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	body{
+    		background-color: #fff;
+    		background-image: url(../../img/bodyBg/xufei@3x.jpg);
+    		background-size: 100%;
+    		background-repeat: no-repeat;
+    		background-position: bottom;
+    	}
+    	.search{
+    		width: 6.5rem;
+    		height: 0.6rem;
+    		background-color: #eee;
+    		margin:0.25rem auto;
+    		position: relative;
+    		border-radius:0.1rem;
+    	}
+    	.search img{
+    		width: 0.45rem;
+    		position: absolute;
+    		top: 0.075rem;
+    		left: 0.2rem;
+    		
+    	}
+    	.search input{
+    		float: right;
+    		height: 0.6rem;
+    		padding: 0;
+    		box-sizing: border-box;
+    		width: 5.6rem;
+    		border: 0;
+    		background-color: #eee;border-radius:0.1rem;
+    		font-size: 0.26rem;
+    	}
+    	input::-webkit-input-placeholder{
+    		color: black;
+    	}
+    	.main,.othermain{
+    		font-size: 0.26rem;
+    	}
+    	.main ul li,.othermain ul li{
+    		line-height: 0.86rem;
+    		border-bottom: 1px solid #eee;
+    		padding: 0 0.5rem;
+    		margin-top: 0.01rem;
+    	}
+    	.main ul li span,.othermain ul li span{
+    		/*float: right;*/
+    	}
+    	.main li i,.othermain li i{
+    		display: inline-block;
+    		font-size: .26rem;
+    		margin-left: 0.15rem;
+    		transform:rotate(90deg);
+			-ms-transform:rotate(90deg); 	/* IE 9 */
+			-moz-transform:rotate(90deg); 	/* Firefox */
+			-webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+			-o-transform:rotate(90deg); 
+    	}
+    	.main li b,.othermain li b{
+    		font-weight: normal;
+    	}
+    	.main p span,.othermain p span{
+    		/*float: right;*/
+    	}
+    	.main p span i,.othermain p span i{
+    		transform:rotate(-90deg);
+			-ms-transform:rotate(-90deg); 	/* IE 9 */
+			-moz-transform:rotate(-90deg); 	/* Firefox */
+			-webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
+			-o-transform:rotate(-90deg); 
+    	}
+    </style>
+</head>
+<body class="up-page">
+	<div class="up-page-wrapper" >
+		<div class="teacher">
+		</div>
+		<div class="main">
+			<ul>
+				
+			</ul>
+		</div>
+		<div class="othermain" style="display: none;">
+			<ul>
+				
+			</ul>
+		</div>
+	</div>
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI;
+//	ui.showToast( '板块正在开发！');
+	//性别选择
+	$('.search img').click(function(){
+		if($('.tab li.active').attr('index')==1){
+			yiqiandan($("input").val());
+		}else if($('.tab li.active').attr('index')==2){
+			weiqiandan($("input").val());
+		}
+	})
+	
+	$('.teacher .tab li').click(function(){
+		$('.content').hide();
+		$('b').show();
+		$('.teacher .tab li.active').removeClass('active');
+		$(this).addClass('active');
+		//下面需要修改 扇形表的数据
+		if($(this).text()=="已签单"){
+			$(".main").show();
+			$(".othermain").hide();
+		}else{
+			$(".main").hide();
+			$(".othermain").show();
+		}
+	})
+	yiqiandan();
+	function yiqiandan(nameStr){
+		$(".main ul").html('<li ></span>'+
+					'<div class="content"">'+
+						
+						'<p>生日：</p>'+
+						'<p>性别：</p>'+
+					'	<p>电话：</p>'+
+					'	<p>学校：</p>'+
+						'<p>班级：</p>'+
+						'<p>报名课时：课时</p>'+
+						'<p>报名时间：</p>'+
+						
+						'<p>已报名总课时：课时</p>'+
+						'<p>已消耗课时：课时</p>'+
+						'<p>剩余课时：课时</p>'+
+						
+					'</div></li>');
+			//展开显示详情
+					getAjax(hostAjax+"/api/tch/v1/getstudentsinginfo",{
+						user_id:localStorage.getItem("zhizhao_uid"),
+						studentid:location.href.split('?studentId=')[1].split('&')[0]
+					},function(data){
+						var str="",xufeiStr="";
+						if(data.Data!=""){
+							if(data.Data.createdat==""){
+								data.Data.createdat="无"
+							}
+							if(data.Data.yytime==""){
+								data.Data.yytime="无"
+							}
+							if(data.Data.remark==""){
+								data.Data.remark="无"
+							}
+							if(data.Data.yynums==""){
+								data.Data.yynums="0"
+							}
+							try{
+								for (var j=0;j<data.Data.renew_list.length;j++){
+								xufeiStr+='<p>第'+(j+1)+'次续费课时：'+data.Data.renew_list[j].classhour+'课时</p>'+
+						'<p>第'+(j+1)+'次续费时间：'+data.Data.renew_list[j].createdAt+'</p>';
+							}
+							}catch(e){
+								//TODO handle the exception
+							}
+							if(data.Data.list[0].syclasshour<=0){
+								data.Data.list[0].syclasshour=0;
+							}
+							if(data.Data.list[0].classid.length==0){
+								data.Data.list[0].classname="未分班";
+							}else{
+								data.Data.list[0].classname="";
+								for (var l=0;l<data.Data.list[0].classid.length;l++) {
+									data.Data.list[0].classname+=data.Data.list[0].classid[l].classname+"班、";
+								}
+								data.Data.list[0].classname=data.Data.list[0].classname.substring(0,data.Data.list[0].classname.length-1);
+							}
+							var shengyuStr="";
+							for (var i=0;i<data.Data.listtype.length;i++) {
+								if(data.Data.listtype[i].classhour<0){
+									data.Data.listtype[i].classhour=0;
+								}
+								shengyuStr+='<p>剩余'+data.Data.listtype[i].typename+'课时：<b class="classhour">'+data.Data.listtype[i].classhour+'</b>课时</p>'
+							}
+							$('.content').html('<p>名字：'+data.Data.list[0].NAME+'</p>'+'<p>登录账号：'+data.Data.list[0].Accountnumber+'</p>'+'<p>生日：'+data.Data.list[0].birthday+'</p>'+
+						'<p>性别：'+data.Data.list[0].sex+'</p>'+
+						'<p>电话：<a href="tel:'+data.Data.list[0].phone+'">'+data.Data.list[0].phone+'</a></p>'+
+						'<p>学校：'+data.Data.list[0].nowschool+'</p>'+
+						'<p style="line-height: 0.35rem;display:flex;margin: 0.2rem 0;"><span style="min-width: 0.8rem;">班级：</span><span style="display: inline-block;">'+data.Data.list[0].classname+'</span></p>'+
+//						'<p>报名课时：'+data.Data.list[0].classhour+'课时</p>'+
+//						'<p>报名时间：'+data.Data.list[0].createdAt+'</p>'+
+						xufeiStr+
+//						'<p>已报名总课时：'+data.Data.list[0].sumclasshour+'课时</p>'+
+						'<p>已消耗课时：'+parseFloat(data.Data.list[0].consumeclasshour) +'课时</p>'+
+//						'<p class="syks">剩余课时：<b>'+data.Data.list[0].syclasshour+'</b>课时</p>'+
+						'<div class="hideTime" style="display: ;justify-content: flex-start;padding-right: 0.5rem;">'+
+					shengyuStr+
+				'</div>'
+							
+							);
+							$(".hideTime b").each(function(){
+		if($(this).text()==0){
+			$(this).parent("p").remove();
+		}
+	})
+							if($(".hideTime b").length==0){
+				$(".hideTime").append('剩余<b class="classhour">0</b>课时常规课');
+			}
+						$("b").each(function(){
+							if($(this).text()<=8){
+								$(this).css("color","red");
+							
+								$(this).css("font-size","0.3rem");
+							}
+						})
+						}
+					})
+		}
+	function weiqiandan(nameStr){
+		getAjax(hostAjax+"/api/tch/v1/notsignedlist",{//未签单
+				user_id:uid,
+				student_name:nameStr
+			},function(data){
+				var str="";
+				if(data.Data!=""){
+					for (var i=0;i<data.Data.list.length;i++) {
+						str+='<li id="'+data.Data.list[i].id+'">'+data.Data.list[i].name+'<span><b>'+data.Data.list[i].phone+'</b><i class="iconfont icon-you"></i></span>'+
+						'<div class="content" style="display:none ;">'+
+							'<p>生日：</p>'+
+							'<p>性别：</p>'+
+							'<p>电话：</p>'+
+							'<p>学校：</p>'+
+							'<p>录入时间：</p>'+
+							'<p>上次邀约时间：</p>'+
+							'<p>预约次数：次</p>'+
+							'<p>备注：</p>'+
+							'<p style="position: relative;bottom: 0.6rem;"><span>收起<i class="iconfont icon-you"></i></span><div class="clearfix"></div></p>'+
+							
+						'</div></li>'
+					}
+					$(".othermain ul").html(str);
+					$(".othermain li i").click(function(){
+						
+						var _this=this;
+						if($(this).parents('li').find('.content').css("display")=="block"){
+							$(this).parents('li').find('.content').hide();
+							$(this).parents('li').find('b').show();
+							return false;
+						}
+						//展开显示详情
+						getAjax(hostAjax+"/api/tch/v1/getstudentsinglist",{
+							user_id:$(_this).parents("li").attr('id')
+						},function(data){
+							var str="";
+							if(data.Data!=""){
+								if(data.Data.createdat==""){
+									data.Data.createdat="无"
+								}
+								if(data.Data.yytime==""){
+									data.Data.yytime="无"
+								}
+								if(data.Data.remark==""){
+									data.Data.remark="无"
+								}
+								if(data.Data.yynums==""){
+									data.Data.yynums="0"
+								}
+								$(_this).parents("li").find('.content').html('<p>生日：'+data.Data.birthday+'</p>'+
+							'<p>性别：'+data.Data.sex+'</p>'+
+							'<p>电话：<a href="tel:'+data.Data.phone+'">'+data.Data.phone+'</a></p>'+
+							'<p>学校：'+data.Data.nowschool+'</p>'+
+							'<p>录入时间：'+data.Data.createdat+'</p>'+
+							'<p>上次邀约时间：'+data.Data.yytime+'</p>'+
+							'<p>预约次数：'+data.Data.yynums+'次</p>'+
+							'<p>备注：'+data.Data.remark+'</p>'+
+							'<p style="position: relative;bottom: 0.6rem;"><span>收起<i class="iconfont icon-you"></i></span><div class="clearfix"></div></p>')
+							}
+						})
+						$('.content').hide();
+						$('b').show();
+						$(this).parents('li').find('.content').show();
+						$(this).parents('li').find('b').hide();
+						
+					})
+				}else{
+					if($('input').val()==""){
+						
+					}else{
+						ui.showToast( '未签单中没有您要搜索的学生');
+					}
+				}
+			})
+	}
+		
+</script>
+</html>

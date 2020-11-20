@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>课时消耗</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index1.css"/>
+    <script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet prefetch" href="css/photoswipe.css">
+	<link rel="stylesheet prefetch" href="css/default-skin/default-skin.css">
+	<script src="js/photoswipe.js"></script>
+	<script src="js/photoswipe-ui-default.js"></script>
+	<style type="text/css">
+		time{
+			float: right;
+			
+		}
+		.list{
+			position: relative;
+			line-height: 0.5rem;
+			padding: 0.2rem 0.2rem;
+			border-bottom: 1px solid #eee;
+		}
+		.list img{
+			width: 0.65rem;
+			height: 0.65rem;
+			border-radius: 0.65rem;
+		}
+		.content{
+			margin-left: 0.6rem;
+			flex-grow:2;
+		}
+		.content .t{
+			margin-bottom: 0.2rem;
+			width: 100%;
+		}
+		._news {
+		    position: absolute;
+		    top: 0.3rem;
+		    z-index: 22;
+		    margin-left: -0.3rem;
+		}
+	</style>
+</head>
+<body class="up-page consumeTime" >
+	<div class="up-page-wrapper" style="margin-top: 0.5rem;">
+		<!--<div class="list">
+			二阶 小涂老师 8:30:00-9:30:00 常规课  <time>2018/12/15</time>
+		</div>-->
+		<!--<div class="clearfix"></div>-->
+	</div>
+</body>
+<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//	$(".imgLists img").eq(0)[0].onload=function(){
+//			console.log($(".imgLists img").eq(0).css("width")+"---"+$(".imgLists img").eq(0).css("height"))
+//			if(parseInt($(".imgLists img").eq(0).css("width"))>parseInt($(".imgLists img").eq(0).css("height"))){
+////				alert(2)
+//			}
+//	}
+var items=[],pswpElement,options={},gallery=undefined,if_lists_model=true;
+	var ui = window.CUMS.UI,str="",imgurllist="",imgStr="";
+	var pageindex=1,pagesize=20;
+//	ui.showToast( '板块正在开发！');
+goIndex();
+function goIndex(){
+	getAjax(hostAjax+"/api/stu/v1/getstudentclasslist",{//所有的消息
+		user_id:location.href.split("?studentId=")[1].split("&")[0],
+		pageindex:pageindex,
+		pagesize:pagesize
+	},function(data){
+		if(data.Code==1000){
+			ui.showToast( '暂时没有消息');
+			return false;
+		}
+		if_lists_model=true;
+		var teacherImg="img/default_person.png",hiteStr='<div class="_news"><div class="ifHite hite"></div></div>';
+		if(data.Data!=""){
+			for (var i=0;i<data.Data.list.length;i++) {
+				if(new Date("2018/11/17")-new Date(data.Data.list[i].dateweek.split(" ")[0])==0||new Date("2018/11/10")-new Date(data.Data.list[i].dateweek.split(" ")[0])==0){
+					str+='<div class="list">系统开发中 <time>'+data.Data.list[i].dateweek.split(" ")[0]+'</time>'+
+			'		<div class="clearfix"></div>'+
+		'</div>';
+				}else{
+					str+='<div class="list">'+
+			data.Data.list[i].subjectname+' '+data.Data.list[i].teacherid+' '+data.Data.list[i].starttime.split(" ")[1]+'-'+data.Data.list[i].endtime.split(" ")[1]+' '+data.Data.list[i].subjecttype+' '+data.Data.list[i].classhour+'课时 <time>'+data.Data.list[i].dateweek.split(" ")[0]+'</time>'+
+			'		<div class="clearfix"></div>'+
+		'</div>';
+				}
+		
+			
+			}
+			$(".up-page-wrapper").html(str);
+//			location.href="studyhistry.html?studentId="+studentId+"&curriculumid="+location.href.split("?id=")[1].split("&")[0];
+		}
+	})
+}
+	
+
+</script>
+</html>

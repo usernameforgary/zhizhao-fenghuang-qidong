@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>转班审批</title>
+    <link rel="stylesheet" href="../css/conmosui.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/xzdzbsp.css">
+  </head>
+  <body>
+    <div class="warp">
+      <div class="background">
+        <div class="nav-warp">
+          <div class="nav-hiade " style=" border-bottom: 1px solid #861420; color: #861420">待审核</div>
+          <div class="nav-hiade brim">已同意</div>
+          <div class="nav-hiade">已驳回</div>
+        </div>
+        <div class="content" style="flex: 1; overflow-y: auto">
+          <!-- 待审核 -->
+          <div class="text" style="display: block"></div>
+          <!-- 已同意 -->
+          <div class="text"></div>
+          <!-- 驳回 -->
+          <div class="text"></div>
+          <div class="popup">
+            <div class="warp-poput">
+              <div class="sp-warp">
+                <p class="sp-size">是否同意审批</p>
+                <span class="r-font">X</span>
+              </div>
+              <textarea placeholder="请输入驳回理由" class="wenben" id="ipt"></textarea>
+              <div class="nav-button">
+                <span class="bohui agree" data-id="2">同意</span>
+                <span class="bohui reject" data-id="3">驳回</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../js/rem.js"></script>
+  <script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../js/conmosui.js"></script>
+  <script src="../js/long.js"></script>
+  <script>
+    var target;
+
+    $('.nav-hiade').click(function () {
+      $('.text').eq($(this).index()).css({
+        display: 'block'
+      }).siblings().css({
+        display: 'none'
+      });
+      $(this).css({
+        borderBottom: '1px solid #861420',
+        color: '#861420'
+      }).siblings().css({
+        borderBottom: '1px solid #fff',
+        color: '#fff',
+      });
+    });
+    $('.r-font').click(function () {
+      $('.popup').css({ display: 'none' })
+    });
+    $('.popup .bohui').click(function () {
+      $('.popup').css({ display: 'none' });
+      ui.showLoading();
+      getAjax(
+        hostAjax + '/api/overpipe/v1/auditshiftstudent',
+        {
+          userid: +localStorage.zhizhao_uid,
+          id: target,
+          types: +$(this).attr('data-id'),
+        },
+        function (data) {
+          ui.showToast(data.Msg).css({ position: 'fixed', width: '100%', marginTop: '100px' });
+          $('#commonUILoading').remove();
+          if (data.Code === 200) {
+            fetchData();
+          }
+        },
+      );
+    });
+
+
+    function fetchData() {
+      ui.showLoading();
+      var num = 0;
+      $('.text').html('');
+      getAjax(
+        hostAjax + '/api/overpipe/v1/selectshiftrecordlist',
+        {
+          userid: +localStorage.zhizhao_uid,
+          state: 1,
+        },
+        function (data) {
+          if (data.Code === 200) {
+            $('.text').eq(0).html(data.Data.list.map(x => `
+            <div class="box-list">
+              <div>
+                <span class="classandgrade">学生姓名:</span>
+                <span class="mind">${x.studentname}</span>
+                <span class="classandgrade tite">提交老师:</span>
+                <span class="mind">${x.teachername}</span>
+              </div>
+              <div>
+                <span class="classandgrade">提交时间:</span>
+                <span class="mind">${x.createdAt}</span>
+              </div>
+              <div>
+                <strong class="classandgrade zt-color">原班级:</strong>
+                <strong class="mind zt-color">${x.oldclassname}</strong>
+              </div>
+              <div>
+                <strong class="classandgrade zt-color">被转班级:</strong>
+                <strong class="mind zt-color">${x.newclassname}</strong>
+                <div style="text-align: right; padding: 0 .2rem .1rem 0"><span class="button review" data-id="${x.id}">审核</span></div>
+              </div>
+            </div>
+            `).join(''));
+          }
+          if (++num === 3) $('#commonUILoading').remove();
+          $('.review').click(function () {
+            $('#ipt').val('');
+            $('.popup').css({ display: 'block' });
+            target = +$(this).attr('data-id');
+          });
+        }
+      );
+
+      getAjax(
+        hostAjax + '/api/overpipe/v1/selectshiftrecordlist',
+        {
+          userid: +localStorage.zhizhao_uid,
+          state: 2,
+        },
+        function (data) {
+          if (data.Code === 200) {
+            $('.text').eq(1).html(data.Data.list.map(x => `
+            <div class="box-list">
+              <div>
+                <span class="classandgrade">学生姓名:</span>
+                <span class="mind">${x.studentname}</span>
+                <span class="classandgrade tite">提交老师:</span>
+                <span class="mind">${x.teachername}</span>
+              </div>
+              <div>
+                <span class="classandgrade">提交时间:</span>
+                <span class="mind">${x.createdAt}</span>
+              </div>
+              <div>
+                <strong class="classandgrade zt-color">原班级:</strong>
+                <strong class="mind zt-color">${x.oldclassname}</strong>
+              </div>
+              <div>
+                <strong class="classandgrade zt-color">被转班级:</strong>
+                <strong class="mind zt-color">${x.newclassname}</strong>
+                <div style="text-align: right; padding: 0 .2rem .1rem 0"><span class="button" data-id="${x.id}">已同意</span></div>
+              </div>
+            </div>
+            `).join(''));
+          }
+          if (++num === 3) $('#commonUILoading').remove();
+        }
+      );
+
+      getAjax(
+        hostAjax + '/api/overpipe/v1/selectshiftrecordlist',
+        {
+          userid: +localStorage.zhizhao_uid,
+          state: 3,
+        },
+        function (data) {
+          if (data.Code === 200) {
+            $('.text').eq(2).html(data.Data.list.map(x => `
+            <div class="box-list">
+              <div>
+                <span class="classandgrade">学生姓名:</span>
+                <span class="mind">${x.studentname}</span>
+                <span class="classandgrade tite">提交老师:</span>
+                <span class="mind">${x.teachername}</span>
+              </div>
+              <div>
+                <span class="classandgrade">提交时间:</span>
+                <span class="mind">${x.createdAt}</span>
+              </div>
+              <div class="">
+                <strong class="classandgrade zt-color">原班级:</strong>
+                <strong class="mind zt-color">${x.oldclassname}</strong>
+              </div>
+              <div class="">
+                <strong class="classandgrade zt-color">被转班级:</strong>
+                <strong class="mind zt-color">${x.newclassname}</strong>
+              </div>
+              <div>
+                <span class="classandgrade">驳回理由:</span>
+                <span class="mind">${x.Reason}</span>
+                <div style="text-align: right; padding: 0 .2rem .1rem 0"><span class="button">已驳回</span></div>
+              </div>
+            </div>
+            `).join(''));
+          }
+          if (++num === 3) $('#commonUILoading').remove();
+        }
+      );
+    }
+    fetchData();
+  </script>
+</html>

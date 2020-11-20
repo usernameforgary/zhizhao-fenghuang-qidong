@@ -1,0 +1,823 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
+    />
+    <title>学员详情</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/commonUI.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/index1.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css" />
+    <link rel="stylesheet prefetch" href="../../css/photoswipe.css" />
+    <link
+      rel="stylesheet prefetch"
+      href="../../css/default-skin/default-skin.css"
+    />
+    <link rel="stylesheet" href="../../css/weui.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../css/simplePagination.css"
+    />
+    <link rel="stylesheet" href="../../css/History.min.css" />
+    <script
+      src="../../js/const.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <script
+      src="../../js/resize.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <script src="../../js/photoswipe.js"></script>
+    <script src="../../js/photoswipe-ui-default.js"></script>
+    <style>
+        .item-btn-style {
+            background-color: #efb511;
+            border: 1px solid #f0ba32;
+            border-radius: 0.1rem;
+            font-size: 0.24rem;
+            font-family: PingFang;
+            font-weight: 500;
+            color: #232323;
+            text-align: center;
+            padding: 0.09rem 0.2rem;
+            line-height: 0.24rem;
+        }
+        th {
+            border: 1px solid gray;
+            width: 25%;
+        }
+        td {
+            text-align: center;
+            color:#f0ba32;
+            border: 1px solid gray;
+        }
+        .no-top-border {
+            border-top: none;
+        }
+        .no-left-border {
+            border-left: none;
+        }
+    </style>
+  </head>
+
+  <body class="up-page">
+    <div class="genjin_box">
+      <div class="_bottom">
+        <div class="content">
+          <textarea name="" id="text" cols="30" rows="10"></textarea>
+          <div class="btn">
+            <div class="hidegenjin_box">取 &nbsp;&nbsp;消</div>
+            <div class="addgenjin">确 &nbsp;&nbsp;定</div>
+          </div>
+          <div class="appointmentrecord_content" style="display: block;">
+            <div class="genjinstitle">
+              邀约记录：
+            </div>
+            <div class="clearFix"></div>
+            <div class="list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="up-page-wrapper formalStudentBox">
+      <div class="_top">
+        <div class="leftBox">
+          <img src="../../img/default_person.png" alt="" srcset="" />
+          <div>
+            <div id="student_name">
+              <span>xxx</span>
+              <img id="sex" src="../../img/man.png" alt="" srcset="" />
+            </div>
+            <div id="sign">...</div>
+          </div>
+        </div>
+        <div class="rightBox">
+          <a id="editStudent" href="">编辑学员资料</a>
+          <div class="clearFix"></div>
+          <div class="opration">
+            <a id="paiban" href="">
+              排班转班
+            </a>
+            <a id="xufei" href="">
+              续费
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="_center"></div>
+      <div class="_bottom">
+        <div class="tab">
+          <div class="item classrecord_tab active">上课记录</div>
+          <div class="item paymentrecord_tab">缴费记录</div>
+          <div class="item appointmentrecord_tab">约见记录</div>
+        </div>
+        <div class="content">
+          <div class="classrecord_content">
+            <div class="list"></div>
+          </div>
+          <div class="paymentrecord_content">
+            <div class="list"></div>
+          </div>
+          <div class="appointmentrecord_content">
+            <div class="topBtn showgenjin">
+              添加跟进记录
+            </div>
+            <div class="clearFix"></div>
+            <div class="list"></div>
+          </div>
+        </div>
+      </div>
+      <div class="zhuanrang1" style="display:none"></div>
+    </div>
+    <div class="imglist_box">
+      <div class="bg"></div>
+      <div class="box">
+        <div class="imgLists"></div>
+      </div>
+    </div>
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="pswp__bg"></div>
+      <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+          <div class="pswp__top-bar">
+            <div class="pswp__counter"></div>
+            <button
+              class="pswp__button pswp__button--close"
+              title="Close (Esc)"
+            ></button>
+            <button
+              class="pswp__button pswp__button--zoom"
+              title="Zoom in/out"
+            ></button>
+            <div class="pswp__preloader">
+              <div class="pswp__preloader__icn">
+                <div class="pswp__preloader__cut">
+                  <div class="pswp__preloader__donut"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"
+          >
+            <div class="pswp__share-tooltip"></div>
+          </div>
+          <button
+            class="pswp__button pswp__button--arrow--left"
+            title="Previous (arrow left)"
+          ></button>
+          <button
+            class="pswp__button pswp__button--arrow--right"
+            title="Next (arrow right)"
+          ></button>
+          <div class="pswp__caption">
+            <div class="pswp__caption__center"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+  <script
+    src="../../js/jquery-3.3.1.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/jquery.simplePagination.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/commonUI.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/utils.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/mobileSelect.min.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script
+    src="../../js/datePicker.js"
+    type="text/javascript"
+    charset="utf-8"
+  ></script>
+  <script src="../../js/jquery-weui.min.js"></script>
+  <script>
+    var datalist = ''
+    var items = [],
+      pswpElement,
+      options = {},
+      gallery = undefined,
+      ajaxdata
+    pswpElement = document.querySelectorAll('.pswp')[0]
+    $('.imglist_box .bg').click(function() {
+      $('.imglist_box').hide()
+    })
+    $('.imglist_box').click(function(event) {
+      if ($(event.target).hasClass('wrap')) {
+        console.log(1111)
+        items = []
+        var _this = this
+        for (
+          var z = 0;
+          z <
+          $(event.target)
+            .parent('.imgLists')
+            .find('.wrap').length;
+          z++
+        ) {
+          items.push({
+            src: $(
+              $(event.target)
+                .parent('.imgLists')
+                .find('.wrap')[z]
+            )
+              .find('img')
+              .attr('src'),
+            w: parseInt(
+              $(
+                $(event.target)
+                  .parent('.imgLists')
+                  .find('.wrap')[z]
+              )
+                .find('.w')
+                .text()
+            ),
+            h: parseInt(
+              $(
+                $(event.target)
+                  .parent('.imgLists')
+                  .find('.wrap')[z]
+              )
+                .find('.h')
+                .text()
+            )
+          })
+        }
+        options = {
+          index: parseInt($(event.target).attr('index')) // start at first slide
+        }
+        console.log(items, options)
+        gallery = new PhotoSwipe(
+          pswpElement,
+          PhotoSwipeUI_Default,
+          items,
+          options
+        )
+        gallery.init()
+      }
+    })
+    $('.classrecord_content').click(function(e) {
+      if ($(e.target).hasClass('showPicture')) {
+        $('.imglist_box').show()
+        let imgStr = ''
+        for (
+          let i = 0;
+          i <
+          $(e.target)
+            .attr('data-imglist')
+            .split('|').length;
+          i++
+        ) {
+          const element = $(e.target)
+            .attr('data-imglist')
+            .split('|')[i]
+          imgStr +=
+            '<div class="wrap" index=' +
+            i +
+            ' style="background-image: url(' +
+            element +
+            ');"><img src="' +
+            element +
+            '" style="display:none" /><span class="w">1600</span><span class="h">1200</span></div>'
+        }
+        $('.imgLists').html(imgStr)
+      }
+    })
+
+    var weekdayArr = [],
+      teacherId = [],
+      chooseId = 0
+    var Select = undefined
+    getAjax(
+      FenghuangConst.hostAjax + '/api/principal/v1/selectteacherlist',
+      {
+        //查看所有老师
+        user_id: uid
+      },
+      function(data) {
+        var str = '',
+          haseCommite = '',
+          imgUrl
+        if (data.Data != '') {
+          for (var i = 0; i < data.Data.list.length; i++) {
+            weekdayArr.push(data.Data.list[i].nickname)
+            teacherId.push(data.Data.list[i].id)
+          }
+        }
+      }
+    )
+
+    $('.formalStudentBox').click(function(e) {
+      if ($(e.target).hasClass('zhuanrang')) {
+        if (Select !== undefined) {
+          Select.show()
+          $('.mobileSelect .content').show()
+        } else {
+          Select = new MobileSelect({
+            trigger: '.zhuanrang1',
+            title: '选择老师',
+            wheels: [{ data: weekdayArr }],
+            position: [2], //初始化定位 打开时默认选中的哪个 如果不填默认为0
+            transitionEnd: function(indexArr, data) {},
+            callback: function(indexArr, data) {
+              chooseId = teacherId[indexArr]
+              ui.showAlert(
+                '是否确认转让给' + data[0],
+                function() {
+                  //调取转让接口
+                  getAjax(
+                    FenghuangConst.hostAjax + '/api/tch/v1/transferstudent',
+                    {
+                      //老师电话邀约之后的备注
+                      user_id: parseInt(uid),
+                      teacherid: parseInt(chooseId),
+                      studentid: GetQueryString('id')
+                    },
+                    function(data) {
+                      if (data.Code == 200) {
+                        ui.showToast('成功！')
+                      } else {
+                        ui.showToast(data.Msg)
+                      }
+                    }
+                  )
+                },
+                null,
+                '确认',
+                '取消',
+                '提示'
+              )
+            }
+          })
+          Select.show()
+        }
+      }
+    })
+    $('.formalStudentBox').click(function(e) {
+      if ($(e.target).hasClass('showgenjin')) {
+        $('.genjin_box').show()
+      }
+    })
+    $('.addgenjin').click(function(e) {
+      if (
+        $('#text')
+          .val()
+          .trim().length < 8
+      ) {
+        ui.showToast('跟进内容不能少于8个字！', 2000)
+        return false
+      }
+      $.showLoading()
+      let params = {
+        userid: uid,
+        studentid: GetQueryString('id'),
+        content: $('#text').val(),
+        type: '1',
+        remark: ''
+      }
+      postAjax(
+        FenghuangConst.hostAjax + '/api/tch/v1/addappointmentcord',
+        JSON.stringify(params),
+        function(data) {
+          hideLoading()
+          if (data.Code === 200) {
+            $('.genjin_box').hide()
+            $('#text').val('')
+            getRecord()
+          } else {
+            ui.showToast(data.Msg)
+          }
+        }
+      )
+    })
+    $('.hidegenjin_box').click(function(params) {
+      $('#text').val('')
+      $('.genjin_box').hide()
+    })
+    $('#editStudent').attr(
+      'href',
+      `./editStudent.html?id=${GetQueryString('id')}&type=formalStudent`
+    )
+    $('#paiban').attr('href', `../paiban/tap.html?id=${GetQueryString('id')}`)
+    $('#xufei').attr(
+      'href',
+      `../xufei/newStudentPro.html?id=${GetQueryString('id')}`
+    )
+    $('.formalStudentBox ._bottom .tab .item').click(function() {
+      $('.formalStudentBox ._bottom .tab .item.active').removeClass('active')
+      $(this).addClass('active')
+      let html = $(this).html()
+      $('.formalStudentBox ._bottom .content>div').hide()
+      getRecord(html)
+      switch (html) {
+        case '上课记录':
+          $('.classrecord_content .list').html('')
+          $('.classrecord_content').show()
+          break
+        case '缴费记录':
+          $('.paymentrecord_content .list').html('')
+          $('.paymentrecord_content').show()
+          break
+        default:
+          $('.appointmentrecord_content .list').html('')
+          $('.appointmentrecord_content').show()
+          break
+      }
+    })
+    function hideLoading() {
+      $('.weui-mask_transparent').remove()
+      $('.weui-toast.weui_loading_toast').remove()
+    }
+    function GetQueryString(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+      var r = window.location.search.substr(1).match(reg)
+      if (r != null) return unescape(r[2])
+      return null
+    }
+
+    // 获取学员信息
+    function getStudent() {
+      $.showLoading()
+      $('.isStudent').html('')
+      getAjax(
+        FenghuangConst.hostAjax + '/api/tch/v1/getstudentsinginfo',
+        {
+          //已签单
+          user_id: uid,
+          studentid: GetQueryString('id')
+        },
+        function(data) {
+          hideLoading()
+          if (data.Data != '') {
+            let { Data } = data
+            let { list } = Data
+            $('#student_name span').html(list[0].NAME)
+            if (list[0].sex === '男') {
+              $('#sex').attr('src', '../../img/man.png')
+            } else {
+              $('#sex').attr('src', '../../img/woman.png')
+            }
+            $('#sign').html(list[0].followup)
+            let signClass = ''
+            if (list[0].followup === '待跟进') {
+              signClass = ''
+            } else if (list[0].followup === '跟进中') {
+              signClass = 'orange'
+            } else if (list[0].followup === '已约课') {
+              signClass = 'red'
+            } else if (list[0].followup === '已失效') {
+              signClass = 'gray'
+            }
+            $('#sign').addClass(signClass)
+            $('#sign1').html(list[0].Intention)
+            // $('#paiban').attr('src', '../paiban/tap.html?id=' + list[0])
+            let html = ''
+            html += `
+                    <div class="item">
+                      <div>
+                        出生日期：${list[0].birthday}
+                      </div>
+                      <div>
+                        手机号：<a class="underline" href="tel:${list[0].phone}">${list[0].phone}</a>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div>
+                        就读学校：${list[0].nowschool}
+                      </div>
+                      <div>当前年级：${list[0].nowgrade}</div>
+                    </div>
+                    <div class="item">
+                      <div>家长账号：${list[0].Accountnumber}</div>
+                    </div>
+                    <div class="item">
+                      <div>学员来源：${list[0].source}</div>
+                    </div>
+                    <div class="item">
+                      <div>跟进人：${list[0].followupperson} <span class="sign zhuanrang">学员转让</span></div>
+                    </div>
+                    <div class="item">
+                      <div>
+                        上次邀约时间：${list[0].appointmentcordtime}
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div>班级：`
+            for (let i = 0; i < list[0].classid.length; i++) {
+              const element = list[0].classid[i]
+              html += `${element.classname}`
+              if (i < list[0].classid.length - 1) {
+                html += '、'
+              }
+            }
+            // html += `</div>
+            //         </div>
+            //         <div class="item">
+            //           <div>
+            //             下节课：`
+            // for (let i = 0; i < Data.nextclasslist.length; i++) {
+            //   const element = Data.nextclasslist[i]
+            //   html += `<span class="underline">${element.classname}</span>`
+            //   if (i < Data.nextclasslist.length - 1) {
+            //     html += '、'
+            //   }
+            // }
+            
+            html += `</div>
+                    </div>
+                    <div class="item">
+                      <div>
+                        标签：${list[0].studentlable}
+                      </div>
+                    </div>
+                `
+
+            if(Data.listtype && Data.listtype.length > 0) {
+                html += `
+                    <div class="item"><div class="item-btn-style">课时信息</div></div>
+                    <div class="item">
+                        <table cellspacing="0" cellpadding="0">
+                            <tr>
+                                <th>课程名称</th>
+                                <th class="no-left-border">报名/续费</th>
+                                <th class="no-left-border">已报课时</th>
+                                <th class="no-left-border">剩余课时</th>
+                            </tr>
+                    `
+                for (let i = 0; i < Data.listtype.length; i++) {
+                    const element = Data.listtype[i]
+                    html += `
+                            <tr>
+                                <td class="no-top-border">${element.subjectname}</td>
+                                <td class="no-top-border no-left-border">${element.typename}</td>
+                                <td class="no-top-border no-left-border">${element.classhour}</td>
+                                <td class="no-top-border no-left-border">${element.remainingclasshours}</td> 
+                            </tr>`
+                    if (i < Data.listtype.length - 1) {
+                        html += ' '
+                    }
+                }
+                html += `</table>
+                    </div>`;
+            }
+            
+            $('.formalStudentBox ._center').html(html)
+          }
+        }
+      )
+    }
+    function initData() {
+      //初始化学员信息
+      getStudent()
+      //初始化记录
+      let record = $('.formalStudentBox ._bottom>.tab>.item').filter(item => {
+        return $('.formalStudentBox ._bottom>.tab>.item')
+          .eq(item)
+          .hasClass('active')
+      })
+      getRecord($(record).html())
+    }
+    initData()
+    // 获取记录
+    function getRecord(type) {
+      console.log(type)
+      $.showLoading()
+      let url = ''
+      let data = {}
+      if (type === '上课记录') {
+        url = '/api/stu/v1/getstudetnclassroominfos'
+        data = {
+          user_id: GetQueryString('id'),
+          curriculumid: ''
+        }
+      } else if (type === '缴费记录') {
+        url = '/api/tch/v1/getpaycordlist'
+        data = {
+          user_id: uid,
+          studentid: GetQueryString('id'),
+          pageindex: 1,
+          pagesize: 10
+        }
+      } else {
+        url = '/api/tch/v1/getappointmentcordlist'
+        data = {
+          teacherid: '',
+          user_id: GetQueryString('id')
+        }
+      }
+
+      getAjax(FenghuangConst.hostAjax + url, data, function(data) {
+        hideLoading()
+        if (data.Data != '') {
+          let html = ''
+          if (type === '上课记录') {
+            for (let i = 0; i < data.Data.length; i++) {
+              const element = data.Data[i]
+              html += `
+                    <div class="list-item">
+                        <div>
+                          <div class="left">
+                            <div class="header_pic_box">
+                              <img
+                                class="header_pic"
+                                src="${
+                                  element.teacherimg !== ''
+                                    ? element.teacherimg
+                                    : '../../../img/default_person.png'
+                                }"
+                                alt=""
+                                srcset=""
+                              />
+                            </div>
+                            <div class="name">${element.teachername}</div>
+                            <div class="time">${element.dateweek.substring(0,10)}</div>
+                            <div class="time">${element.starttime}</div>
+                            <div class="time">${element.endtime}</div>
+                            <div class="showPicture" style="display:${
+                              element.imgurllist.length != 0 ? 'block' : 'block'
+                            }" data-imglist="${
+                element.imgurllist
+              }">查看图片</div>
+                          </div>
+                          <div class="right"><div></div></div>
+                        </div>
+                        <div>
+                          <div>
+                            <div>
+                              ${element.principalsevaluation}
+                            </div>
+                          </div>
+                          <div class="discussbtn">
+                            <img src="../../img/discuss_icon.png" alt="" srcset="" />
+                          </div>
+                          <div class="discuss" style="display:${
+                            element['pinglun_' + element.id].length === 0
+                              ? 'none'
+                              : 'block'
+                          }">
+                          `
+              for (
+                let i = 0;
+                i < element['pinglun_' + element.id].length;
+                i++
+              ) {
+                const element = element['pinglun_' + element.id][i]
+                html += `
+                            <div>
+                              <span class="blue">可乐老师：</span
+                              >小朋友真的比上节课进步了很多，要继续努力呀！
+                            </div>
+                            <div>
+                              <span class="blue">家长：</span
+                              >谢谢老师，以后我会督促小孩的。
+                            </div>
+                    `
+              }
+              html += `</div>
+                        </div>
+                      </div>
+                    `
+            }
+            $('.classrecord_content .list').html(html)
+          } else if (type === '缴费记录') {
+            for (let i = 0; i < data.Data.list.length; i++) {
+              const element = data.Data.list[i]
+              html += `
+                      <div class="list-item">
+                          <div>
+                            <div class="left">
+                              <div class="header_pic_box">
+                                <img
+                                  class="header_pic"
+                                  src="${
+                                    element.imgurl !== ''
+                                      ? element.imgurl
+                                      : '../../../img/default_person.png'
+                                  }"
+                                  alt=""
+                                  srcset=""
+                                />
+                              </div>
+                              <div class="name">${element.NAME}</div>
+                              <div class="time">${element.createdAt}</div>
+                            </div>
+                            <div class="right"><div></div></div>
+                          </div>
+
+                          <div>
+                            <div>
+                              <div class="item">
+                                <div>
+                                  <div>缴费课时</div>
+                                  <div>${element.classhour}</div>
+                                </div>
+                              </div>
+                              <div class="item">
+                                <div>
+                                  <div>收据类型</div>
+                                  <div>${element.typename}</div>
+                                </div>
+                              </div>
+                              <div class="item">
+                                <div>
+                                  <div></div>
+                                  <div></div>
+                                </div>
+                              </div>
+                              <div class="item">
+                                <div>
+                                  <div>应收金额</div>
+                                  <div>${element.price}</div>
+                                </div>
+                              </div>
+                              <div class="item">
+                                <div>
+                                  <div>实收金额</div>
+                                  <div>${element.e_price}</div>
+                                </div>
+                              </div>
+                              <div class="item">
+                                <div>
+                                  <div>未收金额</div>
+                                  <div>${element.amounttobepaid}</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>`
+            }
+            $('.paymentrecord_content .list').html(html)
+          } else {
+            for (let i = 0; i < data.Data.list.length; i++) {
+              const element = data.Data.list[i]
+              html += `
+                      <div class="list-item">
+                          <div>
+                            <div class="left">
+                              <div class="header_pic_box">
+                                <img
+                                  class="header_pic"
+                                  src="${
+                                    element.imgurl
+                                      ? element.imgurl
+                                      : '../../../img/default_person.png'
+                                  }"
+                                  alt=""
+                                  srcset=""
+                                />
+                              </div>
+                              <div class="name">${element.teachername}</div>
+                              <div class="time">${element.time}</div>
+                            </div>
+                            <div class="right"><div></div></div>
+                          </div>
+
+                          <div>
+                            <div>
+                              <div>
+                                ${element.content}
+                              </div>
+                            </div>
+                          </div>
+                        </div>`
+            }
+            $('.appointmentrecord_content .list').html(html)
+          }
+        } else {
+          ui.showToast('暂无记录', 2000)
+        }
+      })
+    }
+  </script>
+</html>

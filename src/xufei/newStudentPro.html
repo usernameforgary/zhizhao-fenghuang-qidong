@@ -1,0 +1,501 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+	<title>学员续费</title>
+	<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../../iconfont/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/commonUI.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/index.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/mobileSelect.css" />
+	<script src="../../js/resize.js" type="text/javascript" charset="utf-8"></script>
+	<style type="text/css">
+		body {
+			background-image: url(../../img/bodyBg/newStudentbg@3x.jpg);
+			background-size: 100%;
+		}
+
+		.header,
+		.main,
+		.yes,
+		.no {
+			font-size: 0.26rem;
+		}
+
+		.title {
+			width: 4.47rem;
+			height: 0.75rem;
+			line-height: 0.75rem;
+			background-image: url(../../img/bodyBg/newTitleBg.png);
+			background-size: 100%;
+			text-align: center;
+			color: white;
+			background-repeat: no-repeat;
+			margin: 0.5rem auto;
+		}
+
+		.header ul,
+		.yes ul,
+		.no ul {
+			padding: 0.5rem;
+		}
+
+		.header input,
+		.yes input,
+		.no input,
+		.header select,
+		.yes select,
+		.no select {
+			height: 0.6rem;
+			font-size: 0.26rem;
+			margin: 0.26rem 0;
+			padding-left: 0.16rem;
+			border: 1px solid #aaa;
+			box-sizing: border-box;
+		}
+
+		.main {
+			/* padding: 0.5rem; */
+		}
+
+		.haseBaoming ul li {
+			float: left;
+			width: 50%;
+		}
+
+		.haseBaoming ul li input {
+			margin-right: 0.26rem;
+			margin-top: 0.26rem;
+			margin-left: 0;
+			font-size: 0.3rem;
+			width: 0.26rem !important;
+			height: 0.26rem !important;
+		}
+
+		.up-page-wrapper button {
+			width: 6.5rem;
+			display: block;
+			margin: 1.4rem auto 1rem auto;
+			height: 0.6rem;
+			line-height: 0.6rem;
+			background-color: #EFB511;
+			border-radius: 0.6rem;
+			border: 0;
+			box-shadow: 2px 5px 2px #aaa;
+			color: white;
+			font-size: 0.26rem;
+		}
+
+		.header li {
+			line-height: 0.6rem;
+		}
+
+		.tuio {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 20px;
+			font-size: 16px;
+		}
+	</style>
+</head>
+
+<body class="up-page">
+	<div class="up-page-wrapper">
+		<div class="header">
+			<div class="title">凤凰机器人续费表</div>
+			<ul class="aaaa">
+
+			</ul>
+			<ul style="padding-top: 0;padding-bottom: 0;">
+				<div style="display: flex;">
+
+					<div class="main">
+						<header style="margin-bottom: 0.2rem;">报名课程体系：</header>
+						<!-- <input style="width: 2.75rem;" type="tel" name="totleTime2" class="totleTime" value=""> -->
+						<select class="ifSign1" name="" style="width: 2.75rem;">
+							<!-- <option value="0">请选择</option> -->
+						</select>
+						<!--<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="1"  checked="checked"/>	<label for="">非学员</label>	&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+							<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="2" />		<label for="">学员</label>-->
+
+					</div>
+					<div class="main" style="margin-left: 0.8rem;">
+						<header style="margin-bottom: 0.2rem;">课程名称：</header>
+						<!-- <input style="width: 2.75rem;" type="tel" name="totleTime2" class="totleTime" value=""> -->
+
+						<select class="ifSign2" name="" style="width: 2.75rem;">
+							<!-- <option value="">请选择</option> -->
+						</select>
+
+						<!--<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="1"  checked="checked"/>	<label for="">非学员</label>	&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+							<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="2" />		<label for="">学员</label>-->
+
+					</div>
+
+				</div>
+				<div style="display: flex;">
+
+					<div class="main">
+						<header style="margin-bottom: 0.2rem;">购买课时：</header>
+						<input style="width: 2.75rem;" type="tel" name="totleTim" class="totleTime" value="" disabled="disabled">
+						<!--<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="1"  checked="checked"/>	<label for="">非学员</label>	&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+						<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="2" />		<label for="">学员</label>-->
+
+					</div>
+					<div class="main" style="margin-left: 0.8rem;">
+						<header style="margin-bottom: 0.2rem;">续费金额：</header>
+						<input style="width: 2.75rem;" type="tel" name="totleTi" class="totleTim" value="" disabled="disabled">
+						<!--<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="1"  checked="checked"/>	<label for="">非学员</label>	&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+						<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="2" />		<label for="">学员</label>-->
+
+					</div>
+
+				</div>
+				<div class="changgui">
+					<div class="addCourseType secondShow">
+						<li style="float: left;margin-right: 0.9rem;"><label for="money">赠送课时类型：</label><br /><select
+								class="courseType1" name="" style="width: 2.75rem;">
+								<option value="1">活动课时</option>
+								<option value="2">专项课时</option>
+							</select></li>
+						<li><label for="totleTime2">赠送课时：</label><br /><input style="width: 2.75rem;" type="tel"
+								name="totleTime2" id="totleval" value="" /></li>
+
+					</div>
+				</div>
+				<li class="changguike"></li>
+				<p style="clear: both;"></p>
+				<li class="addCourseType">
+
+				</li>
+				<!-- <li><label for="xufeiTime">优惠金额：</label><br /><input style="width: 2.75rem;" type="tel" name="xufeiTime"
+						id="xufeiTime" value="" /></li> -->
+						<div style="display: flex;">
+
+							<div class="main">
+								<header style="margin-bottom: 0.2rem;">优惠金额：</header>
+								<input style="width: 2.75rem;" type="tel" name="totleTim" class="totleTi" value="">
+								<!--<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="1"  checked="checked"/>	<label for="">非学员</label>	&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+								<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="2" />		<label for="">学员</label>-->
+		
+							</div>
+							<div class="main" style="margin-left: 0.8rem;">
+								<header style="margin-bottom: 0.2rem;">合计金额：</header>
+								<input style="width: 2.75rem;" type="tel" name="totleTi" class="totleTiml" value="" disabled="disabled">
+								<!--<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="1"  checked="checked"/>	<label for="">非学员</label>	&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+								<input style="width: 18px;height: 18px;position: relative;top: 3px;"  type="radio" name="aaa" id="" value="2" />		<label for="">学员</label>-->
+		
+							</div>
+		
+						</div>
+				<!-- <div class="addIcon" style="text-align: center;"><i class="iconfont icon-plus-add" style="font-size: 0.5rem;color: #888; border: 1px solid #888;width: 0.6rem;height: 0.6rem;border-radius: 0.6rem;"></i></div> -->
+				<li style="clear: both;"><label for="hetongNum">合同编号：</label><br /><input style="width: 100%;"
+						type="text" name="hetongNum" id="hetongNum" value="" /></li>
+
+				<div class="wop">
+					<div class="tuio">
+						<p>已报名总课时：</p>
+						<p>剩余课时</p>
+						<p>已消耗课时</p>
+					</div>
+					<div class="tuio">
+						<p class="purchasehour">0</p>
+						<p class="classhour">0</p>
+						<p class="consumeclasshour">0</p>
+					</div>
+				</div>
+
+
+
+				<li><label for="remark">备注：</label><br /><input style="width: 100%;" type="text" name="remark"
+						id="remark" value="" /></li>
+
+			</ul>
+			<ul class="bbbb" style="padding-top: 0;">
+
+			</ul>
+		</div>
+		<button>提交</button>
+	</div>
+</body>
+<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI;
+	var ajaxData, ifClick = true;
+	//	ui.showToast( '板块正在开发！');
+ $.ajax({
+	url: 'http://139.224.133.133:8088//api/tch/v1/getstudentclasshour',
+			data: {
+				studntid: location.href.split("id=")[1].split("&")[0] //课程系列
+			},
+			success:function(data){
+				console.log(data)
+				$('.purchasehour').text(data.Data[0].purchasehour)
+				$('.classhour').text(data.Data[0].classhour)
+				$('.consumeclasshour').text(data.Data[0].consumeclasshour)
+			}
+ })
+
+	$(function () {
+		// $('.ifSign1').change(function () {
+		$.ajax({
+			// type:'get',
+			url: 'http://139.224.133.133:8088/api/tch/v1/getgoodslist',
+			data: {
+				subjectid: 0, //课程系列
+			},
+			success: function (data) {
+				console.log(data)
+				htm = ''
+				for (var i = 0; i < data.Data.length; i++) {
+
+					htm += `
+						
+  <option class="dxval" value="${data.Data[i].id}">${data.Data[i].NAME}</option>
+
+		`
+				}
+				// $('.ifSign1').html(htm)
+				$(".ifSign1").html("<option value='0'>请选择</option>" + htm);
+				$('.ifSign1').change(function () {
+					var pok = $(this).val()
+					localStorage.setItem('poi', $(this).val())
+					console.log($(this).val())
+
+					$.ajax({
+						// type:'get',
+						url: 'http://139.224.133.133:8088/api/tch/v1/getgoodslist',
+						data: {
+							subjectid: pok ,//课程名称
+							
+						},
+						success: function (data) {
+							console.log(data)
+							htm = ''
+							for (var i = 0; i < data.Data.length; i++) {
+								htm += `
+	
+     	<option  class='poj' value="${data.Data[i].id}" data-id="${data.Data[i].totalprice}">${data.Data[i].NAME}</option>
+
+
+			`
+							}
+							console.log(data.Data)
+							$(".ifSign2").html(
+								"<option value='0'>请选择</option>" + htm);
+							$('.ifSign2').change(function () {
+                                  $.ajax({
+									url: 'http://139.224.133.133:8088/api/tch/v1/getgoodslist',
+						data: {
+							subjectid: pok ,//课程名称
+							coursefeesid:$(this).val()
+						},
+						success:function(data){
+							   console.log(data.Data[0].num)
+							   localStorage.setItem('yunum',data.Data[0].num)
+							   localStorage.setItem('yhnum',data.Data[0].totalprice)
+							   console.log(data.Data[0].totalprice)
+							   $('.totleTime').val(data.Data[0].num)
+							   $('.totleTim').val(data.Data[0].totalprice)
+							   $('.totleTiml').val(data.Data[0].totalprice)
+							   $('.totleTi').change(function(){
+								$('.totleTiml').val( data.Data[0].totalprice -$('.totleTi').val())
+							   })
+						}
+								  })
+                            //   for(var j =0; j<data.Data.length;j++){
+							// 	  console.log(data.Data[j].num)
+							//   }
+							//   $(".poj").data("key", "123");
+
+								// console.log($('.poj').attr("data-id"))
+								console.log($(this).val())
+
+
+                               
+
+								// $('.totleTime').val($(this).val().substring(2))
+								localStorage.setItem('poit', $(this).val())
+							})
+						}
+					})
+
+				})
+			}
+		})
+		// })
+		// console.log(11)
+	})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	getAjax(hostAjax + "/api/course/v1/getsubjecttype", {
+
+	}, function (data) {
+		var str = "";
+		for (var s = 0; s < data.Data.length; s++) {
+			if (data.Data[s].id != 2)
+				str += '<option value="' + data.Data[s].id + '">' + data.Data[s].typename + '</option>';
+		}
+		addStr =
+			'<li style="float: left;margin-right: 0.9rem;"><label for="money">购买课时：</label><br /><select class="courseType" name=""style="width: 2.75rem;"><option value="0">请选择</option>' +
+			str +
+			'</select></li>' +
+			'<li><label for="">续费金额：</label><br /><input style="width: 2.75rem;" type="tel" name="totleTime2" class="totleTime" value="" /></li><li style="float: left;margin-right: 0.9rem;"><label for="money">购买课时类型：</label><br /><select class="courseType" name=""style="width: 2.75rem;"><option value="0">请选择</option>' +
+			str +
+			'</select></li>' +
+			'<li><label for="">赠送课时：</label><br /><input style="width: 2.75rem;" type="tel" name="totleTime2" class="totleTime" value="" /></li>';
+		// $(".changguike").html('<li style="float: left;"><header >报名课程系列：</header>'+
+		// '<select class="courseType" name=""style="width: 2.75rem;"><option value="0">请选择</option><option value="2">常规课</option>'+
+		// 	str+
+		// '</select></li>'+'<li style="float: right;"><p for="" >课程名称 ：</p><select class="courseType" name=""style="width: 2.75rem;"><option value="0">请选择</option><option value="2">常规课</option>'+
+		// 	str+
+		// '</select></li>');
+		// $(".addCourseType").html(addStr);
+
+		$(".addIcon i").click(function () {
+			$(".addCourseType").append(addStr);
+		})
+	})
+	$("button").click(function () {
+		var classhourtype = "";
+		//		if($("#money").val()!=""&&$(".totleTime").eq(0).val()==""){
+		//			ui.showToast( "请输入购买课时",1500);
+		//			return false;
+
+		//		}
+		//		if($("#money").val()==""&&$(".totleTime").eq(0).val()==""){
+		//			classhourtype="4|0,";
+		//		}
+		ui.showAlert('是否确认为' + $(".name p").text() + "学员续费", function () {
+			var stop = false;
+			if ($(".courseType").eq(0).val() == 0) {
+				ui.showToast("报名课时不能为0", 2000);
+				stop = true;
+				return false;
+			}
+			$(".totleTime").each(function (i) { //courseType
+				if ($(this).val() != "" && $(".courseType").eq(i).val() == 0) {
+					ui.showToast("请选择课时对应的课时类型", 2000);
+					stop = true;
+					return false;
+				}
+
+				if ($(this).val() != "" && $(".courseType").eq(i).val() != 0) {
+					classhourtype += $(".courseType").eq(i).val() + "|" + $(".totleTime").eq(i)
+						.val() + ",";
+				} else if ($(".courseType").eq(i).val() == 4) {
+					classhourtype += $(".courseType").eq(i).val() + "|" + 0 + ",";
+				}
+			})
+			if (stop) {
+				return false;
+			}
+			classhourtype = classhourtype.substring(0, classhourtype.length - 1);
+			ajaxData = JSON.stringify({ //续费接口
+				"userid": uid,
+				"studenid": location.href.split("id=")[1].split("&")[0],
+				//   "classhourtype":classhourtype,
+				"contractno": $("#hetongNum").val(),
+				"remark": $("#remark").val(),
+				"subjectid": localStorage.getItem('poi'),
+				"coursefeesid": localStorage.getItem('poit'),
+				"classhour": localStorage.getItem('yunum'),
+				"preferentialamount":$('.totleTi').val(),
+				"matchhour": $('#totleval').val(),
+				"activityhour": $('#totleval').val(),
+			})
+
+			if (ifClick) {
+				ifClick = false;
+				postAjax(hostAjax + "/api/tch/v1/addrenew", ajaxData, function (data) {
+					if (data.Data != "") {
+
+						ui.showToast('提交成功', 500);
+						setTimeout(function () {
+							sessionStorage.setItem("ifReload", 1);
+							// history.back();
+						}, 1000)
+					} else {
+						ui.showToast(data.Msg);
+						ifClick = true;
+					}
+				})
+			}
+		}, null, "确认", "取消", "提示");
+
+
+	})
+	getAjax(hostAjax + "/api/stu/v1/studentinfo", { //学生信息--昵称、名字、电话、头像
+		user_id: location.href.split("id=")[1].split("&")[0]
+	}, function (data) {
+		if (data.Data != "") {
+			console.log(data);
+			$(".name p").text(data.Data[0].name);
+			if (data.Data[0].imgurl != "") {
+				$(".name img").attr("src", data.Data[0].imgurl);
+			}
+			$(".class").text(data.Data[0].nowgrade);
+			$(".birthday").text(data.Data[0].birthday);
+			$(".tel").text(data.Data[0].phone);
+			if (data.Data[0].nowgrade == "") {
+				data.Data[0].nowgrade = "未填写";
+			}
+			$('.aaaa').html(
+				'<li class="name" style="float: left;margin-right: 0.9rem;width: 50%;"><label for="name">学员姓名：</label><p>' +
+				data.Data[0].name + '</p></li>' +
+				'<li><label for="six">学员性别：</label><br />' + data.Data[0].sex + '</li>' +
+				'<li><label for="birthday">学员生日：</label><br />' + data.Data[0].birthday + '</li>' +
+				'<li><label for="tel">家长联系方式：</label><br />' + data.Data[0].phone + '</li>' +
+				'<li><label for="tel">班级：</label><br />' + data.Data[0].nowgrade + '</li>')
+			getAjax(hostAjax + "/api/tch/v1/getstudentsinginfo", {
+				user_id: location.href.split("id=")[1].split("&")[0]
+			}, function (data) {
+				var str = "";
+				if (data.Data.list[0].syclasshour <= 0) {
+					data.Data.list[0].syclasshour = 0;
+				}
+				if (data.Data != "") {
+					$('.bbbb').html(
+						'<li style="float: left;width: 33.33%;"><label for="name">已报名总课时：</label><br />' +
+						data.Data.list[0].sumclasshour + '</li>' +
+						'<li style="float: left;width: 33.33%;"><label for="name">剩余课时：</label><br /><span>' +
+						parseFloat(data.Data.list[0].syclasshour <= 0 ? 0 : data.Data.list[0]
+							.syclasshour) + '<span></li>' +
+						'<li style="float: left;width: 33.33%;"><label for="name">已消耗课时：</label><br />' +
+						data.Data.list[0].consumeclasshour + '</li>');
+					if (data.Data.list[0].syclasshour <= 8) {
+						$('.bbbb li').eq(1).find("span").css("color", "red");
+						$('.bbbb li').eq(1).find("span").css("font-size", "0.3rem");
+					}
+				}
+			})
+		}
+	})
+</script>
+
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>抢课首页</title>
+		<link rel="stylesheet" href="swiper/swiper.min.css">
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			
+			body {
+				font-family: "微软雅黑";
+				font-size: 12px;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			.nowaction li,
+			.ageaction li {
+				display: flex;
+				padding: 3% 5%;
+			}
+			
+			.nowaction li p,
+			.ageaction li p {
+				font-size: 13px;
+				font-weight: 400;
+			}
+			
+			.nowaction li div,
+			.ageaction li div {
+				margin: 0 5%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+			/*.ageaction li{
+				display: flex;
+			}*/
+			
+			strong {
+				display: flex;
+				justify-content: space-between;
+				font-weight: normal;
+			}
+			
+			i,
+			em {
+				font-style: normal;
+				color: #999999;
+			}
+			
+			em {
+				font-style: normal;
+			}
+			
+			h2 {
+				height: 1.9rem;
+				background: #f7f7f7;
+				font-size: 14px;
+				display: flex;
+				padding: 0.3rem 0;
+			}
+			
+			h2 span {
+				line-height: 1.9rem;
+				color: #fbd15b;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--swiper轮播开始-->
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<img src="img/banner1@3x.png" class="swiper-slide" style="width: 40%;height: 30%;" />
+				<img src="img/banner1@3x.png" class="swiper-slide" style="width: 40%;height: 30%;" />
+				<img src="img/banner1@3x.png" class="swiper-slide" style="width: 40%;height: 30%;" />
+				<!--<div  class="swiper-slide" style="background: #f00;height: 10rem;">Slide 1</div>
+				<div class="swiper-slide" style="background: #0f0;height: 10rem;">Slide 2</div>
+				<div class="swiper-slide" style="background: #00f;height: 10rem;">Slide 3</div>-->
+			</div>
+			<!-- 如果需要分页器 -->
+			<div class="swiper-pagination"></div>
+
+			<!-- 如果需要导航按钮 -->
+			<!--<div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>-->
+
+			<!-- 如果需要滚动条 -->
+			<!--<div class="swiper-scrollbar"></div>-->
+		</div>
+		<!--swiper轮播结束-->
+
+		<!--当前活动开始-->
+		<h2><img src="img/当前活动@3x.png" style="width: 1.8rem;height: 1.8rem;margin: 0 0.5rem 0 1rem;"/><span>当前活动</span></h2>
+		<ul class="nowaction" id="nowaction">
+			<!--<li onclick="details()">
+				<img src="img/活动1@3x.png" style="width: 30%;height: 30%;"/>
+				<div class="">
+					<p>【亲自活动】植树节亲自活动特别活动</p>
+					<strong>
+						<i>3月2日(周日) 13:30</i>
+						<em>200</em>
+					</strong>
+				</div>
+				
+			</li>
+			<li>
+				<img src="img/活动2@3x.png" style="width: 30%;height: 30%;"/>
+				<div class="">
+					<p>【亲自活动】植树节亲自活动特别活动</p>
+					<strong>
+						<i>3月2日(周日) 13:30</i>
+						<em>200</em>
+					</strong>
+				</div>
+			</li>-->
+		</ul>
+		<!--当前活动结束-->
+
+		<!--历史活动开始-->
+		<h2><img src="img/历史活动@3x.png" style="width: 1.8rem;height: 1.8rem;margin: 0 0.5rem 0 1rem;"/><span>历史活动</span></h2>
+		<ul class="ageaction">
+			<!--<li>
+				<img src="img/活动3@3x.png" style="width: 30%;height: 30%;"/>
+				<div class="">
+					<p>【亲自活动】植树节亲自活动特别活动</p>
+					<strong>
+						<i>3月2日(周日) 13:30</i>
+						<em></em>
+					</strong>
+				</div>
+			</li>
+			<li>
+				<img src="img/活动4@3x.png" style="width: 30%;height: 30%;"/>
+				<div class="">
+					<p>【亲自活动】植树节亲自活动特别活动</p>
+					<strong>
+						<i>3月2日(周日) 13:30</i>
+						<em></em>
+					</strong>
+				</div>
+			</li>-->
+		</ul>
+		<!--历史活动结束-->
+
+	</body>
+	<script src="swiper/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var mySwiper = new Swiper('.swiper-container', {
+				direction: 'horizontal', // 垂直切换选项
+				loop: true, // 循环模式选项
+
+				// 如果需要分页器
+				pagination: {
+					el: '.swiper-pagination',
+				},
+
+				// 如果需要前进后退按钮
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev',
+				},
+
+				// 如果需要滚动条
+				scrollbar: {
+					el: '.swiper-scrollbar',
+				},
+			});
+
+			var str = '';
+			var strs = '';
+			$.ajax({
+				type: "get",
+				url: "http://139.224.133.133:8013/api/act/v1/currentactivitylist",
+				async: false,
+				data: {
+					orderby: 0,
+					search: '',
+					pageindex: 1,
+					pagesize: '10'
+				},
+				success: function(data) {
+					console.log(data);
+					if(data.Code == 200) {
+						for(i in data.Data.list) {
+							str += `<li onclick="window.location.href='agoaction.html?id=${data.Data.list[i].id}'"><img src="${data.Data.list[i].imgurl}" style="width: 30%;height: 30%;"/><div class=""><p>【${data.Data.list[i].title}】${data.Data.list[i].content}</p><strong><i>${data.Data.list[i].time}</i><em></em></strong></div></li>`
+							$('.nowaction').html(str)
+						}
+
+					}
+				}
+			});
+
+			//			var details=function(){
+			//				
+			//			}
+
+			$.ajax({
+				type: "get",
+				url: "http://139.224.133.133:8013/api/act/v1/historyactivityList",
+				async: false,
+				data: {
+					orderby: 0,
+					search: '',
+					pageindex: 1,
+					pagesize: 10
+				},
+				success: function(data) {
+					console.log(data);
+					if(data.Code == 200) {
+						for(i in data.Data.list) {
+							strs += `<li onclick="window.location.href='nowaction.html?id=${data.Data.list[i].id}'"><img src="${data.Data.list[i].imgurl}" style="width: 30%;height: 30%;margin-top:3%"/><div class=""><p>【${data.Data.list[i].title}】${data.Data.list[i].content}</p><strong><i>${data.Data.list[i].time}</i><em></em></strong></div></li>`
+							$('.ageaction').html(strs)
+						}
+
+					}
+				}
+			});
+		})
+	</script>
+
+</html>

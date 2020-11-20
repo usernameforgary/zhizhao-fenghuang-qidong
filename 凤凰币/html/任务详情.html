@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
+  />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<link rel="stylesheet" type="text/css" href="../css/common.css" />
+<script src="../js/rem.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<style>
+.warp{
+    width: 7.5rem;
+    margin: 0  auto;;
+}
+.warp-task{
+    padding: 0.4rem;
+    font-size: 0.3rem;
+}
+.warp-task div{
+    line-height: 0.6rem;
+}
+.lq-task{
+    width: 4rem;
+    margin: 5rem  auto  0;
+    border-radius: 5px;
+    text-align: center;
+    padding: 0.2rem;
+    background: linear-gradient(90deg, #ff4e50, #f9a623);
+}
+</style>
+<body>
+    <div class="warp">
+       <div class="warp-task  warp-cu">
+               <!-- <div>
+                  <span>任务名称：</span>
+                  <span>任务任务任务</span>
+               </div>
+               <div>
+                  <span>任务时间：</span>
+                  <span>2020/1/9-2020/2-8</span>
+               </div>
+               <div>
+                  <span>任务奖励：</span>
+                  <span>1000凤凰币</span>
+               </div>
+               <div>
+                  <span>任务类型：</span>
+                  <span>学员任务/非学员任务</span>
+               </div> -->
+       </div>
+       <div style="width: 100%; height: 0.3rem; background: #f0f0f0;"></div>
+       <div class="warp-task">
+        <div>
+          任务内容：
+        </div>
+        <div class="ru-nr">
+           <!-- <span>1：</span> -->
+           <span>任务内容2020/1/9-2020/2-8</span>
+        </div>
+        <!-- <div>
+           <span>2：</span>
+           <span>任务内容2020/1/9-2020/2-8</span>
+        </div>
+        <div>
+           <span>3：</span>
+           <span>任务内容2020/1/9-2020/2-8</span>
+        </div> -->
+      
+</div>
+
+
+     <div class="lq-task">领取任务</div>
+    </div>
+</body>
+<script src="../js/jquery-3.3.1.min.js"></script>
+
+<script>
+
+function ChangeDateFormat(timestamp) {
+     
+     var date = new Date(parseInt(timestamp.replace("/Date(", "").replace(")/", ""), 10));
+     Y = date.getFullYear() + '/';
+     M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '/';
+     D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
+   
+     return Y + M + D ;
+ }
+   $.ajax({
+      type:'get',
+      url:'http://139.224.133.133:8088/api/phoenixcoin/v1/gettasklistdetail',
+      data:{
+         tasklistid:1  
+      },
+      success:function(data){
+         console.log(data)
+         var time=   ChangeDateFormat(data.Data.starttime)
+         var time1=   ChangeDateFormat(data.Data.endtime)
+     console.log(time)
+        if(data.Code==1000){
+          alert(data.Msg)
+        }else{
+           var html=''
+           html+=`
+           <div>
+                  <span>任务名称：</span>
+                  <span>${data.Data.tasktitle}</span>
+               </div>
+               <div>
+                  <span>任务时间：</span>
+                  <span>${time}--</span>
+                  <span>${time1}</span>
+               </div>
+               <div>
+                  <span>任务奖励：</span>
+                  <span><span>${data.Data.integral}</span>凤凰币</span>
+               </div>
+               <div>
+                  <span>任务类型：</span>
+                  <span>${data.Data.type}</span>
+               </div>
+           
+           `
+           $('.warp-cu').html(html)
+           $('.ru-nr').html(data.Data.taskcontent)
+        } 
+     
+      }
+
+
+   })
+ 
+
+
+
+ 
+
+
+</script>
+</html>

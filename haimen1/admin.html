@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <title>凤凰机器人吕四校区</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/commonUI.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index1.css"/>
+    <script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	body{
+    		background: #fff;
+    		/*background-image: url(img/bodyBg/loginBg@3x.png);*/
+    		background-size: 100%;
+    		background-repeat: no-repeat;
+    		background-position:0 -.6rem ;
+    	}
+    	.main{
+    		padding: 0 0.5rem;
+    	}
+    	.ditui{
+    		position: relative;
+    		height: 1.8rem;
+    		border-radius: 0.2rem;
+    		overflow: hidden;
+    		box-shadow: 2px 2px 8px #aaa, -2px 2px 8px #aaa;
+    		margin-bottom: 0.5rem;
+    	}
+    	.ditui header{
+    		float: left;
+    		line-height: 1.8rem;
+    	}
+    	.ditui header img{
+    		width: 0.5rem;
+    		position: relative;
+    		top: 0.1rem;
+    		margin:0 0.5rem;
+    	}
+    	.ditui ul{
+    		background-color: #FBD15B;
+    		position: absolute;
+    		right: 0;
+    		height:1.8rem;
+    		color: white;
+    		/*border-bottom: 1px solid #eee;*/
+    	}
+    	.ditui ul li{
+    		width: 2rem;
+    		line-height: 0.9rem;
+    		text-align: center;
+    	}
+    	.ditui ul li:first-child{
+    		border-bottom: 1px solid #eee;
+    	}
+    	.header{
+    		line-height: 0.9rem;
+    	}
+    	.header img{
+    		width: 0.9rem;
+    		float: left;
+    		margin-right: 0.5rem;
+    	}
+    </style>
+</head>
+<body class="up-page">
+	<div class="up-page-wrapper register" style="padding-top: 0.5rem;">
+		<div class="main">
+			<div class="header">
+				<img src="img/default_person.png"/>
+				<p>园区校长</p>
+			</div>
+			<div class="lists">
+				<div class="ditui" style="margin-top: 0.4rem;">
+					<header><img src="img/bodyBg/studentIcon@3x.png"/>查看学生</header>
+					<ul>
+						<li onclick="goUrl('src/admin/student.html')">学员（<span class="s1">0</span>）</li>
+						<li onclick="goUrl('src/admin/n_student.html')">非学员（<span class="s2">0</span>）</li>
+					</ul>
+				</div>
+				<div class="ditui">
+					<header><img src="img/bodyBg/teacherIcon@3x.png"/>查看教师</header>
+					<ul>
+						<li style="line-height: 1.8rem;" onclick="goUrl('src/admin/teacher.html')">教师（<span class="s3">0</span>）</li>
+						<!--<li onclick="goUrl('src/xufei/history.html')">历史记录<i class="iconfont icon-you"></i></li>-->
+					</ul>
+				</div>
+				<div class="ditui">
+					<header><img src="img/bodyBg/corserIcon@3x.png"/>查看课表</header>
+					<ul>
+						<li style="line-height: 1.8rem;" onclick="goUrl('src/admin/course1.html')">查看</li>
+						<!--<li onclick="goUrl('src/xufei/history.html')">历史记录<i class="iconfont icon-you"></i></li>-->
+					</ul>
+				</div>
+				
+				<div class="ditui">
+					<header><img src="img/bodyBg/baobiao@3x.png"/>日报表</header>
+					<ul>
+						<li style="line-height: 1.8rem;" onclick="goUrl('src/admin/richengbiao1.html')">查看</li>
+						<!--<li onclick="goUrl('src/xufei/history.html')">历史记录<i class="iconfont icon-you"></i></li>-->
+					</ul>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</body>
+<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/commonUI.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/md5.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var ui = window.CUMS.UI;
+	var mima="";
+//	ui.showToast( '板块正在开发！');
+window.addEventListener('pageshow', function () { 
+ if(location.href.indexOf('userId=')>0){
+	localStorage.setItem("zhizhao_uid",location.href.split("userId=")[1].split("&")[0]);
+}
+});
+
+	$(".main img").click(function(){
+		$(".on").removeClass("on");
+		$(this).addClass("on");
+//		localStorage.setItem("cardClass",$(this).attr('index'));
+//		history.back()
+	})
+	$(".main img").click(function(){
+		localStorage.setItem("cardClass",$('.on').attr('index'));
+//		history.back()
+	})
+	$(".list_bottom i").click(function(){
+		$('.icon-p').attr("class","iconfont icon-icon-test");
+		$(this).attr("class","iconfont icon-p");
+	})
+	if(localStorage.getItem('zhizhao_typle')==1){
+		$("#tel").val(localStorage.getItem('zhanghao'));
+		$("#passd").val(localStorage.getItem('mima'));
+		$('.icon-icon-test').eq(0).attr("class","iconfont icon-p");
+	}else if(localStorage.getItem('zhizhao_typle')==2){
+		$("#tel").val(localStorage.getItem('zhanghao'));
+		$("#passd").val(localStorage.getItem('mima'));
+		$('.icon-icon-test').eq(1).attr("class","iconfont icon-p");
+	}
+	$("button").click(function(){
+		if($("#tel").val()==""){
+			return false;
+		}
+		if($("#passd").val()==""){
+			return false;
+		}
+		if($('.icon-p').length==0){
+			return false;
+		}
+		if(localStorage.getItem('zhizhao_typle')){
+			mima=$("#passd").val();
+		}else{
+			mima=md5($("#passd").val());
+		}
+		if($("#tel").val()!=localStorage.getItem("zhanghao")||$("#passd").val()!=localStorage.getItem("mima")){
+			mima=md5($("#passd").val());
+		}
+		
+	})
+		getAjax(hostAjax+"/api/tch/v1/signedbilllist",{//学员人数
+			user_id:0
+		},function(data){
+			if(data.Data!=""){
+				$(".s1").text(data.Data.list.length);
+			}else{
+				
+			}
+		})
+		getAjax(hostAjax+"/api/principal/v1/selectteacherlist",{//老师人数
+			user_id:uid
+		},function(data){
+			if(data.Data!=""){
+				$(".s3").text(data.Data.list.length);
+			}else{
+				
+			}
+		})
+		getAjax(hostAjax+"/api/tch/v1/notsignedlist",{//非学员人数
+			user_id:0
+		},function(data){
+			if(data.Data!=""){
+				$(".s2").text(data.Data.list.length);
+			}else{
+				
+			}
+		})
+</script>
+</html>

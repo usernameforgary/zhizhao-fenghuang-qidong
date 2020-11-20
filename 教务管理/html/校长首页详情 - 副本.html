@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    <script src="../js/rem.js"></script>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/xzsyxqindex.css">
+    <style>
+      .date {
+        box-shadow: none;
+        padding: 0;
+      }
+
+      .date span {
+        line-height: initial;
+        font-size: .2rem;
+        display: inline-block;
+        color: #519fdd;
+        background: #ddd;
+        padding: .05rem .1rem;
+        border-radius: .2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="warp">
+      <div class="nav-warp">
+        <div class="warp-box">
+          <img src="../img/13.png" alt="" class="img">
+          <span class="yq-font">园区校长</span>
+        </div>
+        <div class="box-nav">今日数据预览</div>
+      </div>
+      <div class="nav-box">
+        <ul class="list-nav">
+          <li class="list-li">
+            <p class="number">加载中</p>
+            <p class="text-propem">今日上课人数</p>
+          </li>
+          <li class="list-li">
+            <p class="number">加载中</p>
+            <p class="text-propem">本周电话邀约</p>
+          </li>
+          <li class="list-li">
+            <p class="number">加载中</p>
+            <p class="text-propem">本周到访人数</p>
+          </li>
+        </ul>
+      </div>
+      <div class="line"></div>
+      <div class="big-warp">
+        <ul class="navigation">
+          <li class="list-por teacher">
+            <img src="../img/老师.png" alt="">
+            <p class="font-qtqd">老师</p>
+          </li>
+          <li class="list-por student">
+            <img src="../img/学生.png" alt="">
+            <p class="font-qtqd">学生</p>
+          </li>
+
+          <li class="list1 list-por arrange">
+            <img src="../img/校长首页详情(4).png" alt="">
+            <p class="font-qtqd">快速排班</p>
+          </li>
+          <li class="list-por manage">
+            <img src="../img/校长首页详情(6).png" alt="">
+            <p class="font-qtqd">班级管理</p>
+          </li>
+        </ul>
+        <ul class="flix-warp">
+          <li class="list-por anomaly">
+            <img src="../img/qtqd.jpg" alt="">
+            <p class="font-qtqd">前台签到</p>
+          </li>
+          <li class="list-por abnormal1">
+            <img src="../img/校长首页详情(7).png" alt="">
+            <p class="font-qtqd">签到异常</p>
+          </li>
+          <li class="list-por  transfer">
+            <img src="../img/校长首页详情(5).png" alt="">
+            <p class="font-qtqd">转班申批</p>
+          </li>
+
+          <li class="list1 list-por  curriculum">
+            <img src="../img/校长首页详情(3).png" alt="">
+            <p class="font-qtqd">课程预览</p>
+          </li>
+        </ul>
+        <ul class="flix-warp">
+          <li class="list1 list-por schedule">
+            <img src="../img/校长首页详情(2).png" alt="">
+            <p class="font-qtqd">即时课表</p>
+          </li>
+          <li class="list1 list-por pay">
+            <img src="../img/缴费记录.pic" alt="">
+            <p class="font-qtqd">缴费记录</p>
+          </li>
+        </ul>
+
+      </div>
+      <div class="line"></div>
+      <div class="abnormal-data">
+        <p class="abnormal">异常数据</p>
+      </div>
+      <div class="list-view">
+        <div id="loading" style="text-align: center; color: gray">加载中...</div>
+      </div>
+      <div>
+        <div class="but-wan">
+          <div><img src="../img/未标题-8.png" alt="" class="but-img"></div>
+          <p class="plt">凤凰机器人南通总校</p>
+        </div>
+      </div>
+    </div>
+    <a href="./校长端转班审批.html"></a>
+  </body>
+  <script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../js/long.js"></script>
+  <script>
+    $('.arrange').click(function () {
+      window.location.href = './校长端快速排班.html';
+    });
+    $('.teacher').click(function () {
+      window.location.href = './教师.html';
+    });
+    $('.student').click(function () {
+      window.location.href = './学生.html';
+    });
+    $('.manage').click(function () {
+      window.location.href = './班级管理.html';
+    });
+    $('.anomaly').click(function () {
+      window.location.href = './签到查询.html';
+    });
+    $('.abnormal1').click(function () {
+      window.location.href = './校长签到异常.html';
+    });
+    $('.transfer').click(function () {
+      window.location.href = './校长端转班审批.html';
+    });
+    $('.curriculum').click(function () {
+      window.location.href = './example-overview.html';
+    });
+    $('.schedule').click(function () {
+      window.location.href = './即时课表.html';
+    });
+    $('.pay').click(function () {
+      window.location.href = './缴费.html';
+    });
+
+    getAjax(
+      hostAjax + '/api/overpipe/v1/previewreport',
+      { userid: +localStorage.zhizhao_uid },
+      function (data) {
+        var doms = $('.number');
+        if (data.Code === 200) {
+          doms.eq(0).text(data.Data.classattendance);
+          doms.eq(1).text(data.Data.telephoneinviter);
+          doms.eq(2).text(data.Data.numberofvisitors);
+        } else {
+          doms.eq(0).text('加载失败');
+          doms.eq(1).text('加载失败');
+          doms.eq(2).text('加载失败');
+        }
+      },
+    );
+
+    getAjax(
+      hostAjax + '/api/overpipe/v1/selectabnormallist',
+      { userid: +localStorage.zhizhao_uid },
+      function (data) {
+        if (data.Code === 200) {
+          if (!data.Data.list.length) return $('#loading').text('无更多信息');
+          $('.list-view').html(data.Data.list.map((x, i) => `
+            ${!i || data.Data.list[i - 1].dateweek !== x.dateweek ? `<div class="box-list date"><span>${x.dateweek.split(' ')[0]}</span></div>` : ''}
+            <div class="box-list">
+              <div>
+                <span class="classandgrade">班级名称:</span>
+                <span class="mind">${x.classname}</span>
+              </div>
+              <div>
+                <span class="classandgrade">学生姓名:</span>
+                <span class="mind">${x.name}</span>
+                <span class="classandgrade tite">上课老师:</span>
+                <span class="mind">${x.teachername}</span>
+              </div>
+              <div style="display:flex">
+              <div>
+                <span class="classandgrade">异常原因:</span>
+                <span class="mind">${x.abnormalreason}</span>
+                </div>
+                <div>
+                <span class="button sendMsg" data-id="${x.curriculumid} ${x.teacherid}">提醒老师</span>
+                </div>
+              </div>
+             
+            </div>
+          `).join(''));
+          $('.sendMsg').click(function () {
+            var id = $(this).attr('data-id').split(' ');
+            getAjax(
+              hostAjax + '/api/overpipe/v1/smsremindteachers',
+              {
+                curriculumid: +id[0],
+                teacherid: +id[1],
+                userid: +localStorage.zhizhao_uid
+              },
+              function (data) {
+               alert(data.Msg);
+              }
+            )
+          })
+        } else if (data.Code === 1000) {
+          $('#loading').text('无更多信息');
+        } else {
+          $('#loading').text('加载失败');
+        }
+      },
+    )
+  </script>
+</html>
