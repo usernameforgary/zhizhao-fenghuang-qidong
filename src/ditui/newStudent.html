@@ -359,6 +359,7 @@
 		stanby = false,
 		addStr = "";
 	//	ui.showToast( '板块正在开发！');
+    console.log(FenghuangConst.teacherHomePagePath());
 	$(function () {
 		// $('.ifSign1').change(function () {
 			$.ajax({
@@ -681,7 +682,7 @@ $('.totleTim1').change(function(){
 				if (data.Data != "") {
 					stanby = true;
                     ui.showToast('提交成功', 500);
-                    goUrl(FenghuangConst.teacherHomePagePath);
+                    goUrl(FenghuangConst.teacherHomePagePath());
 					$(".register").show();
 					$('.zhanghao').text(data.Data.Accountnumber);
 				} else {

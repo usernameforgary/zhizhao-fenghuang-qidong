@@ -432,7 +432,7 @@
 				postAjax(hostAjax + "/api/tch/v1/addrenew", ajaxData, function (data) {
 					if (data.Data != "") {
                         ui.showToast('提交成功', 500);
-                        goUrl(FenghuangConst.teacherHomePagePath);
+                        goUrl(FenghuangConst.teacherHomePagePath());
 						setTimeout(function () {
 							sessionStorage.setItem("ifReload", 1);
 							// history.back();

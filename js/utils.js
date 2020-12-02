@@ -219,8 +219,8 @@ function _getAjax (_url, ajaxData, callback) {
 }
 /*这是--访问后端的主机名*/
 //TODO remove before deploy
-//var hostAjax = "http://139.224.133.133:8088";//http://121.196.206.172:8060
-var hostAjax = "http://139.224.133.133:8084";
+var hostAjax = "http://139.224.133.133:8088";
+//var hostAjax = "http://139.224.133.133:8084";
 var jinbohao = hostAjax;
 var hostAjax1 = jinbohao;
 var hostAjax2 = jinbohao;/*本地的接口http://192.168.1.108:64639*/
@@ -904,7 +904,7 @@ function bodyScroll (event) {
 
 //调用微信登录
 //TODO remove befor deploy
-let isDevelplment = false;
+let isDeveloplment = false;
 wxLogin();
 function wxLogin(_url){
 	if(localStorage.getItem("zhizhao_uid1")){
@@ -916,7 +916,7 @@ function wxLogin(_url){
 		// getAjax(hostAjax+"/api/user/v1/wxloginopenid?openid="+localStorage.getItem("zhizhao_openid"),"",relogin);
     }
     //下面是微信授权
-    if(!isDevelplment) {
+    if(!isDeveloplment) {
         if(sessionStorage.getItem("zhizhao_code")==null&&localStorage.getItem("zhizhao_openizhizhao_openidd")==null){
             var wxUrl=encodeURI(location.href);
             location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx220f1ff8e48f8edb&redirect_uri="+wxUrl+"&response_type=code&scope=snsapi_userinfo&state=jin#wechat_redirect";
