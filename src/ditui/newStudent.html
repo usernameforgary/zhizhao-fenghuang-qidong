@@ -592,10 +592,20 @@ $('.totleTim1').change(function(){
 		console.log($('.totleTim1').val())
 		console.log(localStorage.getItem('yhnum') - $('.totleTim1').val())
 		var classhourtype = "";
+
+        let phoneNumberInput = $("#tel").val();
+        if(all_function && all_function.isChinaPhoneNumber) {
+            if (!phoneNumberInput || !all_function.isChinaPhoneNumber(phoneNumberInput)) {
+                ui.showToast("请输入正确的手机号", 1500);
+			    return false;
+            }
+        }
+
 		if ($("#money").val() != "" && $(".totleTime").eq(0).val() == "") {
 			ui.showToast("请输入购买课时", 1500);
 			return false;
 		}
+        
 		if ($("#money").val() == "" && $(".totleTime").eq(0).val() == "") {
 			classhourtype = "4|0,";
 		}

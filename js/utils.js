@@ -394,11 +394,15 @@ var all_function = {
 		} else {
 			return true;
 		}
-	},
-	iponeTime: function (time) {
-		return time.replace(/-/g, "/").substring(0, time.length - 4);
-	}
-	,
+    },
+    isChinaPhoneNumber: function (phoneNumber) {
+        let phoneReg = /^1(?:3\d{3}|5[^4\D]\d{2}|8\d{3}|7(?:[235-8]\d{2}|4(?:0\d|1[0-2]|9\d))|9[0-35-9]\d{2}|66\d{2})\d{6}$/;
+        if(!phoneReg.test(phoneNumber)) {
+            return false;
+        } else {
+            return true;
+        }
+    },
 	isLogin: function () {
 		//判断是否登录的方法
 		if (localStorage.getItem("zhizhao_uid")) {

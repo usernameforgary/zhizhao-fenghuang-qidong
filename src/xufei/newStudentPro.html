@@ -194,7 +194,7 @@
 				<li style="clear: both;"><label for="hetongNum">合同编号：</label><br /><input style="width: 100%;"
 						type="text" name="hetongNum" id="hetongNum" value="" /></li>
 
-				<div class="wop">
+				<!-- <div class="wop">
 					<div class="tuio">
 						<p>已报名总课时：</p>
 						<p>剩余课时</p>
@@ -205,7 +205,7 @@
 						<p class="classhour">0</p>
 						<p class="consumeclasshour">0</p>
 					</div>
-				</div>
+				</div> -->
 
 
 
@@ -225,28 +225,25 @@
 <script src="../../js/utils.js" type="text/javascript" charset="utf-8"></script>
 <script src="../../js/mobileSelect.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/const.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	var ui = window.CUMS.UI;
 	var ajaxData, ifClick = true;
-	//	ui.showToast( '板块正在开发！');
- $.ajax({
-	url: 'http://139.224.133.133:8088//api/tch/v1/getstudentclasshour',
-			data: {
-				studntid: location.href.split("id=")[1].split("&")[0] //课程系列
-			},
-			success:function(data){
-				console.log(data)
-				$('.purchasehour').text(data.Data[0].purchasehour)
-				$('.classhour').text(data.Data[0].classhour)
-				$('.consumeclasshour').text(data.Data[0].consumeclasshour)
-			}
- })
+    //	ui.showToast( '板块正在开发！');
+    //续费或试听
+    let pageEnterType = location.href.split("id=")[1].split("&")[1];
+    if(pageEnterType && pageEnterType == "shiting") {
+        $('.title').html("凤凰机器人试听表");
+        document.title = "学员试听";
+    } else {
+        $('.title').html("凤凰机器人续费表");
+    }
 
 	$(function () {
 		// $('.ifSign1').change(function () {
 		$.ajax({
 			// type:'get',
-			url: 'http://139.224.133.133:8088/api/tch/v1/getgoodslist',
+			url: FenghuangConst.hostAjax + '/api/tch/v1/getgoodslist',
 			data: {
 				subjectid: 0, //课程系列
 			},
@@ -270,7 +267,7 @@
 
 					$.ajax({
 						// type:'get',
-						url: 'http://139.224.133.133:8088/api/tch/v1/getgoodslist',
+						url: FenghuangConst.hostAjax + '/api/tch/v1/getgoodslist',
 						data: {
 							subjectid: pok ,//课程名称
 							
@@ -291,7 +288,7 @@
 								"<option value='0'>请选择</option>" + htm);
 							$('.ifSign2').change(function () {
                                   $.ajax({
-									url: 'http://139.224.133.133:8088/api/tch/v1/getgoodslist',
+									url: FenghuangConst.hostAjax + '/api/tch/v1/getgoodslist',
 						data: {
 							subjectid: pok ,//课程名称
 							coursefeesid:$(this).val()
@@ -434,8 +431,8 @@
 				ifClick = false;
 				postAjax(hostAjax + "/api/tch/v1/addrenew", ajaxData, function (data) {
 					if (data.Data != "") {
-
-						ui.showToast('提交成功', 500);
+                        ui.showToast('提交成功', 500);
+                        goUrl(FenghuangConst.teacherHomePagePath);
 						setTimeout(function () {
 							sessionStorage.setItem("ifReload", 1);
 							// history.back();
@@ -476,7 +473,7 @@
 				user_id: location.href.split("id=")[1].split("&")[0]
 			}, function (data) {
 				var str = "";
-				if (data.Data.list[0].syclasshour <= 0) {
+				if (data && data.Data && data.Data.list[0].syclasshour <= 0) {
 					data.Data.list[0].syclasshour = 0;
 				}
 				if (data.Data != "") {

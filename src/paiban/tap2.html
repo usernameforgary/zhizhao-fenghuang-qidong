@@ -308,21 +308,24 @@
 					studentid:location.href.split('stuId=')[1].split('&')[0],
 					fixedcourseid:e.id
 				},function(data){
-					if(data.Data!=""){
-						
-						$(".float p").eq(0).find("span").text(data.Data[0].name);
-						$(".float p").eq(1).find("span").text(data.Data[0].classname);
-						$(".float p").eq(2).find("span").text(data.Data[0].subjectname);
-						$(".float p").eq(3).find("span").text(data.Data[0].weekname);
-						$(".float p").eq(4).find("span").text(data.Data[0].classroomname);
-						$(".float p").eq(5).find("span").text(data.Data[0].classtime);
-						
-						$(".float").show();
-						$(".float button").click(function(){
-							sessionStorage.setItem("ifReload",1);
-							history.go(-3);
-							
-						})
+					if(data.Data!="") {
+						if(data.Data && data.Data.length > 0) {
+                            $(".float p").eq(0).find("span").text(data.Data[0].name);
+                            $(".float p").eq(1).find("span").text(data.Data[0].classname);
+                            $(".float p").eq(2).find("span").text(data.Data[0].subjectname);
+                            $(".float p").eq(3).find("span").text(data.Data[0].weekname);
+                            $(".float p").eq(4).find("span").text(data.Data[0].classroomname);
+                            $(".float p").eq(5).find("span").text(data.Data[0].classtime);
+                            
+                            $(".float").show();
+                            $(".float button").click(function(){
+                                sessionStorage.setItem("ifReload",1);
+                                history.go(-3);
+                                
+                            })
+                        } else {
+                           ui.showToast( "调用出错，请联系管理员。",3000); 
+                        }
 					}else{
 						ui.showToast( data.Msg,3000);
 					}
