@@ -92,15 +92,26 @@
   <script src="js/commonUI.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
   <script>
-    var time = new Date().getTime()
+    // //由主j进入该页面，清除localstorage中存储的选中查询日期
+    // if(document.referrer.indexOf(FenghuangConst.courseDetailPage) != -1) {
+    //     localStorage.removeItem(FenghuangConst.KeTangBiaoXianChaKanRiQiKey);
+    // }
+    var time = new Date().getTime();
+    //读取localstorage中查询时间
+    let selectedTimeStr = localStorage.getItem(FenghuangConst.KeTangBiaoXianChaKanRiQiKey); 
+    if(selectedTimeStr) {
+        selectedTime = new Date(selectedTimeStr * 1).getTime();
+        // //选中的日期是当前日期
+        // if(moment(selectedTimeStr*1).isSame(time, 'day')) {
+        //     //清除选中日期
+        //     localStorage.removeItem(FenghuangConst.KeTangBiaoXianChaKanRiQiKey);
+        // }
+        time = selectedTime;
+        
+    }
     //显示周的今天
-    var timeShow =
-      new Date().getFullYear() +
-      '-' +
-      (new Date().getMonth() + 1) +
-      '-' +
-      new Date().getDate()
-    $('.CourseBox .top .month .big').html(buZero(timeShow.split('-')[1]))
+    var timeShow = moment(time).format('YYYY-MM-DD');
+    $('.CourseBox .top .month .big').html((timeShow.split('-')[1]))
     $('.CourseBox .top .month .year').html(timeShow.split('-')[0] + '年')
     var predateTime = ''
     var downdateTime = ''
@@ -118,6 +129,7 @@
         observer: true,
         on: {
           slidePrevTransitionEnd: async function() {
+            $('.CourseBox>.bottom').html('<span style="display: block;margin-top: 20vh;text-align:center;">点击选择查看日期</span>');
             prevTime++;
             nextTime--;
             let currentWeekDate = moment().add((nextTime - 1) * 7, 'days').format("YYYY-MM-DD")
@@ -151,6 +163,8 @@
             }
           },
           slideNextTransitionStart: async function() {
+            $('.CourseBox>.bottom').html('<span style="display: block;margin-top: 20vh;text-align:center;">点击选择查看日期</span>');
+            prevTime++;
             nextTime++
             prevTime--
             let currentWeekDate = moment().add((nextTime - 1) * 7, 'days').format("YYYY-MM-DD")
@@ -217,6 +231,12 @@
       })
     }
     function goBackTody() {
+      time = new Date().getTime();
+      const format = "YYYY-MM-DD"
+      timeShow = moment().format(format);
+      //更新localstorage中存储的选中日期
+      localStorage.setItem(FenghuangConst.KeTangBiaoXianChaKanRiQiKey, time);
+
       $('.dayList-container .swiper-wrapper').html('')
       $('.dayList-container .swiper-wrapper')
         .html(`<div class="swiper-slide"><div class="dayList"></div></div>
@@ -337,19 +357,16 @@
       // fillDayListHtml(prevList, 0);
      
       $('.CourseBox>.bottom').html('')
-    //   let res = await getclassroomperformance(
-    //     `${timeShow.split('-')[0]}-${buZero(timeShow.split('-')[1])}-${buZero(
-    //       timeShow.split('-')[2]
-    //     )}`
-    //   )
-    //   if (res !== false) {
-    //     fillContent(res.Data.list)
-    //   } else {
-    //     $('.CourseBox>.bottom').html(
-    //       '<span style="display: block;margin-top: 20vh;text-align:center;">暂无数据</span>'
-    //     )
-    //   }
-      // fillDayListHtml(nextList, 2)
+      let res = await getclassroomperformance(timeShow)
+
+      if (res !== false) {
+        fillContent(res.Data.list)
+      } else {
+        $('.CourseBox>.bottom').html(
+          '<span style="display: block;margin-top: 20vh;text-align:center;">暂无数据</span>'
+        )
+      }
+      fillDayListHtml(nextList, 2)
     }
     // 填充slider
     async function fillDayListHtml(
@@ -370,8 +387,8 @@
           <div class="item">
             <div class="title">${element.title}</div>
             <div class="value ${
-              buZero(timeShow.split('-')[2]) === element.value &&
-              buZero(timeShow.split('-')[1]) === element.month
+              (timeShow.split('-')[2]) === element.value &&
+              (timeShow.split('-')[1]) === element.month
                 ? 'active'
                 : ''
             }">${element.value}</div>`
@@ -421,13 +438,16 @@
     // 点击事件
     $('.swiper-wrapper').click(async function(e) {
       if ($(e.target).hasClass('shadow')) {
-        let res = await getclassroomperformance(
-          `${$(e.target).attr('year')}-${$(e.target).attr('month')}-${$(
+        let selectedDate = `${$(e.target).attr('year')}-${$(e.target).attr('month')}-${$(
             e.target
           )
             .siblings('.value')
-            .html()}`
-        )
+            .html()}`; 
+        //缓存选中的查看时间，存入localstorage中
+        time = new Date(selectedDate).getTime();
+        localStorage.setItem(FenghuangConst.KeTangBiaoXianChaKanRiQiKey, time);
+
+        let res = await getclassroomperformance(selectedDate);
         if (res !== false) {
           fillContent(res.Data.list)
         } else {
@@ -452,14 +472,15 @@
           .removeClass('active')
       }
     })
+    function toCourseDetail(courseId) {
+        window.location = `src/Course/index.html?id=${courseId}`;
+    }
     function fillContent(List) {
       let str = ''
       for (let i = 0; i < List.length; i++) {
         const element = List[i]
         str += `
-            <div class="item" ${element.steta === '暂无学员' ? '' : `onclick="window.location.href='src/Course/index.html?id=${
-              element.id
-            }'"`}>
+            <div class="item" ${element.steta === '暂无学员' ? '' : `onclick="toCourseDetail(${element.id})"`}>
             <div class="top">
               <img src="./img/1.png" alt="" srcset="" />
               <div class="title">${element.classname}</div>

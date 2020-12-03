@@ -63,7 +63,7 @@
           <img src="./img/menuImg2.png" alt="" srcset="" />
           <div class="title">我的课表</div>
         </div>
-        <div onclick="goUrl('courseperformance.html')">
+        <div onclick="toClassroomPerformancePage()">
           <img src="./img/menuImg3.png" alt="" srcset="" />
           <div class="title">课堂表现</div>
         </div>
@@ -121,6 +121,12 @@
     charset="utf-8"
   ></script>
   <script>
+    //到课堂表现页面
+    function toClassroomPerformancePage() {
+        //清除localstorage中的查看课堂表现的日期
+        localStorage.removeItem(FenghuangConst.KeTangBiaoXianChaKanRiQiKey);
+        goUrl('courseperformance.html');
+    }
     getAjax(
         FenghuangConst.hostAjax + '/api/tch/v1/teacherinfo',
       {

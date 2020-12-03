@@ -219,8 +219,8 @@ function _getAjax (_url, ajaxData, callback) {
 }
 /*这是--访问后端的主机名*/
 //TODO remove before deploy
-var hostAjax = "http://139.224.133.133:8088";
-//var hostAjax = "http://139.224.133.133:8084";
+//var hostAjax = "http://139.224.133.133:8088";
+var hostAjax = "http://139.224.133.133:8084";
 var jinbohao = hostAjax;
 var hostAjax1 = jinbohao;
 var hostAjax2 = jinbohao;/*本地的接口http://192.168.1.108:64639*/
@@ -904,7 +904,7 @@ function bodyScroll (event) {
 
 //调用微信登录
 //TODO remove befor deploy
-let isDeveloplment = false;
+let isDeveloplment = true;
 wxLogin();
 function wxLogin(_url){
 	if(localStorage.getItem("zhizhao_uid1")){
