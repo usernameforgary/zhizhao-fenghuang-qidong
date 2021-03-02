@@ -153,7 +153,7 @@
                     localStorage.setItem('uid',data.Data.list[index].user_id); 
                 }
                 if(data.Data.list[index].Ifsignup==2){
-                    window.location.href = "childIndex.html";
+                    window.location.href = "childIndex.html?_r="+ Math.random();
                 }else{
                     window.location.href = "非学员学生端.html";
                 }

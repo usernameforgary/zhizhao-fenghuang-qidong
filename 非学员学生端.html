@@ -630,17 +630,17 @@ $('.currency').click(function(){
     //ui.showToast('正在开发中...')
 })
     function tup1(){
-        getAjax(
-            hostAjax + '/api/phoenixcoin/v1/getstudnetclasshour',
-            {
-                //查看所有老师
-                user_id: uid
-            },
-            function(data) {
-                $('.plvb').text(data.Data.list[0].integral)
-                $('.plvb1').text(data.Data.sumremainingclasshour ||  0)	
-            }
-        )
+        // getAjax(
+        //     hostAjax + '/api/phoenixcoin/v1/getstudnetclasshour',
+        //     {
+        //         //查看所有老师
+        //         user_id: uid
+        //     },
+        //     function(data) {
+        //         $('.plvb').text(data.Data.list[0].integral)
+        //         $('.plvb1').text(data.Data.sumremainingclasshour ||  0)	
+        //     }
+        // )
     }
     tup1()
 
@@ -689,6 +689,11 @@ $('.currency').click(function(){
 		console.log(data.Data[0].consumeclasshour)
 		console.log(data.Data)
 		if (data.Data != "") {
+      //剩余总课时
+      if(data.Data[0] && data.Data[0].classhour) {
+        $('.plvb1').text(data.Data[0].classhour ||  0);
+      }
+      
 			if (data.Data[0].nowschool == "") {
 				data.Data[0].nowschool = "未填";
 			}

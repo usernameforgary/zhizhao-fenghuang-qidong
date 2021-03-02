@@ -640,6 +640,11 @@ console.log(uid)
 	}, function (data) {
 		console.log(data.Data)
 		if (data.Data != "") {
+      //显示剩余总课时
+      if(data.Data[0] && data.Data[0].classhour) {
+        $('.plom').text(data.Data[0].classhour)
+      }
+		  
 			if (data.Data[0].nowschool == "") {
 				data.Data[0].nowschool = "未填";
 			}
@@ -702,19 +707,20 @@ console.log(uid)
 		}
     })
 
+    //获取剩余课时和凤凰币
     function tup1() {
-		getAjax(
-			hostAjax + '/api/phoenixcoin/v1/getstudnetclasshour', {
-				//查看所有老师
-				user_id: uid
-			},
-			function (data) {
-				console.log(data)
+		// getAjax(
+		// 	hostAjax + '/api/phoenixcoin/v1/getstudnetclasshour', {
+		// 		//查看所有老师
+		// 		user_id: uid
+		// 	},
+		// 	function (data) {
+		// 		console.log(data)
 
-				$('.plvb').text(data.Data.list[0].integral)
-				$('.plom').text(data.Data.sumremainingclasshour)
-			}
-		)
+		// 		$('.plvb').text(data.Data.list[0].integral)
+		// 		$('.plom').text(data.Data.sumremainingclasshour)
+		// 	}
+		// )
 	}
 
 	tup1()
